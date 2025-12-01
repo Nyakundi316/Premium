@@ -16,14 +16,12 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className="bg-[#020617] text-white">
-        {/* Floating navbar – appears on every page */}
+      {/* Floating navbar – appears on every page */}
+      <body className="bg-slate-50 text-slate-900 dark:bg-[#020617] dark:text-white transition-colors duration-300">
         <Navbar />
 
         {/* Page content */}
-        <div className="min-h-screen pt-20">
-          {children}
-        </div>
+        <div className="min-h-screen pt-20">{children}</div>
 
         {/* Footer – appears on every page */}
         <Footer />

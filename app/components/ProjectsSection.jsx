@@ -171,7 +171,7 @@ export default function ProjectsSection() {
         });
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-gray-900 to-[#0A1A2F] text-white">
+    <div className="py-16 md:py-20 bg-transparent transition-colors duration-300">
       <main className="container mx-auto px-4 py-8 md:py-12">
         {/* Header */}
         <div className="text-center max-w-4xl mx-auto mb-8 md:mb-12">
