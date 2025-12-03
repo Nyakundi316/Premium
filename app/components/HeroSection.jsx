@@ -1,12 +1,20 @@
 import Link from "next/link";
+import Image from "next/image";
 
 export default function HeroSection() {
   return (
-    <section className="relative min-h-screen bg-gradient-to-br from-gray-900 via-[#0A1A2F] to-black text-white overflow-hidden">
+    <section
+      className={`
+        relative overflow-hidden min-h-screen
+        bg-slate-50 text-slate-900
+        dark:bg-[#020617] dark:text-white
+        transition-colors duration-300
+      `}
+    >
       {/* Geometric background elements */}
       <div className="absolute inset-0">
-        <div className="absolute top-20 -left-20 w-96 h-96 bg-[#D4A017]/5 rounded-full blur-3xl" />
-        <div className="absolute bottom-20 -right-20 w-80 h-80 bg-[#D4A017]/10 rounded-full blur-3xl" />
+        <div className="absolute top-20 -left-20 w-96 h-96 bg-[#D4A017]/10 rounded-full blur-3xl" />
+        <div className="absolute bottom-20 -right-20 w-80 h-80 bg-[#D4A017]/15 rounded-full blur-3xl" />
 
         {/* Grid pattern */}
         <div className="absolute inset-0 opacity-10">
@@ -33,7 +41,6 @@ export default function HeroSection() {
               width: "40px",
               height: "40px",
               transform: `rotate(${45 + i * 15}deg)`,
-              animation: `float ${6 + i * 2}s ease-in-out infinite`,
             }}
           />
         ))}
@@ -77,7 +84,7 @@ export default function HeroSection() {
             </h1>
 
             {/* Subtitle */}
-            <p className="text-xl text-gray-300 leading-relaxed">
+            <p className="text-base md:text-lg leading-relaxed text-slate-700 dark:text-gray-300">
               Our expertly engineered concrete paving blocks offer unmatched
               durability, striking visual appeal, and exceptional performance
               across residential, commercial, and industrial projects — a
@@ -98,7 +105,7 @@ export default function HeroSection() {
                       {feature.icon}
                     </span>
                   </div>
-                  <span className="text-gray-300 group-hover:text-white transition-colors">
+                  <span className="text-slate-700 dark:text-gray-300 group-hover:text-[#0A1A2F] dark:group-hover:text-white transition-colors">
                     {feature.text}
                   </span>
                 </div>
@@ -111,13 +118,13 @@ export default function HeroSection() {
                 href="/quote"
                 className="group relative px-8 py-4 bg-gradient-to-r from-[#D4A017] to-[#F0B429] text-[#0A1A2F] font-semibold rounded-lg overflow-hidden transition-all hover:shadow-2xl hover:shadow-[#D4A017]/30"
               >
-                <span className="relative z-10">Get Free Quote & Design</span>
+                <span className="relative z-10">Get Free Quote &amp; Design</span>
                 <div className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300" />
               </Link>
 
               <Link
                 href="/projects"
-                className="group px-8 py-4 border border-gray-700 rounded-lg font-semibold hover:border-[#D4A017]/50 hover:bg-[#D4A017]/5 transition-all"
+                className="group px-8 py-4 border border-slate-300 dark:border-gray-700 rounded-lg font-semibold hover:border-[#D4A017]/50 hover:bg-[#D4A017]/5 transition-all"
               >
                 <span className="flex items-center gap-2">
                   View Our Portfolio
@@ -139,61 +146,52 @@ export default function HeroSection() {
             </div>
 
             {/* Stats */}
-            <div className="grid grid-cols-3 gap-4 pt-8">
+            <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 pt-8">
               {[
                 { value: "200+", label: "Projects Completed" },
                 { value: "24/7", label: "Expert Support" },
               ].map((stat, index) => (
                 <div
                   key={index}
-                  className="text-center p-4 rounded-xl border border-gray-800 bg-gradient-to-b from-gray-900/50 to-transparent"
+                  className="text-center p-4 rounded-xl border border-slate-200 bg-white/80 dark:border-gray-800 dark:bg-gradient-to-b dark:from-gray-900/50 dark:to-transparent"
                 >
                   <div className="text-2xl font-bold text-[#D4A017]">
                     {stat.value}
                   </div>
-                  <div className="text-sm text-gray-400 mt-1">{stat.label}</div>
+                  <div className="text-sm text-slate-600 dark:text-gray-400 mt-1">
+                    {stat.label}
+                  </div>
                 </div>
               ))}
             </div>
           </div>
 
-          {/* Right Column - Visual */}
+          {/* Right Column - Image */}
           <div className="relative">
-            {/* Main Image Container */}
-            <div className="relative aspect-4/3 rounded-2xl overflow-hidden shadow-2xl">
-              {/* This would be replaced with actual image */}
-              <div className="absolute inset-0 bg-gradient-to-br from-gray-800 to-black flex items-center justify-center">
-                <div className="text-center p-8">
-                  <div className="w-20 h-20 mx-auto mb-6 rounded-full bg-gradient-to-r from-[#D4A017]/20 to-transparent flex items-center justify-center">
-                    <svg
-                      className="w-10 h-10 text-[#D4A017]"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={1.5}
-                        d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"
-                      />
-                    </svg>
-                  </div>
-                  <p className="text-lg font-semibold text-white mb-2">
-                    Premium Paving Installation
-                  </p>
-                  <p className="text-sm text-gray-400">
-                    High-quality interlocking concrete blocks
-                  </p>
-                </div>
-
-                {/* Pattern overlay */}
-                <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-black/80 to-transparent" />
+            <div className="relative aspect-[4/3] rounded-2xl overflow-hidden shadow-2xl border border-slate-200/70 dark:border-gray-700">
+              <Image
+                src="/images/3D zig-zag.jpeg" // 🔑 Put your real image here in /public/images/
+                alt="Premium concrete paving blocks installed on a driveway"
+                fill
+                className="object-cover"
+                priority
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-black/10" />
+              <div className="absolute bottom-4 left-4">
+                <p className="text-xs uppercase tracking-[0.18em] text-[#D4A017]">
+                  Featured Project
+                </p>
+                <p className="text-sm font-semibold text-white">
+                  Premium Paving Installation
+                </p>
+                <p className="text-xs text-gray-200 mt-1">
+                  High-quality interlocking blocks for residential driveway.
+                </p>
               </div>
             </div>
 
             {/* Floating Cards */}
-            <div className="absolute -bottom-6 -left-6 bg-gray-900/80 backdrop-blur-sm border border-gray-700 rounded-xl p-4 shadow-2xl max-w-xs">
+            <div className="absolute -bottom-6 -left-6 bg-white/90 dark:bg-gray-900/80 backdrop-blur-sm border border-slate-200 dark:border-gray-700 rounded-xl p-4 shadow-2xl max-w-xs">
               <div className="flex items-center gap-3">
                 <div className="w-10 h-10 rounded-full bg-gradient-to-r from-[#D4A017] to-[#F0B429] flex items-center justify-center">
                   <svg
@@ -211,13 +209,17 @@ export default function HeroSection() {
                   </svg>
                 </div>
                 <div>
-                  <p className="font-semibold">Free Site Inspection</p>
-                  <p className="text-sm text-gray-400">Get expert assessment</p>
+                  <p className="font-semibold text-slate-900 dark:text-white">
+                    Free Site Inspection
+                  </p>
+                  <p className="text-sm text-slate-600 dark:text-gray-400">
+                    Get expert assessment
+                  </p>
                 </div>
               </div>
             </div>
 
-            <div className="absolute -top-6 -right-6 bg-gray-900/80 backdrop-blur-sm border border-gray-700 rounded-xl p-4 shadow-2xl max-w-xs">
+            <div className="absolute -top-6 -right-6 bg-white/90 dark:bg-gray-900/80 backdrop-blur-sm border border-slate-200 dark:border-gray-700 rounded-xl p-4 shadow-2xl max-w-xs">
               <div className="flex items-center gap-3">
                 <div className="w-10 h-10 rounded-full bg-gradient-to-r from-[#D4A017] to-[#F0B429] flex items-center justify-center">
                   <svg
@@ -235,8 +237,12 @@ export default function HeroSection() {
                   </svg>
                 </div>
                 <div>
-                  <p className="font-semibold">Quick Installation</p>
-                  <p className="text-sm text-gray-400">2-5 days completion</p>
+                  <p className="font-semibold text-slate-900 dark:text-white">
+                    Quick Installation
+                  </p>
+                  <p className="text-sm text-slate-600 dark:text-gray-400">
+                    2–5 days completion
+                  </p>
                 </div>
               </div>
             </div>
@@ -245,26 +251,16 @@ export default function HeroSection() {
       </div>
 
       {/* Scroll indicator */}
-      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2">
+      <div className="absolute bottom-8 left-1/2 -translate-x-1/2">
         <div className="flex flex-col items-center">
-          <span className="text-sm text-gray-500 mb-2">Scroll to explore</span>
-          <div className="w-6 h-10 border-2 border-gray-700 rounded-full flex justify-center">
+          <span className="text-sm text-slate-500 dark:text-gray-500 mb-2">
+            Scroll to explore
+          </span>
+          <div className="w-6 h-10 border-2 border-slate-400 dark:border-gray-700 rounded-full flex justify-center">
             <div className="w-1 h-3 bg-[#D4A017] rounded-full mt-2 animate-bounce" />
           </div>
         </div>
       </div>
-
-      <style jsx>{`
-        @keyframes float {
-          0%,
-          100% {
-            transform: translateY(0) rotate(var(--tw-rotate));
-          }
-          50% {
-            transform: translateY(-20px) rotate(var(--tw-rotate));
-          }
-        }
-      `}</style>
     </section>
   );
 }
