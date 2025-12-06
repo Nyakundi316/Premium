@@ -155,55 +155,50 @@ export default function WhyChooseSection() {
       : products.filter((p) => p.category === activeCategory);
 
   return (
-    <section
-      id="why-choose"
-      className="py-16 md:py-24 bg-gradient-to-b from-gray-900 to-[#0A1A2F]"
-    >
+    <section id="why-choose" className="py-16 md:py-24 bg-[#F5F7FA]">
       <div className="container mx-auto px-4 md:px-8">
         {/* HEADER */}
         <div className="text-center max-w-3xl mx-auto mb-12 md:mb-16">
-          <span className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-[#D4A017]/20 to-transparent border border-[#D4A017]/30 px-4 py-2 mb-4">
+          <span className="inline-flex items-center gap-2 rounded-full bg-[#FFF7E0] border border-[#FACC6B]/60 px-4 py-2 mb-4">
             <div className="w-2 h-2 rounded-full bg-[#D4A017] animate-pulse" />
-            <span className="text-xs md:text-sm font-medium tracking-widest text-[#D4A017] uppercase">
+            <span className="text-xs md:text-sm font-medium tracking-[0.2em] text-[#D4A017] uppercase">
               Superior Quality
             </span>
           </span>
 
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 md:mb-6 text-white">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 md:mb-6 text-gray-900">
             Why Choose{" "}
             <span className="text-[#D4A017]">Premium Paving Blocks?</span>
           </h2>
 
-          <p className="text-sm md:text-lg text-gray-300">
+          <p className="text-sm md:text-lg text-gray-600">
             Strong, durable and beautiful paving solutions crafted with
-            precision.
+            precision for homes, estates and commercial projects.
           </p>
         </div>
 
-        <div className="grid lg:grid-cols-2 gap-10 md:gap-12 mb-8 md:mb-12">
+        <div className="grid lg:grid-cols-2 gap-10 md:gap-12 mb-10 md:mb-12">
           {/* LEFT SIDE FEATURES */}
           <div>
-            <div className="bg-gradient-to-b from-gray-900/60 to-gray-800/40 rounded-2xl border border-gray-800 p-6 md:p-8 h-full">
-              <h3 className="text-xl md:text-2xl font-bold text-white mb-6 md:mb-8">
+            <div className="bg-white rounded-2xl border border-gray-200 shadow-sm p-6 md:p-8 h-full">
+              <h3 className="text-xl md:text-2xl font-bold text-gray-900 mb-6 md:mb-8">
                 Premium Features
               </h3>
 
-              <div className="space-y-4 md:space-y-6">
+              <div className="space-y-4 md:space-y-5">
                 {features.map((feature, index) => (
                   <div
                     key={index}
-                    className="group flex items-start gap-4 p-3.5 md:p-4 rounded-xl hover:bg-gray-800/40 transition-all"
+                    className="group flex items-start gap-4 p-3.5 md:p-4 rounded-xl hover:bg-gray-50 transition-all"
                   >
-                    <div className="w-11 h-11 md:w-12 md:h-12 rounded-xl bg-[#D4A017]/20 flex items-center justify-center group-hover:scale-110 transition-transform">
-                      <span className="text-lg md:text-xl">
-                        {feature.icon}
-                      </span>
+                    <div className="w-11 h-11 md:w-12 md:h-12 rounded-xl bg-[#FFF3C4] flex items-center justify-center group-hover:scale-110 transition-transform">
+                      <span className="text-lg md:text-xl">{feature.icon}</span>
                     </div>
                     <div>
-                      <h4 className="text-sm md:text-lg font-semibold text-white mb-1">
+                      <h4 className="text-sm md:text-lg font-semibold text-gray-900 mb-1">
                         {feature.title}
                       </h4>
-                      <p className="text-xs md:text-sm text-gray-300">
+                      <p className="text-xs md:text-sm text-gray-600">
                         {feature.description}
                       </p>
                     </div>
@@ -211,10 +206,10 @@ export default function WhyChooseSection() {
                 ))}
               </div>
 
-              <div className="mt-6 md:mt-8 pt-6 border-t border-gray-800">
+              <div className="mt-6 md:mt-8 pt-6 border-t border-gray-200">
                 <Link
                   href="/contact"
-                  className="inline-flex px-5 md:px-6 py-2.5 md:py-3 border border-gray-700 rounded-lg text-xs md:text-sm font-semibold text-gray-300 hover:border-[#D4A017]/50 hover:bg-[#D4A017]/10 transition-all"
+                  className="inline-flex px-5 md:px-6 py-2.5 md:py-3 border border-gray-300 rounded-lg text-xs md:text-sm font-semibold text-gray-800 hover:border-[#D4A017] hover:bg-[#FFF7E0] transition-all"
                 >
                   Contact Our Experts
                 </Link>
@@ -224,12 +219,12 @@ export default function WhyChooseSection() {
 
           {/* RIGHT SIDE — PRODUCT GRID + FILTER */}
           <div>
-            <div className="bg-gradient-to-b from-gray-900/60 to-gray-800/40 rounded-2xl border border-gray-800 p-6 md:p-8 h-full">
+            <div className="bg-white rounded-2xl border border-gray-200 shadow-sm p-6 md:p-8 h-full">
               <div className="flex flex-wrap items-center justify-between gap-3 mb-5 md:mb-6">
-                <h3 className="text-xl md:text-2xl font-bold text-white">
+                <h3 className="text-xl md:text-2xl font-bold text-gray-900">
                   Our Products Collection
                 </h3>
-                <span className="px-3.5 py-1.5 rounded-full bg-[#D4A017]/20 text-[#D4A017] text-xs md:text-sm font-medium">
+                <span className="px-3.5 py-1.5 rounded-full bg-[#F5F7FA] text-[#A46306] text-xs md:text-sm font-medium border border-[#FACC6B]/70">
                   {products.length}+ Types
                 </span>
               </div>
@@ -243,10 +238,10 @@ export default function WhyChooseSection() {
                       key={filter.id}
                       type="button"
                       onClick={() => setActiveCategory(filter.id)}
-                      className={`px-3 py-1.5 rounded-full text-[11px] md:text-sm border transition-all ${
+                      className={`px-3 py-1.5 rounded-full text-[11px] md:text-sm border text-gray-700 transition-all ${
                         isActive
-                          ? "bg-[#D4A017] text-[#0A1A2F] border-[#D4A017]"
-                          : "border-gray-700 text-gray-300 hover:border-[#D4A017]/60 hover:text-[#FACC6B]"
+                          ? "bg-[#D4A017] text-white border-[#D4A017] shadow-sm"
+                          : "bg-gray-50 border-gray-300 hover:border-[#D4A017] hover:text-[#A46306]"
                       }`}
                     >
                       {filter.label}
@@ -262,8 +257,9 @@ export default function WhyChooseSection() {
                     key={product.id}
                     type="button"
                     onMouseEnter={() => setHoveredProduct(product)}
-                    className="group relative aspect-[4/3] rounded-2xl overflow-hidden border border-gray-800 hover:border-[#D4A017]/60 transition-all"
+                    className="group relative aspect-[4/3] rounded-2xl overflow-hidden border border-gray-200 bg-gray-50 hover:border-[#D4A017]/70 hover:shadow-md transition-all"
                   >
+                    {/* Image fades out on hover */}
                     <Image
                       src={product.image}
                       alt={product.name}
@@ -271,10 +267,12 @@ export default function WhyChooseSection() {
                       className="object-cover transition-all duration-300 group-hover:opacity-0 group-hover:scale-95"
                     />
 
-                    <div className="absolute inset-0 bg-black/70 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                    {/* Light overlay when hovered */}
+                    <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
 
+                    {/* TEXT ON HOVER */}
                     <div className="absolute inset-0 flex flex-col items-center justify-center text-center opacity-0 translate-y-3 group-hover:opacity-100 group-hover:translate-y-0 transition-all">
-                      <p className="text-xs md:text-sm font-bold text-[#F7F3DF] drop-shadow-sm">
+                      <p className="text-xs md:text-sm font-bold text-white drop-shadow-sm">
                         {product.name}
                       </p>
                       <p className="text-[10px] md:text-xs text-[#FACC6B] mt-1">
@@ -287,8 +285,8 @@ export default function WhyChooseSection() {
 
               {/* CURRENTLY VIEWING */}
               {hoveredProduct && (
-                <div className="mt-3 md:mt-4 p-4 md:p-5 rounded-xl bg-gray-800/60 border border-gray-700 flex items-center gap-3 md:gap-4">
-                  <div className="relative h-14 w-20 md:h-16 md:w-24 rounded-md overflow-hidden">
+                <div className="mt-3 md:mt-4 p-4 md:p-5 rounded-xl bg-gray-50 border border-gray-200 flex items-center gap-3 md:gap-4">
+                  <div className="relative h-14 w-20 md:h-16 md:w-24 rounded-md overflow-hidden bg-gray-100">
                     <Image
                       src={hoveredProduct.image}
                       alt={hoveredProduct.name}
@@ -297,13 +295,13 @@ export default function WhyChooseSection() {
                     />
                   </div>
                   <div>
-                    <p className="text-[10px] md:text-xs uppercase tracking-wide text-[#FACC6B]">
+                    <p className="text-[10px] md:text-xs uppercase tracking-wide text-[#A46306]">
                       Currently Viewing
                     </p>
-                    <p className="text-sm md:text-base text-white font-semibold">
+                    <p className="text-sm md:text-base text-gray-900 font-semibold">
                       {hoveredProduct.name}
                     </p>
-                    <p className="text-[11px] md:text-xs text-gray-400">
+                    <p className="text-[11px] md:text-xs text-gray-500">
                       Color: {hoveredProduct.colorLabel}
                     </p>
                   </div>
@@ -313,9 +311,9 @@ export default function WhyChooseSection() {
           </div>
         </div>
 
-        {/* THIN DIVIDER INSTEAD OF BIG EMPTY BAR */}
+        {/* THIN DIVIDER */}
         <div className="max-w-6xl mx-auto mt-4 md:mt-6">
-          <div className="h-px bg-gradient-to-r from-transparent via-[#FACC6B]/40 to-transparent" />
+          <div className="h-px bg-gradient-to-r from-transparent via-[#FACC6B]/60 to-transparent" />
         </div>
       </div>
     </section>

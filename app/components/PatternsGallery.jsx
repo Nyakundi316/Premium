@@ -1,8 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import Image from "next/image";
 import Link from "next/link";
+import Image from "next/image";
 
 export default function PatternsGallery() {
   const [activeCategory, setActiveCategory] = useState("all");
@@ -25,7 +25,7 @@ export default function PatternsGallery() {
       thickness: "60mm",
       load: "Medium – Heavy",
       colors: ["Charcoal", "Red", "Beige"],
-      application: "Residential driveways",
+      application: "Driveways",
       popular: true,
       image: "/images/classic interlock.jpeg",
     },
@@ -37,7 +37,7 @@ export default function PatternsGallery() {
       thickness: "80mm",
       load: "Heavy",
       colors: ["Charcoal", "Grey", "Mixed"],
-      application: "Commercial spaces",
+      application: "Commercial",
       popular: true,
       image: "/images/Hexagon Honeycomb.jpeg",
     },
@@ -45,11 +45,11 @@ export default function PatternsGallery() {
       id: 3,
       name: "Crown Block",
       category: "cobblestone",
-      description: "Decorative crown-shaped blocks for premium look.",
+      description: "Decorative crown-shaped blocks for a premium look.",
       thickness: "60mm",
       load: "Heavy",
       colors: ["Red", "Charcoal", "Mixed"],
-      application: "Indoor courtyards, parking",
+      application: "Courtyards",
       popular: false,
       image: "/images/Red.jpeg",
     },
@@ -61,7 +61,7 @@ export default function PatternsGallery() {
       thickness: "60mm",
       load: "Very Heavy",
       colors: ["Charcoal", "Red", "Grey"],
-      application: "Truck yards & parking",
+      application: "Truck yards",
       popular: true,
       image: "/images/3D-uni-Cabro-blocks-in-Kenya.jpg",
     },
@@ -73,107 +73,91 @@ export default function PatternsGallery() {
       : patterns.filter((pattern) => pattern.category === activeCategory);
 
   return (
-    <section
-      id="patterns"
-      className="bg-gradient-to-b from-gray-900 to-[#0A1A2F] py-10 md:py-16"
-    >
+    <section id="patterns" className="bg-[#FAFAF7] py-10 md:py-16">
       <div className="mx-auto max-w-6xl px-3 md:px-6">
         {/* HEADER */}
-        <div className="mx-auto mb-8 md:mb-10 max-w-xl text-center">
-          <span className="mb-3 inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-[#D4A017]/20 to-transparent border border-[#D4A017]/30 px-3.5 py-1">
+        <div className="mx-auto mb-10 max-w-xl text-center">
+          <span className="mb-3 inline-flex items-center gap-2 rounded-full bg-[#F9F4E5] border border-[#D4A017]/30 px-3.5 py-1">
             <span className="h-2 w-2 rounded-full bg-[#D4A017] animate-pulse" />
-            <span className="text-[10px] md:text-[11px] font-medium tracking-[0.22em] text-[#D4A017] uppercase">
+            <span className="text-[10px] md:text-xs uppercase text-[#D4A017] tracking-[0.22em]">
               Paving Patterns
             </span>
           </span>
 
-          <h2 className="mb-2 text-2xl md:text-3xl font-bold text-white leading-snug">
-            Choose Your{" "}
-            <span className="text-[#D4A017]">Paving Design</span>
+          <h2 className="text-2xl md:text-3xl font-bold text-slate-900">
+            Choose Your <span className="text-[#D4A017]">Paving Design</span>
           </h2>
 
-          <p className="text-xs md:text-sm text-gray-300">
-            Our most requested paving patterns in one place.  
-            See more details on the{" "}
+          <p className="text-xs md:text-sm text-slate-600 mt-2">
+            Our most requested paving patterns in one place.{" "}
+            View more on the{" "}
             <Link
               href="/patterns"
-              className="text-[#D4A017] hover:text-[#F0B429] underline-offset-2 hover:underline"
+              className="text-[#D4A017] hover:text-[#F0B429] underline"
             >
-              full patterns page
+              Patterns Page
             </Link>
             .
           </p>
         </div>
 
-        {/* FILTER TABS */}
-        <div className="mb-7 md:mb-9 flex flex-wrap justify-center gap-2.5 md:gap-3">
-          {categories.map((category) => (
+        {/* FILTERS */}
+        <div className="mb-8 flex flex-wrap justify-center gap-2.5">
+          {categories.map((cat) => (
             <button
-              key={category.id}
-              onClick={() => setActiveCategory(category.id)}
-              className={`rounded-full px-3 py-1.5 md:px-4 md:py-1.5 text-[11px] md:text-sm font-medium transition-all duration-300 ${
-                activeCategory === category.id
-                  ? "bg-gradient-to-r from-[#D4A017] to-[#F0B429] text-[#0A1A2F] shadow-lg shadow-[#D4A017]/25"
-                  : "bg-gray-800/60 text-gray-300 hover:bg-gray-800 border border-gray-700"
+              key={cat.id}
+              onClick={() => setActiveCategory(cat.id)}
+              className={`rounded-full px-4 py-1.5 text-xs md:text-sm font-medium transition-all ${
+                activeCategory === cat.id
+                  ? "bg-[#D4A017] text-white shadow-md"
+                  : "bg-gray-100 text-gray-700 border border-gray-300 hover:bg-gray-200"
               }`}
             >
-              {category.label}
+              {cat.label}
             </button>
           ))}
         </div>
 
-        {/* GRID – ALWAYS 2 COLUMNS ON MOBILE */}
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3.5 md:gap-6">
+        {/* GRID – 2 COLS ON MOBILE, 3/4 ON DESKTOP */}
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
           {filteredPatterns.map((pattern) => (
             <div
               key={pattern.id}
-              className="group relative overflow-hidden rounded-2xl border border-gray-800 bg-gradient-to-b from-gray-900 to-gray-800 transition-all duration-300 hover:border-[#D4A017]/50 hover:shadow-2xl hover:shadow-[#D4A017]/15"
+              className="group relative rounded-xl bg-white border border-gray-200 hover:border-[#D4A017] shadow-sm hover:shadow-lg transition-all"
             >
               {/* POPULAR BADGE */}
               {pattern.popular && (
-                <div className="absolute left-2 top-2 z-10">
-                  <span className="rounded-full bg-gradient-to-r from-[#D4A017] to-[#F0B429] px-2 py-0.5 text-[9px] font-bold uppercase tracking-wide text-[#0A1A2F]">
-                    Popular
-                  </span>
-                </div>
+                <span className="absolute top-2 left-2 z-10 rounded-full bg-[#D4A017] text-[9px] font-semibold text-white px-2 py-0.5">
+                  Popular
+                </span>
               )}
 
               {/* IMAGE */}
-              <div className="relative h-28 xs:h-32 sm:h-36 md:h-40 overflow-hidden">
+              <div className="relative h-32 md:h-40 overflow-hidden rounded-t-xl">
                 <Image
                   src={pattern.image}
                   alt={pattern.name}
-                  width={400}
-                  height={300}
-                  className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  fill
+                  className="object-cover group-hover:scale-105 transition duration-500"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/40 to-transparent" />
               </div>
 
               {/* CONTENT */}
-              <div className="p-3 md:p-4">
-                <div className="mb-1.5 flex items-start justify-between gap-2">
-                  <h3 className="text-[11px] xs:text-xs sm:text-sm md:text-base font-semibold leading-snug text-white transition-colors group-hover:text-[#D4A017]">
-                    {pattern.name}
-                  </h3>
-                  {pattern.thickness && (
-                    <span className="whitespace-nowrap rounded-full bg-gray-800 px-2 py-0.5 text-[9px] md:text-[11px] font-semibold text-gray-300">
-                      {pattern.thickness}
-                    </span>
-                  )}
-                </div>
-
-                <p className="mb-2 line-clamp-2 text-[10px] xs:text-[11px] md:text-xs text-gray-400">
+              <div className="p-3">
+                <h3 className="font-semibold text-[11px] md:text-sm text-slate-900 group-hover:text-[#D4A017]">
+                  {pattern.name}
+                </h3>
+                <p className="text-[10px] md:text-xs text-slate-600 mt-1 line-clamp-2">
                   {pattern.description}
                 </p>
 
-                <div className="mt-1 flex items-center justify-between gap-2">
-                  {/* COLOUR DOTS */}
-                  <div className="flex items-center gap-1.5">
-                    {pattern.colors.slice(0, 3).map((color, index) => (
-                      <div
-                        key={index}
-                        className="h-3 w-3 md:h-3.5 md:w-3.5 rounded-full border border-gray-700"
+                <div className="flex items-center justify-between mt-3 gap-2">
+                  {/* COLORS */}
+                  <div className="flex gap-1">
+                    {pattern.colors.slice(0, 3).map((color, i) => (
+                      <span
+                        key={i}
+                        className="w-3 h-3 rounded-full border border-gray-300"
                         style={{
                           backgroundColor:
                             color === "Charcoal"
@@ -184,14 +168,14 @@ export default function PatternsGallery() {
                               ? "#F5F5DC"
                               : color === "Grey"
                               ? "#808080"
-                              : "#6B7280",
+                              : "#CCC",
                         }}
                         title={color}
                       />
                     ))}
                   </div>
 
-                  <span className="line-clamp-1 text-right text-[9px] xs:text-[10px] md:text-[11px] text-gray-400">
+                  <span className="text-[9px] md:text-[10px] text-slate-500 line-clamp-1 text-right">
                     {pattern.application}
                   </span>
                 </div>
@@ -200,16 +184,6 @@ export default function PatternsGallery() {
           ))}
         </div>
 
-        {/* BOTTOM CTA – SMALLER ON MOBILE */}
-        <div className="mt-8 md:mt-10 text-center">
-          <Link
-            href="/patterns"
-            className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-[#D4A017] to-[#F0B429] px-5 py-2.5 md:px-6 md:py-3 text-xs md:text-sm font-semibold text-[#0A1A2F] shadow-md hover:shadow-lg hover:shadow-[#D4A017]/30 transition-all"
-          >
-            View Full Patterns Catalogue
-            <span className="text-sm md:text-base">→</span>
-          </Link>
-        </div>
       </div>
     </section>
   );

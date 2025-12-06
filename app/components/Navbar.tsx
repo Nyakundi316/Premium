@@ -31,7 +31,7 @@ export default function Navbar() {
     { label: "Patterns", href: "/patterns", icon: Layers },
     { label: "Projects", href: "/projects", icon: GalleryHorizontal },
     { label: "About", href: "/about", icon: Info },
-    { label: "FAQ", href: "/faq", icon: HelpCircle },
+    // { label: "FAQ", href: "/faq", icon: HelpCircle },
   ];
 
   // Scroll effect

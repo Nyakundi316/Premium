@@ -1,215 +1,449 @@
 // app/services/page.jsx
 import Link from "next/link";
+import Image from "next/image";
 
 export const metadata = {
   title: "Services | Premium Paving Blocks – Cabro, Kerbs & Installation",
   description:
-    "Explore the services offered by Premium Paving Blocks including manufacturing, cabro installation, supply & delivery, site assessment and custom paving designs.",
+    "Professional paving services: cabro block supply, installation, driveway construction, parking lots, walkways, kerbs and industrial yards across Nairobi & Kiambu.",
 };
+
+const heroHighlights = [
+  "Driveways, parking, walkways & industrial yards",
+  "Heavy-duty paving blocks for trucks & high traffic",
+  "Professional team for site prep & installation",
+];
 
 const services = [
   {
-    title: "Manufacturing of Paving Blocks",
-    subtitle: "60mm, 80mm, 3D & Grass Pavers",
+    title: "Paving Block Supply",
+    subtitle: "Factory-direct cabro blocks for every project",
+    image: "/images/classic interlock.jpeg",
+    imageAlt: "Stacks of interlocking paving blocks ready for delivery.",
     points: [
-      "60mm residential-grade cabro blocks for homes & light traffic",
-      "80mm heavy-duty blocks for petrol stations, malls & industrial yards",
-      "3D decorative and premium designs for high-end properties",
-      "Grass pavers / eco blocks for green parking and landscaping",
+      "60mm blocks for residential and estate driveways",
+      "80mm heavy-duty blocks for petrol stations & loading bays",
+      "Wide range of colours: charcoal, red, beige, mixed",
+      "Reliable bulk supply for contractors & developers",
     ],
-    tag: "Core Service",
+    tag: "Supply",
   },
   {
-    title: "Professional Cabro Installation",
-    subtitle: "End-to-end site preparation & laying",
+    title: "Driveway & Compound Paving",
+    subtitle: "Beautiful, durable finishes for homes & estates",
+    image: "/images/Masterpieces.jpeg",
+    imageAlt: "Finished driveway with premium paving blocks at a home.",
     points: [
-      "Site clearing, cutting & leveling",
-      "Base preparation and compaction",
-      "Cabro laying, cutting & joint filling",
-      "Kerb installation and neat finishing",
+      "Full driveway design & layout planning",
+      "Complete ground preparation, compaction & screeding",
+      "Neat cutting, edge finishing & drainage consideration",
+      "Perfect for homes, gated communities & townhouses",
     ],
-    tag: "Installation",
+    tag: "Residential",
   },
   {
-    title: "Supply & Delivery",
-    subtitle: "Factory-direct supply across Nairobi & Kiambu",
+    title: "Parking & Commercial Areas",
+    subtitle: "High-traffic surfaces built to handle daily use",
+    image: "/images/shop paves.jpeg",
+    imageAlt: "Shopping mall parking area paved with interlocking blocks.",
     points: [
-      "Direct loading from Githunguri Road factory",
-      "Delivery to homes, estates & commercial sites",
-      "Small residential jobs to large commercial projects",
-      "Flexible scheduling to match your project timeline",
+      "Apartment & mall parking areas with clear layouts",
+      "High-strength paving for office blocks & showrooms",
+      "Organised parking markings & walkways",
+      "Designed for both cars and light trucks",
     ],
-    tag: "Logistics",
+    tag: "Commercial",
   },
   {
-    title: "Site Assessment & Quotations",
-    subtitle: "Professional guidance before you build",
+    title: "Walkways & Footpaths",
+    subtitle: "Safe, clean and attractive pedestrian paths",
+    image: "/images/Hexagon Honeycomb.jpeg",
+    imageAlt: "Hexagon paving pattern on a pedestrian walkway.",
     points: [
-      "On-site measurement and ground assessment",
-      "Square meter estimation and block quantity planning",
-      "Advice on best designs for traffic type & usage",
-      "Detailed, professional quotation for materials + labour",
+      "Estate walkways, garden paths & compound paths",
+      "Non-slip finishes for safe walking in all weather",
+      "Custom patterns like hexagon, trihex and brick",
+      "Perfect around schools, churches & institutions",
     ],
-    tag: "Consultation",
+    tag: "Pedestrian",
   },
   {
-    title: "Custom Designs & Colours",
-    subtitle: "Make your property stand out",
+    title: "Industrial & Heavy-Duty Yards",
+    subtitle: "Engineered for trucks, forklifts & fuel stations",
+    image: "/images/3D-uni-Cabro-blocks-in-Kenya.jpg",
+    imageAlt: "Heavy-duty yard paved with interlocking blocks for trucks.",
     points: [
-      "3D and decorative patterns for premium homes & entrances",
-      "Multi-colour combinations for strong visual appeal",
-      "Brand-aligned designs for commercial spaces & showrooms",
-      "Patterns for estate gates, courtyards & driveways",
+      "Thicker blocks suitable for trucks & heavy loads",
+      "Ideal for factories, godowns & logistics yards",
+      "Proper sub-base preparation to prevent sinking",
+      "Recommended for fuel stations & loading bays",
     ],
-    tag: "Design",
+    tag: "Industrial",
   },
   {
-    title: "Contractor & Developer Supply",
-    subtitle: "Reliable bulk supply for ongoing projects",
+    title: "Kerbstones & Finishing",
+    subtitle: "Strong and neat edge finishes for any project",
+    image: "/images/Red.jpeg",
+    imageAlt: "Red paving blocks used with kerbstones for edge finishing.",
     points: [
-      "Consistent production for apartment blocks & estates",
-      "Dedicated support for contractors & developers",
-      "Bulk pricing for long-term or large-volume orders",
-      "Coordinated deliveries to match construction phases",
+      "Kerbstone supply & installation for parking & driveways",
+      "Neat boundary lines for lawns, gardens & pathways",
+      "Prevents edge damage and block movement",
+      "Available in different profiles and colours",
     ],
-    tag: "B2B",
+    tag: "Finishing",
+  },
+];
+
+const processSteps = [
+  {
+    title: "1. Site Visit & Assessment",
+    text: "We visit your location, take measurements and assess the ground conditions, access and drainage.",
+  },
+  {
+    title: "2. Design & Quotation",
+    text: "We recommend the right block type, thickness and pattern, then share a clear, itemised quotation.",
+  },
+  {
+    title: "3. Ground Preparation",
+    text: "Clearing, excavation (where needed), hardcore base, compaction and sand screeding for a strong foundation.",
+  },
+  {
+    title: "4. Paving Installation",
+    text: "Our team lays the paving blocks, cuts edges neatly, compacts and finishes with joint sand.",
+  },
+  {
+    title: "5. Final Inspection & Handover",
+    text: "We walk the site with you, check levels and finishing, and hand over a clean, ready-to-use surface.",
+  },
+];
+
+const applications = [
+  {
+    title: "Residential",
+    items: [
+      "Home driveways & compounds",
+      "Walkways and garden paths",
+      "Court yards & entrances",
+      "Outdoor sitting areas & patios",
+    ],
+  },
+  {
+    title: "Commercial",
+    items: [
+      "Shopping malls & retail centres",
+      "Hotels, restaurants & showrooms",
+      "Office blocks & mixed-use buildings",
+      "Apartment & estate parking",
+    ],
+  },
+  {
+    title: "Industrial",
+    items: [
+      "Warehouse & factory yards",
+      "Logistics yards & depots",
+      "Fuel stations & truck stops",
+      "Loading bays & service areas",
+    ],
+  },
+  {
+    title: "Institutions",
+    items: [
+      "Schools & universities",
+      "Churches & mosques",
+      "Hospitals & clinics",
+      "Public walkways & parks",
+    ],
   },
 ];
 
 export default function ServicesPage() {
   return (
-    <main className="min-h-screen bg-slate-50 text-slate-900 dark:bg-[#020617] dark:text-white transition-colors duration-300">
-      <section className="container mx-auto px-4 py-16 md:py-20 max-w-6xl">
-        {/* Header */}
-        <div className="max-w-3xl mb-10">
-          <span className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-[#D4A017]/15 to-transparent border border-[#D4A017]/40 px-4 py-2 mb-4">
-            <span className="w-2 h-2 rounded-full bg-[#D4A017] animate-pulse" />
-            <span className="text-xs font-semibold uppercase tracking-[0.2em] text-[#D4A017]">
-              Our Services
+    <main className="min-h-screen bg-slate-50 text-slate-900">
+      {/* HERO SECTION */}
+      <section className="border-b border-slate-200 bg-white">
+        <div className="mx-auto flex max-w-6xl flex-col gap-10 px-4 py-14 md:flex-row md:items-center md:py-20">
+          {/* Left - text */}
+          <div className="flex-1 space-y-6">
+            <span className="inline-flex items-center gap-2 rounded-full bg-[#FFF7E0] border border-[#FACC6B]/70 px-4 py-1.5 text-[11px] font-semibold tracking-[0.2em] text-[#A46306] uppercase">
+              Paving Services
             </span>
-          </span>
 
-          <h1 className="text-3xl md:text-4xl font-bold mb-4">
-            Complete Paving Solutions from{" "}
-            <span className="text-[#D4A017]">Factory to Finished Compound.</span>
-          </h1>
+            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight text-slate-900">
+              Complete Paving Solutions from{" "}
+              <span className="text-[#D4A017]">Design to Installation.</span>
+            </h1>
 
-          <p className="text-base md:text-lg text-slate-700 dark:text-slate-300 leading-relaxed">
-            From manufacturing high-strength cabro blocks to full installation
-            and delivery, Premium Paving Blocks provides complete solutions for
-            residential homes, commercial properties, industrial yards and
-            public institutions across Nairobi and Kiambu.
-          </p>
+            <p className="text-sm md:text-base text-slate-700 max-w-xl">
+              We supply and install high-quality cabro paving blocks for
+              driveways, parking areas, walkways and industrial yards — built to
+              handle real-world traffic while keeping your space looking clean
+              and premium.
+            </p>
+
+            <div className="grid gap-3 text-sm md:text-base">
+              {heroHighlights.map((item) => (
+                <div key={item} className="flex items-start gap-2">
+                  <span className="mt-0.5 inline-flex h-5 w-5 items-center justify-center rounded-full bg-[#FFF3C4] text-xs text-[#A46306]">
+                    ✓
+                  </span>
+                  <span className="text-slate-700">{item}</span>
+                </div>
+              ))}
+            </div>
+
+            <div className="flex flex-wrap gap-3 pt-2">
+              <Link
+                href="/quote"
+                className="inline-flex items-center justify-center rounded-full bg-gradient-to-r from-[#D4A017] to-[#F0B429] px-6 py-3 text-sm font-semibold text-[#0A1A2F] shadow-sm hover:shadow-md hover:shadow-[#FACC6B]/50 transition-all"
+              >
+                Request a Free Quote
+              </Link>
+              <a
+                href="tel:+2547XXXXXXXXX"
+                className="inline-flex items-center justify-center rounded-full border border-slate-300 px-6 py-3 text-sm font-semibold text-slate-800 hover:border-[#D4A017] hover:text-[#A46306] transition-all"
+              >
+                Call:+254 711 789438
+              </a>
+            </div>
+          </div>
+
+          {/* Right - hero image */}
+          <div className="flex-1">
+            <div className="relative h-64 w-full overflow-hidden rounded-2xl border border-slate-200 bg-slate-100 shadow-md md:h-80">
+              <Image
+                src="/images/Masterpieces.jpeg"
+                alt="Premium driveway paved with interlocking blocks."
+                fill
+                className="object-cover"
+                sizes="(min-width: 1024px) 480px, 100vw"
+                priority
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/55 via-black/10 to-transparent" />
+
+              <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between gap-3">
+                <div>
+                  <p className="text-[10px] uppercase tracking-[0.2em] text-[#FACC6B]">
+                    Featured Project
+                  </p>
+                  <p className="text-sm font-semibold text-white">
+                    Residential Driveway Installation – Nairobi
+                  </p>
+                  <p className="text-[11px] text-slate-100">
+                    Classic interlocking pattern with charcoal and beige finish.
+                  </p>
+                </div>
+                <div className="hidden sm:flex flex-col items-end text-[10px] text-slate-100">
+                  <span>60mm Residential Grade</span>
+                  <span>Completed in 3 Days</span>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
+      </section>
 
-        {/* Services grid */}
-        <div className="grid md:grid-cols-2 gap-6 mb-14">
-          {services.map((service) => (
-            <div
-              key={service.title}
-              className="rounded-2xl border border-slate-200 dark:border-slate-800 bg-white/80 dark:bg-slate-900/60 p-6 shadow-sm hover:shadow-lg hover:border-[#D4A017]/60 transition-all duration-200"
-            >
-              <div className="flex items-center justify-between mb-3">
-                <h2 className="text-lg font-semibold">{service.title}</h2>
-                <span className="text-[11px] px-2 py-1 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-200 uppercase tracking-wide">
-                  {service.tag}
+      {/* SERVICES GRID */}
+      <section className="bg-slate-50 py-10 md:py-14">
+        <div className="mx-auto max-w-6xl px-4">
+          <div className="mb-8 flex flex-col gap-3 md:mb-10 md:flex-row md:items-end md:justify-between">
+            <div>
+              <h2 className="text-2xl md:text-3xl font-bold text-slate-900">
+                Our Core{" "}
+                <span className="text-[#D4A017]">Paving Services</span>
+              </h2>
+              <p className="mt-2 text-sm md:text-base text-slate-700 max-w-2xl">
+                Whether you&apos;re building a new home, upgrading a compound or
+                paving a commercial space, we offer end-to-end solutions from
+                supply to installation.
+              </p>
+            </div>
+            <p className="text-xs md:text-sm text-slate-500">
+              Serving Nairobi, Kiambu and surrounding areas.
+            </p>
+          </div>
+
+          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+            {services.map((service) => (
+              <div
+                key={service.title}
+                className="flex h-full flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm hover:shadow-md hover:border-[#FACC6B] transition-all"
+              >
+                {/* Image */}
+                <div className="relative h-40 w-full overflow-hidden bg-slate-100">
+                  <Image
+                    src={service.image}
+                    alt={service.imageAlt}
+                    fill
+                    className="object-cover"
+                    sizes="(min-width: 1024px) 360px, 50vw"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/45 via-black/5 to-transparent" />
+                  <span className="absolute left-3 top-3 rounded-full bg-white/90 px-2 py-1 text-[10px] font-semibold text-[#A46306] border border-[#FACC6B]/60">
+                    {service.tag}
+                  </span>
+                </div>
+
+                {/* Content */}
+                <div className="flex flex-1 flex-col p-5">
+                  <h3 className="text-base md:text-lg font-semibold text-slate-900">
+                    {service.title}
+                  </h3>
+                  <p className="mt-1 text-xs md:text-sm text-slate-600">
+                    {service.subtitle}
+                  </p>
+
+                  <ul className="mt-3 flex-1 space-y-2 text-xs md:text-sm text-slate-700">
+                    {service.points.map((point) => (
+                      <li key={point} className="flex gap-2">
+                        <span className="mt-[6px] h-1.5 w-1.5 rounded-full bg-[#D4A017]" />
+                        <span>{point}</span>
+                      </li>
+                    ))}
+                  </ul>
+
+                  <div className="mt-4 flex items-center justify-between text-xs md:text-sm">
+                    <Link
+                      href="/quote"
+                      className="font-semibold text-[#A46306] hover:text-[#D4A017] underline underline-offset-4"
+                    >
+                      Get a quote for this service →
+                    </Link>
+                    <span className="text-[11px] text-slate-500">
+                      Site visits available
+                    </span>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* PROCESS SECTION */}
+      <section className="border-y border-slate-200 bg-white py-12 md:py-16">
+        <div className="mx-auto max-w-6xl px-4">
+          <div className="mb-8 md:mb-10 flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
+            <div>
+              <h2 className="text-2xl md:text-3xl font-bold text-slate-900">
+                How Our{" "}
+                <span className="text-[#D4A017]">Paving Process</span> Works
+              </h2>
+              <p className="mt-2 text-sm md:text-base text-slate-700 max-w-xl">
+                A clear, step-by-step process from first visit to final
+                handover, so you always know what&apos;s happening on your site.
+              </p>
+            </div>
+            <p className="text-xs md:text-sm text-slate-500">
+              Most residential projects are completed within 2–5 days.
+            </p>
+          </div>
+
+          <div className="grid gap-4 md:grid-cols-3">
+            {processSteps.map((step) => (
+              <div
+                key={step.title}
+                className="flex h-full flex-col rounded-2xl border border-slate-200 bg-slate-50 p-4 md:p-5"
+              >
+                <h3 className="text-sm md:text-base font-semibold text-slate-900 mb-1">
+                  {step.title}
+                </h3>
+                <p className="text-xs md:text-sm text-slate-600">
+                  {step.text}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* APPLICATIONS / WHERE WE PAVE */}
+      <section className="bg-slate-50 py-12 md:py-16">
+        <div className="mx-auto max-w-6xl px-4">
+          <div className="mb-8 text-center">
+            <h2 className="text-2xl md:text-3xl font-bold text-slate-900">
+              Where Our <span className="text-[#D4A017]">Paving</span> Works Best
+            </h2>
+            <p className="mt-2 text-sm md:text-base text-slate-700">
+              From private homes to large commercial and industrial facilities,
+              our cabro solutions are designed to handle different types of use.
+            </p>
+          </div>
+
+          <div className="grid gap-5 md:grid-cols-4 text-sm">
+            {applications.map((group) => (
+              <div
+                key={group.title}
+                className="rounded-2xl border border-slate-200 bg-white p-4 md:p-5"
+              >
+                <h3 className="mb-2 text-sm md:text-base font-semibold text-[#A46306]">
+                  {group.title}
+                </h3>
+                <ul className="space-y-1 text-xs md:text-sm text-slate-700">
+                  {group.items.map((item) => (
+                    <li key={item}>• {item}</li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* FINAL CTA */}
+      <section className="border-t border-slate-200 bg-white py-10 md:py-14">
+        <div className="mx-auto flex max-w-6xl flex-col gap-8 px-4 md:flex-row md:items-center">
+          <div className="flex-1 space-y-3">
+            <h2 className="text-2xl md:text-3xl font-bold text-slate-900">
+              Ready to{" "}
+              <span className="text-[#D4A017]">Transform Your Space?</span>
+            </h2>
+            <p className="text-sm md:text-base text-slate-700 max-w-xl">
+              Share your site location, approximate area and preferred pattern —
+              we&apos;ll guide you on the best block type and send a detailed
+              quotation. Site visits are available in Nairobi, Kiambu and
+              nearby areas.
+            </p>
+            <div className="flex flex-wrap gap-3 pt-1">
+              <Link
+                href="/quote"
+                className="inline-flex items-center justify-center rounded-full bg-gradient-to-r from-[#D4A017] to-[#F0B429] px-6 py-3 text-sm font-semibold text-[#0A1A2F] shadow-sm hover:shadow-md hover:shadow-[#FACC6B]/50 transition-all"
+              >
+                Request a Free Quote
+              </Link>
+              <a
+                href="https://wa.me/+254 711 789438"
+                className="inline-flex items-center justify-center rounded-full border border-slate-300 px-6 py-3 text-sm font-semibold text-slate-800 hover:border-[#25D366] hover:text-[#25D366] transition-all"
+              >
+                Chat on WhatsApp
+              </a>
+            </div>
+          </div>
+
+          <div className="flex-1">
+            <div className="relative h-56 w-full overflow-hidden rounded-2xl border border-slate-200 bg-slate-100 shadow-md md:h-64">
+              <Image
+                src="/images/swimming.jpeg"
+                alt="Finished paving around a pool representing a complete project."
+                fill
+                className="object-cover"
+                sizes="(min-width: 1024px) 420px, 100vw"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/55 via-black/15 to-transparent" />
+              <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between">
+                <div>
+                  <p className="text-[10px] uppercase tracking-[0.18em] text-[#FACC6B]">
+                    Recent Project
+                  </p>
+                  <p className="text-sm font-semibold text-white">
+                    Hotel Pool Deck – Kiambu
+                  </p>
+                </div>
+                <span className="rounded-full bg-white/90 px-3 py-1 text-[11px] font-semibold text-[#A46306]">
+                  Installed by Premium Paving Blocks
                 </span>
               </div>
-              <p className="text-sm text-slate-600 dark:text-slate-300 mb-4">
-                {service.subtitle}
-              </p>
-              <ul className="text-sm text-slate-700 dark:text-slate-300 space-y-2">
-                {service.points.map((point) => (
-                  <li key={point} className="flex gap-2 items-start">
-                    <span className="mt-[6px] h-1.5 w-1.5 rounded-full bg-[#D4A017]" />
-                    <span>{point}</span>
-                  </li>
-                ))}
-              </ul>
             </div>
-          ))}
-        </div>
-
-        {/* Applications section */}
-        <div className="rounded-2xl border border-slate-200 dark:border-slate-800 bg-slate-900 text-slate-50 p-6 md:p-8 mb-10">
-          <h2 className="text-xl md:text-2xl font-semibold mb-4">
-            Where Our Paving Solutions Are Used
-          </h2>
-          <div className="grid md:grid-cols-4 gap-4 text-sm">
-            <div>
-              <h3 className="font-semibold text-[#D4A017] mb-2">
-                Residential
-              </h3>
-              <ul className="space-y-1 text-slate-200">
-                <li>Home driveways</li>
-                <li>Compound areas</li>
-                <li>Walkways & paths</li>
-                <li>Patios & gardens</li>
-                <li>Poolside paving</li>
-              </ul>
-            </div>
-            <div>
-              <h3 className="font-semibold text-[#D4A017] mb-2">
-                Commercial
-              </h3>
-              <ul className="space-y-1 text-slate-200">
-                <li>Shopping malls</li>
-                <li>Hotels & restaurants</li>
-                <li>Showrooms</li>
-                <li>Office blocks</li>
-                <li>Apartment parking</li>
-              </ul>
-            </div>
-            <div>
-              <h3 className="font-semibold text-[#D4A017] mb-2">
-                Industrial
-              </h3>
-              <ul className="space-y-1 text-slate-200">
-                <li>Loading bays</li>
-                <li>Warehouse yards</li>
-                <li>Factory compounds</li>
-                <li>Fuel stations</li>
-                <li>Truck access routes</li>
-              </ul>
-            </div>
-            <div>
-              <h3 className="font-semibold text-[#D4A017] mb-2">
-                Public & Eco
-              </h3>
-              <ul className="space-y-1 text-slate-200">
-                <li>Schools & churches</li>
-                <li>Hospitals & clinics</li>
-                <li>Parks & walkways</li>
-                <li>Overflow parking</li>
-                <li>Grass paver areas</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-
-        {/* CTA */}
-        <div className="flex flex-wrap gap-3 items-center justify-between border-t border-slate-200 dark:border-slate-800 pt-6">
-          <div>
-            <p className="text-sm text-slate-600 dark:text-slate-300">
-              Need help choosing the right block type for your project?
-            </p>
-            <p className="text-sm font-medium text-slate-900 dark:text-slate-100">
-              We offer free site assessment and professional recommendations.
-            </p>
-          </div>
-          <div className="flex flex-wrap gap-3">
-            <Link
-              href="/quote"
-              className="inline-flex items-center justify-center rounded-full bg-[#D4A017] px-6 py-3 text-sm font-semibold text-[#0A1A2F] shadow-md hover:shadow-lg hover:bg-[#c19113] transition-all"
-            >
-              Request a Free Quote
-            </Link>
-            <a
-              href="tel:+2547XXXXXXXXX"
-              className="inline-flex items-center justify-center rounded-full border border-slate-300 dark:border-slate-600 px-6 py-3 text-sm font-semibold hover:border-[#D4A017] hover:text-[#D4A017] transition-all"
-            >
-              Call: +254 7XX XXX XXX
-            </a>
           </div>
         </div>
       </section>

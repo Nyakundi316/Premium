@@ -59,8 +59,8 @@ export default function HeroSection() {
     <section
       className={`
         relative overflow-hidden min-h-screen
-        bg-slate-50 text-slate-900
-        dark:bg-[#020617] dark:text-white
+        bg-white text-slate-900
+        dark:bg-white dark:text-slate-900
         transition-colors duration-300
       `}
     >
@@ -141,7 +141,7 @@ export default function HeroSection() {
             </h1>
 
             {/* subtext */}
-            <p className="text-sm md:text-lg leading-relaxed text-slate-700 dark:text-gray-300 max-w-xl">
+            <p className="text-sm md:text-lg leading-relaxed text-slate-700 max-w-xl">
               Durable, high–performance concrete paving blocks for driveways,
               parking areas, walkways and industrial yards — designed to look
               good and last for years with minimal maintenance.
@@ -159,7 +159,7 @@ export default function HeroSection() {
                   <div className="w-7 h-7 rounded-full bg-gradient-to-br from-[#D4A017]/20 to-transparent flex items-center justify-center">
                     <span className="text-[#D4A017] text-sm font-bold">✓</span>
                   </div>
-                  <span className="text-slate-700 dark:text-gray-300 text-sm md:text-base">
+                  <span className="text-slate-700 text-sm md:text-base">
                     {text}
                   </span>
                 </div>
@@ -180,7 +180,7 @@ export default function HeroSection() {
 
               <Link
                 href="/projects"
-                className="inline-flex items-center justify-center px-7 py-3 rounded-lg border border-slate-300 dark:border-gray-700 text-sm md:text-base font-semibold hover:border-[#D4A017]/60 hover:bg-[#D4A017]/5 transition-all"
+                className="inline-flex items-center justify-center px-7 py-3 rounded-lg border border-slate-300 text-sm md:text-base font-semibold hover:border-[#D4A017]/60 hover:bg-[#D4A017]/5 transition-all"
               >
                 View Completed Projects
               </Link>
@@ -194,12 +194,12 @@ export default function HeroSection() {
               ].map((stat, i) => (
                 <div
                   key={i}
-                  className="p-3 sm:p-4 rounded-xl border border-slate-200 bg-white/80 dark:border-gray-800 dark:bg-gradient-to-b dark:from-gray-900/50 dark:to-transparent text-center"
+                  className="p-3 sm:p-4 rounded-xl border border-slate-200 bg-white/80 text-center"
                 >
                   <div className="text-xl md:text-2xl font-bold text-[#D4A017]">
                     {stat.value}
                   </div>
-                  <div className="text-[11px] md:text-xs text-slate-600 dark:text-gray-400 mt-1">
+                  <div className="text-[11px] md:text-xs text-slate-600 mt-1">
                     {stat.label}
                   </div>
                 </div>
@@ -217,7 +217,7 @@ export default function HeroSection() {
           >
             {/* MOBILE: simple, clean carousel (full width) */}
             <div className="md:hidden">
-              <div className="relative h-64 rounded-2xl overflow-hidden shadow-2xl border border-slate-200/70 dark:border-gray-700 bg-slate-900">
+              <div className="relative h-64 rounded-2xl overflow-hidden shadow-2xl border border-slate-200/70 bg-slate-900">
                 <Image
                   src={current.src}
                   alt={current.title}
@@ -277,7 +277,7 @@ export default function HeroSection() {
 
             {/* DESKTOP/TABLET: stepped horizontal layout inside big card */}
             <div className="hidden md:block">
-              <div className="relative h-[380px] lg:h-[460px] rounded-2xl overflow-hidden shadow-2xl border border-slate-200/70 dark:border-gray-700 bg-slate-900/80">
+              <div className="relative h-[380px] lg:h-[460px] rounded-2xl overflow-hidden shadow-2xl border border-slate-200/70 bg-slate-900/80">
                 <div className="absolute inset-0 bg-gradient-to-tr from-black/60 via-black/25 to-transparent" />
 
                 {/* stepped cards */}
@@ -363,8 +363,8 @@ export default function HeroSection() {
               </div>
             </div>
 
-            {/* floating info cards (unchanged) */}
-            <div className="absolute -bottom-6 -left-2 sm:-left-6 bg-white/95 dark:bg-gray-900/85 backdrop-blur-sm border border-slate-200 dark:border-gray-700 rounded-xl p-3 sm:p-4 shadow-2xl max-w-xs">
+            {/* floating info cards */}
+            <div className="absolute -bottom-6 -left-2 sm:-left-6 bg-white/95 backdrop-blur-sm border border-slate-200 rounded-xl p-3 sm:p-4 shadow-2xl max-w-xs">
               <div className="flex items-center gap-3">
                 <div className="w-9 h-9 rounded-full bg-gradient-to-r from-[#D4A017] to-[#F0B429] flex items-center justify-center">
                   <svg
@@ -382,17 +382,17 @@ export default function HeroSection() {
                   </svg>
                 </div>
                 <div>
-                  <p className="font-semibold text-slate-900 dark:text-white text-sm">
+                  <p className="font-semibold text-slate-900 text-sm">
                     Free Site Inspection
                   </p>
-                  <p className="text-xs text-slate-600 dark:text-gray-400">
+                  <p className="text-xs text-slate-600">
                     Nairobi & surrounding areas
                   </p>
                 </div>
               </div>
             </div>
 
-            <div className="hidden sm:block absolute -top-6 -right-6 bg-white/95 dark:bg-gray-900/85 backdrop-blur-sm border border-slate-200 dark:border-gray-700 rounded-xl p-4 shadow-2xl max-w-xs">
+            <div className="hidden sm:block absolute -top-6 -right-6 bg-white/95 backdrop-blur-sm border border-slate-200 rounded-xl p-4 shadow-2xl max-w-xs">
               <div className="flex items-center gap-3">
                 <div className="w-9 h-9 rounded-full bg-gradient-to-r from-[#D4A017] to-[#F0B429] flex items-center justify-center">
                   <svg
@@ -410,10 +410,10 @@ export default function HeroSection() {
                   </svg>
                 </div>
                 <div>
-                  <p className="font-semibold text-slate-900 dark:text-white text-sm">
+                  <p className="font-semibold text-slate-900 text-sm">
                     Fast Installation
                   </p>
-                  <p className="text-xs text-slate-600 dark:text-gray-400">
+                  <p className="text-xs text-slate-600">
                     Typical projects: 2–5 days
                   </p>
                 </div>
@@ -426,10 +426,10 @@ export default function HeroSection() {
       {/* scroll indicator */}
       <div className="hidden md:flex absolute bottom-8 left-1/2 -translate-x-1/2">
         <div className="flex flex-col items-center">
-          <span className="text-xs text-slate-500 dark:text-gray-500 mb-2">
+          <span className="text-xs text-slate-500 mb-2">
             Scroll to explore our services
           </span>
-          <div className="w-6 h-10 border-2 border-slate-400 dark:border-gray-700 rounded-full flex justify-center">
+          <div className="w-6 h-10 border-2 border-slate-400 rounded-full flex justify-center">
             <div className="w-1 h-3 bg-[#D4A017] rounded-full mt-2 animate-bounce" />
           </div>
         </div>

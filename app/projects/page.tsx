@@ -29,7 +29,7 @@ export default function ProjectsSection() {
       location: "Karen, Nairobi",
       size: "450 sqm",
       pattern: "Interlocking Cobblestone",
-      color: "Charcoal & Beige",
+      color: "Red & Black,yellow",
       completion: "Jan 2024",
       description:
         "Premium residential driveway with custom border design and integrated drainage system.",
@@ -173,7 +173,6 @@ export default function ProjectsSection() {
           return project.category === activeFilter;
         });
 
-  // -------- BLOCK TYPES DATA & FILTERS --------
   const blockFilters = [
     { id: "all", label: "All Types" },
     { id: "heavy", label: "Heavy Duty" },
@@ -281,51 +280,61 @@ export default function ProjectsSection() {
       : blockTypes.filter((b) => b.segment === activeBlockFilter);
 
   return (
-    <div className="py-16 md:py-20">
-      <main className="container mx-auto px-4 py-8 md:py-12">
+    <div className="min-h-screen bg-slate-50 text-slate-900 pt-24 md:pt-32">
+      <main className="container mx-auto px-4 pb-12 md:pb-16 max-w-6xl lg:max-w-7xl">
         {/* ---------------------- HEADER ---------------------- */}
-        <div className="text-center max-w-4xl mx-auto mb-12">
-          <span className="inline-flex items-center gap-2 rounded-full bg-[#D4A017]/20 border border-[#D4A017]/30 px-4 py-2 mb-6">
+        <div className="text-center max-w-4xl mx-auto mb-10 md:mb-12">
+          <span className="inline-flex items-center gap-2 rounded-full bg-[#FFF7E0] border border-[#FACC6B]/70 px-4 py-2 mb-6">
             <div className="w-2 h-2 bg-[#D4A017] rounded-full animate-pulse" />
-            <span className="text-sm uppercase tracking-widest text-[#D4A017]">
+            <span className="text-xs md:text-sm uppercase tracking-[0.25em] text-[#A46306]">
               Our Portfolio
             </span>
           </span>
 
-          <h1 className="text-3xl md:text-4xl font-bold mb-6 text-white">
-            Completed <span className="text-[#D4A017]">Projects</span>
+          <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">
+            Completed{" "}
+            <span className="text-[#D4A017]">Paving Projects</span>
           </h1>
 
-          <p className="text-gray-300 mb-8">
+          <p className="text-sm md:text-base text-slate-600 mb-8">
             Browse through our portfolio of paving installations across Nairobi
-            and surrounding areas.
+            and surrounding areas — driveways, parking lots, pool areas and
+            more.
           </p>
 
           {/* STATS */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
-            <div className="text-center p-4 rounded-xl border border-gray-800 bg-gray-900/20">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+            <div className="text-center p-4 rounded-xl border border-slate-200 bg-white shadow-sm">
               <div className="text-2xl font-bold text-[#D4A017]">
                 {stats.completed}+
               </div>
-              <div className="text-sm text-gray-400">Projects</div>
+              <div className="text-xs md:text-sm text-slate-600">
+                Projects
+              </div>
             </div>
-            <div className="text-center p-4 rounded-xl border border-gray-800 bg-gray-900/20">
+            <div className="text-center p-4 rounded-xl border border-slate-200 bg-white shadow-sm">
               <div className="text-2xl font-bold text-[#D4A017]">
                 {stats.totalSqm.toLocaleString()}+
               </div>
-              <div className="text-sm text-gray-400">Sqm Installed</div>
+              <div className="text-xs md:text-sm text-slate-600">
+                Sqm Installed
+              </div>
             </div>
-            <div className="text-center p-4 rounded-xl border border-gray-800 bg-gray-900/20">
+            <div className="text-center p-4 rounded-xl border border-slate-200 bg-white shadow-sm">
               <div className="text-2xl font-bold text-[#D4A017]">
                 {stats.locations}
               </div>
-              <div className="text-sm text-gray-400">Locations</div>
+              <div className="text-xs md:text-sm text-slate-600">
+                Locations
+              </div>
             </div>
-            <div className="text-center p-4 rounded-xl border border-gray-800 bg-gray-900/20">
+            <div className="text-center p-4 rounded-xl border border-slate-200 bg-white shadow-sm">
               <div className="text-2xl font-bold text-[#D4A017]">
                 {stats.averageCompletion}
               </div>
-              <div className="text-sm text-gray-400">Avg Duration</div>
+              <div className="text-xs md:text-sm text-slate-600">
+                Avg Duration
+              </div>
             </div>
           </div>
         </div>
@@ -337,14 +346,14 @@ export default function ProjectsSection() {
               <button
                 key={category.id}
                 onClick={() => setActiveFilter(category.id)}
-                className={`px-4 py-2 rounded-full text-sm font-medium transition-all ${
+                className={`px-3.5 md:px-4 py-1.5 md:py-2 rounded-full text-xs md:text-sm font-medium transition-all ${
                   activeFilter === category.id
-                    ? "bg-gradient-to-r from-[#D4A017] to-[#F0B429] text-[#0A1A2F]"
-                    : "bg-gray-800/50 text-gray-300 hover:bg-gray-800 border border-gray-700"
+                    ? "bg-gradient-to-r from-[#D4A017] to-[#F0B429] text-[#0A1A2F] shadow-sm"
+                    : "bg-white text-slate-700 border border-slate-200 hover:border-[#D4A017]/40 hover:text-[#A46306]"
                 }`}
               >
                 {category.label}
-                <span className="ml-2 text-xs opacity-75">
+                <span className="ml-1.5 text-[10px] opacity-75">
                   ({category.count})
                 </span>
               </button>
@@ -352,16 +361,18 @@ export default function ProjectsSection() {
           </div>
 
           <div className="flex items-center gap-3">
-            <span className="text-gray-400 text-sm">View:</span>
-            <div className="flex bg-gray-800/50 rounded-lg p-1 border border-gray-700">
+            <span className="text-slate-500 text-xs md:text-sm">View:</span>
+            <div className="flex bg-white rounded-lg p-1 border border-slate-200 shadow-sm">
               <button
                 onClick={() => setViewMode("grid")}
                 className={`p-2 rounded-md transition-all ${
-                  viewMode === "grid" ? "bg-gray-700" : "hover:bg-gray-700/50"
+                  viewMode === "grid"
+                    ? "bg-slate-100 text-slate-900"
+                    : "text-slate-500 hover:bg-slate-50"
                 }`}
               >
                 <svg
-                  className="w-5 h-5"
+                  className="w-4 h-4 md:w-5 md:h-5"
                   fill="none"
                   viewBox="0 0 24 24"
                   stroke="currentColor"
@@ -377,11 +388,13 @@ export default function ProjectsSection() {
               <button
                 onClick={() => setViewMode("list")}
                 className={`p-2 rounded-md transition-all ${
-                  viewMode === "list" ? "bg-gray-700" : "hover:bg-gray-700/50"
+                  viewMode === "list"
+                    ? "bg-slate-100 text-slate-900"
+                    : "text-slate-500 hover:bg-slate-50"
                 }`}
               >
                 <svg
-                  className="w-5 h-5"
+                  className="w-4 h-4 md:w-5 md:h-5"
                   fill="none"
                   viewBox="0 0 24 24"
                   stroke="currentColor"
@@ -400,28 +413,28 @@ export default function ProjectsSection() {
 
         {/* ---------------- PROJECTS GRID / LIST ---------------- */}
         {viewMode === "grid" ? (
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+          <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 mb-12">
             {filteredProjects.map((project) => (
               <div
                 key={project.id}
-                className="group relative bg-gradient-to-b from-gray-900 to-gray-800 rounded-xl overflow-hidden border border-gray-800 hover:border-[#D4A017]/50 transition-all duration-300 hover:shadow-xl hover:shadow-[#D4A017]/10 cursor-pointer"
+                className="group relative bg-white rounded-xl overflow-hidden border border-slate-200 hover:border-[#D4A017]/60 transition-all duration-300 hover:shadow-xl cursor-pointer"
                 onClick={() => setSelectedProject(project)}
               >
                 {project.featured && (
-                  <div className="absolute top-4 left-4 z-10">
-                    <span className="px-3 py-1 rounded-full bg-gradient-to-r from-[#D4A017] to-[#F0B429] text-[#0A1A2F] text-xs font-bold">
+                  <div className="absolute top-3 left-3 z-10">
+                    <span className="px-2.5 py-1 rounded-full bg-gradient-to-r from-[#D4A017] to-[#F0B429] text-[10px] md:text-xs font-bold text-[#0A1A2F] shadow-sm">
                       Featured
                     </span>
                   </div>
                 )}
 
-                <div className="absolute top-4 right-4 z-10">
-                  <span className="px-3 py-1 rounded-full bg-gray-900/80 backdrop-blur-sm text-white text-xs font-medium capitalize">
+                <div className="absolute top-3 right-3 z-10">
+                  <span className="px-2.5 py-1 rounded-full bg-white/90 text-[10px] md:text-xs font-medium capitalize text-slate-700 border border-slate-200 shadow-sm">
                     {project.category}
                   </span>
                 </div>
 
-                <div className="relative h-48 overflow-hidden">
+                <div className="relative h-32 sm:h-40 md:h-44 lg:h-48 overflow-hidden">
                   <Image
                     src={project.image}
                     alt={project.title}
@@ -429,16 +442,17 @@ export default function ProjectsSection() {
                     height={400}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-black/10 to-transparent opacity-70 group-hover:opacity-80 transition-opacity" />
                 </div>
 
-                <div className="p-6">
-                  <h3 className="text-xl font-bold text-white mb-2 group-hover:text-[#D4A017] transition-colors">
+                <div className="p-3 sm:p-4 md:p-5">
+                  <h3 className="text-sm sm:text-base md:text-lg font-semibold text-slate-900 mb-1 group-hover:text-[#D4A017] transition-colors">
                     {project.title}
                   </h3>
-                  <div className="flex items-center gap-2 text-sm text-gray-400 mb-3">
+
+                  <div className="flex items-center gap-1.5 text-[11px] sm:text-xs text-slate-500 mb-2">
                     <svg
-                      className="w-4 h-4"
+                      className="w-3.5 h-3.5"
                       fill="none"
                       viewBox="0 0 24 24"
                       stroke="currentColor"
@@ -456,32 +470,43 @@ export default function ProjectsSection() {
                         d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
                       />
                     </svg>
-                    <span>{project.location}</span>
+                    <span className="truncate">{project.location}</span>
                   </div>
-                  <p className="text-gray-300 text-sm line-clamp-2 mb-4">
+
+                  <p className="text-[11px] sm:text-xs text-slate-600 line-clamp-2 mb-3">
                     {project.description}
                   </p>
 
-                  <div className="grid grid-cols-2 gap-3 text-sm">
+                  <div className="grid grid-cols-2 gap-2 text-[11px] sm:text-xs">
                     <div>
-                      <p className="text-gray-500 text-xs">Size</p>
-                      <p className="font-medium text-white">{project.size}</p>
+                      <p className="text-slate-400 text-[10px] uppercase tracking-wide">
+                        Size
+                      </p>
+                      <p className="font-medium text-slate-900">
+                        {project.size}
+                      </p>
                     </div>
                     <div>
-                      <p className="text-gray-500 text-xs">Completed</p>
-                      <p className="font-medium text-white">
+                      <p className="text-slate-400 text-[10px] uppercase tracking-wide">
+                        Completed
+                      </p>
+                      <p className="font-medium text-slate-900">
                         {project.completion}
                       </p>
                     </div>
                     <div>
-                      <p className="text-gray-500 text-xs">Pattern</p>
-                      <p className="font-medium text-white truncate">
+                      <p className="text-slate-400 text-[10px] uppercase tracking-wide">
+                        Pattern
+                      </p>
+                      <p className="font-medium text-slate-900 truncate">
                         {project.pattern}
                       </p>
                     </div>
                     <div>
-                      <p className="text-gray-500 text-xs">Color</p>
-                      <p className="font-medium text-white truncate">
+                      <p className="text-slate-400 text-[10px] uppercase tracking-wide">
+                        Colour
+                      </p>
+                      <p className="font-medium text-slate-900 truncate">
                         {project.color}
                       </p>
                     </div>
@@ -495,11 +520,11 @@ export default function ProjectsSection() {
             {filteredProjects.map((project) => (
               <div
                 key={project.id}
-                className="group bg-gradient-to-b from-gray-900 to-gray-800 rounded-xl border border-gray-800 hover:border-[#D4A017]/50 transition-all duration-300 hover:shadow-xl hover:shadow-[#D4A017]/10 overflow-hidden cursor-pointer"
+                className="group bg-white rounded-xl border border-slate-200 hover:border-[#D4A017]/60 transition-all duration-300 hover:shadow-xl overflow-hidden cursor-pointer"
                 onClick={() => setSelectedProject(project)}
               >
                 <div className="flex flex-col md:flex-row">
-                  <div className="md:w-64 h-48 md:h-auto relative flex-shrink-0 overflow-hidden">
+                  <div className="md:w-64 h-40 md:h-auto relative flex-shrink-0 overflow-hidden">
                     <Image
                       src={project.image}
                       alt={project.title}
@@ -508,21 +533,21 @@ export default function ProjectsSection() {
                       className="w-full h-full object-cover"
                     />
                     {project.featured && (
-                      <div className="absolute top-4 left-4">
-                        <span className="px-3 py-1 rounded-full bg-gradient-to-r from-[#D4A017] to-[#F0B429] text-[#0A1A2F] text-xs font-bold">
+                      <div className="absolute top-3 left-3">
+                        <span className="px-2.5 py-1 rounded-full bg-gradient-to-r from-[#D4A017] to-[#F0B429] text-[10px] md:text-xs font-bold text-[#0A1A2F] shadow-sm">
                           Featured
                         </span>
                       </div>
                     )}
                   </div>
 
-                  <div className="flex-1 p-6">
-                    <div className="flex flex-col md:flex-row md:items-start justify-between mb-4">
+                  <div className="flex-1 p-4 md:p-6">
+                    <div className="flex flex-col md:flex-row md:items-start justify-between gap-2 mb-4">
                       <div>
-                        <h3 className="text-xl font-bold text-white mb-2 group-hover:text-[#D4A017] transition-colors">
+                        <h3 className="text-base md:text-xl font-semibold text-slate-900 mb-1 md:mb-2 group-hover:text-[#D4A017] transition-colors">
                           {project.title}
                         </h3>
-                        <div className="flex items-center gap-4 text-sm text-gray-400 mb-3">
+                        <div className="flex flex-wrap items-center gap-3 text-xs md:text-sm text-slate-500 mb-2">
                           <span className="flex items-center gap-1">
                             <svg
                               className="w-4 h-4"
@@ -563,33 +588,47 @@ export default function ProjectsSection() {
                           </span>
                         </div>
                       </div>
-                      <span className="px-3 py-1 rounded-full bg-gray-800 text-white text-xs font-medium capitalize self-start md:self-auto">
+                      <span className="px-3 py-1 rounded-full bg-slate-100 text-slate-700 text-[11px] md:text-xs font-medium capitalize self-start">
                         {project.category}
                       </span>
                     </div>
 
-                    <p className="text-gray-300 mb-4">{project.description}</p>
+                    <p className="text-sm text-slate-600 mb-4">
+                      {project.description}
+                    </p>
 
-                    <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm">
+                    <div className="grid grid-cols-2 md:grid-cols-4 gap-3 text-xs md:text-sm">
                       <div>
-                        <p className="text-gray-500 text-xs">Size</p>
-                        <p className="font-medium text-white">{project.size}</p>
+                        <p className="text-slate-400 text-[10px] uppercase tracking-wide">
+                          Size
+                        </p>
+                        <p className="font-medium text-slate-900">
+                          {project.size}
+                        </p>
                       </div>
                       <div>
-                        <p className="text-gray-500 text-xs">Pattern</p>
-                        <p className="font-medium text-white">
+                        <p className="text-slate-400 text-[10px] uppercase tracking-wide">
+                          Pattern
+                        </p>
+                        <p className="font-medium text-slate-900">
                           {project.pattern}
                         </p>
                       </div>
                       <div>
-                        <p className="text-gray-500 text-xs">Color</p>
-                        <p className="font-medium text-white">
+                        <p className="text-slate-400 text-[10px] uppercase tracking-wide">
+                          Colour
+                        </p>
+                        <p className="font-medium text-slate-900">
                           {project.color}
                         </p>
                       </div>
                       <div>
-                        <p className="text-gray-500 text-xs">Duration</p>
-                        <p className="font-medium text-white">5 days</p>
+                        <p className="text-slate-400 text-[10px] uppercase tracking-wide">
+                          Duration
+                        </p>
+                        <p className="font-medium text-slate-900">
+                          5 days
+                        </p>
                       </div>
                     </div>
                   </div>
@@ -602,9 +641,9 @@ export default function ProjectsSection() {
         {/* ---------------- EMPTY STATE ---------------- */}
         {filteredProjects.length === 0 && (
           <div className="text-center py-16">
-            <div className="w-20 h-20 mx-auto mb-6 rounded-full bg-gradient-to-r from-gray-800 to-gray-700 flex items-center justify-center">
+            <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-slate-100 flex items-center justify-center">
               <svg
-                className="w-10 h-10 text-gray-500"
+                className="w-8 h-8 text-slate-400"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
@@ -617,15 +656,15 @@ export default function ProjectsSection() {
                 />
               </svg>
             </div>
-            <h3 className="text-xl font-bold text-white mb-3">
+            <h3 className="text-lg md:text-xl font-semibold text-slate-900 mb-2">
               No Projects Found
             </h3>
-            <p className="text-gray-400 mb-6">
-              No projects match the selected filter.
+            <p className="text-sm text-slate-600 mb-4">
+              No projects match the selected filter. Try viewing all projects.
             </p>
             <button
               onClick={() => setActiveFilter("all")}
-              className="px-6 py-3 bg-gradient-to-r from-[#D4A017] to-[#F0B429] text-[#0A1A2F] font-semibold rounded-lg hover:shadow-lg hover:shadow-[#D4A017]/30 transition-all"
+              className="px-6 py-3 bg-gradient-to-r from-[#D4A017] to-[#F0B429] text-[#0A1A2F] text-sm font-semibold rounded-lg shadow-sm hover:shadow-lg hover:shadow-[#FACC6B]/40 transition-all"
             >
               View All Projects
             </button>
@@ -636,124 +675,121 @@ export default function ProjectsSection() {
         {/*                   BLOCK TYPES SECTION                       */}
         {/* =========================================================== */}
 
-        <section className="mt-20">
-          <div className="text-center max-w-3xl mx-auto mb-8 md:mb-12">
-            <span className="inline-flex items-center gap-2 rounded-full bg-[#D4A017]/20 border border-[#D4A017]/30 px-4 py-1 mb-4">
-              <div className="w-2 h-2 bg-[#D4A017] rounded-full animate-pulse" />
-              <span className="text-xs uppercase tracking-widest text-[#D4A017]">
-                Paving Block Types
+        <section className="mt-16 md:mt-20">
+          <div className="max-w-6xl mx-auto rounded-3xl bg-slate-100 border border-slate-200 px-4 py-8 md:px-8 md:py-10">
+            <div className="text-center max-w-3xl mx-auto mb-8 md:mb-10">
+              <span className="inline-flex items-center gap-2 rounded-full bg-[#FFF7E0] border border-[#FACC6B]/70 px-4 py-1 mb-4">
+                <div className="w-2 h-2 bg-[#D4A017] rounded-full animate-pulse" />
+                <span className="text-[11px] md:text-xs uppercase tracking-[0.25em] text-[#A46306]">
+                  Paving Block Types
+                </span>
               </span>
-            </span>
 
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-3">
-              Our <span className="text-[#D4A017]">Paving Blocks</span>
-            </h2>
+              <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-slate-900 mb-3">
+                Our <span className="text-[#D4A017]">Paving Blocks</span>
+              </h2>
 
-            <p className="text-gray-300 text-sm md:text-base">
-              Choose from a variety of shapes, thicknesses and load ratings for
-              different applications.
-            </p>
-          </div>
+              <p className="text-sm md:text-base text-slate-600">
+                Choose from different shapes, thicknesses and load ratings for
+                driveways, parking, industrial yards, walkways and pool areas.
+              </p>
+            </div>
 
-          {/* Block filters */}
-          <div className="flex flex-wrap justify-center gap-2 mb-8">
-            {blockFilters.map((filter) => {
-              const active = activeBlockFilter === filter.id;
-              return (
-                <button
-                  key={filter.id}
-                  onClick={() => setActiveBlockFilter(filter.id)}
-                  className={`px-4 py-2 rounded-full text-xs md:text-sm font-medium transition-all ${
-                    active
-                      ? "bg-gradient-to-r from-[#D4A017] to-[#F0B429] text-[#0A1A2F]"
-                      : "bg-gray-900/60 text-gray-300 border border-gray-700 hover:border-[#D4A017]/60 hover:text-[#FACC6B]"
-                  }`}
+            {/* Block filters */}
+            <div className="flex flex-wrap justify-center gap-2 mb-8">
+              {blockFilters.map((filter) => {
+                const active = activeBlockFilter === filter.id;
+                return (
+                  <button
+                    key={filter.id}
+                    onClick={() => setActiveBlockFilter(filter.id)}
+                    className={`px-3.5 md:px-4 py-1.5 rounded-full text-xs md:text-sm font-medium transition-all ${
+                      active
+                        ? "bg-gradient-to-r from-[#D4A017] to-[#F0B429] text-[#0A1A2F] shadow-sm"
+                        : "bg-white text-slate-700 border border-slate-200 hover:border-[#D4A017]/40 hover:text-[#A46306]"
+                    }`}
+                  >
+                    {filter.label}
+                  </button>
+                );
+              })}
+            </div>
+
+            {/* Block grid – 2 cols on mobile (pairs), 3 on md+ */}
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-6 max-w-5xl mx-auto">
+              {filteredBlockTypes.map((block, index) => (
+                <div
+                  key={block.id}
+                  className={`
+                    group relative cursor-pointer
+                    bg-white
+                    rounded-xl overflow-hidden border border-slate-200
+                    hover:border-[#D4A017]/60 hover:shadow-xl hover:shadow-[#FACC6B]/30
+                    transition-all duration-500
+                    transform
+                    ${index % 3 === 1 ? "md:-translate-y-1" : ""}
+                    ${index % 3 === 2 ? "md:translate-y-1" : ""}
+                    hover:translate-y-0
+                  `}
+                  onClick={() => setSelectedBlock(block)}
                 >
-                  {filter.label}
-                </button>
-              );
-            })}
-          </div>
+                  <div className="relative h-32 sm:h-40 md:h-44 overflow-hidden">
+                    <Image
+                      src={block.image}
+                      alt={block.name}
+                      width={600}
+                      height={400}
+                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    />
 
-          {/* Block grid with 3 columns & staggered “masonry feel” */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto">
-            {filteredBlockTypes.map((block, index) => (
-              <div
-                key={block.id}
-                className={`
-                  group relative cursor-pointer
-                  bg-gradient-to-b from-gray-900 to-gray-800
-                  rounded-xl overflow-hidden border border-gray-800
-                  hover:border-[#D4A017]/60 hover:shadow-xl hover:shadow-[#D4A017]/15
-                  transition-all duration-500
-                  transform
-                  ${index % 3 === 1 ? "lg:-translate-y-2" : ""}
-                  ${index % 3 === 2 ? "lg:translate-y-2" : ""}
-                  hover:translate-y-0
-                `}
-                onClick={() => setSelectedBlock(block)}
-              >
-                {/* “Flip-like” hover effect: image + overlay + sliding content */}
-                <div className="relative h-52 overflow-hidden">
-                  {/* Image */}
-                  <Image
-                    src={block.image}
-                    alt={block.name}
-                    width={600}
-                    height={400}
-                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                  />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-black/10 to-transparent opacity-80 group-hover:opacity-90 transition-opacity duration-500" />
 
-                  {/* Dark overlay on hover */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent opacity-70 group-hover:opacity-90 transition-opacity duration-500" />
+                    <div className="absolute inset-x-0 bottom-0 px-3 sm:px-4 pb-2.5 pt-6 bg-gradient-to-t from-black/70 via-black/30 to-transparent">
+                      <h3 className="text-xs sm:text-sm md:text-base font-semibold text-white group-hover:text-[#FACC6B] transition-colors">
+                        {block.name}
+                      </h3>
+                      <p className="text-[10px] sm:text-xs text-slate-100/90">
+                        {block.bestFor}
+                      </p>
+                    </div>
 
-                  {/* Name always visible at bottom */}
-                  <div className="absolute inset-x-0 bottom-0 px-4 pb-3 pt-6 bg-gradient-to-t from-black/80 via-black/30 to-transparent">
-                    <h3 className="text-base md:text-lg font-semibold text-white group-hover:text-[#D4A017] transition-colors">
-                      {block.name}
-                    </h3>
-                    <p className="text-[11px] text-gray-300">
-                      {block.bestFor}
-                    </p>
-                  </div>
-
-                  {/* Sliding details on hover (feels like flipping) */}
-                  <div className="absolute inset-x-0 bottom-0 translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-out bg-black/80 backdrop-blur-sm px-4 py-3">
-                    <p className="text-xs text-gray-300 mb-1">
-                      <span className="text-[#FACC6B] font-semibold">
-                        Thickness:
-                      </span>{" "}
-                      {block.thickness}
-                    </p>
-                    <p className="text-xs text-gray-300 mb-1">
-                      <span className="text-[#FACC6B] font-semibold">
-                        Load Rating:
-                      </span>{" "}
-                      {block.load}
-                    </p>
-                    <p className="text-xs text-gray-300">
-                      <span className="text-[#FACC6B] font-semibold">
-                        Colors:
-                      </span>{" "}
-                      {block.colors}
-                    </p>
+                    <div className="absolute inset-x-0 bottom-0 translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-out bg-black/80 backdrop-blur-sm px-3 sm:px-4 py-2.5 sm:py-3">
+                      <p className="text-[10px] sm:text-xs text-slate-100 mb-0.5">
+                        <span className="text-[#FACC6B] font-semibold">
+                          Thickness:
+                        </span>{" "}
+                        {block.thickness}
+                      </p>
+                      <p className="text-[10px] sm:text-xs text-slate-100 mb-0.5">
+                        <span className="text-[#FACC6B] font-semibold">
+                          Load Rating:
+                        </span>{" "}
+                        {block.load}
+                      </p>
+                      <p className="text-[10px] sm:text-xs text-slate-100">
+                        <span className="text-[#FACC6B] font-semibold">
+                          Colors:
+                        </span>{" "}
+                        {block.colors}
+                      </p>
+                    </div>
                   </div>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
         </section>
 
         {/* ---------------- PROJECT DETAIL MODAL ---------------- */}
         {selectedProject && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/90 backdrop-blur-sm">
-            <div className="relative max-w-6xl w-full max-h-[90vh] overflow-y-auto bg-gradient-to-b from-gray-900 to-gray-800 rounded-2xl border border-gray-700">
+          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm">
+            <div className="relative max-w-5xl w-full max-h-[90vh] overflow-y-auto bg-white rounded-2xl border border-slate-200 shadow-2xl">
               <button
                 onClick={() => setSelectedProject(null)}
-                className="absolute top-4 right-4 z-10 w-10 h-10 rounded-full bg-gray-900/80 flex items-center justify-center hover:bg-gray-800 transition-colors"
+                className="absolute top-4 right-4 z-10 w-9 h-9 rounded-full bg-slate-100 flex items-center justify-center hover:bg-slate-200 transition-colors"
               >
                 <svg
-                  className="w-6 h-6 text-white"
+                  className="w-5 h-5 text-slate-700"
                   fill="none"
                   viewBox="0 0 24 24"
                   stroke="currentColor"
@@ -767,25 +803,25 @@ export default function ProjectsSection() {
                 </svg>
               </button>
 
-              <div className="p-6">
-                <div className="mb-8">
-                  <div className="flex flex-wrap items-center gap-3 mb-4">
-                    <span className="px-3 py-1 rounded-full bg-gray-800 text-white text-sm font-medium capitalize">
+              <div className="p-5 md:p-6 lg:p-8">
+                <div className="mb-6 md:mb-8">
+                  <div className="flex flex-wrap items-center gap-2 mb-3">
+                    <span className="px-3 py-1 rounded-full bg-slate-100 text-slate-700 text-xs font-medium capitalize">
                       {selectedProject.category}
                     </span>
                     {selectedProject.featured && (
-                      <span className="px-3 py-1 rounded-full bg-gradient-to-r from-[#D4A017] to-[#F0B429] text-[#0A1A2F] text-sm font-bold">
+                      <span className="px-3 py-1 rounded-full bg-gradient-to-r from-[#D4A017] to-[#F0B429] text-[#0A1A2F] text-xs font-bold">
                         Featured Project
                       </span>
                     )}
                   </div>
 
-                  <h2 className="text-3xl font-bold text-white mb-4">
+                  <h2 className="text-2xl md:text-3xl font-bold text-slate-900 mb-3">
                     {selectedProject.title}
                   </h2>
 
-                  <div className="flex flex-wrap gap-4 text-sm text-gray-400">
-                    <div className="flex items-center gap-2">
+                  <div className="flex flex-wrap gap-4 text-xs md:text-sm text-slate-500">
+                    <div className="flex items-center gap-1.5">
                       <svg
                         className="w-4 h-4"
                         fill="none"
@@ -807,7 +843,7 @@ export default function ProjectsSection() {
                       </svg>
                       <span>{selectedProject.location}</span>
                     </div>
-                    <div className="flex items-center gap-2">
+                    <div className="flex items-center gap-1.5">
                       <svg
                         className="w-4 h-4"
                         fill="none"
@@ -826,10 +862,10 @@ export default function ProjectsSection() {
                   </div>
                 </div>
 
-                <div className="grid lg:grid-cols-2 gap-8">
+                <div className="grid lg:grid-cols-2 gap-6 md:gap-8">
                   {/* Left Column */}
                   <div>
-                    <div className="relative h-96 rounded-xl mb-6 overflow-hidden">
+                    <div className="relative h-64 md:h-80 lg:h-96 rounded-xl mb-5 overflow-hidden">
                       <Image
                         src={selectedProject.image}
                         alt={selectedProject.title}
@@ -839,36 +875,36 @@ export default function ProjectsSection() {
                       />
                     </div>
 
-                    <div className="grid grid-cols-2 gap-4 mb-8">
-                      <div className="p-4 rounded-xl bg-gray-800/50 border border-gray-700">
-                        <p className="text-sm text-gray-400 mb-1">
+                    <div className="grid grid-cols-2 gap-3 md:gap-4 mb-6">
+                      <div className="p-3.5 md:p-4 rounded-xl bg-slate-50 border border-slate-200">
+                        <p className="text-xs text-slate-500 mb-1">
                           Project Size
                         </p>
-                        <p className="text-xl font-bold text-white">
+                        <p className="text-lg md:text-xl font-semibold text-slate-900">
                           {selectedProject.size}
                         </p>
                       </div>
-                      <div className="p-4 rounded-xl bg-gray-800/50 border border-gray-700">
-                        <p className="text-sm text-gray-400 mb-1">
+                      <div className="p-3.5 md:p-4 rounded-xl bg-slate-50 border border-slate-200">
+                        <p className="text-xs text-slate-500 mb-1">
                           Pattern Used
                         </p>
-                        <p className="text-xl font-bold text-white">
+                        <p className="text-lg md:text-xl font-semibold text-slate-900">
                           {selectedProject.pattern}
                         </p>
                       </div>
-                      <div className="p-4 rounded-xl bg-gray-800/50 border border-gray-700">
-                        <p className="text-sm text-gray-400 mb-1">
-                          Color Scheme
+                      <div className="p-3.5 md:p-4 rounded-xl bg-slate-50 border border-slate-200">
+                        <p className="text-xs text-slate-500 mb-1">
+                          Colour Scheme
                         </p>
-                        <p className="text-xl font-bold text-white">
+                        <p className="text-lg md:text-xl font-semibold text-slate-900">
                           {selectedProject.color}
                         </p>
                       </div>
-                      <div className="p-4 rounded-xl bg-gray-800/50 border border-gray-700">
-                        <p className="text-sm text-gray-400 mb-1">
+                      <div className="p-3.5 md:p-4 rounded-xl bg-slate-50 border border-slate-200">
+                        <p className="text-xs text-slate-500 mb-1">
                           Installation Time
                         </p>
-                        <p className="text-xl font-bold text-white">
+                        <p className="text-lg md:text-xl font-semibold text-slate-900">
                           5 Working Days
                         </p>
                       </div>
@@ -877,29 +913,29 @@ export default function ProjectsSection() {
 
                   {/* Right Column */}
                   <div>
-                    <div className="mb-8">
-                      <h3 className="text-xl font-bold text-white mb-4">
+                    <div className="mb-6 md:mb-8">
+                      <h3 className="text-lg md:text-xl font-semibold text-slate-900 mb-3">
                         Project Description
                       </h3>
-                      <p className="text-gray-300 leading-relaxed">
+                      <p className="text-sm md:text-base text-slate-700 leading-relaxed">
                         {selectedProject.description}
                       </p>
                     </div>
 
-                    <div className="mb-8">
-                      <h3 className="text-xl font-bold text-white mb-4">
+                    <div className="mb-6 md:mb-8">
+                      <h3 className="text-lg md:text-xl font-semibold text-slate-900 mb-3">
                         Key Features
                       </h3>
-                      <ul className="grid sm:grid-cols-2 gap-3">
+                      <ul className="grid sm:grid-cols-2 gap-2.5 md:gap-3">
                         {selectedProject.features?.map(
                           (feature: string, index: number) => (
                             <li
                               key={index}
-                              className="flex items-start gap-3"
+                              className="flex items-start gap-2.5"
                             >
-                              <div className="w-5 h-5 rounded-full bg-gradient-to-r from-[#D4A017]/20 to-transparent flex items-center justify-center mt-0.5 flex-shrink-0">
+                              <div className="w-5 h-5 rounded-full bg-[#FFF7E0] flex items-center justify-center mt-0.5 flex-shrink-0">
                                 <svg
-                                  className="w-3 h-3 text-[#D4A017]"
+                                  className="w-3 h-3 text-[#A46306]"
                                   fill="currentColor"
                                   viewBox="0 0 20 20"
                                 >
@@ -910,32 +946,34 @@ export default function ProjectsSection() {
                                   />
                                 </svg>
                               </div>
-                              <span className="text-gray-300">{feature}</span>
+                              <span className="text-sm text-slate-700">
+                                {feature}
+                              </span>
                             </li>
                           )
                         )}
                       </ul>
                     </div>
 
-                    <div className="p-6 rounded-xl bg-gradient-to-r from-gray-800/50 to-gray-900/50 border border-gray-700">
-                      <h3 className="text-lg font-bold text-white mb-4">
+                    <div className="p-4 md:p-5 rounded-xl bg-gradient-to-r from-slate-50 to-slate-100 border border-slate-200">
+                      <h3 className="text-base md:text-lg font-semibold text-slate-900 mb-2.5">
                         Get a Similar Project
                       </h3>
-                      <p className="text-gray-300 mb-6">
+                      <p className="text-sm text-slate-700 mb-4">
                         Interested in a similar paving solution for your
-                        property? Get a free quote today.
+                        property? Get a free site visit and quotation today.
                       </p>
                       <div className="flex flex-wrap gap-3">
                         <Link
                           href="/quote"
                           onClick={() => setSelectedProject(null)}
-                          className="px-6 py-3 bg-gradient-to-r from-[#D4A017] to-[#F0B429] text-[#0A1A2F] font-semibold rounded-lg hover:shadow-lg hover:shadow-[#D4A017]/30 transition-all"
+                          className="px-5 md:px-6 py-2.5 bg-gradient-to-r from-[#D4A017] to-[#F0B429] text-[#0A1A2F] text-sm font-semibold rounded-lg shadow-sm hover:shadow-lg hover:shadow-[#FACC6B]/40 transition-all"
                         >
                           Get Free Quote
                         </Link>
                         <a
-                          href="tel:+2547XXXXXXXXX"
-                          className="px-6 py-3 border border-gray-700 rounded-lg font-semibold hover:border-[#D4A017]/50 hover:bg-[#D4A017]/5 transition-all"
+                          href="tel:+254711789438"
+                          className="px-5 md:px-6 py-2.5 border border-slate-300 rounded-lg text-sm font-semibold text-slate-800 hover:border-[#D4A017]/60 hover:bg-[#FFF7E0] transition-all"
                         >
                           Call for Consultation
                         </a>
@@ -950,14 +988,14 @@ export default function ProjectsSection() {
 
         {/* ---------------- BLOCK TYPE LIGHTBOX ---------------- */}
         {selectedBlock && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/90 backdrop-blur-sm">
-            <div className="relative max-w-4xl w-full max-h-[90vh] overflow-y-auto bg-gradient-to-b from-gray-900 to-gray-800 rounded-2xl border border-gray-700">
+          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm">
+            <div className="relative max-w-3xl w-full max-h-[90vh] overflow-y-auto bg-white rounded-2xl border border-slate-200 shadow-2xl">
               <button
                 onClick={() => setSelectedBlock(null)}
-                className="absolute top-4 right-4 z-10 w-10 h-10 rounded-full bg-gray-900/80 flex items-center justify-center hover:bg-gray-800 transition-colors"
+                className="absolute top-4 right-4 z-10 w-9 h-9 rounded-full bg-slate-100 flex items-center justify-center hover:bg-slate-200 transition-colors"
               >
                 <svg
-                  className="w-6 h-6 text-white"
+                  className="w-5 h-5 text-slate-700"
                   fill="none"
                   viewBox="0 0 24 24"
                   stroke="currentColor"
@@ -971,19 +1009,19 @@ export default function ProjectsSection() {
                 </svg>
               </button>
 
-              <div className="p-6">
-                <div className="mb-6">
-                  <h2 className="text-2xl md:text-3xl font-bold text-white mb-2">
+              <div className="p-5 md:p-6 lg:p-7">
+                <div className="mb-5 md:mb-6">
+                  <h2 className="text-xl md:text-2xl lg:text-3xl font-bold text-slate-900 mb-1.5">
                     {selectedBlock.name}
                   </h2>
-                  <p className="text-sm text-gray-400">
+                  <p className="text-sm text-slate-600">
                     Best for: {selectedBlock.bestFor}
                   </p>
                 </div>
 
-                <div className="grid md:grid-cols-2 gap-6">
+                <div className="grid md:grid-cols-2 gap-5 md:gap-6">
                   <div>
-                    <div className="relative h-72 rounded-xl overflow-hidden mb-4">
+                    <div className="relative h-56 md:h-64 rounded-xl overflow-hidden mb-3">
                       <Image
                         src={selectedBlock.image}
                         alt={selectedBlock.name}
@@ -995,50 +1033,52 @@ export default function ProjectsSection() {
                   </div>
 
                   <div>
-                    <div className="grid grid-cols-1 gap-4 mb-6">
-                      <div className="p-4 rounded-xl bg-gray-800/50 border border-gray-700">
-                        <p className="text-xs text-gray-400 mb-1">Thickness</p>
-                        <p className="text-lg font-semibold text-white">
+                    <div className="grid grid-cols-1 gap-3 md:gap-4 mb-5">
+                      <div className="p-3.5 md:p-4 rounded-xl bg-slate-50 border border-slate-200">
+                        <p className="text-xs text-slate-500 mb-1">
+                          Thickness
+                        </p>
+                        <p className="text-base md:text-lg font-semibold text-slate-900">
                           {selectedBlock.thickness}
                         </p>
                       </div>
-                      <div className="p-4 rounded-xl bg-gray-800/50 border border-gray-700">
-                        <p className="text-xs text-gray-400 mb-1">
+                      <div className="p-3.5 md:p-4 rounded-xl bg-slate-50 border border-slate-200">
+                        <p className="text-xs text-slate-500 mb-1">
                           Load Rating
                         </p>
-                        <p className="text-lg font-semibold text-white">
+                        <p className="text-base md:text-lg font-semibold text-slate-900">
                           {selectedBlock.load}
                         </p>
                       </div>
-                      <div className="p-4 rounded-xl bg-gray-800/50 border border-gray-700">
-                        <p className="text-xs text-gray-400 mb-1">Colors</p>
-                        <p className="text-lg font-semibold text-white">
+                      <div className="p-3.5 md:p-4 rounded-xl bg-slate-50 border border-slate-200">
+                        <p className="text-xs text-slate-500 mb-1">Colours</p>
+                        <p className="text-base md:text-lg font-semibold text-slate-900">
                           {selectedBlock.colors}
                         </p>
                       </div>
                     </div>
 
-                    <div className="p-5 rounded-xl bg-gradient-to-r from-gray-800/60 to-gray-900/60 border border-gray-700">
-                      <h3 className="text-base font-semibold text-white mb-3">
+                    <div className="p-4 md:p-5 rounded-xl bg-gradient-to-r from-slate-50 to-slate-100 border border-slate-200">
+                      <h3 className="text-base md:text-lg font-semibold text-slate-900 mb-2">
                         Want this block for your project?
                       </h3>
-                      <p className="text-sm text-gray-300 mb-4">
+                      <p className="text-sm text-slate-700 mb-4">
                         Tell us the area size and application (driveway,
                         parking, walkway, pool, etc.) and we&apos;ll recommend
-                        the right thickness and layout.
+                        the right thickness, layout and quotation.
                       </p>
                       <div className="flex flex-wrap gap-3">
                         <Link
                           href="/quote"
                           onClick={() => setSelectedBlock(null)}
-                          className="px-5 py-2.5 bg-gradient-to-r from-[#D4A017] to-[#F0B429] text-[#0A1A2F] text-sm font-semibold rounded-lg hover:shadow-lg hover:shadow-[#D4A017]/25 transition-all"
+                          className="px-5 py-2.5 bg-gradient-to-r from-[#D4A017] to-[#F0B429] text-[#0A1A2F] text-sm font-semibold rounded-lg shadow-sm hover:shadow-lg hover:shadow-[#FACC6B]/40 transition-all"
                         >
                           Request a Quote
                         </Link>
                         <Link
                           href="/contact"
                           onClick={() => setSelectedBlock(null)}
-                          className="px-5 py-2.5 border border-gray-700 rounded-lg text-sm font-semibold text-gray-200 hover:border-[#D4A017]/50 hover:bg-[#D4A017]/5 transition-all"
+                          className="px-5 py-2.5 border border-slate-300 rounded-lg text-sm font-semibold text-slate-800 hover:border-[#D4A017]/60 hover:bg-[#FFF7E0] transition-all"
                         >
                           Talk to Our Team
                         </Link>
