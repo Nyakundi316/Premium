@@ -20,8 +20,8 @@ export default function Footer() {
             </div>
 
             <p className="mt-4 text-sm text-slate-700 max-w-md">
-              Built to last — our concrete paving blocks deliver superior strength,
-              perfect finishes and long-term value for every project.
+              Built to last — our concrete paving blocks deliver superior
+              strength, neat finishes and long-term value for every project.
             </p>
 
             {/* Socials */}
@@ -35,6 +35,7 @@ export default function Footer() {
                 <Link
                   href="https://www.instagram.com/premium.movers"
                   target="_blank"
+                  rel="noreferrer"
                   className="h-8 w-8 rounded-full border border-slate-300 flex items-center justify-center text-[11px] hover:border-[#D4A017] hover:text-[#D4A017] transition-colors"
                 >
                   IG
@@ -44,6 +45,7 @@ export default function Footer() {
                 <Link
                   href="https://facebook.com/"
                   target="_blank"
+                  rel="noreferrer"
                   className="h-8 w-8 rounded-full border border-slate-300 flex items-center justify-center text-[11px] hover:border-[#D4A017] hover:text-[#D4A017] transition-colors"
                 >
                   FB
@@ -53,6 +55,7 @@ export default function Footer() {
                 <Link
                   href="https://linkedin.com/"
                   target="_blank"
+                  rel="noreferrer"
                   className="h-8 w-8 rounded-full border border-slate-300 flex items-center justify-center text-[11px] hover:border-[#D4A017] hover:text-[#D4A017] transition-colors"
                 >
                   LN
@@ -67,22 +70,50 @@ export default function Footer() {
               Quick links
             </h3>
             <ul className="space-y-2 text-sm">
-              <li><Link href="/" className="hover:text-[#D4A017]">Home</Link></li>
-              <li><Link href="/products" className="hover:text-[#D4A017]">Products</Link></li>
-              <li><Link href="/projects" className="hover:text-[#D4A017]">Projects</Link></li>
-              <li><Link href="/applications" className="hover:text-[#D4A017]">Applications</Link></li>
-              <li><Link href="/about" className="hover:text-[#D4A017]">About us</Link></li>
-              <li><Link href="/contact" className="hover:text-[#D4A017]">Contact / Quote</Link></li>
+              <li>
+                <Link href="/" className="hover:text-[#D4A017]">
+                  Home
+                </Link>
+              </li>
+              <li>
+                <Link href="/products" className="hover:text-[#D4A017]">
+                  Products
+                </Link>
+              </li>
+              <li>
+                <Link href="/projects" className="hover:text-[#D4A017]">
+                  Projects
+                </Link>
+              </li>
+              <li>
+                <Link href="/applications" className="hover:text-[#D4A017]">
+                  Applications
+                </Link>
+              </li>
+              <li>
+                <Link href="/about" className="hover:text-[#D4A017]">
+                  About us
+                </Link>
+              </li>
+              <li>
+                <Link href="/contact" className="hover:text-[#D4A017]">
+                  Contact / Quote
+                </Link>
+              </li>
             </ul>
           </div>
 
           {/* Contact */}
           <div>
-            <h3 className="text-sm font-semibold text-slate-900 mb-3">Contact</h3>
+            <h3 className="text-sm font-semibold text-slate-900 mb-3">
+              Contact
+            </h3>
             <ul className="space-y-2 text-sm text-slate-700">
               <li>
                 Phone / WhatsApp:{" "}
-                <span className="text-slate-900 font-semibold">+254 711 789438</span>
+                <span className="text-slate-900 font-semibold">
+                  +254 711 789438
+                </span>
               </li>
               <li>
                 Email:{" "}
@@ -93,12 +124,10 @@ export default function Footer() {
               <li>
                 Location:{" "}
                 <span className="text-slate-900 font-semibold">
-                  Githunguri / Kiambu, Kenya
+                  Githunguri Road, Kiambu – Nairobi Region
                 </span>
               </li>
-              <li className="text-xs text-slate-500 mt-2">
-                Mon – Sat: 8:00am – 5:00pm
-              </li>
+            
             </ul>
           </div>
         </div>
@@ -106,10 +135,12 @@ export default function Footer() {
         {/* Bottom bar */}
         <div className="mt-8 pt-4 border-t border-slate-300 flex flex-col gap-2 md:flex-row md:items-center md:justify-between text-xs text-slate-600">
           <p>
-            © {new Date().getFullYear()} Premium Concrete PM. All rights reserved.
+            © {new Date().getFullYear()} Premium Concrete PM. All rights
+            reserved.
           </p>
           <p>
-            Quality paving solutions for driveways, parking areas & industrial yards.
+            Quality paving solutions for driveways, compounds, parking areas &
+            industrial yards.
           </p>
         </div>
       </div>

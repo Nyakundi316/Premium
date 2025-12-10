@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, ChangeEvent } from "react";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -11,6 +11,13 @@ export default function ProjectsSection() {
 
   const [activeBlockFilter, setActiveBlockFilter] = useState("all");
   const [selectedBlock, setSelectedBlock] = useState<any | null>(null);
+
+  // Before/After slider state (percentage of "after" image)
+  const [sliderValue, setSliderValue] = useState(55);
+
+  const handleSliderChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setSliderValue(Number(e.target.value));
+  };
 
   const categories = [
     { id: "all", label: "All Projects", count: 24 },
@@ -173,6 +180,8 @@ export default function ProjectsSection() {
           return project.category === activeFilter;
         });
 
+  const featuredProjects = projects.filter((p) => p.featured);
+
   const blockFilters = [
     { id: "all", label: "All Types" },
     { id: "heavy", label: "Heavy Duty" },
@@ -296,11 +305,82 @@ export default function ProjectsSection() {
             <span className="text-[#D4A017]">Paving Projects</span>
           </h1>
 
-          <p className="text-sm md:text-base text-slate-600 mb-8">
+          <p className="text-sm md:text-base text-slate-600 mb-6 md:mb-8">
             Browse through our portfolio of paving installations across Nairobi
             and surrounding areas — driveways, parking lots, pool areas and
             more.
           </p>
+
+          {/* BEFORE / AFTER SLIDER */}
+          <div className="mb-8 md:mb-10">
+            <div className="mx-auto max-w-3xl rounded-3xl bg-white border border-slate-200 shadow-sm p-3 md:p-4">
+              <div className="relative h-52 md:h-64 rounded-2xl overflow-hidden bg-slate-200">
+                {/* BEFORE image */}
+                <Image
+                  src="/images/projects/before-driveway.jpg" // replace with your real BEFORE
+                  alt="Before paving"
+                  fill
+                  className="object-cover"
+                />
+
+                {/* AFTER image (clipped by slider) */}
+                <div
+                  className="absolute inset-0 overflow-hidden"
+                  style={{
+                    clipPath: `inset(0 ${100 - sliderValue}% 0 0)`,
+                  }}
+                >
+                  <Image
+                    src="/images/projects/after-driveway.jpg" // replace with your real AFTER
+                    alt="After paving"
+                    fill
+                    className="object-cover"
+                  />
+                </div>
+
+                {/* Labels */}
+                <div className="absolute top-3 left-3 z-10">
+                  <span className="rounded-full bg-black/55 text-[10px] md:text-xs text-white px-3 py-1">
+                    Before
+                  </span>
+                </div>
+                <div className="absolute top-3 right-3 z-10">
+                  <span className="rounded-full bg-[#D4A017]/90 text-[10px] md:text-xs text-[#0A1A2F] px-3 py-1 font-semibold">
+                    After
+                  </span>
+                </div>
+
+                {/* Slider line handle */}
+                <div
+                  className="absolute inset-y-0"
+                  style={{
+                    left: `${sliderValue}%`,
+                    transform: "translateX(-50%)",
+                  }}
+                >
+                  <div className="h-full w-[2px] bg-white/80 shadow-md" />
+                  <div className="absolute top-1/2 -translate-y-1/2 -ml-3 w-6 h-6 rounded-full bg-white shadow-lg border border-slate-300 flex items-center justify-center">
+                    <div className="w-1.5 h-1.5 rounded-full bg-[#D4A017]" />
+                  </div>
+                </div>
+              </div>
+
+              <div className="mt-3 flex flex-col md:flex-row items-center justify-between gap-3">
+                <p className="text-[11px] md:text-xs text-slate-600">
+                  Slide to see how our cabro transforms raw ground into a clean,
+                  durable driveway finish.
+                </p>
+                <input
+                  type="range"
+                  min={0}
+                  max={100}
+                  value={sliderValue}
+                  onChange={handleSliderChange}
+                  className="w-full md:w-48 accent-[#D4A017]"
+                />
+              </div>
+            </div>
+          </div>
 
           {/* STATS */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
@@ -338,6 +418,66 @@ export default function ProjectsSection() {
             </div>
           </div>
         </div>
+
+        {/* ---------------- FEATURED PROJECTS STRIP ---------------- */}
+        {featuredProjects.length > 0 && (
+          <section className="mb-10 md:mb-12">
+            <div className="rounded-3xl bg-white/80 border border-slate-200 shadow-sm px-4 py-5 md:px-6 md:py-6">
+              <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-4">
+                <div>
+                  <h2 className="text-base md:text-lg font-semibold text-slate-900">
+                    Featured Projects
+                  </h2>
+                  <p className="text-xs md:text-sm text-slate-600 mt-1">
+                    A quick look at some of our recent signature cabro and
+                    concrete projects.
+                  </p>
+                </div>
+                <Link
+                  href="/quote"
+                  className="inline-flex items-center justify-center px-4 py-2 rounded-full bg-[#D4A017] text-xs md:text-sm font-semibold text-[#0A1A2F] shadow-sm hover:bg-[#c19113] transition"
+                >
+                  Get a Similar Project →
+                </Link>
+              </div>
+
+              <div className="flex gap-4 overflow-x-auto pb-2">
+                {featuredProjects.map((project) => (
+                  <button
+                    key={project.id}
+                    onClick={() => setSelectedProject(project)}
+                    className="min-w-[220px] md:min-w-[260px] lg:min-w-[280px] text-left bg-slate-50 rounded-2xl border border-slate-200 overflow-hidden hover:border-[#D4A017]/70 hover:shadow-lg transition-all duration-300"
+                  >
+                    <div className="relative h-28 md:h-32 overflow-hidden">
+                      <Image
+                        src={project.image}
+                        alt={project.title}
+                        width={400}
+                        height={260}
+                        className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-black/20 to-transparent" />
+                      <span className="absolute top-2 left-2 px-2 py-1 rounded-full bg-white/85 text-[10px] font-semibold text-slate-900">
+                        {project.category}
+                      </span>
+                    </div>
+                    <div className="p-3">
+                      <h3 className="text-xs md:text-sm font-semibold text-slate-900 mb-1">
+                        {project.title}
+                      </h3>
+                      <p className="text-[10px] text-slate-500 mb-1">
+                        {project.location}
+                      </p>
+                      <p className="text-[10px] text-slate-600 line-clamp-2">
+                        {project.description}
+                      </p>
+                    </div>
+                  </button>
+                ))}
+              </div>
+            </div>
+          </section>
+        )}
 
         {/* ---------------- FILTERS & VIEW TOGGLE ---------------- */}
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-8">
@@ -626,9 +766,7 @@ export default function ProjectsSection() {
                         <p className="text-slate-400 text-[10px] uppercase tracking-wide">
                           Duration
                         </p>
-                        <p className="font-medium text-slate-900">
-                          5 days
-                        </p>
+                        <p className="font-medium text-slate-900">5 days</p>
                       </div>
                     </div>
                   </div>
@@ -715,7 +853,7 @@ export default function ProjectsSection() {
               })}
             </div>
 
-            {/* Block grid – 2 cols on mobile (pairs), 3 on md+ */}
+            {/* Block grid */}
             <div className="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-6 max-w-5xl mx-auto">
               {filteredBlockTypes.map((block, index) => (
                 <div
@@ -776,6 +914,173 @@ export default function ProjectsSection() {
                   </div>
                 </div>
               ))}
+            </div>
+          </div>
+        </section>
+
+        {/* =========================================================== */}
+        {/*              TRUSTED QUALITY / CERTIFICATIONS               */}
+        {/* =========================================================== */}
+
+        <section className="mt-16 md:mt-20">
+          <div className="max-w-6xl mx-auto rounded-3xl bg-white border border-slate-200 px-4 py-8 md:px-8 md:py-10 shadow-sm">
+            <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6 mb-8">
+              <div className="max-w-xl">
+                <span className="inline-flex items-center gap-2 rounded-full bg-slate-100 border border-slate-200 px-4 py-1 mb-3">
+                  <div className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+                  <span className="text-[11px] md:text-xs uppercase tracking-[0.22em] text-slate-600">
+                    Quality & Standards
+                  </span>
+                </span>
+                <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-slate-900 mb-3">
+                  Trusted Concrete{" "}
+                  <span className="text-[#D4A017]">Performance</span>
+                </h2>
+                <p className="text-sm md:text-base text-slate-600">
+                  Every batch of cabro, culverts, kerbs and fencing posts is
+                  produced under strict mix designs, proper curing time and
+                  on-site handling guidelines to ensure long-lasting results.
+                </p>
+              </div>
+
+              <div className="grid grid-cols-2 gap-3 md:gap-4 max-w-sm md:max-w-xs">
+                <div className="p-3 md:p-4 rounded-2xl bg-slate-50 border border-slate-200 flex items-start gap-3">
+                  <div className="mt-0.5">
+                    <svg
+                      className="w-5 h-5 text-emerald-500"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                    >
+                      <path
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        d="M9 11l3 3L22 4M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"
+                      />
+                    </svg>
+                  </div>
+                  <div>
+                    <p className="text-xs font-semibold text-slate-900">
+                      Lab Strength Tested
+                    </p>
+                    <p className="text-[11px] text-slate-600">
+                      Compression test reports on request for big projects.
+                    </p>
+                  </div>
+                </div>
+
+                <div className="p-3 md:p-4 rounded-2xl bg-slate-50 border border-slate-200 flex items-start gap-3">
+                  <div className="mt-0.5">
+                    <svg
+                      className="w-5 h-5 text-[#D4A017]"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                    >
+                      <path
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        d="M12 6v12m6-6H6"
+                      />
+                    </svg>
+                  </div>
+                  <div>
+                    <p className="text-xs font-semibold text-slate-900">
+                      Correct Mix Design
+                    </p>
+                    <p className="text-[11px] text-slate-600">
+                      Controlled cement, sand & ballast ratios for durability.
+                    </p>
+                  </div>
+                </div>
+
+                <div className="p-3 md:p-4 rounded-2xl bg-slate-50 border border-slate-200 flex items-start gap-3">
+                  <div className="mt-0.5">
+                    <svg
+                      className="w-5 h-5 text-sky-500"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                    >
+                      <path
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        d="M3 7h18M3 12h18M3 17h18"
+                      />
+                    </svg>
+                  </div>
+                  <div>
+                    <p className="text-xs font-semibold text-slate-900">
+                      Machine Vibro-Compacted
+                    </p>
+                    <p className="text-[11px] text-slate-600">
+                      Uniform density for high load areas like parking yards.
+                    </p>
+                  </div>
+                </div>
+
+                <div className="p-3 md:p-4 rounded-2xl bg-slate-50 border border-slate-200 flex items-start gap-3">
+                  <div className="mt-0.5">
+                    <svg
+                      className="w-5 h-5 text-rose-500"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                    >
+                      <path
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        d="M5 13l4 4L19 7"
+                      />
+                    </svg>
+                  </div>
+                  <div>
+                    <p className="text-xs font-semibold text-slate-900">
+                      Installation Warranty
+                    </p>
+                    <p className="text-[11px] text-slate-600">
+                      Workmanship guarantee on full supply & install projects.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Bottom row: badges + CTA */}
+            <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-5">
+              <div className="flex flex-wrap gap-2">
+                <span className="inline-flex items-center gap-2 rounded-full bg-slate-100 px-3 py-1 text-[11px] md:text-xs text-slate-700">
+                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
+                  Proper curing time observed
+                </span>
+                <span className="inline-flex items-center gap-2 rounded-full bg-slate-100 px-3 py-1 text-[11px] md:text-xs text-slate-700">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#D4A017]" />
+                  Site-level supervision on big works
+                </span>
+                <span className="inline-flex items-center gap-2 rounded-full bg-slate-100 px-3 py-1 text-[11px] md:text-xs text-slate-700">
+                  <span className="w-1.5 h-1.5 rounded-full bg-sky-500" />
+                  Drainage & levels checked before laying
+                </span>
+              </div>
+
+              <div className="flex flex-wrap gap-3">
+                <Link
+                  href="/quote"
+                  className="px-5 md:px-6 py-2.5 bg-gradient-to-r from-[#D4A017] to-[#F0B429] text-[#0A1A2F] text-sm font-semibold rounded-full shadow-sm hover:shadow-lg hover:shadow-[#FACC6B]/40 transition-all"
+                >
+                  Request Site Assessment →
+                </Link>
+                <a
+                  href="tel:+254711789438"
+                  className="px-5 md:px-6 py-2.5 border border-slate-300 rounded-full text-sm font-semibold text-slate-800 hover:border-[#D4A017]/60 hover:bg-[#FFF7E0] transition-all"
+                >
+                  Speak to Our Engineer
+                </a>
+              </div>
             </div>
           </div>
         </section>

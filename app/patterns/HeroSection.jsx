@@ -257,7 +257,7 @@ export default function PatternsHero() {
                 />
               ))}
             </div>
-          </div>
+          </div>5
           
           {/* Current slide indicator for desktop */}
           <div className="hidden lg:flex items-center justify-between mt-6 px-4">

@@ -72,19 +72,21 @@ export default function Navbar() {
   };
 
   // Background + border based on scroll + theme
-  const navClasses =
-    theme === "dark"
-      ? isScrolled
-        ? "bg-[#020617]/95 text-white shadow-xl backdrop-blur-md border border-white/10"
-        : "bg-[#020617]/40 text-white backdrop-blur-md border border-white/10"
-      : isScrolled
+ const navClasses = `
+  ${isScrolled
+    ? "bg-[#0A1A2F]/95 shadow-xl border border-[#fffff]/20"
+    : "bg-[#0A1A2F]/80 border border-[#D4A017]/10"
+  }
+  text-white backdrop-blur-md
+`;
+      isScrolled
       ? "bg-white/95 text-slate-900 shadow-xl backdrop-blur-md border border-slate-200"
       : "bg-white/80 text-slate-900 shadow-md backdrop-blur-md border border-slate-200";
 
   return (
     <nav
       className={`
-        fixed z-50 top-3 left-1/2 -translate-x-1/2
+        fixed z-50 top-0 left-1/2 -translate-x-1/2
         w-[94%] max-w-6xl
         transition-all duration-300
         ${isMenuOpen ? "rounded-3xl" : "rounded-full"}
@@ -101,7 +103,7 @@ export default function Navbar() {
         >
           <div className="relative h-9 w-16 sm:h-10 sm:w-20">
             <Image
-              src="/images/PM logo.jpeg"
+              src="/images/pm logo.png"
               alt="Premium Concrete PM logo"
               fill
               className="object-contain rounded-full"

@@ -1,11 +1,8 @@
 // app/layout.tsx
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
 import "./globals.css";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
-
-const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Premium Concrete PM – Premium Paving Blocks & Solutions",
@@ -19,13 +16,16 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={inter.className}>
-      <body className="min-h-screen bg-gradient-to-b from-[#f9f8f5] to-[#f5f4f0] text-[#1e3a8a]">
-        {/* Navbar fixed at top */}
+    <html lang="en">
+      <body
+        className="
+          min-h-screen
+          bg-gradient-to-b from-[#020617] via-[#020617] to-[#0B1220]
+          text-[#E5E7EB]
+        "
+      >
         <Navbar />
-
-        <main>{children}</main>
-
+        <main className="pt-20 md:pt-24">{children}</main>
         <Footer />
       </body>
     </html>

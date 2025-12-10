@@ -95,29 +95,6 @@ const services = [
   },
 ];
 
-const processSteps = [
-  {
-    title: "1. Site Visit & Assessment",
-    text: "We visit your location, take measurements and assess the ground conditions, access and drainage.",
-  },
-  {
-    title: "2. Design & Quotation",
-    text: "We recommend the right block type, thickness and pattern, then share a clear, itemised quotation.",
-  },
-  {
-    title: "3. Ground Preparation",
-    text: "Clearing, excavation (where needed), hardcore base, compaction and sand screeding for a strong foundation.",
-  },
-  {
-    title: "4. Paving Installation",
-    text: "Our team lays the paving blocks, cuts edges neatly, compacts and finishes with joint sand.",
-  },
-  {
-    title: "5. Final Inspection & Handover",
-    text: "We walk the site with you, check levels and finishing, and hand over a clean, ready-to-use surface.",
-  },
-];
-
 const applications = [
   {
     title: "Residential",
@@ -160,9 +137,11 @@ const applications = [
 export default function ServicesPage() {
   return (
     <main className="min-h-screen bg-slate-50 text-slate-900">
+      
       {/* HERO SECTION */}
       <section className="border-b border-slate-200 bg-white">
         <div className="mx-auto flex max-w-6xl flex-col gap-10 px-4 py-14 md:flex-row md:items-center md:py-20">
+          
           {/* Left - text */}
           <div className="flex-1 space-y-6">
             <span className="inline-flex items-center gap-2 rounded-full bg-[#FFF7E0] border border-[#FACC6B]/70 px-4 py-1.5 text-[11px] font-semibold tracking-[0.2em] text-[#A46306] uppercase">
@@ -200,7 +179,7 @@ export default function ServicesPage() {
                 Request a Free Quote
               </Link>
               <a
-                href="tel:+2547XXXXXXXXX"
+                href="tel:+254711789438"
                 className="inline-flex items-center justify-center rounded-full border border-slate-300 px-6 py-3 text-sm font-semibold text-slate-800 hover:border-[#D4A017] hover:text-[#A46306] transition-all"
               >
                 Call:+254 711 789438
@@ -249,11 +228,10 @@ export default function ServicesPage() {
           <div className="mb-8 flex flex-col gap-3 md:mb-10 md:flex-row md:items-end md:justify-between">
             <div>
               <h2 className="text-2xl md:text-3xl font-bold text-slate-900">
-                Our Core{" "}
-                <span className="text-[#D4A017]">Paving Services</span>
+                Our Core <span className="text-[#D4A017]">Paving Services</span>
               </h2>
               <p className="mt-2 text-sm md:text-base text-slate-700 max-w-2xl">
-                Whether you&apos;re building a new home, upgrading a compound or
+                Whether you're building a new home, upgrading a compound or
                 paving a commercial space, we offer end-to-end solutions from
                 supply to installation.
               </p>
@@ -263,13 +241,13 @@ export default function ServicesPage() {
             </p>
           </div>
 
+          {/* Services Grid */}
           <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             {services.map((service) => (
               <div
                 key={service.title}
                 className="flex h-full flex-col overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm hover:shadow-md hover:border-[#FACC6B] transition-all"
               >
-                {/* Image */}
                 <div className="relative h-40 w-full overflow-hidden bg-slate-100">
                   <Image
                     src={service.image}
@@ -284,7 +262,6 @@ export default function ServicesPage() {
                   </span>
                 </div>
 
-                {/* Content */}
                 <div className="flex flex-1 flex-col p-5">
                   <h3 className="text-base md:text-lg font-semibold text-slate-900">
                     {service.title}
@@ -307,7 +284,7 @@ export default function ServicesPage() {
                       href="/quote"
                       className="font-semibold text-[#A46306] hover:text-[#D4A017] underline underline-offset-4"
                     >
-                      Get a quote for this service →
+                      Get a quote →
                     </Link>
                     <span className="text-[11px] text-slate-500">
                       Site visits available
@@ -320,44 +297,7 @@ export default function ServicesPage() {
         </div>
       </section>
 
-      {/* PROCESS SECTION */}
-      <section className="border-y border-slate-200 bg-white py-12 md:py-16">
-        <div className="mx-auto max-w-6xl px-4">
-          <div className="mb-8 md:mb-10 flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
-            <div>
-              <h2 className="text-2xl md:text-3xl font-bold text-slate-900">
-                How Our{" "}
-                <span className="text-[#D4A017]">Paving Process</span> Works
-              </h2>
-              <p className="mt-2 text-sm md:text-base text-slate-700 max-w-xl">
-                A clear, step-by-step process from first visit to final
-                handover, so you always know what&apos;s happening on your site.
-              </p>
-            </div>
-            <p className="text-xs md:text-sm text-slate-500">
-              Most residential projects are completed within 2–5 days.
-            </p>
-          </div>
-
-          <div className="grid gap-4 md:grid-cols-3">
-            {processSteps.map((step) => (
-              <div
-                key={step.title}
-                className="flex h-full flex-col rounded-2xl border border-slate-200 bg-slate-50 p-4 md:p-5"
-              >
-                <h3 className="text-sm md:text-base font-semibold text-slate-900 mb-1">
-                  {step.title}
-                </h3>
-                <p className="text-xs md:text-sm text-slate-600">
-                  {step.text}
-                </p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* APPLICATIONS / WHERE WE PAVE */}
+      {/* APPLICATIONS */}
       <section className="bg-slate-50 py-12 md:py-16">
         <div className="mx-auto max-w-6xl px-4">
           <div className="mb-8 text-center">
@@ -400,9 +340,9 @@ export default function ServicesPage() {
             </h2>
             <p className="text-sm md:text-base text-slate-700 max-w-xl">
               Share your site location, approximate area and preferred pattern —
-              we&apos;ll guide you on the best block type and send a detailed
-              quotation. Site visits are available in Nairobi, Kiambu and
-              nearby areas.
+              we'll guide you on the best block type and send a detailed
+              quotation. Site visits are available in Nairobi, Kiambu and nearby
+              areas.
             </p>
             <div className="flex flex-wrap gap-3 pt-1">
               <Link
@@ -412,7 +352,7 @@ export default function ServicesPage() {
                 Request a Free Quote
               </Link>
               <a
-                href="https://wa.me/+254 711 789438"
+                href="https://wa.me/254711789438"
                 className="inline-flex items-center justify-center rounded-full border border-slate-300 px-6 py-3 text-sm font-semibold text-slate-800 hover:border-[#25D366] hover:text-[#25D366] transition-all"
               >
                 Chat on WhatsApp
