@@ -3,6 +3,14 @@ import type { Metadata } from "next";
 import "./globals.css";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
+import { Nunito } from "next/font/google";
+
+// Load Nunito font
+const nunito = Nunito({
+  subsets: ["latin"],
+  weight: ["200", "300", "400", "600", "700", "800", "900"],
+  variable: "--font-nunito",
+});
 
 export const metadata: Metadata = {
   title: "Premium Concrete PM – Premium Paving Blocks & Solutions",
@@ -16,16 +24,17 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
+    <html lang="en" className={nunito.variable}>
       <body
-        className="
+        className={`
+          font-nunito
           min-h-screen
           bg-gradient-to-b from-[#020617] via-[#020617] to-[#0B1220]
           text-[#E5E7EB]
-        "
+        `}
       >
         <Navbar />
-        <main className="pt-20 md:pt-24">{children}</main>
+        <main className="pt-2 md:pt-8">{children}</main>
         <Footer />
       </body>
     </html>

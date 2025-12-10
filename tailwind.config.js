@@ -5,7 +5,11 @@ const config = {
     "./components/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+         fontFamily: {
+        nunito: ["var(--font-nunito)", "sans-serif"],
+      },
+    },
   },
   plugins: [],
 };

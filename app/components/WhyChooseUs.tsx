@@ -3,15 +3,10 @@
 import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { motion, AnimatePresence } from "framer-motion";
+import { X, ChevronRight, Award, Palette, Shield, Clock, Grid, Filter, Sparkles } from "lucide-react";
 
-type Category =
-  | "all"
-  | "trihex"
-  | "unipaver"
-  | "hexagon"
-  | "dumble-wave"
-  | "brick-cube"
-  | "special";
+type Category = "all" | "trihex" | "unipaver" | "hexagon" | "dumble-wave" | "brick-cube" | "special";
 
 type Product = {
   id: string;
@@ -172,195 +167,247 @@ export default function WhyChooseSection() {
     },
   ];
 
-  const [hoveredProduct, setHoveredProduct] = useState<Product | null>(
-    products[0]
-  );
+  const [hoveredProduct, setHoveredProduct] = useState<Product | null>(products[0]);
   const [activeCategory, setActiveCategory] = useState<Category>("all");
   const [previewProduct, setPreviewProduct] = useState<Product | null>(null);
+  const [isGridLoading, setIsGridLoading] = useState(true);
 
   const features = [
     {
-      icon: "🏗️",
-      title: "Premium Materials",
-      description:
-        "Made from high-grade, durable materials for superior strength.",
+      icon: <Award className="w-6 h-6" />,
+      title: "Premium Quality",
+      description: "Made from high-grade materials for superior durability and strength.",
+      color: "from-amber-500 to-amber-600"
     },
     {
-      icon: "🎨",
-      title: "Variety of Options",
-      description:
-        "Multiple colors, sizes, and patterns to match your design vision.",
+      icon: <Palette className="w-6 h-6" />,
+      title: "Design Variety",
+      description: "Multiple colors, patterns, and styles to match any design vision.",
+      color: "from-blue-500 to-blue-600"
     },
     {
-      icon: "⏳",
-      title: "Long-Lasting",
-      description: "Built to last for years with minimal maintenance.",
+      icon: <Shield className="w-6 h-6" />,
+      title: "Weather Resistant",
+      description: "Built to withstand harsh weather conditions and heavy use.",
+      color: "from-emerald-500 to-emerald-600"
     },
     {
-      icon: "🛡️",
-      title: "Low Maintenance",
-      description: "Resistant to weathering, cracking, and fading.",
+      icon: <Clock className="w-6 h-6" />,
+      title: "Long Lasting",
+      description: "Years of service with minimal maintenance requirements.",
+      color: "from-purple-500 to-purple-600"
     },
   ];
 
-  const filters: { id: Category; label: string }[] = [
-    { id: "all", label: "All Types" },
-    { id: "trihex", label: "Trihex" },
-    { id: "unipaver", label: "Unipaver" },
-    { id: "hexagon", label: "Hexagon" },
-    { id: "dumble-wave", label: "Dumble & Wave" },
-    { id: "brick-cube", label: "Brick & Cube" },
-    { id: "special", label: "Fan & Mirror" },
+  const filters: { id: Category; label: string; count: number }[] = [
+    { id: "all", label: "All Types", count: products.length },
+    { id: "trihex", label: "Trihex", count: products.filter(p => p.category === "trihex").length },
+    { id: "unipaver", label: "Unipaver", count: products.filter(p => p.category === "unipaver").length },
+    { id: "hexagon", label: "Hexagon", count: products.filter(p => p.category === "hexagon").length },
+    { id: "dumble-wave", label: "Dumble & Wave", count: products.filter(p => p.category === "dumble-wave").length },
+    { id: "brick-cube", label: "Brick & Cube", count: products.filter(p => p.category === "brick-cube").length },
+    { id: "special", label: "Special", count: products.filter(p => p.category === "special").length },
   ];
 
-  const filteredProducts =
-    activeCategory === "all"
-      ? products
-      : products.filter((p) => p.category === activeCategory);
+  const filteredProducts = activeCategory === "all" 
+    ? products 
+    : products.filter((p) => p.category === activeCategory);
 
   return (
-    <>
-      <section id="why-choose" className="py-16 md:py-24 bg-[#F6F7F9]">
-        <div className="container mx-auto px-4 md:px-8">
-          {/* HEADER */}
-          <div className="text-center max-w-3xl mx-auto mb-12 md:mb-16">
-            <span className="inline-flex items-center gap-2 rounded-full bg-[#FFF7E0] border border-[#FACC6B]/60 px-4 py-2 mb-4">
-              <div className="w-2 h-2 rounded-full bg-[#D4A017] animate-pulse" />
-              <span className="text-xs md:text-sm font-medium tracking-[0.2em] text-[#D4A017] uppercase">
-                Superior Quality
-              </span>
+    <section className="relative py-20 lg:py-28 bg-gradient-to-b from-white to-gray-50 overflow-hidden">
+      {/* Background decorative elements */}
+      <div className="absolute inset-0 bg-grid-gray-100/50 [mask-image:radial-gradient(ellipse_at_center,white,transparent)]" />
+      
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative">
+        {/* Header */}
+        <div className="text-center max-w-3xl mx-auto mb-16">
+          <div className="inline-flex items-center gap-3 px-4 py-2 bg-gradient-to-r from-amber-50 to-amber-100 rounded-full border border-amber-200 mb-6">
+            <Sparkles className="w-4 h-4 text-amber-600" />
+            <span className="text-sm font-semibold text-amber-900 tracking-wide">
+              Superior Quality
             </span>
-
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 md:mb-6 text-gray-900">
-              Why Choose{" "}
-              <span className="text-[#D4A017]">Premium Paving Blocks?</span>
-            </h2>
-
-            <p className="text-sm md:text-lg text-gray-600">
-              Strong, durable and beautiful paving solutions crafted with
-              precision for homes, estates and commercial projects.
-            </p>
           </div>
 
-          <div className="grid lg:grid-cols-2 gap-10 md:gap-12 mb-10 md:mb-12">
-            {/* LEFT SIDE FEATURES */}
-            <div>
-              <div className="bg-white rounded-2xl border border-gray-200 shadow-sm p-6 md:p-8 h-full">
-                <h3 className="text-xl md:text-2xl font-bold text-gray-900 mb-6 md:mb-8">
-                  Premium Features
-                </h3>
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-6">
+            Why Choose{" "}
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-600 to-amber-800">
+              Premium Paving Blocks?
+            </span>
+          </h2>
 
-                <div className="space-y-4 md:space-y-5">
-                  {features.map((feature, index) => (
-                    <div
-                      key={index}
-                      className="group flex items-start gap-4 p-3.5 md:p-4 rounded-xl hover:bg-gray-50 transition-all"
-                    >
-                      <div className="w-11 h-11 md:w-12 md:h-12 rounded-xl bg-[#FFF3C4] flex items-center justify-center group-hover:scale-110 transition-transform">
-                        <span className="text-lg md:text-xl">
-                          {feature.icon}
-                        </span>
+          <p className="text-lg text-gray-600">
+            Strong, durable and beautiful paving solutions crafted with
+            precision for homes, estates and commercial projects.
+          </p>
+        </div>
+
+        <div className="grid lg:grid-cols-3 gap-8 mb-16">
+          {/* Features Section */}
+          <div className="lg:col-span-1">
+            <div className="bg-white rounded-2xl border border-gray-200 shadow-sm p-6 lg:p-8 h-full">
+              <h3 className="text-2xl font-bold text-gray-900 mb-8 flex items-center gap-2">
+                <Award className="w-6 h-6 text-amber-600" />
+                Premium Features
+              </h3>
+
+              <div className="space-y-6">
+                {features.map((feature, index) => (
+                  <motion.div
+                    key={index}
+                    initial={{ opacity: 0, x: -20 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    transition={{ delay: index * 0.1 }}
+                    viewport={{ once: true }}
+                    className="group relative p-5 rounded-xl bg-gradient-to-br from-gray-50 to-white border border-gray-200 hover:border-amber-300 transition-all hover:shadow-lg"
+                  >
+                    <div className="flex items-start gap-4">
+                      <div className={`p-3 rounded-lg bg-gradient-to-br ${feature.color} text-white`}>
+                        {feature.icon}
                       </div>
                       <div>
-                        <h4 className="text-sm md:text-lg font-semibold text-gray-900 mb-1">
+                        <h4 className="text-lg font-semibold text-gray-900 mb-2">
                           {feature.title}
                         </h4>
-                        <p className="text-xs md:text-sm text-gray-600">
+                        <p className="text-gray-600">
                           {feature.description}
                         </p>
                       </div>
                     </div>
-                  ))}
-                </div>
+                  </motion.div>
+                ))}
+              </div>
 
-                <div className="mt-6 md:mt-8 pt-6 border-t border-gray-200">
-                  <Link
-                    href="/contact"
-                    className="inline-flex px-5 md:px-6 py-2.5 md:py-3 border border-gray-300 rounded-lg text-xs md:text-sm font-semibold text-gray-800 hover:border-[#D4A017] hover:bg-[#FFF7E0] transition-all"
-                  >
-                    Contact Our Experts
-                  </Link>
-                </div>
+              <div className="mt-8 pt-6 border-t border-gray-200">
+                <Link
+                  href="/contact"
+                  className="group inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-gray-900 to-gray-800 text-white font-semibold rounded-xl hover:from-gray-800 hover:to-gray-700 transition-all duration-300"
+                >
+                  <span>Contact Our Experts</span>
+                  <ChevronRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+                </Link>
               </div>
             </div>
+          </div>
 
-            {/* RIGHT SIDE — PRODUCT GRID + FILTER */}
-            <div>
-              <div className="bg-white rounded-2xl border border-gray-200 shadow-sm p-6 md:p-8 h-full">
-                <div className="flex flex-wrap items-center justify-between gap-3 mb-5 md:mb-6">
-                  <h3 className="text-xl md:text-2xl font-bold text-gray-900">
-                    Our Products Collection
-                  </h3>
-                  <span className="px-3.5 py-1.5 rounded-full bg-[#F5F7FA] text-[#A46306] text-xs md:text-sm font-medium border border-[#FACC6B]/70">
-                    {products.length}+ Types
-                  </span>
+          {/* Products Section */}
+          <div className="lg:col-span-2">
+            <div className="bg-white rounded-2xl border border-gray-200 shadow-sm p-6 lg:p-8 h-full">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
+                <div className="flex items-center gap-3">
+                  <div className="p-2 rounded-lg bg-gradient-to-br from-amber-500 to-amber-600 text-white">
+                    <Grid className="w-5 h-5" />
+                  </div>
+                  <div>
+                    <h3 className="text-2xl font-bold text-gray-900">
+                      Our Collection
+                    </h3>
+                    <p className="text-gray-600 text-sm">
+                      {products.length}+ unique patterns and styles
+                    </p>
+                  </div>
                 </div>
 
-                {/* FILTER BAR */}
-                <div className="flex flex-wrap gap-2 mb-5 md:mb-6">
-                  {filters.map((filter) => {
-                    const isActive = activeCategory === filter.id;
-                    return (
-                      <button
-                        key={filter.id}
-                        type="button"
-                        onClick={() => setActiveCategory(filter.id)}
-                        className={`px-3 py-1.5 rounded-full text-[11px] md:text-sm border text-gray-700 transition-all ${
-                          isActive
-                            ? "bg-[#D4A017] text-white border-[#D4A017] shadow-sm"
-                            : "bg-gray-50 border-gray-300 hover:border-[#D4A017] hover:text-[#A46306]"
-                        }`}
-                      >
-                        {filter.label}
-                      </button>
-                    );
-                  })}
+                <div className="flex items-center gap-2 text-sm text-gray-600">
+                  <Filter className="w-4 h-4" />
+                  <span>Filter by category</span>
                 </div>
+              </div>
 
-                {/* GRID */}
-                <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3.5 md:gap-4 mb-5 md:mb-6">
-                  {filteredProducts.map((product) => (
+              {/* Filter Tabs */}
+              <div className="flex flex-wrap gap-2 mb-8">
+                {filters.map((filter) => {
+                  const isActive = activeCategory === filter.id;
+                  return (
                     <button
+                      key={filter.id}
+                      onClick={() => setActiveCategory(filter.id)}
+                      className={`group relative px-4 py-2 rounded-xl text-sm font-medium transition-all duration-300 ${
+                        isActive
+                          ? "bg-gradient-to-r from-amber-500 to-amber-600 text-white shadow-lg shadow-amber-200"
+                          : "bg-gray-100 text-gray-700 hover:bg-gray-200"
+                      }`}
+                    >
+                      <span className="flex items-center gap-2">
+                        {filter.label}
+                        <span className={`text-xs px-1.5 py-0.5 rounded-full ${
+                          isActive 
+                            ? "bg-white/20" 
+                            : "bg-gray-300 text-gray-700"
+                        }`}>
+                          {filter.count}
+                        </span>
+                      </span>
+                    </button>
+                  );
+                })}
+              </div>
+
+              {/* Products Grid */}
+              <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-3 gap-4 mb-8">
+                <AnimatePresence mode="wait">
+                  {filteredProducts.map((product, index) => (
+                    <motion.button
                       key={product.id}
-                      type="button"
+                      layout
+                      initial={{ opacity: 0, scale: 0.9 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      exit={{ opacity: 0, scale: 0.9 }}
+                      transition={{ duration: 0.2, delay: index * 0.05 }}
                       onMouseEnter={() => setHoveredProduct(product)}
                       onClick={() => setPreviewProduct(product)}
-                      className="group relative aspect-[4/3] rounded-2xl overflow-hidden border border-gray-200 bg-gray-50 hover:border-[#D4A017]/70 hover:shadow-md transition-all"
+                      className="group relative aspect-square rounded-xl overflow-hidden border border-gray-200 bg-gray-50 hover:border-amber-300 hover:shadow-xl transition-all duration-300"
                     >
-                      {/* Image */}
+                      {/* Background Image */}
                       <Image
                         src={product.image}
                         alt={product.name}
                         fill
-                        className="object-cover transition-all duration-300 group-hover:opacity-0 group-hover:scale-95"
+                        className="object-cover transition-transform duration-500 group-hover:scale-110"
                       />
-
-                      {/* Dark overlay on hover */}
-                      <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-
-                      {/* TEXT ON HOVER */}
-                      <div className="absolute inset-0 flex flex-col items-center justify-center text-center opacity-0 translate-y-3 group-hover:opacity-100 group-hover:translate-y-0 transition-all px-2">
-                        <p className="text-xs md:text-sm font-bold text-white drop-shadow-sm">
+                      
+                      {/* Gradient Overlay */}
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
+                      
+                      {/* Content */}
+                      <div className="absolute inset-0 p-4 flex flex-col justify-end">
+                        <h4 className="text-sm font-semibold text-white text-left">
                           {product.name}
-                        </p>
-                        <p className="text-[10px] md:text-xs text-[#FACC6B] mt-1">
+                        </h4>
+                        <p className="text-xs text-amber-200 mt-1 text-left">
                           {product.colorLabel}
                         </p>
-                        <p className="mt-1 text-[9px] md:text-[11px] text-gray-100/90">
-                          Best for: {product.bestFor}
+                      </div>
+
+                      {/* Hover Overlay */}
+                      <div className="absolute inset-0 bg-gradient-to-t from-amber-600/90 via-amber-600/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 p-4 flex flex-col justify-center items-center">
+                        <p className="text-sm font-semibold text-white text-center mb-2">
+                          View Details
                         </p>
-                        <p className="mt-1 text-[9px] md:text-[11px] text-gray-100/70">
-                          Tap to view details
+                        <p className="text-xs text-white/90 text-center">
+                          Best for: {product.bestFor.split(',')[0]}
                         </p>
                       </div>
-                    </button>
-                  ))}
-                </div>
 
-                {/* CURRENTLY VIEWING */}
-                {hoveredProduct && (
-                  <div className="mt-3 md:mt-4 p-4 md:p-5 rounded-xl bg-gray-50 border border-gray-200 flex items-center gap-3 md:gap-4">
-                    <div className="relative h-14 w-20 md:h-16 md:w-24 rounded-md overflow-hidden bg-gray-100">
+                      {/* Category Badge */}
+                      <div className="absolute top-2 right-2">
+                        <span className="px-2 py-1 bg-black/60 backdrop-blur-sm text-white text-xs rounded-full">
+                          {product.category}
+                        </span>
+                      </div>
+                    </motion.button>
+                  ))}
+                </AnimatePresence>
+              </div>
+
+              {/* Active Product Info */}
+              {hoveredProduct && (
+                <motion.div
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className="p-4 rounded-xl bg-gradient-to-r from-amber-50 to-amber-100 border border-amber-200"
+                >
+                  <div className="flex items-center gap-4">
+                    <div className="relative h-16 w-16 rounded-lg overflow-hidden flex-shrink-0">
                       <Image
                         src={hoveredProduct.image}
                         alt={hoveredProduct.name}
@@ -368,134 +415,157 @@ export default function WhyChooseSection() {
                         className="object-cover"
                       />
                     </div>
-                    <div>
-                      <p className="text-[10px] md:text-xs uppercase tracking-wide text-[#A46306] mb-0.5">
-                        Currently Viewing
-                      </p>
-                      <p className="text-sm md:text-base text-gray-900 font-semibold">
-                        {hoveredProduct.name}
-                      </p>
-                      <p className="text-[11px] md:text-xs text-gray-500">
-                        Color: {hoveredProduct.colorLabel}
-                      </p>
-                      <p className="text-[11px] md:text-xs text-gray-600 mt-1">
-                        Best for: {hoveredProduct.bestFor}
+                    <div className="flex-1">
+                      <div className="flex items-center justify-between">
+                        <div>
+                          <p className="text-xs font-semibold text-amber-800 uppercase tracking-wide mb-1">
+                            Currently Viewing
+                          </p>
+                          <h4 className="text-lg font-bold text-gray-900">
+                            {hoveredProduct.name}
+                          </h4>
+                        </div>
+                        <span className="px-3 py-1 bg-gradient-to-r from-amber-500 to-amber-600 text-white text-xs font-semibold rounded-full">
+                          {hoveredProduct.colorLabel}
+                        </span>
+                      </div>
+                      <p className="text-sm text-gray-700 mt-2">
+                        {hoveredProduct.description.substring(0, 100)}...
                       </p>
                     </div>
                   </div>
-                )}
-              </div>
+                </motion.div>
+              )}
             </div>
           </div>
+        </div>
 
-          {/* THIN DIVIDER */}
-          <div className="max-w-6xl mx-auto mt-4 md:mt-6">
-            <div className="h-px bg-gradient-to-r from-transparent via-[#FACC6B]/60 to-transparent" />
+        {/* CTA Section */}
+        <div className="text-center">
+          <div className="inline-flex flex-col sm:flex-row items-center gap-4 px-8 py-6 bg-gradient-to-r from-amber-500 to-amber-600 rounded-2xl shadow-xl">
+            <div className="text-left">
+              <h3 className="text-xl font-bold text-white">Ready to Transform Your Space?</h3>
+              <p className="text-amber-100">Get a free quote and consultation</p>
+            </div>
+            <div className="flex gap-3">
+              <Link
+                href="/quote"
+                className="px-6 py-3 bg-white text-amber-700 font-semibold rounded-lg hover:bg-gray-100 transition-colors"
+              >
+                Get Free Quote
+              </Link>
+              <Link
+                href="/contact"
+                className="px-6 py-3 bg-transparent border-2 border-white text-white font-semibold rounded-lg hover:bg-white/10 transition-colors"
+              >
+                Contact Us
+              </Link>
+            </div>
           </div>
         </div>
-      </section>
+      </div>
 
-      {/* FULLSCREEN PREVIEW MODAL */}
-      {previewProduct && (
-        <div
-          className="fixed inset-0 z-[9999] bg-black/80 backdrop-blur-sm flex items-center justify-center p-4"
-          onClick={() => setPreviewProduct(null)}
-        >
-          {/* Close button */}
-          <button
-            onClick={(e) => {
-              e.stopPropagation();
-              setPreviewProduct(null);
-            }}
-            className="absolute top-5 right-5 w-10 h-10 rounded-full bg-white/20 hover:bg-white/30 flex items-center justify-center"
+      {/* Product Preview Modal */}
+      <AnimatePresence>
+        {previewProduct && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-50 bg-black/90 backdrop-blur-sm flex items-center justify-center p-4"
+            onClick={() => setPreviewProduct(null)}
           >
-            <svg
-              width="24"
-              height="24"
-              stroke="white"
-              fill="none"
-              strokeWidth="2"
+            <motion.div
+              initial={{ scale: 0.9, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.9, opacity: 0 }}
+              className="relative w-full max-w-4xl bg-white rounded-2xl overflow-hidden shadow-2xl"
+              onClick={(e) => e.stopPropagation()}
             >
-              <path d="M6 6l12 12M6 18L18 6" strokeLinecap="round" />
-            </svg>
-          </button>
+              {/* Close Button */}
+              <button
+                onClick={() => setPreviewProduct(null)}
+                className="absolute top-4 right-4 z-10 p-2 bg-white/10 backdrop-blur-sm rounded-full hover:bg-white/20 transition-colors"
+              >
+                <X className="w-5 h-5 text-white" />
+              </button>
 
-          <div
-            className="relative max-w-4xl w-full max-h-[90vh] bg-white rounded-2xl overflow-hidden shadow-2xl flex flex-col md:flex-row"
-            onClick={(e) => e.stopPropagation()}
-          >
-            {/* IMAGE SIDE */}
-            <div className="relative w-full md:w-1/2 bg-black">
-              <Image
-                src={previewProduct.image}
-                alt={previewProduct.name}
-                width={1600}
-                height={1200}
-                className="w-full h-full object-contain md:object-cover"
-              />
-            </div>
+              <div className="grid md:grid-cols-2">
+                {/* Image Section */}
+                <div className="relative h-64 md:h-auto bg-gradient-to-br from-gray-900 to-gray-800">
+                  <Image
+                    src={previewProduct.image}
+                    alt={previewProduct.name}
+                    fill
+                    className="object-cover"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+                  <div className="absolute bottom-4 left-4">
+                    <span className="px-3 py-1 bg-gradient-to-r from-amber-500 to-amber-600 text-white text-sm font-semibold rounded-full">
+                      {previewProduct.category}
+                    </span>
+                  </div>
+                </div>
 
-            {/* TEXT SIDE */}
-            <div className="w-full md:w-1/2 p-5 md:p-7 lg:p-8 flex flex-col gap-3 md:gap-4 overflow-y-auto">
-              <div>
-                <p className="text-[11px] md:text-xs uppercase tracking-[0.2em] text-[#A46306] mb-1">
-                  Paving Pattern Detail
-                </p>
-                <h3 className="text-xl md:text-2xl lg:text-3xl font-bold text-slate-900">
-                  {previewProduct.name}
-                </h3>
-                <p className="text-xs md:text-sm text-slate-500 mt-1">
-                  Color: <span className="font-medium">{previewProduct.colorLabel}</span>
-                </p>
+                {/* Details Section */}
+                <div className="p-6 md:p-8">
+                  <div className="mb-6">
+                    <span className="text-xs font-semibold text-amber-600 uppercase tracking-wide mb-2 block">
+                      Paving Pattern Detail
+                    </span>
+                    <h3 className="text-2xl font-bold text-gray-900 mb-2">
+                      {previewProduct.name}
+                    </h3>
+                    <p className="text-sm text-gray-600">
+                      Color: <span className="font-semibold">{previewProduct.colorLabel}</span>
+                    </p>
+                  </div>
+
+                  <div className="space-y-6">
+                    <div>
+                      <h4 className="text-sm font-semibold text-gray-900 mb-2">Description</h4>
+                      <p className="text-gray-700 leading-relaxed">
+                        {previewProduct.description}
+                      </p>
+                    </div>
+
+                    <div>
+                      <h4 className="text-sm font-semibold text-gray-900 mb-2">Best For</h4>
+                      <p className="text-gray-700">
+                        {previewProduct.bestFor}
+                      </p>
+                    </div>
+
+                    <div>
+                      <h4 className="text-sm font-semibold text-gray-900 mb-2">Why Choose This Pattern?</h4>
+                      <p className="text-gray-700 leading-relaxed">
+                        {previewProduct.reason}
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="mt-8 pt-6 border-t border-gray-200 flex flex-wrap gap-3">
+                    <Link
+                      href="/quote"
+                      onClick={() => setPreviewProduct(null)}
+                      className="flex-1 px-6 py-3 bg-gradient-to-r from-amber-500 to-amber-600 text-white font-semibold rounded-lg hover:from-amber-600 hover:to-amber-700 transition-all text-center"
+                    >
+                      Get Quote
+                    </Link>
+                    <Link
+                      href="/contact"
+                      onClick={() => setPreviewProduct(null)}
+                      className="flex-1 px-6 py-3 border-2 border-amber-500 text-amber-600 font-semibold rounded-lg hover:bg-amber-50 transition-colors text-center"
+                    >
+                      Contact Team
+                    </Link>
+                  </div>
+                </div>
               </div>
-
-              <div>
-                <h4 className="text-sm md:text-base font-semibold text-slate-900 mb-1">
-                  Description
-                </h4>
-                <p className="text-sm md:text-[15px] text-slate-700 leading-relaxed">
-                  {previewProduct.description}
-                </p>
-              </div>
-
-              <div>
-                <h4 className="text-sm md:text-base font-semibold text-slate-900 mb-1">
-                  Best For
-                </h4>
-                <p className="text-sm md:text-[15px] text-slate-700">
-                  {previewProduct.bestFor}
-                </p>
-              </div>
-
-              <div className="mt-1">
-                <h4 className="text-sm md:text-base font-semibold text-slate-900 mb-1">
-                  Why Choose This Pattern?
-                </h4>
-                <p className="text-sm md:text-[15px] text-slate-700 leading-relaxed">
-                  {previewProduct.reason}
-                </p>
-              </div>
-
-              <div className="mt-2 flex flex-wrap gap-3 pt-3 border-t border-slate-200">
-                <Link
-                  href="/quote"
-                  onClick={() => setPreviewProduct(null)}
-                  className="px-5 py-2.5 bg-gradient-to-r from-[#D4A017] to-[#F0B429] text-[#0A1A2F] text-xs md:text-sm font-semibold rounded-lg shadow-sm hover:shadow-lg hover:shadow-[#FACC6B]/40 transition-all"
-                >
-                  Get Quote for This Pattern
-                </Link>
-                <Link
-                  href="/contact"
-                  onClick={() => setPreviewProduct(null)}
-                  className="px-5 py-2.5 border border-slate-300 rounded-lg text-xs md:text-sm font-semibold text-slate-800 hover:border-[#D4A017]/60 hover:bg-[#FFF7E0] transition-all"
-                >
-                  Talk to Our Team
-                </Link>
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
-    </>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </section>
   );
 }

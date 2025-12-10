@@ -1,29 +1,37 @@
 @import "tailwindcss";
 
+/* Light & dark theme colors */
 :root {
   --background: #ffffff;
   --foreground: #171717;
+
+  /* Add Nunito variable here */
+  --font-sans: var(--font-nunito), system-ui, -apple-system, BlinkMacSystemFont,
+    "Segoe UI", sans-serif;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
-    sans-serif;
+
+  /* Tell Tailwind that Nunito is your main font */
+  --font-sans: var(--font-nunito), system-ui, sans-serif;
+
   --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
     "Liberation Mono", "Courier New", monospace;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #f8f9fc;
+    --background: #ffffff
     --foreground: #ededed;
   }
 }
 
+/* GLOBAL FONT RESET — Replace system font with Nunito */
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
-    sans-serif;
+  font-family: var(--font-nunito), system-ui, -apple-system, BlinkMacSystemFont,
+    "Segoe UI", sans-serif;
 }
