@@ -75,30 +75,6 @@ export default function HowItWorksSection() {
             </div>
           ))}
         </div>
-
-        {/* CTA */}
-        <div className="text-center mt-14">
-          <h3 className="text-lg md:text-xl font-semibold text-gray-700 mb-4">
-            Ready to get started with your paving project?
-          </h3>
-
-          <div className="flex flex-wrap justify-center gap-4">
-            <Link
-              href="/quote"
-              className="px-6 py-3 rounded-full bg-[#D4A017] text-[#0A1A2F] font-semibold text-sm md:text-base hover:bg-[#b98b0f] transition"
-            >
-              Request a Free Quote
-            </Link>
-
-            <a
-              href="tel:+254116724251"
-              className="px-6 py-3 rounded-full border border-[#D4A017] text-[#0A1A2F] font-semibold text-sm md:text-base hover:bg-[#FFF7E0] transition"
-            >
-              Call Us Today
-            </a>
-          </div>
-        </div>
-
       </div>
     </section>
   );
