@@ -118,7 +118,7 @@ function HeroSection() {
             <div className="inline-flex items-center gap-2 px-4 py-2 bg-[#FFBF00]/10 rounded-full border border-[#FFBF00]/30">
               <div className="h-2 w-2 rounded-full bg-[#FFBF00] animate-pulse" />
               <span className="text-sm font-semibold text-[#996C00] tracking-wide">
-                Premium Paving Blocks Ltd (PPBL)
+                Premium Cabros Ltd (PCBL)
               </span>
             </div>
 

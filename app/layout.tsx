@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
+import FloatingWhatsAppButton from "./components/FloatingWhatsAppButton";
 import { Nunito } from "next/font/google";
 
 // Load Nunito font
@@ -36,6 +37,9 @@ export default function RootLayout({
         <Navbar />
         <main className="pt-2 md:pt-8">{children}</main>
         <Footer />
+
+        {/* Site-wide Floating WhatsApp */}
+        <FloatingWhatsAppButton />
       </body>
     </html>
   );

@@ -4,9 +4,26 @@ import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
-import { X, ChevronRight, Award, Palette, Shield, Clock, Grid, Filter, Sparkles } from "lucide-react";
+import {
+  X,
+  ChevronRight,
+  Award,
+  Palette,
+  Shield,
+  Clock,
+  Grid,
+  Filter,
+  Sparkles,
+} from "lucide-react";
 
-type Category = "all" | "trihex" | "unipaver" | "hexagon" | "dumble-wave" | "brick-cube" | "special";
+type Category =
+  | "all"
+  | "trihex"
+  | "unipaver"
+  | "hexagon"
+  | "dumble-wave"
+  | "brick-cube"
+  | "special";
 
 type Product = {
   id: string;
@@ -18,6 +35,9 @@ type Product = {
   bestFor: string;
   reason: string;
 };
+
+const BRAND_GOLD = "#FFBF00";
+const BRAND_GOLD_DARK = "#E6AC00";
 
 export default function WhyChooseSection() {
   const products: Product[] = [
@@ -167,90 +187,95 @@ export default function WhyChooseSection() {
     },
   ];
 
-  const [hoveredProduct, setHoveredProduct] = useState<Product | null>(products[0]);
+  const [hoveredProduct, setHoveredProduct] = useState<Product | null>(
+    products[0]
+  );
   const [activeCategory, setActiveCategory] = useState<Category>("all");
   const [previewProduct, setPreviewProduct] = useState<Product | null>(null);
-  const [isGridLoading, setIsGridLoading] = useState(true);
 
+  // ✅ keep your theme but swap amber accents to brand gold
   const features = [
     {
       icon: <Award className="w-6 h-6" />,
       title: "Premium Quality",
       description: "Made from high-grade materials for superior durability and strength.",
-      color: "from-amber-500 to-amber-600"
+      color: "from-[#FFBF00] to-[#E6AC00]",
     },
     {
       icon: <Palette className="w-6 h-6" />,
       title: "Design Variety",
       description: "Multiple colors, patterns, and styles to match any design vision.",
-      color: "from-blue-500 to-blue-600"
+      color: "from-[#0A1A2F] to-[#0B2A4A]",
     },
     {
       icon: <Shield className="w-6 h-6" />,
       title: "Weather Resistant",
       description: "Built to withstand harsh weather conditions and heavy use.",
-      color: "from-emerald-500 to-emerald-600"
+      color: "from-[#FFBF00] to-[#C99600]",
     },
     {
       icon: <Clock className="w-6 h-6" />,
       title: "Long Lasting",
       description: "Years of service with minimal maintenance requirements.",
-      color: "from-purple-500 to-purple-600"
+      color: "from-[#0A1A2F] to-[#132E52]",
     },
   ];
 
   const filters: { id: Category; label: string; count: number }[] = [
     { id: "all", label: "All Types", count: products.length },
-    { id: "trihex", label: "Trihex", count: products.filter(p => p.category === "trihex").length },
-    { id: "unipaver", label: "Unipaver", count: products.filter(p => p.category === "unipaver").length },
-    { id: "hexagon", label: "Hexagon", count: products.filter(p => p.category === "hexagon").length },
-    { id: "dumble-wave", label: "Dumble & Wave", count: products.filter(p => p.category === "dumble-wave").length },
-    { id: "brick-cube", label: "Brick & Cube", count: products.filter(p => p.category === "brick-cube").length },
-    { id: "special", label: "Special", count: products.filter(p => p.category === "special").length },
+    { id: "trihex", label: "Trihex", count: products.filter((p) => p.category === "trihex").length },
+    { id: "unipaver", label: "Unipaver", count: products.filter((p) => p.category === "unipaver").length },
+    { id: "hexagon", label: "Hexagon", count: products.filter((p) => p.category === "hexagon").length },
+    { id: "dumble-wave", label: "Dumble & Wave", count: products.filter((p) => p.category === "dumble-wave").length },
+    { id: "brick-cube", label: "Brick & Cube", count: products.filter((p) => p.category === "brick-cube").length },
+    { id: "special", label: "Special", count: products.filter((p) => p.category === "special").length },
   ];
 
-  const filteredProducts = activeCategory === "all" 
-    ? products 
-    : products.filter((p) => p.category === activeCategory);
+  const filteredProducts =
+    activeCategory === "all"
+      ? products
+      : products.filter((p) => p.category === activeCategory);
 
   return (
     <section className="relative py-20 lg:py-28 bg-gradient-to-b from-white to-gray-50 overflow-hidden">
-      {/* Background decorative elements */}
       <div className="absolute inset-0 bg-grid-gray-100/50 [mask-image:radial-gradient(ellipse_at_center,white,transparent)]" />
-      
+
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative">
         {/* Header */}
         <div className="text-center max-w-3xl mx-auto mb-16">
-          <div className="inline-flex items-center gap-3 px-4 py-2 bg-gradient-to-r from-amber-50 to-amber-100 rounded-full border border-amber-200 mb-6">
-            <Sparkles className="w-4 h-4 text-amber-600" />
-            <span className="text-sm font-semibold text-amber-900 tracking-wide">
+          <div className="inline-flex items-center gap-3 px-4 py-2 rounded-full border mb-6 bg-white/70 backdrop-blur border-[#FFBF00]/30">
+            <Sparkles className="w-4 h-4" style={{ color: BRAND_GOLD }} />
+            <span className="text-sm font-semibold tracking-wide" style={{ color: BRAND_GOLD_DARK }}>
               Superior Quality
             </span>
           </div>
 
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-6">
             Why Choose{" "}
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-600 to-amber-800">
-              Premium Paving Blocks?
+            <span
+              className="text-transparent bg-clip-text bg-gradient-to-r"
+              style={{ backgroundImage: `linear-gradient(90deg, ${BRAND_GOLD}, ${BRAND_GOLD_DARK})` }}
+            >
+              Premium Cabro Blocks?
             </span>
           </h2>
 
           <p className="text-lg text-gray-600">
-            Strong, durable and beautiful paving solutions crafted with
-            precision for homes, estates and commercial projects.
+            Strong, durable and beautiful cabro solutions crafted with precision
+            for homes, estates and commercial projects.
           </p>
         </div>
 
-        <div className="grid lg:grid-cols-3 gap-8 mb-16">
-          {/* Features Section */}
+        <div className="grid lg:grid-cols-3 gap-8 mb-12">
+          {/* Features */}
           <div className="lg:col-span-1">
-            <div className="bg-white rounded-2xl border border-gray-200 shadow-sm p-6 lg:p-8 h-full">
+            <div className="bg-white rounded-2xl border border-gray-200 shadow-sm p-6 lg:p-8">
               <h3 className="text-2xl font-bold text-gray-900 mb-8 flex items-center gap-2">
-                <Award className="w-6 h-6 text-amber-600" />
+                <Award className="w-6 h-6" style={{ color: BRAND_GOLD_DARK }} />
                 Premium Features
               </h3>
 
-              <div className="space-y-6">
+              <div className="space-y-5">
                 {features.map((feature, index) => (
                   <motion.div
                     key={index}
@@ -258,17 +283,18 @@ export default function WhyChooseSection() {
                     whileInView={{ opacity: 1, x: 0 }}
                     transition={{ delay: index * 0.1 }}
                     viewport={{ once: true }}
-                    className="group relative p-5 rounded-xl bg-gradient-to-br from-gray-50 to-white border border-gray-200 hover:border-amber-300 transition-all hover:shadow-lg"
+                    className="group relative p-4 rounded-xl bg-gradient-to-br from-gray-50 to-white border border-gray-200 hover:shadow-lg transition-all"
+                    style={{ borderColor: "rgba(255,191,0,0.25)" }}
                   >
                     <div className="flex items-start gap-4">
                       <div className={`p-3 rounded-lg bg-gradient-to-br ${feature.color} text-white`}>
                         {feature.icon}
                       </div>
                       <div>
-                        <h4 className="text-lg font-semibold text-gray-900 mb-2">
+                        <h4 className="text-base font-semibold text-gray-900 mb-1">
                           {feature.title}
                         </h4>
-                        <p className="text-gray-600">
+                        <p className="text-gray-600 text-sm">
                           {feature.description}
                         </p>
                       </div>
@@ -289,12 +315,15 @@ export default function WhyChooseSection() {
             </div>
           </div>
 
-          {/* Products Section */}
+          {/* Products */}
           <div className="lg:col-span-2">
             <div className="bg-white rounded-2xl border border-gray-200 shadow-sm p-6 lg:p-8 h-full">
               <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
                 <div className="flex items-center gap-3">
-                  <div className="p-2 rounded-lg bg-gradient-to-br from-amber-500 to-amber-600 text-white">
+                  <div
+                    className="p-2 rounded-lg text-white"
+                    style={{ backgroundImage: `linear-gradient(135deg, ${BRAND_GOLD}, ${BRAND_GOLD_DARK})` }}
+                  >
                     <Grid className="w-5 h-5" />
                   </div>
                   <div>
@@ -314,7 +343,7 @@ export default function WhyChooseSection() {
               </div>
 
               {/* Filter Tabs */}
-              <div className="flex flex-wrap gap-2 mb-8">
+              <div className="flex flex-wrap gap-2 mb-7">
                 {filters.map((filter) => {
                   const isActive = activeCategory === filter.id;
                   return (
@@ -323,17 +352,25 @@ export default function WhyChooseSection() {
                       onClick={() => setActiveCategory(filter.id)}
                       className={`group relative px-4 py-2 rounded-xl text-sm font-medium transition-all duration-300 ${
                         isActive
-                          ? "bg-gradient-to-r from-amber-500 to-amber-600 text-white shadow-lg shadow-amber-200"
+                          ? "text-white shadow-lg"
                           : "bg-gray-100 text-gray-700 hover:bg-gray-200"
                       }`}
+                      style={
+                        isActive
+                          ? {
+                              backgroundImage: `linear-gradient(90deg, ${BRAND_GOLD}, ${BRAND_GOLD_DARK})`,
+                              boxShadow: "0 10px 25px rgba(255,191,0,0.20)",
+                            }
+                          : undefined
+                      }
                     >
                       <span className="flex items-center gap-2">
                         {filter.label}
-                        <span className={`text-xs px-1.5 py-0.5 rounded-full ${
-                          isActive 
-                            ? "bg-white/20" 
-                            : "bg-gray-300 text-gray-700"
-                        }`}>
+                        <span
+                          className={`text-xs px-1.5 py-0.5 rounded-full ${
+                            isActive ? "bg-white/20" : "bg-gray-300 text-gray-700"
+                          }`}
+                        >
                           {filter.count}
                         </span>
                       </span>
@@ -342,57 +379,61 @@ export default function WhyChooseSection() {
                 })}
               </div>
 
-              {/* Products Grid */}
-              <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-3 gap-4 mb-8">
+              {/* ✅ FIX: Pattern cards were too big -> smaller fixed height + tighter padding */}
+              <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4 mb-8">
                 <AnimatePresence mode="wait">
                   {filteredProducts.map((product, index) => (
                     <motion.button
                       key={product.id}
                       layout
-                      initial={{ opacity: 0, scale: 0.9 }}
+                      initial={{ opacity: 0, scale: 0.95 }}
                       animate={{ opacity: 1, scale: 1 }}
-                      exit={{ opacity: 0, scale: 0.9 }}
-                      transition={{ duration: 0.2, delay: index * 0.05 }}
+                      exit={{ opacity: 0, scale: 0.95 }}
+                      transition={{ duration: 0.18, delay: index * 0.03 }}
                       onMouseEnter={() => setHoveredProduct(product)}
                       onClick={() => setPreviewProduct(product)}
-                      className="group relative aspect-square rounded-xl overflow-hidden border border-gray-200 bg-gray-50 hover:border-amber-300 hover:shadow-xl transition-all duration-300"
+                      className="group relative rounded-xl overflow-hidden border border-gray-200 bg-gray-50 transition-all duration-300 hover:shadow-lg"
+                      style={{ borderColor: "rgba(255,191,0,0.25)" }}
                     >
-                      {/* Background Image */}
-                      <Image
-                        src={product.image}
-                        alt={product.name}
-                        fill
-                        className="object-cover transition-transform duration-500 group-hover:scale-110"
-                      />
-                      
-                      {/* Gradient Overlay */}
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
-                      
-                      {/* Content */}
-                      <div className="absolute inset-0 p-4 flex flex-col justify-end">
-                        <h4 className="text-sm font-semibold text-white text-left">
-                          {product.name}
-                        </h4>
-                        <p className="text-xs text-amber-200 mt-1 text-left">
-                          {product.colorLabel}
-                        </p>
-                      </div>
+                      {/* smaller than aspect-square */}
+                      <div className="relative h-28 sm:h-32 md:h-36">
+                        <Image
+                          src={product.image}
+                          alt={product.name}
+                          fill
+                          className="object-cover transition-transform duration-500 group-hover:scale-110"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/35 to-transparent" />
 
-                      {/* Hover Overlay */}
-                      <div className="absolute inset-0 bg-gradient-to-t from-amber-600/90 via-amber-600/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 p-4 flex flex-col justify-center items-center">
-                        <p className="text-sm font-semibold text-white text-center mb-2">
-                          View Details
-                        </p>
-                        <p className="text-xs text-white/90 text-center">
-                          Best for: {product.bestFor.split(',')[0]}
-                        </p>
-                      </div>
+                        <div className="absolute inset-0 p-3 flex flex-col justify-end">
+                          <h4 className="text-xs sm:text-sm font-semibold text-white text-left leading-tight">
+                            {product.name}
+                          </h4>
+                          <p className="text-[11px] mt-1 text-left" style={{ color: BRAND_GOLD }}>
+                            {product.colorLabel}
+                          </p>
+                        </div>
 
-                      {/* Category Badge */}
-                      <div className="absolute top-2 right-2">
-                        <span className="px-2 py-1 bg-black/60 backdrop-blur-sm text-white text-xs rounded-full">
-                          {product.category}
-                        </span>
+                        {/* Hover Overlay */}
+                        <div
+                          className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 p-3 flex flex-col justify-center items-center"
+                          style={{
+                            backgroundImage: `linear-gradient(to top, rgba(255,191,0,0.92), rgba(255,191,0,0.65), transparent)`,
+                          }}
+                        >
+                          <p className="text-xs sm:text-sm font-semibold text-white text-center mb-1">
+                            View Details
+                          </p>
+                          <p className="text-[11px] text-white/90 text-center">
+                            Best for: {product.bestFor.split(",")[0]}
+                          </p>
+                        </div>
+
+                        <div className="absolute top-2 right-2">
+                          <span className="px-2 py-1 bg-black/60 backdrop-blur-sm text-white text-[10px] rounded-full">
+                            {product.category}
+                          </span>
+                        </div>
                       </div>
                     </motion.button>
                   ))}
@@ -404,10 +445,15 @@ export default function WhyChooseSection() {
                 <motion.div
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
-                  className="p-4 rounded-xl bg-gradient-to-r from-amber-50 to-amber-100 border border-amber-200"
+                  className="p-4 rounded-xl border bg-white"
+                  style={{
+                    borderColor: "rgba(255,191,0,0.30)",
+                    backgroundImage:
+                      "linear-gradient(90deg, rgba(255,191,0,0.10), rgba(255,191,0,0.05))",
+                  }}
                 >
                   <div className="flex items-center gap-4">
-                    <div className="relative h-16 w-16 rounded-lg overflow-hidden flex-shrink-0">
+                    <div className="relative h-14 w-14 rounded-lg overflow-hidden flex-shrink-0">
                       <Image
                         src={hoveredProduct.image}
                         alt={hoveredProduct.name}
@@ -418,14 +464,19 @@ export default function WhyChooseSection() {
                     <div className="flex-1">
                       <div className="flex items-center justify-between">
                         <div>
-                          <p className="text-xs font-semibold text-amber-800 uppercase tracking-wide mb-1">
+                          <p className="text-xs font-semibold uppercase tracking-wide mb-1" style={{ color: BRAND_GOLD_DARK }}>
                             Currently Viewing
                           </p>
                           <h4 className="text-lg font-bold text-gray-900">
                             {hoveredProduct.name}
                           </h4>
                         </div>
-                        <span className="px-3 py-1 bg-gradient-to-r from-amber-500 to-amber-600 text-white text-xs font-semibold rounded-full">
+                        <span
+                          className="text-white text-xs font-semibold rounded-full px-3 py-1"
+                          style={{
+                            backgroundImage: `linear-gradient(90deg, ${BRAND_GOLD}, ${BRAND_GOLD_DARK})`,
+                          }}
+                        >
                           {hoveredProduct.colorLabel}
                         </span>
                       </div>
@@ -440,17 +491,25 @@ export default function WhyChooseSection() {
           </div>
         </div>
 
-        {/* CTA Section */}
+        {/* CTA */}
         <div className="text-center">
-          <div className="inline-flex flex-col sm:flex-row items-center gap-4 px-8 py-6 bg-gradient-to-r from-amber-500 to-amber-600 rounded-2xl shadow-xl">
+          <div
+            className="inline-flex flex-col sm:flex-row items-center gap-4 px-8 py-6 rounded-2xl shadow-xl"
+            style={{
+              backgroundImage: `linear-gradient(90deg, ${BRAND_GOLD}, ${BRAND_GOLD_DARK})`,
+            }}
+          >
             <div className="text-left">
-              <h3 className="text-xl font-bold text-white">Ready to Transform Your Space?</h3>
-              <p className="text-amber-100">Get a free quote and consultation</p>
+              <h3 className="text-xl font-bold text-white">
+                Ready to Transform Your Space?
+              </h3>
+              <p className="text-white/90">Get a free quote and consultation</p>
             </div>
             <div className="flex gap-3">
               <Link
                 href="/quote"
-                className="px-6 py-3 bg-white text-amber-700 font-semibold rounded-lg hover:bg-gray-100 transition-colors"
+                className="px-6 py-3 bg-white font-semibold rounded-lg hover:bg-gray-100 transition-colors"
+                style={{ color: BRAND_GOLD_DARK }}
               >
                 Get Free Quote
               </Link>
@@ -465,7 +524,7 @@ export default function WhyChooseSection() {
         </div>
       </div>
 
-      {/* Product Preview Modal */}
+      {/* Modal */}
       <AnimatePresence>
         {previewProduct && (
           <motion.div
@@ -482,7 +541,6 @@ export default function WhyChooseSection() {
               className="relative w-full max-w-4xl bg-white rounded-2xl overflow-hidden shadow-2xl"
               onClick={(e) => e.stopPropagation()}
             >
-              {/* Close Button */}
               <button
                 onClick={() => setPreviewProduct(null)}
                 className="absolute top-4 right-4 z-10 p-2 bg-white/10 backdrop-blur-sm rounded-full hover:bg-white/20 transition-colors"
@@ -491,7 +549,6 @@ export default function WhyChooseSection() {
               </button>
 
               <div className="grid md:grid-cols-2">
-                {/* Image Section */}
                 <div className="relative h-64 md:h-auto bg-gradient-to-br from-gray-900 to-gray-800">
                   <Image
                     src={previewProduct.image}
@@ -501,43 +558,57 @@ export default function WhyChooseSection() {
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
                   <div className="absolute bottom-4 left-4">
-                    <span className="px-3 py-1 bg-gradient-to-r from-amber-500 to-amber-600 text-white text-sm font-semibold rounded-full">
+                    <span
+                      className="text-white text-sm font-semibold rounded-full px-3 py-1"
+                      style={{
+                        backgroundImage: `linear-gradient(90deg, ${BRAND_GOLD}, ${BRAND_GOLD_DARK})`,
+                      }}
+                    >
                       {previewProduct.category}
                     </span>
                   </div>
                 </div>
 
-                {/* Details Section */}
                 <div className="p-6 md:p-8">
                   <div className="mb-6">
-                    <span className="text-xs font-semibold text-amber-600 uppercase tracking-wide mb-2 block">
-                      Paving Pattern Detail
+                    <span
+                      className="text-xs font-semibold uppercase tracking-wide mb-2 block"
+                      style={{ color: BRAND_GOLD_DARK }}
+                    >
+                      Cabro Pattern Detail
                     </span>
                     <h3 className="text-2xl font-bold text-gray-900 mb-2">
                       {previewProduct.name}
                     </h3>
                     <p className="text-sm text-gray-600">
-                      Color: <span className="font-semibold">{previewProduct.colorLabel}</span>
+                      Color:{" "}
+                      <span className="font-semibold">
+                        {previewProduct.colorLabel}
+                      </span>
                     </p>
                   </div>
 
                   <div className="space-y-6">
                     <div>
-                      <h4 className="text-sm font-semibold text-gray-900 mb-2">Description</h4>
+                      <h4 className="text-sm font-semibold text-gray-900 mb-2">
+                        Description
+                      </h4>
                       <p className="text-gray-700 leading-relaxed">
                         {previewProduct.description}
                       </p>
                     </div>
 
                     <div>
-                      <h4 className="text-sm font-semibold text-gray-900 mb-2">Best For</h4>
-                      <p className="text-gray-700">
-                        {previewProduct.bestFor}
-                      </p>
+                      <h4 className="text-sm font-semibold text-gray-900 mb-2">
+                        Best For
+                      </h4>
+                      <p className="text-gray-700">{previewProduct.bestFor}</p>
                     </div>
 
                     <div>
-                      <h4 className="text-sm font-semibold text-gray-900 mb-2">Why Choose This Pattern?</h4>
+                      <h4 className="text-sm font-semibold text-gray-900 mb-2">
+                        Why Choose This Pattern?
+                      </h4>
                       <p className="text-gray-700 leading-relaxed">
                         {previewProduct.reason}
                       </p>
@@ -548,14 +619,29 @@ export default function WhyChooseSection() {
                     <Link
                       href="/quote"
                       onClick={() => setPreviewProduct(null)}
-                      className="flex-1 px-6 py-3 bg-gradient-to-r from-amber-500 to-amber-600 text-white font-semibold rounded-lg hover:from-amber-600 hover:to-amber-700 transition-all text-center"
+                      className="flex-1 px-6 py-3 text-white font-semibold rounded-lg transition-all text-center"
+                      style={{
+                        backgroundImage: `linear-gradient(90deg, ${BRAND_GOLD}, ${BRAND_GOLD_DARK})`,
+                      }}
                     >
                       Get Quote
                     </Link>
                     <Link
                       href="/contact"
                       onClick={() => setPreviewProduct(null)}
-                      className="flex-1 px-6 py-3 border-2 border-amber-500 text-amber-600 font-semibold rounded-lg hover:bg-amber-50 transition-colors text-center"
+                      className="flex-1 px-6 py-3 border-2 font-semibold rounded-lg transition-colors text-center"
+                      style={{
+                        borderColor: BRAND_GOLD,
+                        color: BRAND_GOLD_DARK,
+                      }}
+                      onMouseEnter={(e) => {
+                        (e.currentTarget as HTMLAnchorElement).style.backgroundColor =
+                          "rgba(255,191,0,0.10)";
+                      }}
+                      onMouseLeave={(e) => {
+                        (e.currentTarget as HTMLAnchorElement).style.backgroundColor =
+                          "transparent";
+                      }}
                     >
                       Contact Team
                     </Link>

@@ -1,9 +1,20 @@
 "use client";
 
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { ChevronDown, ChevronUp, ArrowRight, Factory, X, Expand, Ruler, Home, Building, Truck } from "lucide-react";
+import {
+  ChevronDown,
+  ChevronUp,
+  ArrowRight,
+  Factory,
+  X,
+  Expand,
+  Ruler,
+  Home,
+  Building,
+  Truck,
+} from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
 type Product = {
@@ -20,10 +31,16 @@ type Product = {
   features: string[];
 };
 
-type LightboxState = {
-  src: string;
-  alt: string;
-} | null;
+type LightboxState =
+  | {
+      src: string;
+      alt: string;
+    }
+  | null;
+
+// ✅ Brand accent
+const BRAND_GOLD = "#FFBF00";
+const BRAND_GOLD_DARK = "#E6AC00";
 
 export default function CoreProductsSection() {
   const [openId, setOpenId] = useState<string | null>(null);
@@ -44,7 +61,7 @@ export default function CoreProductsSection() {
       extraDetails:
         "Available in Zigzag, Tri-Hex, 3D, cobblestone and brick patterns. Ideal for new projects and renovations where a neat, long-lasting finish is required.",
       icon: <Home className="w-5 h-5" />,
-      features: ["Weather-resistant", "Low maintenance", "Various patterns", "Heavy-duty"]
+      features: ["Weather-resistant", "Low maintenance", "Various patterns", "Heavy-duty"],
     },
     {
       id: "culverts",
@@ -59,7 +76,7 @@ export default function CoreProductsSection() {
       extraDetails:
         "Steel-reinforced for maximum strength and durability. Suitable for county roads, estate entrances, farm crossings and industrial sites with regular truck traffic.",
       icon: <Truck className="w-5 h-5" />,
-      features: ["Steel-reinforced", "Durable", "Various sizes", "Easy installation"]
+      features: ["Steel-reinforced", "Durable", "Various sizes", "Easy installation"],
     },
     {
       id: "fence-posts",
@@ -74,7 +91,7 @@ export default function CoreProductsSection() {
       extraDetails:
         "Works with chain-link, barbed wire or razor wire. Concrete posts last longer than timber and require very little maintenance over their lifetime.",
       icon: <Building className="w-5 h-5" />,
-      features: ["Termite-proof", "Low maintenance", "Various heights", "Weather-resistant"]
+      features: ["Termite-proof", "Low maintenance", "Various heights", "Weather-resistant"],
     },
     {
       id: "kerbs-drainage",
@@ -89,7 +106,7 @@ export default function CoreProductsSection() {
       extraDetails:
         "Includes straight kerbs, bull-nose kerbs, open channels and slab covers. Proper kerbs and drainage protect cabro pavements from erosion and edge failure.",
       icon: <Ruler className="w-5 h-5" />,
-      features: ["Precast", "Custom sizes", "Clean edging", "Erosion control"]
+      features: ["Precast", "Custom sizes", "Clean edging", "Erosion control"],
     },
   ];
 
@@ -104,20 +121,28 @@ export default function CoreProductsSection() {
     <section className="relative py-20 lg:py-28 bg-gradient-to-b from-gray-50 to-white overflow-hidden">
       {/* Background decorative elements */}
       <div className="absolute inset-0 bg-grid-gray-100/50 [mask-image:radial-gradient(ellipse_at_center,white,transparent)]" />
-      
+
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative">
         {/* Header Section */}
         <div className="text-center max-w-3xl mx-auto mb-16">
-          <div className="inline-flex items-center gap-3 px-4 py-2 bg-gradient-to-r from-amber-50 to-amber-100 rounded-full border border-amber-200 mb-6">
-            <div className="h-2 w-2 rounded-full bg-amber-600 animate-pulse" />
-            <span className="text-sm font-semibold text-amber-900 tracking-wide">
+          <div className="inline-flex items-center gap-3 px-4 py-2 rounded-full border mb-6 bg-white/70 backdrop-blur">
+            <div
+              className="h-2 w-2 rounded-full animate-pulse"
+              style={{ backgroundColor: BRAND_GOLD }}
+            />
+            <span className="text-sm font-semibold tracking-wide text-gray-900">
               Our Core Products
             </span>
           </div>
 
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-6">
             Engineered Concrete Solutions{" "}
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-600 to-amber-800">
+            <span
+              className="text-transparent bg-clip-text bg-gradient-to-r"
+              style={{
+                backgroundImage: `linear-gradient(90deg, ${BRAND_GOLD}, ${BRAND_GOLD_DARK})`,
+              }}
+            >
               Built to Last
             </span>
           </h2>
@@ -132,7 +157,10 @@ export default function CoreProductsSection() {
 
           <Link
             href="/products"
-            className="group inline-flex items-center gap-2 px-8 py-3 bg-gradient-to-r from-amber-600 to-amber-700 text-white font-semibold rounded-xl hover:from-amber-700 hover:to-amber-800 transition-all duration-300 shadow-lg hover:shadow-xl hover:-translate-y-0.5"
+            className="group inline-flex items-center gap-2 px-8 py-3 text-white font-semibold rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl hover:-translate-y-0.5"
+            style={{
+              backgroundImage: `linear-gradient(90deg, ${BRAND_GOLD}, ${BRAND_GOLD_DARK})`,
+            }}
           >
             <span>Explore All Products</span>
             <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
@@ -250,14 +278,11 @@ function ProductCard({
       ref={cardRef}
       onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}
-      className="group h-full bg-white rounded-2xl border border-gray-200 overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1 flex flex-col"
+      className="group relative h-full bg-white rounded-2xl border border-gray-200 overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1 flex flex-col"
     >
       {/* Image Container */}
       <div className="relative h-48 overflow-hidden">
-        <button
-          onClick={onImageClick}
-          className="relative w-full h-full group/image"
-        >
+        <button onClick={onImageClick} className="relative w-full h-full group/image">
           <Image
             src={product.image}
             alt={product.name}
@@ -265,7 +290,7 @@ function ProductCard({
             className="object-cover transition-transform duration-500 group-hover/image:scale-105"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-black/20 to-transparent" />
-          
+
           {/* Expand Icon */}
           <div className="absolute top-4 right-4 p-2 rounded-full bg-white/20 backdrop-blur-sm opacity-0 group-hover/image:opacity-100 transition-opacity">
             <Expand className="w-4 h-4 text-white" />
@@ -278,7 +303,12 @@ function ProductCard({
 
           {/* Tag */}
           <div className="absolute bottom-4 left-4">
-            <span className="inline-block px-3 py-1 bg-gradient-to-r from-amber-600 to-amber-700 text-white text-xs font-semibold rounded-full">
+            <span
+              className="inline-block px-3 py-1 text-white text-xs font-semibold rounded-full"
+              style={{
+                backgroundImage: `linear-gradient(90deg, ${BRAND_GOLD}, ${BRAND_GOLD_DARK})`,
+              }}
+            >
               {product.tag}
             </span>
           </div>
@@ -288,9 +318,15 @@ function ProductCard({
       {/* Content */}
       <div className="p-5 flex-1 flex flex-col">
         <div className="flex-1">
-          <h3 className="text-xl font-bold text-gray-900 group-hover:text-amber-700 transition-colors">
+          <h3
+            className="text-xl font-bold text-gray-900 transition-colors"
+            style={{
+              color: isHovered ? BRAND_GOLD_DARK : undefined,
+            }}
+          >
             {product.name}
           </h3>
+
           <p className="text-gray-600 mt-2 text-sm">{product.description}</p>
 
           {/* Features */}
@@ -343,7 +379,8 @@ function ProductCard({
         <div className="mt-6 pt-4 border-t border-gray-100 flex items-center justify-between">
           <button
             onClick={onToggle}
-            className="inline-flex items-center gap-2 text-sm font-medium text-gray-700 hover:text-amber-700 transition-colors"
+            className="inline-flex items-center gap-2 text-sm font-medium text-gray-700 transition-colors"
+            style={{ color: isHovered ? BRAND_GOLD_DARK : undefined }}
           >
             {isOpen ? (
               <>
@@ -358,9 +395,11 @@ function ProductCard({
             )}
           </button>
 
+         
           <Link
             href={product.href}
-            className="group/link inline-flex items-center gap-2 text-sm font-semibold text-amber-700 hover:text-amber-800"
+            className="group/link inline-flex items-center gap-2 text-sm font-semibold transition-colors"
+            style={{ color: BRAND_GOLD_DARK }}
           >
             View Details
             <ArrowRight className="w-4 h-4 transition-transform group-hover/link:translate-x-1" />
@@ -369,13 +408,20 @@ function ProductCard({
 
         {/* Factory Badge */}
         <div className="mt-4 flex items-center gap-2 text-xs text-gray-500">
-          <Factory className="w-4 h-4 text-amber-600" />
+          <Factory className="w-4 h-4" style={{ color: BRAND_GOLD_DARK }} />
           <span>Factory-direct pricing</span>
         </div>
       </div>
 
       {/* Hover Effect Line */}
-      <div className={`absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-amber-500 to-amber-600 transform ${isHovered ? 'scale-x-100' : 'scale-x-0'} transition-transform duration-300`} />
+      <div
+        className={`absolute bottom-0 left-0 right-0 h-1 transform ${
+          isHovered ? "scale-x-100" : "scale-x-0"
+        } transition-transform duration-300 origin-left`}
+        style={{
+          backgroundImage: `linear-gradient(90deg, ${BRAND_GOLD}, ${BRAND_GOLD_DARK})`,
+        }}
+      />
     </div>
   );
 }

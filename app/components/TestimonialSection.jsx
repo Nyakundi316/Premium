@@ -11,7 +11,7 @@ export default function TestimonialSection() {
       name: "Mr. Kamau",
       role: "Homeowner – Kiambu",
       message:
-        "PPBL transformed my driveway with high-quality cabro blocks. The installation team was professional, timely and very reliable.",
+        "PCBL transformed my driveway with high-quality cabro blocks. The installation team was professional, timely and very reliable.",
       image: "/images/testimonials/client1.jpg",
     },
     {
