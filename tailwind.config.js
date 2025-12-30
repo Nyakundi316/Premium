@@ -6,8 +6,10 @@ const config = {
   ],
   theme: {
     extend: {
-         fontFamily: {
+      fontFamily: {
         nunito: ["var(--font-nunito)", "sans-serif"],
+        oswald: ["var(--font-oswald)", "sans-serif"],
+        inter: ["var(--font-inter)", "sans-serif"],
       },
     },
   },

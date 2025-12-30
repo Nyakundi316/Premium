@@ -10,7 +10,6 @@ import {
   Layers,
   GalleryHorizontal,
   Info,
-  HelpCircle,
   PhoneCall,
   SunMedium,
   MoonStar,
@@ -31,7 +30,6 @@ export default function Navbar() {
     { label: "Patterns", href: "/patterns", icon: Layers },
     { label: "Projects", href: "/projects", icon: GalleryHorizontal },
     { label: "About", href: "/about", icon: Info },
-    // { label: "FAQ", href: "/faq", icon: HelpCircle },
   ];
 
   // Scroll effect
@@ -54,8 +52,8 @@ export default function Navbar() {
       stored === "light" || stored === "dark"
         ? (stored as "light" | "dark")
         : prefersDark
-        ? "dark"
-        : "light";
+          ? "dark"
+          : "light";
 
     setTheme(initialTheme);
     document.documentElement.classList.toggle("dark", initialTheme === "dark");
@@ -71,134 +69,46 @@ export default function Navbar() {
     }
   };
 
-  // Background + border based on scroll + theme
- const navClasses = `
-  ${isScrolled
-    ? "bg-[#0A1A2F]/95 shadow-xl border border-[#fffff]/20"
-    : "bg-[#0A1A2F]/80 border border-[#D4A017]/10"
-  }
-  text-white backdrop-blur-md
-`;
-      isScrolled
-      ? "bg-white/95 text-slate-900 shadow-xl backdrop-blur-md border border-slate-200"
-      : "bg-white/80 text-slate-900 shadow-md backdrop-blur-md border border-slate-200";
-
   return (
     <nav
       className={`
-        fixed z-50 top-0 left-1/2 -translate-x-1/2
-        w-[94%] max-w-6xl
-        transition-all duration-300
-        ${isMenuOpen ? "rounded-3xl" : "rounded-full"}
-        ${navClasses}
+        fixed z-50 top-0 left-0 w-full transition-all duration-300
+        ${isScrolled
+          ? "bg-[#0A1A2F]/95 backdrop-blur-md shadow-xl border-b border-white/10 py-2 sm:py-3"
+          : "bg-transparent py-4 sm:py-6"
+        }
       `}
     >
-      {/* Top row */}
-      <div className="flex items-center justify-between px-4 sm:px-6 py-2.5">
-        {/* Logo + brand */}
-        <Link
-          href="/"
-          className="flex items-center gap-2 sm:gap-3"
-          onClick={() => setIsMenuOpen(false)}
-        >
-          <div className="relative h-9 w-16 sm:h-10 sm:w-20">
-            <Image
-              src="/images/pm logo.png"
-              alt="Premium Concrete PM logo"
-              fill
-              className="object-contain rounded-full"
-            />
-          </div>
-          <div className="hidden sm:flex flex-col leading-tight">
-         
-          </div>
-        </Link>
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex items-center justify-between">
 
-        {/* Desktop nav links */}
-        <div className="hidden md:flex items-center gap-5 text-sm font-medium">
-          {navLinks.map(({ label, href, icon: Icon }) => {
-            const isActive = href === "/"
-              ? pathname === "/"
-              : pathname.startsWith(href);
-
-            return (
-              <Link
-                key={href}
-                href={href}
-                className={`
-                  inline-flex items-center gap-1.5 px-2 py-1 rounded-full
-                  transition-colors
-                  ${
-                    isActive
-                      ? "text-[#D4A017] bg-[#D4A017]/10"
-                      : "text-current hover:text-[#D4A017]"
-                  }
-                `}
-              >
-                <Icon className="h-4 w-4" />
-                <span>{label}</span>
-              </Link>
-            );
-          })}
-        </div>
-
-        {/* Right actions: phone, theme, CTA, mobile menu */}
-        <div className="flex items-center gap-2 sm:gap-3">
-          {/* quick call icon (desktop only) */}
-          <a
-            href="tel:+254116724251"
-            className="hidden lg:inline-flex items-center gap-1 text-xs font-medium hover:text-[#D4A017] transition-colors"
-          >
-            <PhoneCall className="h-4 w-4" />
-            <span>Call us</span>
-          </a>
-
-          {/* theme toggle */}
-          <button
-            onClick={toggleTheme}
-            aria-label="Toggle color theme"
-            className="inline-flex h-8 w-8 items-center justify-center rounded-full
-                       border border-white/30 bg-black/20 hover:bg-black/40
-                       dark:border-white/30 dark:bg-black/40 dark:hover:bg-black/60
-                       text-xs transition-colors"
-          >
-            {theme === "dark" ? (
-              <MoonStar className="h-4 w-4" />
-            ) : (
-              <SunMedium className="h-4 w-4" />
-            )}
-          </button>
-
-          {/* desktop CTA */}
+          {/* Logo + brand */}
           <Link
-            href="/quote"
-            className="hidden sm:inline-flex items-center rounded-full bg-[#D4A017] 
-                       px-4 py-2 text-xs font-semibold text-[#0A1A2F] shadow-md 
-                       hover:shadow-lg hover:bg-[#c19113] transition-all"
+            href="/"
+            className="flex items-center gap-2"
+            onClick={() => setIsMenuOpen(false)}
           >
-            Get a Quote
+            <div className={`relative transition-all duration-300 ${isScrolled ? 'h-10 w-10' : 'h-12 w-12'}`}>
+              <Image
+                src="/images/pm logo.png"
+                alt="Premium Concrete PM logo"
+                fill
+                className="object-contain rounded-full shadow-lg" // Added shadow
+              />
+            </div>
+            <div className="flex flex-col">
+              <span className={`font-oswald font-bold tracking-tight uppercase leading-none text-white ${isScrolled ? 'text-xl' : 'text-2xl'}`}>
+                Premium
+              </span>
+              <span className="font-oswald text-[#FFBF00] font-bold tracking-widest text-xs uppercase">
+                Concrete PM
+              </span>
+            </div>
           </Link>
 
-          {/* mobile menu toggle */}
-          <button
-            className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-current md:hidden"
-            aria-label="Toggle menu"
-            onClick={() => setIsMenuOpen((prev) => !prev)}
-          >
-            {isMenuOpen ? (
-              <X className="h-4 w-4" />
-            ) : (
-              <Menu className="h-4 w-4" />
-            )}
-          </button>
-        </div>
-      </div>
-
-      {/* Mobile dropdown menu */}
-      {isMenuOpen && (
-        <div className="md:hidden px-4 sm:px-6 pb-4 text-sm border-t border-white/10 dark:border-slate-800">
-          <div className="flex flex-col gap-1.5 pt-2">
-            {navLinks.map(({ label, href, icon: Icon }) => {
+          {/* Desktop nav links */}
+          <div className="hidden md:flex items-center gap-1">
+            {navLinks.map(({ label, href }) => {
               const isActive = href === "/"
                 ? pathname === "/"
                 : pathname.startsWith(href);
@@ -208,33 +118,92 @@ export default function Navbar() {
                   key={href}
                   href={href}
                   className={`
-                    flex items-center gap-2 rounded-xl px-2 py-2
-                    transition-colors
-                    ${
-                      isActive
-                        ? "bg-[#D4A017]/10 text-[#D4A017]"
-                        : "hover:bg-black/5 dark:hover:bg-white/5"
+                    px-4 py-2 font-oswald text-sm tracking-wide uppercase font-medium rounded-md
+                    transition-all duration-200
+                    ${isActive
+                      ? "text-[#FFBF00] bg-white/5"
+                      : "text-gray-300 hover:text-white hover:bg-white/5"
                     }
                   `}
-                  onClick={() => setIsMenuOpen(false)}
                 >
-                  <Icon className="h-4 w-4" />
-                  <span>{label}</span>
+                  {label}
                 </Link>
               );
             })}
+          </div>
 
+          {/* Right actions */}
+          <div className="flex items-center gap-3">
+            {/* Theme Toggle - Simpler Industrial Style */}
+            <button
+              onClick={toggleTheme}
+              aria-label="Toggle theme"
+              className="p-2 text-gray-400 hover:text-white transition-colors"
+            >
+              {theme === "dark" ? <MoonStar size={18} /> : <SunMedium size={18} />}
+            </button>
+
+            {/* CTA Button */}
             <Link
               href="/quote"
-              className="mt-2 inline-flex items-center justify-center gap-2 rounded-full bg-[#D4A017] px-4 py-2 text-xs font-semibold text-[#0A1A2F] shadow-md hover:bg-[#c19113] transition-all"
-              onClick={() => setIsMenuOpen(false)}
+              className={`
+                hidden sm:inline-flex items-center gap-2 px-5 py-2.5 
+                bg-[#FFBF00] text-[#0A1A2F] font-oswald font-bold uppercase tracking-wide text-sm
+                rounded hover:bg-[#E6AC00] transition-all hover:shadow-[0_0_15px_rgba(255,191,0,0.4)]
+                ${isScrolled ? '' : 'shadow-lg'}
+              `}
             >
-              <PhoneCall className="h-4 w-4" />
-              <span>Request a Quote</span>
+              <PhoneCall size={16} />
+              <span>Get Quote</span>
+            </Link>
+
+            {/* Mobile Menu Toggle */}
+            <button
+              className="md:hidden p-2 text-white"
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
+            >
+              {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
+            </button>
+          </div>
+        </div>
+      </div>
+
+      {/* Mobile Menu Overlay */}
+      <div
+        className={`
+          md:hidden fixed inset-x-0 top-[60px] bg-[#0A1A2F]/95 backdrop-blur-xl border-b border-white/10
+          transition-all duration-300 origin-top
+          ${isMenuOpen ? "opacity-100 scale-y-100" : "opacity-0 scale-y-0 pointer-events-none"}
+        `}
+      >
+        <div className="px-4 py-6 space-y-4">
+          <div className="flex flex-col space-y-2">
+            {navLinks.map(({ label, href, icon: Icon }) => (
+              <Link
+                key={href}
+                href={href}
+                onClick={() => setIsMenuOpen(false)}
+                className={`
+                  flex items-center gap-3 px-4 py-3 rounded-lg font-oswald uppercase tracking-wider
+                  ${pathname === href ? "bg-[#FFBF00]/10 text-[#FFBF00]" : "text-gray-300 hover:bg-white/5"}
+                `}
+              >
+                <Icon size={18} />
+                {label}
+              </Link>
+            ))}
+          </div>
+          <div className="pt-4 border-t border-white/10">
+            <Link
+              href="/quote"
+              onClick={() => setIsMenuOpen(false)}
+              className="flex items-center justify-center gap-2 w-full py-3 bg-[#FFBF00] text-[#0A1A2F] font-oswald font-bold uppercase"
+            >
+              Get Free Quote
             </Link>
           </div>
         </div>
-      )}
+      </div>
     </nav>
   );
 }
