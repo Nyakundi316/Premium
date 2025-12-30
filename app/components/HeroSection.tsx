@@ -123,19 +123,6 @@ function HeroSection() {
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl space-y-8">
 
-            {/* Tagline */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.3 }}
-              className="inline-flex items-center gap-2 px-4 py-1.5 bg-[#FFBF00]/20 backdrop-blur-md rounded-full border border-[#FFBF00]/30"
-            >
-              <div className="h-2 w-2 rounded-full bg-[#FFBF00] animate-pulse" />
-              <span className="text-sm font-bold text-[#FFBF00] tracking-wider uppercase">
-                Premium Cabros Ltd (PCBL)
-              </span>
-            </motion.div>
-
             {/* Headline */}
             <div className="space-y-4">
               <motion.h1
