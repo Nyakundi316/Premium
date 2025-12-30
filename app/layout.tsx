@@ -4,13 +4,23 @@ import "./globals.css";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import FloatingWhatsAppButton from "./components/FloatingWhatsAppButton";
-import { Nunito } from "next/font/google";
+import { Nunito, Oswald, Inter } from "next/font/google";
 
-// Load Nunito font
+// Load fonts
 const nunito = Nunito({
   subsets: ["latin"],
-  weight: ["200", "300", "400", "600", "700", "800", "900"],
   variable: "--font-nunito",
+});
+
+const oswald = Oswald({
+  subsets: ["latin"],
+  variable: "--font-oswald",
+  weight: ["200", "300", "400", "500", "600", "700"],
+});
+
+const inter = Inter({
+  subsets: ["latin"],
+  variable: "--font-inter",
 });
 
 export const metadata: Metadata = {
@@ -25,17 +35,17 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={nunito.variable}>
+    <html lang="en" className={`${nunito.variable} ${oswald.variable} ${inter.variable}`}>
       <body
         className={`
-          font-nunito
+          font-inter
           min-h-screen
-          bg-gradient-to-b from-[#020617] via-[#020617] to-[#0B1220]
+          bg-[#0A1A2F]
           text-[#E5E7EB]
         `}
       >
         <Navbar />
-        <main className="pt-2 md:pt-8">{children}</main>
+        <main>{children}</main>
         <Footer />
 
         {/* Site-wide Floating WhatsApp */}
