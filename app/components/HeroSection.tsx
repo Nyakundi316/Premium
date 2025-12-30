@@ -89,7 +89,7 @@ function HeroSection() {
     setActiveIndex((i) => (i - 1 + heroImages.length) % heroImages.length);
 
   return (
-    <section className="relative h-[85vh] min-h-[600px] w-full bg-gray-900 overflow-hidden flex flex-col justify-end">
+    <section className="relative min-h-screen lg:h-[90vh] lg:min-h-[600px] w-full bg-gray-900 overflow-hidden flex flex-col justify-end">
 
       {/* Background Carousel */}
       <AnimatePresence mode="popLayout">
@@ -119,9 +119,9 @@ function HeroSection() {
       <div className="absolute inset-0 z-0 opacity-10 bg-[url('/patterns/grid.svg')] pointer-events-none" />
 
       {/* Main Content */}
-      <div className="relative z-10 w-full h-full flex items-center mb-16 lg:mb-0">
+      <div className="relative z-10 w-full flex-grow flex items-center pt-32 pb-20 lg:py-0">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-3xl space-y-8">
+          <div className="max-w-3xl space-y-6 lg:space-y-8">
 
             {/* Headline */}
             <div className="space-y-4">
@@ -129,7 +129,7 @@ function HeroSection() {
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.4 }}
-                className="text-4xl sm:text-5xl lg:text-7xl font-bold tracking-tight text-white leading-tight"
+                className="text-3xl sm:text-4xl lg:text-6xl font-bold tracking-tight text-white leading-tight pt-5"
               >
                 Kenya's Leading <br />
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#FFBF00] to-[#FFDA66]">
