@@ -1,0 +1,38 @@
+:root {
+  /* 🔥 BRAND */
+  --brand: 237 84 33;        /* #ED5421 */
+  --brand-2: 255 191 0;      /* optional accent */
+
+  /* 🌑 SURFACES */
+  --bg: 10 12 16;            /* page background */
+  --surface: 255 255 255;    /* used with opacity for cards */
+
+  /* ✍️ TEXT */
+  --text: 255 255 255;
+  --text-muted: 210 210 210;
+
+  /* 🧱 BORDERS */
+  --border: 255 255 255;
+
+  /* ✅ STATUS */
+  --success: 34 197 94;
+  --danger: 239 68 68;
+
+  /* ✅ Map your existing system to palette (IMPORTANT) */
+  --background: rgb(var(--bg));
+  --foreground: rgb(var(--text));
+}
+
+/* Optional: auto light mode if you want it */
+@media (prefers-color-scheme: light) {
+  :root {
+    --bg: 255 255 255;
+    --surface: 0 0 0;
+    --text: 17 17 17;
+    --text-muted: 80 80 80;
+    --border: 0 0 0;
+
+    --background: rgb(var(--bg));
+    --foreground: rgb(var(--text));
+  }
+}
