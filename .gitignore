@@ -40,3 +40,13 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Block heavy executables and installers
+*.exe
+*.msi
+*.zip
+*.iso
+
+# Videos (optional)
+*.mp4
+*.mov
