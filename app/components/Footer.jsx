@@ -4,7 +4,7 @@ import Link from "next/link";
 import { Mail, MapPin, MessageCircle } from "lucide-react";
 
 export default function Footer() {
-  const email = "info@premiumconcretepm.co.ke";
+  const email = "info@premiumcabro.com";
   const locationLabel = "Githunguri Road, Kiambu – Nairobi Region";
   const mapsUrl =
     "https://www.google.com/maps/search/?api=1&query=Githunguri+Road+Kiambu+Nairobi";
@@ -208,3 +208,4 @@ export default function Footer() {
     </>
   );
 }
+ 
