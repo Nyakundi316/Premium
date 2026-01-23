@@ -84,17 +84,7 @@ const PRODUCT_CARDS: ProductCard[] = [
     icon: <Fence size={16} />,
     features: ["Weatherproof", "Termite proof", "Long lasting"],
   },
-  {
-    id: "manholes",
-    title: "Precast Manholes",
-    subtitle: "Underground Access",
-    tag: "Drainage",
-    href: "/products/manholes",
-    image: "/images/manhole-thumb.jpg",
-    points: ["Standard sizes", "Easy installation", "Leak proof"],
-    icon: <Construction size={16} />,
-    features: ["Heavy duty", "Customizable", "Quality assured"],
-  },
+
   {
     id: "pavers",
     title: "Garden Pavers",
