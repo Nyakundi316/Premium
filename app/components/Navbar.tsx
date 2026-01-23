@@ -31,7 +31,6 @@ export default function Navbar() {
   const navLinks = [
     { label: "Home", href: "/", icon: Home },
     { label: "Services", href: "/services", icon: Hammer },
-    { label: "Patterns", href: "/patterns", icon: Layers },
     { label: "Projects", href: "/projects", icon: GalleryHorizontal },
     { label: "About", href: "/about", icon: Info },
   ];
@@ -200,21 +199,8 @@ export default function Navbar() {
                 <span>Call us</span>
               </a>
 
-              {/* Theme toggle */}
-              <button
-                onClick={toggleTheme}
-                aria-label="Toggle theme"
-                className="
-                  inline-flex h-9 w-9 items-center justify-center rounded-full
-                  border border-white/20 bg-white/10 hover:bg-white/15 transition
-                "
-              >
-                {theme === "dark" ? (
-                  <MoonStar className="h-4 w-4" />
-                ) : (
-                  <SunMedium className="h-4 w-4" />
-                )}
-              </button>
+    
+            
 
               {/* Sign Up */}
               <Link

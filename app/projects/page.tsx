@@ -37,64 +37,39 @@ type Project = {
   date: string; // e.g. "Jan 2026"
   scope: string; // one-line summary
   highlights: string[];
-  cover: string; // image path
-  gallery: string[]; // image paths
+  cover: string;
+  gallery: string[];
   tags: string[];
 };
 
-/* ---------------- DATA (EDIT THESE) ---------------- */
+/* ---------------- DATA ---------------- */
+/**
+ * Right now you said you have no completed projects yet,
+ * so we keep this array empty.
+ *
+ * When you start getting real jobs + photos,
+ * add them here using the same structure.
+ */
 const PROJECTS: Project[] = [
-  {
-    id: "proj-001",
-    title: "Premium Cabro Driveway Installation",
-    category: "cabro",
-    location: "Ruiru, Kiambu",
-    date: "Jan 2026",
-    scope: "60mm cabro driveway with clean edging and drainage fall.",
-    highlights: ["60mm cabro", "Neat finishing", "Proper edge restraint"],
-    cover: "/images/projects/driveway-ruiru-cover.jpg",
-    gallery: [
-      "/images/projects/driveway-ruiru-1.jpg",
-      "/images/projects/driveway-ruiru-2.jpg",
-      "/images/projects/driveway-ruiru-3.jpg",
-    ],
-    tags: ["Residential", "Cabro", "Driveway"],
-  },
-  {
-    id: "proj-002",
-    title: "Road Drainage Culverts + Kerbs",
-    category: "drainage",
-    location: "Nairobi",
-    date: "Dec 2025",
-    scope: "Reinforced concrete culverts installed for stormwater management.",
-    highlights: ["Reinforced culverts", "Stone pitching", "Kerb alignment"],
-    cover: "/images/projects/culverts-nairobi-cover.jpg",
-    gallery: [
-      "/images/projects/culverts-nairobi-1.jpg",
-      "/images/projects/culverts-nairobi-2.jpg",
-      "/images/projects/culverts-nairobi-3.jpg",
-    ],
-    tags: ["Infrastructure", "Culverts", "Drainage"],
-  },
-  {
-    id: "proj-003",
-    title: "Farm Perimeter Fencing (Concrete Posts)",
-    category: "fencing",
-    location: "Machakos",
-    date: "Nov 2025",
-    scope: "Concrete fencing posts installed with chain-link and barbed wire.",
-    highlights: ["Concrete posts", "Chain-link", "Durable perimeter"],
-    cover: "/images/projects/farm-fencing-cover.jpg",
-    gallery: [
-      "/images/projects/farm-fencing-1.jpg",
-      "/images/projects/farm-fencing-2.jpg",
-      "/images/projects/farm-fencing-3.jpg",
-    ],
-    tags: ["Farm", "Fencing", "Security"],
-  },
+  // Example for later (uncomment + edit when you have real projects):
+  // {
+  //   id: "proj-001",
+  //   title: "Premium Cabro Driveway Installation",
+  //   category: "cabro",
+  //   location: "Ruiru, Kiambu",
+  //   date: "Jan 2026",
+  //   scope: "60mm cabro driveway with clean edging and drainage fall.",
+  //   highlights: ["60mm cabro", "Neat finishing", "Proper edge restraint"],
+  //   cover: "/images/projects/driveway-ruiru-cover.jpg",
+  //   gallery: [
+  //     "/images/projects/driveway-ruiru-1.jpg",
+  //     "/images/projects/driveway-ruiru-2.jpg",
+  //     "/images/projects/driveway-ruiru-3.jpg",
+  //   ],
+  //   tags: ["Residential", "Cabro", "Driveway"],
+  // },
 ];
 
-/* ---------------- PAGE ---------------- */
 export default function ProjectsPage() {
   const [activeCategory, setActiveCategory] = useState<Category>("all");
   const [active, setActive] = useState<Project | null>(null);
@@ -114,6 +89,8 @@ export default function ProjectsPage() {
     if (activeCategory === "all") return PROJECTS;
     return PROJECTS.filter((p) => p.category === activeCategory);
   }, [activeCategory]);
+
+  const hasProjects = filtered.length > 0;
 
   return (
     <section
@@ -152,7 +129,7 @@ export default function ProjectsPage() {
             works and other concrete solutions delivered with clean finishing.
           </p>
 
-          {/* Small CTA row (not busy) */}
+          {/* CTA row */}
           <div className="mt-5 flex flex-wrap gap-3">
             <Link
               href="/contact"
@@ -197,67 +174,178 @@ export default function ProjectsPage() {
           </div>
         </div>
 
-        {/* GRID */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {filtered.map((p, index) => (
-            <motion.button
-              key={p.id}
-              type="button"
-              initial={{ opacity: 0, y: 16 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.2 }}
-              transition={{ duration: 0.35, delay: index * 0.05 }}
-              onClick={() => {
-                setActive(p);
-                setActiveImage(p.cover);
-              }}
-              className="group w-full text-left rounded-2xl overflow-hidden bg-white border border-gray-200 shadow-sm hover:shadow-md transition"
-            >
-              <div className="relative aspect-[4/3]">
-                <Image
-                  src={p.cover}
-                  alt={p.title}
-                  fill
-                  className="object-cover transition-transform duration-500 group-hover:scale-105"
-                  sizes="(max-width: 1024px) 100vw, 33vw"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/35 via-black/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+        {/* GRID / CONTENT */}
+        {hasProjects ? (
+          /* REAL PROJECTS GRID (for later when you have jobs to show) */
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {filtered.map((p, index) => (
+              <motion.button
+                key={p.id}
+                type="button"
+                initial={{ opacity: 0, y: 16 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.2 }}
+                transition={{ duration: 0.35, delay: index * 0.05 }}
+                onClick={() => {
+                  setActive(p);
+                  setActiveImage(p.cover);
+                }}
+                className="group w-full text-left rounded-2xl overflow-hidden bg-white border border-gray-200 shadow-sm hover:shadow-md transition"
+              >
+                <div className="relative aspect-[4/3]">
+                  <Image
+                    src={p.cover}
+                    alt={p.title}
+                    fill
+                    className="object-cover transition-transform duration-500 group-hover:scale-105"
+                    sizes="(max-width: 1024px) 100vw, 33vw"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/35 via-black/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
 
-                <div className="absolute bottom-3 left-3 right-3 flex items-end justify-between gap-3">
-                  <div className="min-w-0">
-                    <p className="text-white font-semibold truncate">
-                      {p.title}
-                    </p>
-                    <p className="text-white/85 text-xs truncate">
-                      {p.location} • {p.date}
-                    </p>
-                  </div>
-                  <span className="shrink-0 inline-flex items-center gap-1 px-2 py-1 rounded-full bg-white/90 text-[10px] sm:text-xs font-semibold text-gray-900">
-                    View <ArrowRight className="w-3 h-3" />
-                  </span>
-                </div>
-              </div>
-
-              <div className="p-4">
-                <p className="text-sm text-gray-700 line-clamp-2">{p.scope}</p>
-                <div className="mt-3 flex flex-wrap gap-2">
-                  {p.tags.slice(0, 3).map((t) => (
-                    <span
-                      key={`${p.id}-${t}`}
-                      className="inline-flex items-center gap-1 rounded-full bg-gray-100 text-gray-700 px-2 py-1 text-[11px]"
-                    >
-                      <Tag className="w-3 h-3" />
-                      {t}
+                  <div className="absolute bottom-3 left-3 right-3 flex items-end justify-between gap-3">
+                    <div className="min-w-0">
+                      <p className="text-white font-semibold truncate">
+                        {p.title}
+                      </p>
+                      <p className="text-white/85 text-xs truncate">
+                        {p.location} • {p.date}
+                      </p>
+                    </div>
+                    <span className="shrink-0 inline-flex items-center gap-1 px-2 py-1 rounded-full bg-white/90 text-[10px] sm:text-xs font-semibold text-gray-900">
+                      View <ArrowRight className="w-3 h-3" />
                     </span>
-                  ))}
+                  </div>
                 </div>
+
+                <div className="p-4">
+                  <p className="text-sm text-gray-700 line-clamp-2">
+                    {p.scope}
+                  </p>
+                  <div className="mt-3 flex flex-wrap gap-2">
+                    {p.tags.slice(0, 3).map((t) => (
+                      <span
+                        key={`${p.id}-${t}`}
+                        className="inline-flex items-center gap-1 rounded-full bg-gray-100 text-gray-700 px-2 py-1 text-[11px]"
+                      >
+                        <Tag className="w-3 h-3" />
+                        {t}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              </motion.button>
+            ))}
+          </div>
+        ) : (
+          /* EMPTY STATE + PROJECT TYPES (current mode since you have no projects yet) */
+          <div className="mt-2 space-y-8">
+            {/* Empty state message */}
+            <div className="rounded-2xl border border-dashed border-gray-300 bg-white/70 p-6 sm:p-8 text-center">
+              <p className="text-sm sm:text-base text-gray-700 font-medium">
+                We’re setting up our first showcase projects.
+              </p>
+              <p className="mt-2 text-xs sm:text-sm text-gray-600 max-w-xl mx-auto">
+                In the meantime, here are the types of projects we support with
+                cabro, culverts, fencing posts, kerbs and other concrete
+                products. If you’d like your project to be featured here, talk
+                to us about a site visit and quotation.
+              </p>
+              <div className="mt-4 flex flex-wrap justify-center gap-2 text-xs sm:text-sm">
+                <span className="px-3 py-1 rounded-full bg-gray-900 text-white">
+                  Residential & Commercial
+                </span>
+                <span className="px-3 py-1 rounded-full bg-gray-100 text-gray-800">
+                  Industrial Yards
+                </span>
+                <span className="px-3 py-1 rounded-full bg-gray-100 text-gray-800">
+                  Farms & Plots
+                </span>
               </div>
-            </motion.button>
-          ))}
-        </div>
+            </div>
+
+            {/* Project types grid */}
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+              {[
+                {
+                  title: "Residential Driveways & Parking",
+                  desc: "60mm & 80mm cabro for homes, apartments and gated communities.",
+                  points: [
+                    "Neat finishing",
+                    "Defined edges",
+                    "Proper drainage fall",
+                  ],
+                },
+                {
+                  title: "Commercial & Industrial Yards",
+                  desc: "Heavy-duty paving and concrete solutions for factories and godowns.",
+                  points: [
+                    "High load capacity",
+                    "Durable surface",
+                    "Low maintenance",
+                  ],
+                },
+                {
+                  title: "Farm & Plot Fencing",
+                  desc: "Concrete fence posts with chain-link or barbed wire for secure boundaries.",
+                  points: [
+                    "Concrete posts",
+                    "Termite-proof",
+                    "Long-lasting perimeter",
+                  ],
+                },
+                {
+                  title: "Roadside Drainage & Culverts",
+                  desc: "Concrete culverts, kerbs and channels for stormwater management.",
+                  points: [
+                    "Reinforced culverts",
+                    "Proper alignment",
+                    "Reduced erosion",
+                  ],
+                },
+                {
+                  title: "Retaining Walls & Slopes",
+                  desc: "Retaining wall blocks for sloping compounds and cut embankments.",
+                  points: ["Stability", "Erosion control", "Clean face finish"],
+                },
+                {
+                  title: "Custom Concrete Solutions",
+                  desc: "Talk to us about any special applications for our concrete products.",
+                  points: [
+                    "Site-specific advice",
+                    "Product recommendations",
+                    "Flexible solutions",
+                  ],
+                },
+              ].map((item) => (
+                <div
+                  key={item.title}
+                  className="rounded-2xl bg-white border border-gray-200 p-4 sm:p-5 shadow-sm"
+                >
+                  <h3 className="text-sm sm:text-base font-semibold text-gray-900">
+                    {item.title}
+                  </h3>
+                  <p className="mt-1.5 text-xs sm:text-sm text-gray-700">
+                    {item.desc}
+                  </p>
+                  <ul className="mt-2.5 space-y-1.5 text-xs text-gray-700">
+                    {item.points.map((p) => (
+                      <li key={p} className="flex gap-2">
+                        <span
+                          className="mt-1 h-1.5 w-1.5 rounded-full"
+                          style={{ backgroundColor: BRAND_GOLD }}
+                        />
+                        <span>{p}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
       </div>
 
-      {/* PROJECT MODAL */}
+      {/* PROJECT MODAL (kept for future when you add real projects) */}
       <AnimatePresence>
         {active && (
           <motion.div

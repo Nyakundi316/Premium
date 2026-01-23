@@ -7,7 +7,6 @@ import PatternSection from './PatternSection'
 export default function page() {
   return (
       <main className="bg-[#020617] text-white min-h-screen">
-      <HeroSection />
       <PatternSection />
     </main>
   )

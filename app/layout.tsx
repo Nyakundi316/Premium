@@ -1,5 +1,5 @@
 // app/layout.tsx
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import "./globals.css";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
@@ -14,7 +14,7 @@ const figtree = Figtree({
   display: "swap",
 });
 
-// ✅ SEO + App metadata
+// ✅ SEO + App metadata (NO themeColor here anymore)
 export const metadata: Metadata = {
   title: "Premium Concrete PM – Premium Paving Blocks & Solutions",
   description:
@@ -28,16 +28,18 @@ export const metadata: Metadata = {
     "Industrial paving solutions",
     "Premium Concrete PM",
   ],
-  themeColor: "#FFBF00",
 
-  // ✅ Icons (your logo in public/images)
-  // Make sure the file exists at: public/images/pm-logo.png
+  // ✅ Icons (make sure these files exist in /app)
   icons: {
-    icon: "/images/pm-logo.png",      // browser tab icon
-    shortcut: "/images/pm-logo.png",  // pinned / quick icon
-    // If later you add an Apple icon, you can do:
-    // apple: "/images/pm-apple-icon.png",
+    icon: "/favicon.ico",            // main browser tab icon
+    shortcut: "/favicon.ico",        // pinned / shortcut icon
+    apple: "/apple-touch-icon.png",  // iOS home-screen icon (optional but you have it)
   },
+};
+
+// ✅ New: viewport config (this is where themeColor belongs now)
+export const viewport: Viewport = {
+  themeColor: "#FFBF00",
 };
 
 export default function RootLayout({
