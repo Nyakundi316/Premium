@@ -204,7 +204,7 @@ export default function Navbar() {
 
               {/* Sign Up */}
               <Link
-                href="/signup"
+                href="/register"
                 className="hidden sm:inline-flex items-center gap-2 rounded-full
                            border border-white/18 bg-white/10 px-4 py-2 text-xs font-semibold text-white
                            hover:bg-white/15 hover:border-white/25 transition"
@@ -266,7 +266,7 @@ export default function Navbar() {
                 })}
 
                 <Link
-                  href="/signup"
+                  href="/register"
                   className="
                     mt-2 inline-flex items-center justify-center gap-2 rounded-full
                     border border-white/18 bg-white/10 px-4 py-2 text-xs font-semibold text-white
