@@ -8,7 +8,11 @@ import { motion } from "framer-motion";
 import { Eye, EyeOff, ArrowRight, ShieldCheck } from "lucide-react";
 
 const BRAND = "#FFBF00";
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
+
+// ✅ Fallback so it still works even if the env var is missing
+const API_BASE_URL =
+  process.env.NEXT_PUBLIC_API_BASE_URL ||
+  "https://premiumback-end-1.onrender.com";
 
 export default function SignupPage() {
   const [showPassword, setShowPassword] = useState(false);
@@ -47,13 +51,6 @@ export default function SignupPage() {
     setServerError(null);
     setServerSuccess(null);
 
-    if (!API_BASE_URL) {
-      setServerError(
-        "API base URL is not configured. Please set NEXT_PUBLIC_API_BASE_URL."
-      );
-      return;
-    }
-
     try {
       setLoading(true);
 
@@ -83,6 +80,7 @@ export default function SignupPage() {
       }
 
       setServerSuccess("Account created successfully ✅ You can now log in.");
+
       // Optional: reset form
       setForm({
         name: "",
