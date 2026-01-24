@@ -1,33 +1,104 @@
+// app/login/page.tsx
 "use client";
 
 import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { Mail, Lock, Eye, EyeOff, ArrowRight } from "lucide-react";
 
 const BRAND_GOLD = "#FFBF00";
 const BRAND_GOLD_DARK = "#E6AC00";
 
+// ✅ Same pattern as signup: env var with fallback
+const API_BASE_URL =
+  process.env.NEXT_PUBLIC_API_BASE_URL ||
+  "https://premiumback-end-1.onrender.com";
+
 export default function LoginPage() {
+  const router = useRouter();
+
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
+  const [serverError, setServerError] = useState<string | null>(null);
+  const [serverSuccess, setServerSuccess] = useState<string | null>(null);
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    setIsSubmitting(true);
+    if (isSubmitting) return;
+
+    setServerError(null);
+    setServerSuccess(null);
 
     const formData = new FormData(e.currentTarget);
-    const email = formData.get("email");
-    const password = formData.get("password");
+    const email = (formData.get("email") || "").toString().trim();
+    const password = (formData.get("password") || "").toString();
 
-    // TODO: connect to your real backend (Flask / API route)
-    console.log("Login:", { email, password });
+    if (!email || !password) {
+      setServerError("Email and password are required.");
+      return;
+    }
 
-    await new Promise((res) => setTimeout(res, 800));
-    setIsSubmitting(false);
+    try {
+      setIsSubmitting(true);
 
-    // Placeholder
-    alert("Login submitted. Connect this to your API next.");
+      const res = await fetch(`${API_BASE_URL}/api/auth/login`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email,
+          password,
+        }),
+      });
+
+      const data = await res.json().catch(() => ({}));
+
+      if (!res.ok) {
+        // Backend uses bad_request("...") → { error: "message" }
+        throw new Error(
+          data.error ||
+            data.message ||
+            "Login failed. Please check your details and try again."
+        );
+      }
+
+      // Expected backend shape:
+      // {
+      //   "message": "login ok",
+      //   "data": {
+      //     "access_token": "...",
+      //     "refresh_token": "...",
+      //     "user": { ... }
+      //   }
+      // }
+      const payload = data.data || {};
+
+      if (!payload.access_token || !payload.refresh_token) {
+        throw new Error("Login succeeded but tokens are missing in response.");
+      }
+
+      // ✅ Store tokens + user – you can switch to cookies later if you want
+      if (typeof window !== "undefined") {
+        localStorage.setItem("pm_access_token", payload.access_token);
+        localStorage.setItem("pm_refresh_token", payload.refresh_token);
+        if (payload.user) {
+          localStorage.setItem("pm_user", JSON.stringify(payload.user));
+        }
+      }
+
+      setServerSuccess("Login successful ✅ Redirecting…");
+
+      // Small delay so the user sees the message
+      setTimeout(() => {
+        router.push("/"); // change to "/dashboard" if you have one
+      }, 800);
+    } catch (err: any) {
+      setServerError(err.message || "Something went wrong. Please try again.");
+    } finally {
+      setIsSubmitting(false);
+    }
   }
 
   return (
@@ -95,7 +166,7 @@ export default function LoginPage() {
         {/* RIGHT: Login form */}
         <section className="px-6 py-8 sm:px-10 sm:py-10 lg:px-12 lg:py-12">
           {/* Top bar */}
-          <div className="flex items-center justify-between mb-8">
+          <div className="flex items-center justify-between mb-4 sm:mb-6">
             <h2 className="text-xl sm:text-2xl font-bold text-slate-900">
               Log in
             </h2>
@@ -110,9 +181,21 @@ export default function LoginPage() {
             </p>
           </div>
 
-          <p className="text-xs sm:text-sm text-slate-600 mb-6 max-w-md">
+          <p className="text-xs sm:text-sm text-slate-600 mb-4 sm:mb-6 max-w-md">
             Use your email and password to access your Premium Movers account.
           </p>
+
+          {/* Server messages */}
+          {serverError && (
+            <p className="mb-4 text-xs sm:text-sm text-red-600">
+              {serverError}
+            </p>
+          )}
+          {serverSuccess && (
+            <p className="mb-4 text-xs sm:text-sm text-green-600">
+              {serverSuccess}
+            </p>
+          )}
 
           <form onSubmit={handleSubmit} className="space-y-5">
             {/* Email */}
