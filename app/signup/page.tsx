@@ -8,10 +8,15 @@ import { motion } from "framer-motion";
 import { Eye, EyeOff, ArrowRight, ShieldCheck } from "lucide-react";
 
 const BRAND = "#FFBF00";
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
 
 export default function SignupPage() {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirm, setShowConfirm] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [serverError, setServerError] = useState<string | null>(null);
+  const [serverSuccess, setServerSuccess] = useState<string | null>(null);
+
   const [form, setForm] = useState({
     name: "",
     phone: "",
@@ -35,14 +40,63 @@ export default function SignupPage() {
     setForm((p) => ({ ...p, [k]: v }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (!isValid || loading) return;
 
-    // TODO: Integrate your backend call here
-    // Example:
-    // await fetch("/api/auth/signup", { method: "POST", body: JSON.stringify(form) })
+    setServerError(null);
+    setServerSuccess(null);
 
-    alert("Signup submitted (hook up your backend next).");
+    if (!API_BASE_URL) {
+      setServerError(
+        "API base URL is not configured. Please set NEXT_PUBLIC_API_BASE_URL."
+      );
+      return;
+    }
+
+    try {
+      setLoading(true);
+
+      const payload = {
+        name: form.name.trim(),
+        phone: form.phone.trim(),
+        email: form.email.trim(),
+        password: form.password,
+      };
+
+      const res = await fetch(`${API_BASE_URL}/api/auth/register`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(payload),
+      });
+
+      const data = await res.json().catch(() => ({}));
+
+      if (!res.ok) {
+        throw new Error(
+          data.error ||
+            data.message ||
+            "Signup failed. Please check your details and try again."
+        );
+      }
+
+      setServerSuccess("Account created successfully ✅ You can now log in.");
+      // Optional: reset form
+      setForm({
+        name: "",
+        phone: "",
+        email: "",
+        password: "",
+        confirmPassword: "",
+        agree: true,
+      });
+    } catch (err: any) {
+      setServerError(err.message || "Something went wrong. Please try again.");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -125,6 +179,14 @@ export default function SignupPage() {
                   Already have an account?
                 </Link>
               </div>
+
+              {/* Server messages */}
+              {serverError && (
+                <p className="mt-4 text-sm text-red-600">{serverError}</p>
+              )}
+              {serverSuccess && (
+                <p className="mt-4 text-sm text-green-600">{serverSuccess}</p>
+              )}
 
               <form onSubmit={handleSubmit} className="mt-6 space-y-4">
                 {/* Name */}
@@ -224,7 +286,9 @@ export default function SignupPage() {
                       type="button"
                       onClick={() => setShowConfirm((v) => !v)}
                       className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-600 hover:text-gray-900"
-                      aria-label={showConfirm ? "Hide confirm password" : "Show confirm password"}
+                      aria-label={
+                        showConfirm ? "Hide confirm password" : "Show confirm password"
+                      }
                     >
                       {showConfirm ? <EyeOff size={18} /> : <Eye size={18} />}
                     </button>
@@ -269,7 +333,7 @@ export default function SignupPage() {
                 {/* Submit */}
                 <button
                   type="submit"
-                  disabled={!isValid}
+                  disabled={!isValid || loading}
                   className="group w-full px-6 py-4 font-extrabold transition disabled:opacity-40 disabled:cursor-not-allowed"
                   style={{
                     backgroundImage: `linear-gradient(90deg, ${BRAND}, ${BRAND}CC)`,
@@ -278,11 +342,13 @@ export default function SignupPage() {
                   }}
                 >
                   <span className="inline-flex items-center justify-center gap-2">
-                    Create Account
-                    <ArrowRight
-                      size={18}
-                      className="transition-transform group-hover:translate-x-1"
-                    />
+                    {loading ? "Creating account..." : "Create Account"}
+                    {!loading && (
+                      <ArrowRight
+                        size={18}
+                        className="transition-transform group-hover:translate-x-1"
+                      />
+                    )}
                   </span>
                 </button>
 
