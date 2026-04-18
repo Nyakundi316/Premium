@@ -22,8 +22,8 @@ import {
   Award,
 } from "lucide-react";
 
-const BRAND = "#DA690D";
-const BRAND_LIGHT = "#FF8C42";
+const BRAND = "#FFC20E";
+const BRAND_LIGHT = "#FFC20E";
 
 type ProductCard = {
   id: string;
@@ -183,7 +183,7 @@ export default function ProductsPage() {
       <section className="relative overflow-hidden bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900">
         <div className="absolute inset-0">
           <Image
-            src="/images/hero-bg.jpg"
+            src="/images/Construction.jpeg"
             alt="Construction background"
             fill
             priority
@@ -236,7 +236,7 @@ export default function ProductsPage() {
                     value={query}
                     onChange={(e) => setQuery(e.target.value)}
                     placeholder="Search products..."
-                    className="w-full pl-9 sm:pl-11 pr-4 py-2.5 sm:py-3 bg-white/10 backdrop-blur-sm border border-white/20 rounded-lg sm:rounded-xl text-xs sm:text-sm text-white placeholder:text-gray-400 outline-none focus:border-orange-500"
+                    className="w-full pl-9 sm:pl-11 pr-4 py-2.5 sm:py-3 bg-white/10 backdrop-blur-sm border border-white/20 rounded-lg sm:rounded-xl text-xs sm:text-sm text-white placeholder:text-gray-400 outline-none focus:border-[#FFC20E]"
                   />
                 </div>
               </motion.div>
@@ -290,13 +290,13 @@ export default function ProductsPage() {
                   onClick={() => setMobileView("grid")}
                   className={`p-1.5 rounded ${mobileView === "grid" ? "bg-gray-100" : ""}`}
                 >
-                  <Grid size={14} className={mobileView === "grid" ? "text-orange-600" : "text-gray-400"} />
+                  <Grid size={14} className={mobileView === "grid" ? "text-[#FFC20E]" : "text-gray-400"} />
                 </button>
                 <button
                   onClick={() => setMobileView("list")}
                   className={`p-1.5 rounded ${mobileView === "list" ? "bg-gray-100" : ""}`}
                 >
-                  <List size={14} className={mobileView === "list" ? "text-orange-600" : "text-gray-400"} />
+                  <List size={14} className={mobileView === "list" ? "text-[#FFC20E]" : "text-gray-400"} />
                 </button>
               </div>
             </div>
@@ -334,11 +334,11 @@ export default function ProductsPage() {
                         }}
                         className={`flex items-center gap-2.5 w-full p-2.5 rounded-lg transition-all ${
                           isActive
-                            ? "bg-orange-50 border border-orange-200 text-orange-700"
+                            ? "bg-amber-50 border border-amber-200 text-amber-700"
                             : "hover:bg-gray-50 text-gray-700"
                         } text-xs`}
                       >
-                        <div className={`p-1.5 rounded ${isActive ? "bg-orange-100" : "bg-gray-100"}`}>
+                        <div className={`p-1.5 rounded ${isActive ? "bg-amber-100" : "bg-gray-100"}`}>
                           {filter.icon}
                         </div>
                         <span className="font-medium">{filter.label}</span>
@@ -349,8 +349,8 @@ export default function ProductsPage() {
 
                 <div className="mt-5 pt-5 border-t border-gray-200">
                   <div className="flex items-center gap-3 p-3 bg-gray-50 rounded-lg">
-                    <div className="p-1.5 bg-orange-100 rounded">
-                      <Truck size={16} className="text-orange-600" />
+                    <div className="p-1.5 bg-amber-100 rounded">
+                      <Truck size={16} className="text-[#FFC20E]" />
                     </div>
                     <div>
                       <div className="font-medium text-xs text-gray-900">Nationwide Delivery</div>

@@ -88,12 +88,12 @@ export default function QuoteForm() {
         {/* HEADER */}
         <header className="mx-auto mb-10 max-w-3xl text-center">
           <span className="mb-4 inline-flex items-center gap-2 rounded-full bg-[#FFF7E0] border border-[#FACC6B]/70 px-4 py-1 text-[11px] uppercase tracking-[0.2em] text-[#A46306]">
-            <span className="h-2 w-2 animate-pulse rounded-full bg-[#D4A017]" />
+            <span className="h-2 w-2 animate-pulse rounded-full bg-[#FFC20E]" />
             Free quotation – no obligation
           </span>
 
           <h1 className="mb-3 text-3xl font-bold md:text-4xl">
-            Get a <span className="text-[#D4A017]">Free Paving Quote</span>
+            Get a <span className="text-[#FFC20E]">Free Paving Quote</span>
           </h1>
 
           <p className="text-sm text-slate-700 md:text-base">
@@ -116,7 +116,7 @@ export default function QuoteForm() {
                 key={step}
                 className="flex items-center gap-2 rounded-full border border-slate-200 bg-white px-3 py-1 shadow-sm"
               >
-                <span className="flex h-5 w-5 items-center justify-center rounded-full bg-[#D4A017] text-[11px] font-bold text-[#0A1A2F]">
+                <span className="flex h-5 w-5 items-center justify-center rounded-full bg-[#FFC20E] text-[11px] font-bold text-[#0D1B30]">
                   {i + 1}
                 </span>
                 <span className="text-slate-700">{step}</span>
@@ -131,9 +131,9 @@ export default function QuoteForm() {
             <div className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm md:p-7">
               {submitted ? (
                 <div className="py-10 text-center md:py-12">
-                  <div className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-gradient-to-r from-[#D4A017] to-[#F0B429]">
+                  <div className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-gradient-to-r from-[#FFC20E] to-[#F0B429]">
                     <svg
-                      className="h-8 w-8 text-[#0A1A2F]"
+                      className="h-8 w-8 text-[#0D1B30]"
                       fill="none"
                       viewBox="0 0 24 24"
                       stroke="currentColor"
@@ -180,7 +180,7 @@ export default function QuoteForm() {
                           value={formData.fullName}
                           onChange={handleChange}
                           required
-                          className="w-full rounded-lg border border-slate-300 bg-slate-50 px-4 py-3 text-sm text-slate-900 outline-none transition focus:border-[#D4A017] focus:bg-white"
+                          className="w-full rounded-lg border border-slate-300 bg-slate-50 px-4 py-3 text-sm text-slate-900 outline-none transition focus:border-[#FFC20E] focus:bg-white"
                           placeholder="e.g. John Kamau"
                         />
                       </div>
@@ -195,7 +195,7 @@ export default function QuoteForm() {
                           value={formData.phone}
                           onChange={handleChange}
                           required
-                          className="w-full rounded-lg border border-slate-300 bg-slate-50 px-4 py-3 text-sm text-slate-900 outline-none transition focus:border-[#D4A017] focus:bg-white"
+                          className="w-full rounded-lg border border-slate-300 bg-slate-50 px-4 py-3 text-sm text-slate-900 outline-none transition focus:border-[#FFC20E] focus:bg-white"
                           placeholder="07XX XXX XXX"
                         />
                       </div>
@@ -209,7 +209,7 @@ export default function QuoteForm() {
                           name="email"
                           value={formData.email}
                           onChange={handleChange}
-                          className="w-full rounded-lg border border-slate-300 bg-slate-50 px-4 py-3 text-sm text-slate-900 outline-none transition focus:border-[#D4A017] focus:bg-white"
+                          className="w-full rounded-lg border border-slate-300 bg-slate-50 px-4 py-3 text-sm text-slate-900 outline-none transition focus:border-[#FFC20E] focus:bg-white"
                           placeholder="you@example.com"
                         />
                       </div>
@@ -225,7 +225,7 @@ export default function QuoteForm() {
                           value={formData.location}
                           onChange={handleChange}
                           required
-                          className="w-full rounded-lg border border-slate-300 bg-slate-50 px-4 py-3 text-sm text-slate-900 outline-none transition focus:border-[#D4A017] focus:bg-white"
+                          className="w-full rounded-lg border border-slate-300 bg-slate-50 px-4 py-3 text-sm text-slate-900 outline-none transition focus:border-[#FFC20E] focus:bg-white"
                           placeholder="Estate / Town, e.g. Kiambu Road"
                         />
                       </div>
@@ -248,7 +248,7 @@ export default function QuoteForm() {
                           value={formData.projectType}
                           onChange={handleChange}
                           required
-                          className="w-full rounded-lg border border-slate-300 bg-slate-50 px-4 py-3 text-sm text-slate-900 outline-none transition focus:border-[#D4A017] focus:bg-white"
+                          className="w-full rounded-lg border border-slate-300 bg-slate-50 px-4 py-3 text-sm text-slate-900 outline-none transition focus:border-[#FFC20E] focus:bg-white"
                         >
                           <option value="">Select type</option>
                           {projectTypes.map((type) => (
@@ -269,7 +269,7 @@ export default function QuoteForm() {
                           value={formData.projectSize}
                           onChange={handleChange}
                           required
-                          className="w-full rounded-lg border border-slate-300 bg-slate-50 px-4 py-3 text-sm text-slate-900 outline-none transition focus:border-[#D4A017] focus:bg-white"
+                          className="w-full rounded-lg border border-slate-300 bg-slate-50 px-4 py-3 text-sm text-slate-900 outline-none transition focus:border-[#FFC20E] focus:bg-white"
                         >
                           <option value="">Select size</option>
                           {projectSizes.map((size) => (
@@ -288,7 +288,7 @@ export default function QuoteForm() {
                           name="patternType"
                           value={formData.patternType}
                           onChange={handleChange}
-                          className="w-full rounded-lg border border-slate-300 bg-slate-50 px-4 py-3 text-sm text-slate-900 outline-none transition focus:border-[#D4A017] focus:bg-white"
+                          className="w-full rounded-lg border border-slate-300 bg-slate-50 px-4 py-3 text-sm text-slate-900 outline-none transition focus:border-[#FFC20E] focus:bg-white"
                         >
                           <option value="">Select pattern (optional)</option>
                           {patternTypes.map((pattern) => (
@@ -309,7 +309,7 @@ export default function QuoteForm() {
                           value={formData.timeline}
                           onChange={handleChange}
                           required
-                          className="w-full rounded-lg border border-slate-300 bg-slate-50 px-4 py-3 text-sm text-slate-900 outline-none transition focus:border-[#D4A017] focus:bg-white"
+                          className="w-full rounded-lg border border-slate-300 bg-slate-50 px-4 py-3 text-sm text-slate-900 outline-none transition focus:border-[#FFC20E] focus:bg-white"
                         >
                           <option value="">Select timeline</option>
                           {timelineOptions.map((timeline) => (
@@ -335,7 +335,7 @@ export default function QuoteForm() {
                       value={formData.additionalNotes}
                       onChange={handleChange}
                       rows={3}
-                      className="w-full resize-none rounded-lg border border-slate-300 bg-slate-50 px-4 py-3 text-sm text-slate-900 outline-none transition focus:border-[#D4A017] focus:bg-white"
+                      className="w-full resize-none rounded-lg border border-slate-300 bg-slate-50 px-4 py-3 text-sm text-slate-900 outline-none transition focus:border-[#FFC20E] focus:bg-white"
                       placeholder="E.g. surface condition, access for trucks, preferred colour, budget range..."
                     />
                   </div>
@@ -344,7 +344,7 @@ export default function QuoteForm() {
                   <div className="pt-2">
                     <button
                       type="submit"
-                      className="w-full rounded-lg bg-gradient-to-r from-[#D4A017] to-[#F0B429] py-3.5 text-sm font-semibold text-[#0A1A2F] shadow-sm transition-all hover:shadow-lg hover:shadow-[#FACC6B]/40"
+                      className="w-full rounded-lg bg-gradient-to-r from-[#FFC20E] to-[#F0B429] py-3.5 text-sm font-semibold text-[#0D1B30] shadow-sm transition-all hover:shadow-lg hover:shadow-[#FACC6B]/40"
                     >
                       Submit Quote Request
                     </button>
@@ -391,7 +391,7 @@ export default function QuoteForm() {
                     <p className="text-xs text-slate-500">Call / WhatsApp</p>
                     <a
                       href="tel:+254711789438"
-                      className="text-sm font-semibold text-slate-900 hover:text-[#D4A017] transition-colors"
+                      className="text-sm font-semibold text-slate-900 hover:text-[#FFC20E] transition-colors"
                     >
                       +254 711 789438
                     </a>
@@ -487,11 +487,11 @@ export default function QuoteForm() {
             {/* Trust stats */}
             <div className="grid grid-cols-2 gap-3 rounded-2xl border border-slate-200 bg-white p-5 text-center text-xs md:text-sm">
               <div className="rounded-xl bg-slate-50 p-3">
-                <div className="text-xl font-bold text-[#D4A017]">24 hrs</div>
+                <div className="text-xl font-bold text-[#FFC20E]">24 hrs</div>
                 <div className="text-slate-700">Average response time</div>
               </div>
               <div className="rounded-xl bg-slate-50 p-3">
-                <div className="text-xl font-bold text-[#D4A017]">200+</div>
+                <div className="text-xl font-bold text-[#FFC20E]">200+</div>
                 <div className="text-slate-700">Projects completed</div>
               </div>
             </div>

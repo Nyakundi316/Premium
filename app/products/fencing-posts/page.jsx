@@ -4,7 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { CheckCircle2, ArrowRight } from "lucide-react";
 
-const BRAND = "#DA690D";
+const BRAND = "#FFC20E";
 
 const FENCING_PRODUCTS = [
   {

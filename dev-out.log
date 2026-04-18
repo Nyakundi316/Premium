@@ -1,0 +1,11 @@
+
+> premium@0.1.0 dev
+> next dev --webpack --port 3011
+
+   ▲ Next.js 16.0.7 (webpack)
+   - Local:         http://localhost:3011
+   - Network:       http://192.168.100.38:3011
+
+ ✓ Starting...
+   Suggestion: If you intended to restart next dev, terminate the other process, and then try again.
+[?25h

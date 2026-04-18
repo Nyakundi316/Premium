@@ -73,16 +73,16 @@ export default function ApplicationsPage() {
       <section className="container mx-auto px-4 py-14 md:py-20 max-w-6xl">
         {/* Header */}
         <div className="max-w-3xl mb-10">
-          <span className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-[#D4A017]/15 to-transparent border border-[#D4A017]/40 px-4 py-1.5 mb-4">
-            <span className="w-2 h-2 rounded-full bg-[#D4A017] animate-pulse" />
-            <span className="text-[11px] font-semibold uppercase tracking-[0.22em] text-[#D4A017]">
+          <span className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-[#FFC20E]/15 to-transparent border border-[#FFC20E]/40 px-4 py-1.5 mb-4">
+            <span className="w-2 h-2 rounded-full bg-[#FFC20E] animate-pulse" />
+            <span className="text-[11px] font-semibold uppercase tracking-[0.22em] text-[#FFC20E]">
               Where to use our products
             </span>
           </span>
 
           <h1 className="text-3xl md:text-4xl font-bold mb-3">
             Applications for{" "}
-            <span className="text-[#D4A017]">Premium Paving Blocks</span>
+            <span className="text-[#FFC20E]">Premium Paving Blocks</span>
           </h1>
 
           <p className="text-sm md:text-base text-slate-700 dark:text-slate-300">
@@ -100,7 +100,7 @@ export default function ApplicationsPage() {
           {applications.map((item) => (
             <article
               key={item.id}
-              className="rounded-2xl border border-slate-200 dark:border-slate-800 bg-white/95 dark:bg-slate-900/90 overflow-hidden shadow-sm hover:shadow-lg hover:shadow-[#D4A017]/10 transition-shadow duration-300"
+              className="rounded-2xl border border-slate-200 dark:border-slate-800 bg-white/95 dark:bg-slate-900/90 overflow-hidden shadow-sm hover:shadow-lg hover:shadow-[#FFC20E]/10 transition-shadow duration-300"
             >
               {/* Image */}
               <div className="relative h-44 md:h-52">
@@ -134,14 +134,14 @@ export default function ApplicationsPage() {
                 <ul className="space-y-1.5 text-sm text-slate-700 dark:text-slate-200 mb-4">
                   {item.bullets.map((point) => (
                     <li key={point} className="flex items-start gap-2">
-                      <span className="mt-[6px] h-1.5 w-1.5 rounded-full bg-[#D4A017]" />
+                      <span className="mt-[6px] h-1.5 w-1.5 rounded-full bg-[#FFC20E]" />
                       <span>{point}</span>
                     </li>
                   ))}
                 </ul>
 
                 <p className="text-xs md:text-sm text-slate-600 dark:text-slate-300 border-t border-dashed border-slate-200 dark:border-slate-700 pt-3">
-                  <span className="font-semibold text-[#D4A017]">
+                  <span className="font-semibold text-[#FFC20E]">
                     Tip:&nbsp;
                   </span>
                   {item.note}
@@ -166,13 +166,13 @@ export default function ApplicationsPage() {
           <div className="flex flex-wrap gap-3">
             <Link
               href="/quote"
-              className="inline-flex items-center justify-center rounded-full bg-[#D4A017] px-6 py-3 text-xs md:text-sm font-semibold text-[#0A1A2F] shadow-md hover:shadow-lg hover:bg-[#c19113] transition-all"
+              className="inline-flex items-center justify-center rounded-full bg-[#FFC20E] px-6 py-3 text-xs md:text-sm font-semibold text-[#0D1B30] shadow-md hover:shadow-lg hover:bg-[#c19113] transition-all"
             >
               Get a Cabro Recommendation
             </Link>
             <a
               href="tel:+2547XXXXXXXXX"
-              className="inline-flex items-center justify-center rounded-full border border-slate-300/80 px-6 py-3 text-xs md:text-sm font-semibold hover:border-[#D4A017] hover:text-[#D4A017] transition-all"
+              className="inline-flex items-center justify-center rounded-full border border-slate-300/80 px-6 py-3 text-xs md:text-sm font-semibold hover:border-[#FFC20E] hover:text-[#FFC20E] transition-all"
             >
               Call / WhatsApp: 07XX XXX XXX
             </a>

@@ -1,407 +1,305 @@
 "use client";
 
-import { useMemo, useRef, useEffect, useState } from "react";
-import Link from "next/link";
+import { useEffect, useState } from "react";
 import Image from "next/image";
-import { motion } from "framer-motion";
-import { Phone, Calendar, Star, ArrowRight, ChevronRight } from "lucide-react";
+import Link from "next/link";
+import { motion, AnimatePresence } from "framer-motion";
+import {
+  ArrowUpRight,
+  Phone,
+  MessageSquare,
+  ChevronDown,
+} from "lucide-react";
 
-const BRAND = "#FFBF00";
+const GOLD = "#FFC20E";
 
-// Product strip items
-const quickLinks = [
+const slides = [
+  { image: "/images/home.jpg", label: "Residential" },
+  { image: "/images/industrial yard.png", label: "Commercial" },
+  { image: "/images/Driveways.png", label: "Driveways" },
+];
+
+const floatingBlocks = [
   {
-    id: "cabro",
-    title: "Cabro Blocks",
-    subtitle: "60mm & 80mm",
-    image: "/images/Clay-paving-blocks.jpg",
-    href: "/products/cabro",
+    src: "/images/products/Hero/grey-removebg-preview.png",
+    alt: "Grey Block",
+    size: "w-[180px] h-[180px] md:w-[220px] md:h-[220px] lg:w-[270px] lg:h-[270px]",
+    position: "top-[8%] right-[5%]",
+    rotate: -4,
+    floatDelay: 0,
   },
   {
-    id: "culverts",
-    title: "Concrete Culverts",
-    subtitle: "Road & drainage",
-    image: "/images/culvert-thumb.jpg",
-    // no href
+    src: "/images/products/Hero/pvc_block_3d-removebg-preview.png",
+    alt: "PVC 3D Block",
+    size: "w-[110px] h-[110px] md:w-[140px] md:h-[140px] lg:w-[170px] lg:h-[170px]",
+    position: "top-[38%] right-[32%]",
+    rotate: 5,
+    floatDelay: 0.8,
   },
   {
-    id: "posts",
-    title: "Fencing Posts",
-    subtitle: "Plots & farms",
-    image: "/images/fence.png",
-    href: "/products/fencing-posts",
+    src: "/images/products/Hero/yellow-trihex-removebg-preview.png",
+    alt: "Yellow Trihex",
+    size: "w-[100px] h-[100px] md:w-[130px] md:h-[130px] lg:w-[160px] lg:h-[160px]",
+    position: "bottom-[28%] right-[6%]",
+    rotate: -7,
+    floatDelay: 1.6,
   },
   {
-    id: "kerbs",
-    title: "Kerbs & Channels",
-    subtitle: "Estate finish",
-    image: "/images/kerbs-drainage.jpg",
-    // no href
+    src: "/images/products/Hero/fan-removebg-preview.png",
+    alt: "Fan Block",
+    size: "w-[90px] h-[90px] md:w-[110px] md:h-[110px] lg:w-[135px] lg:h-[135px]",
+    position: "top-[18%] right-[38%]",
+    rotate: 8,
+    floatDelay: 2.2,
   },
   {
-    id: "services",
-    title: "Supply & Installation",
-    subtitle: "All services",
-    image: "/images/landscape_pool_kerbstone.jpg",
-    href: "/services",
+    src: "/images/products/Hero/Trihex-Charcoal-removebg-preview.png",
+    alt: "Trihex Charcoal",
+    size: "w-[95px] h-[95px] md:w-[120px] md:h-[120px] lg:w-[145px] lg:h-[145px]",
+    position: "bottom-[12%] right-[30%]",
+    rotate: 3,
+    floatDelay: 1.2,
+  },
+  {
+    src: "/images/products/Hero/dumble1-removebg-preview.png",
+    alt: "Dumble Block",
+    size: "w-[80px] h-[80px] md:w-[100px] md:h-[100px] lg:w-[120px] lg:h-[120px]",
+    position: "top-[55%] right-[12%]",
+    rotate: -3,
+    floatDelay: 0.4,
   },
 ];
 
-export default function HeroSection() {
-  // SEO JSON-LD
-  const jsonLd = useMemo(
-    () => ({
-      "@context": "https://schema.org",
-      "@type": "LocalBusiness",
-      name: "Premium Cabro Blocks Kenya",
-      telephone: "+254711789438",
-      areaServed: "Kenya",
-      address: { "@type": "PostalAddress", addressCountry: "KE" },
-      url: "https://YOUR-DOMAIN.co.ke",
-      image: "https://YOUR-DOMAIN.co.ke/images/Construction.jpeg",
-      priceRange: "$$",
-    }),
-    []
-  );
+const mobileBlocks = floatingBlocks.slice(0, 5);
 
-  // Auto-scroll product strip only on mobile
-  const stripRef = useRef<HTMLDivElement | null>(null);
-  const rafRef = useRef<number | null>(null);
-  const lastTsRef = useRef<number>(0);
-  const pausedRef = useRef<boolean>(false);
-  const [hideHint, setHideHint] = useState(false);
+const stats = [
+  { value: "500+", label: "Projects Completed" },
+  { value: "8", label: "Years in Business" },
+  { value: "15+", label: "Block Varieties" },
+];
+
+export default function HeroSection() {
+  const [activeSlide, setActiveSlide] = useState(0);
 
   useEffect(() => {
-    const el = stripRef.current;
-    if (!el) return;
-
-    const isMobile = () => window.innerWidth < 768;
-
-    const onPointerDown = () => {
-      pausedRef.current = true;
-      setHideHint(true);
-    };
-    const onPointerUp = () => {
-      pausedRef.current = false;
-    };
-    const onScroll = () => {
-      if (el.scrollLeft > 10) setHideHint(true);
-    };
-
-    el.addEventListener("pointerdown", onPointerDown, { passive: true });
-    window.addEventListener("pointerup", onPointerUp, { passive: true });
-    el.addEventListener("scroll", onScroll, { passive: true });
-
-    const speedPxPerSec = 28;
-
-    const tick = (ts: number) => {
-      if (!lastTsRef.current) lastTsRef.current = ts;
-      const dt = ts - lastTsRef.current;
-      lastTsRef.current = ts;
-
-      if (isMobile() && !pausedRef.current && el.scrollWidth > el.clientWidth) {
-        const dx = (speedPxPerSec * dt) / 1000;
-        el.scrollLeft += dx;
-
-        const nearEnd = el.scrollLeft + el.clientWidth >= el.scrollWidth - 2;
-        if (nearEnd) el.scrollLeft = 0;
-      }
-
-      rafRef.current = requestAnimationFrame(tick);
-    };
-
-    rafRef.current = requestAnimationFrame(tick);
-
-    return () => {
-      if (rafRef.current) cancelAnimationFrame(rafRef.current);
-      el.removeEventListener("pointerdown", onPointerDown);
-      window.removeEventListener("pointerup", onPointerUp);
-      el.removeEventListener("scroll", onScroll);
-    };
+    const timer = setInterval(() => {
+      setActiveSlide((prev) => (prev + 1) % slides.length);
+    }, 5000);
+    return () => clearInterval(timer);
   }, []);
 
   return (
-    <section className="relative overflow-hidden bg-white">
-      {/* SEO JSON-LD */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-      />
+    <section className="relative min-h-[100svh] -mt-20 md:-mt-24 overflow-hidden">
+      {/* Background slides */}
+      <div className="absolute inset-0">
+        <AnimatePresence>
+          <motion.div
+            key={activeSlide}
+            className="absolute inset-0"
+            initial={{ opacity: 0, scale: 1.06 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 1.4, ease: "easeOut" }}
+          >
+            <Image
+              src={slides[activeSlide].image}
+              alt={slides[activeSlide].label}
+              fill
+              className="object-cover"
+              sizes="100vw"
+              priority
+            />
+          </motion.div>
+        </AnimatePresence>
 
-      {/* HERO */}
-      <div className="relative min-h-[85svh] sm:min-h-[75svh] md:min-h-[80vh]">
-        {/* Background image */}
-        <div className="absolute inset-0">
-          <Image
-            src="/images/hero.png"
-            alt="Cabro blocks supply and installation in Kenya"
-            fill
-            priority
-            className="object-cover object-center md:object-left"
-            sizes="100vw"
-          />
-          <div className="absolute inset-0 bg-gradient-to-r from-black/85 via-black/60 to-black/30 md:from-black/75 md:via-black/45 md:to-black/20" />
-          <div className="absolute inset-0 bg-black/40 md:bg-black/20" />
-        </div>
-
-        {/* Content */}
-        <div className="relative z-10 h-full">
-          <div className="container mx-auto px-4 sm:px-6 lg:px-8 pt-20 sm:pt-24 md:pt-28 pb-10 sm:pb-12 h-full flex items-center">
-            <div className="max-w-3xl text-left w-full">
-              {/* Title */}
-              <motion.h1
-                initial={{ opacity: 0, y: 18 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.7 }}
-                className="text-3xl sm:text-5xl lg:text-6xl font-extrabold text-white leading-[1.15] sm:leading-[1.1] lg:leading-[1.05]"
-              >
-                Cabro Blocks in Kenya{" "}
-                <span style={{ color: BRAND }}>60mm &amp; 80mm</span>
-                <span className="block text-white/90 text-xl sm:text-2xl lg:text-4xl font-bold mt-2 sm:mt-3">
-                  Supply • Delivery • Installation
-                </span>
-              </motion.h1>
-
-              {/* Sub text */}
-              <motion.p
-                initial={{ opacity: 0, y: 14 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.15 }}
-                className="mt-4 sm:mt-5 text-sm sm:text-lg text-white/85 max-w-2xl"
-              >
-                Get accurate quantities, durable finishes and reliable delivery
-                for driveways, parking, walkways and commercial compounds.
-              </motion.p>
-
-              {/* Social proof */}
-              <motion.div
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.25 }}
-                className="mt-4 sm:mt-5 flex items-center gap-2 text-xs sm:text-sm text-white/85"
-              >
-                <Star className="w-4 h-4 sm:w-5 sm:h-5" style={{ color: BRAND }} />
-                <span>
-                  Trusted by homeowners, estates &amp; contractors across Kenya
-                </span>
-              </motion.div>
-
-              {/* CTAs */}
-              <motion.div
-                initial={{ opacity: 0, y: 12 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.32 }}
-                className="mt-6 sm:mt-8 flex flex-col sm:flex-row gap-3 sm:gap-4"
-              >
-                {/* Primary */}
-                <Link
-                  href="/quote"
-                  className="group inline-flex items-center justify-center gap-3 px-6 sm:px-7 py-3 sm:py-4 text-sm sm:text-base font-bold shadow-sm transition w-full sm:w-auto min-h-[52px] sm:min-h-[60px]"
-                  style={{
-                    backgroundImage: `linear-gradient(90deg, ${BRAND}, ${BRAND}CC)`,
-                    color: "#111",
-                    borderRadius: "0px",
-                  }}
-                >
-                  <Calendar className="w-5 h-5 sm:w-6 sm:h-6" />
-                  <span className="flex-1 text-center sm:text-left">
-                    Get a Quote / Site Visit
-                  </span>
-                  <ArrowRight
-                    className="w-5 h-5 sm:w-6 sm:h-6 transition-transform group-hover:translate-x-1"
-                  />
-                </Link>
-
-                {/* Secondary */}
-                <a
-                  href="tel:+254711789438"
-                  className="group inline-flex items-center justify-center gap-3 px-6 sm:px-7 py-3 sm:py-4 text-sm sm:text-base font-semibold border border-white/25 bg-white/10 hover:bg-white/15 transition w-full sm:w-auto min-h-[52px] sm:min-h-[60px]"
-                  style={{
-                    color: "#fff",
-                    borderRadius: "0px",
-                  }}
-                >
-                  <Phone
-                    className="w-5 h-5 sm:w-6 sm:h-6"
-                    style={{ color: BRAND }}
-                  />
-                  <span className="flex-1 text-center sm:text-left">
-                    Call: +254 711 789 438
-                  </span>
-                </a>
-              </motion.div>
-
-              {/* Micro SEO */}
-              <p className="mt-4 sm:mt-5 text-xs text-white/65">
-                Cabro blocks price Kenya • Cabro installation Nairobi • 60mm &amp;
-                80mm paving blocks • Delivery countrywide
-              </p>
-            </div>
-          </div>
-        </div>
-
-        {/* Soft fade into next section */}
-        <div className="absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-b from-transparent to-white" />
+        <div className="absolute inset-0 bg-gradient-to-r from-[#070B14]/88 via-[#070B14]/60 to-[#070B14]/30" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#070B14]/70 via-transparent to-[#070B14]/25" />
       </div>
 
-      {/* Product strip */}
-      <div className="bg-white">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8 md:py-10">
-          <div className="flex items-center justify-between mb-4">
-            <div>
-              <p className="text-sm font-semibold tracking-wide text-gray-900">
-                Explore Products
-              </p>
-              <p className="text-xs text-gray-500">
-                Tap to view details &amp; specs
-              </p>
+      {/* Content */}
+      <div className="relative z-10 mx-auto grid max-w-7xl min-h-[100svh] grid-rows-[1fr_auto] px-5 sm:px-8 lg:px-12">
+
+        <div className="grid items-center gap-8 pt-32 pb-12 lg:grid-cols-[1.1fr_0.9fr] lg:pt-36">
+
+          {/* Left: Text */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, ease: "easeOut" }}
+          >
+            <div className="mb-5 inline-flex items-center gap-2.5 rounded-full border border-white/12 bg-white/6 px-4 py-2 backdrop-blur-sm">
+              <span className="h-2 w-2 rounded-full" style={{ background: GOLD }} />
+              <span className="text-[11px] font-semibold uppercase tracking-[0.22em] text-white/80">
+                Premium Cabro · Nairobi
+              </span>
             </div>
 
-            <Link
-              href="/products"
-              className="text-sm font-semibold inline-flex items-center gap-1"
-              style={{ color: BRAND }}
+            <h1
+              className="mb-6 font-bold leading-[0.92] tracking-[-0.04em] text-white"
+              style={{ fontSize: "clamp(2.6rem, 6.5vw, 5.4rem)" }}
             >
-              See all <ChevronRight size={16} />
-            </Link>
-          </div>
+              Premium Cabro
+              <br />
+              That Speaks{" "}
+              <span style={{ color: GOLD }}>Quality.</span>
+            </h1>
 
-          {/* Mobile: slider */}
-          <div className="relative md:hidden">
+            <p className="mb-8 max-w-lg text-[15px] leading-7 text-white/60 sm:text-base sm:leading-8">
+              We supply and install durable cabro blocks for driveways,
+              compounds, parking areas, and commercial spaces across Kenya.
+              Clean finish, proper fitting, reliable delivery.
+            </p>
+
+            <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
+              <Link
+                href="/quote"
+                className="group inline-flex items-center gap-2.5 rounded-full px-7 py-3.5 text-sm font-semibold text-[#0D1B30] transition-all hover:brightness-110"
+                style={{ background: GOLD }}
+              >
+                <MessageSquare size={16} />
+                Get a Free Quote
+                <ArrowUpRight
+                  size={16}
+                  className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                />
+              </Link>
+
+              <a
+                href="tel:+254711789438"
+                className="inline-flex items-center gap-2.5 rounded-full border border-white/15 bg-white/6 px-6 py-3.5 text-sm font-semibold text-white backdrop-blur-sm transition-all hover:bg-white/12"
+              >
+                <Phone size={16} style={{ color: GOLD }} />
+                0711 789 438
+              </a>
+            </div>
+
+            {/* Mobile product strip */}
+            <div className="mt-8 flex gap-3 overflow-x-auto pb-2 md:hidden" style={{ scrollbarWidth: "none" }}>
+              {mobileBlocks.map((block) => (
+                <div
+                  key={block.alt}
+                  className="relative h-16 w-16 shrink-0 rounded-xl bg-white/8 backdrop-blur-sm"
+                >
+                  <Image
+                    src={block.src}
+                    alt={block.alt}
+                    fill
+                    className="object-contain p-1.5"
+                    sizes="64px"
+                  />
+                </div>
+              ))}
+            </div>
+
+            {/* Slide indicators */}
+            <div className="mt-8 flex items-center gap-6 md:mt-10">
+              {slides.map((slide, i) => (
+                <button
+                  key={slide.label}
+                  onClick={() => setActiveSlide(i)}
+                  className="group flex items-center gap-2.5"
+                >
+                  <span
+                    className="block h-[3px] rounded-full transition-all duration-500"
+                    style={{
+                      width: i === activeSlide ? 40 : 16,
+                      background: i === activeSlide ? GOLD : "rgba(255,255,255,0.25)",
+                    }}
+                  />
+                  <span
+                    className="text-[11px] font-medium uppercase tracking-wider transition-colors"
+                    style={{
+                      color: i === activeSlide ? "rgba(255,255,255,0.9)" : "rgba(255,255,255,0.35)",
+                    }}
+                  >
+                    {slide.label}
+                  </span>
+                </button>
+              ))}
+            </div>
+          </motion.div>
+
+          {/* Right: Floating product blocks — visible md+ */}
+          <div className="relative hidden h-full md:block">
+            {floatingBlocks.map((block, i) => (
+              <motion.div
+                key={block.alt}
+                className={`absolute ${block.position} ${block.size}`}
+                initial={{ opacity: 0, y: 50, rotate: 0 }}
+                animate={{
+                  opacity: 1,
+                  y: [0, -6, 0],
+                  rotate: block.rotate,
+                }}
+                transition={{
+                  opacity: { duration: 0.7, delay: 0.3 + i * 0.12 },
+                  y: {
+                    duration: 3.5 + i * 0.3,
+                    repeat: Infinity,
+                    repeatType: "reverse",
+                    ease: "easeInOut",
+                    delay: block.floatDelay,
+                  },
+                  rotate: { duration: 0.7, delay: 0.3 + i * 0.12 },
+                }}
+              >
+                <div className="relative h-full w-full drop-shadow-[0_16px_35px_rgba(0,0,0,0.35)]">
+                  <Image
+                    src={block.src}
+                    alt={block.alt}
+                    fill
+                    className="object-contain"
+                    sizes="20vw"
+                  />
+                </div>
+              </motion.div>
+            ))}
+
             <div
-              ref={stripRef}
-              className="flex gap-4 overflow-x-auto snap-x snap-mandatory pb-4 -mx-4 px-4 scroll-smooth"
-              style={{
-                WebkitOverflowScrolling: "touch",
-                scrollbarWidth: "none",
-              }}
-            >
-              <style jsx>{`
-                div::-webkit-scrollbar {
-                  display: none;
-                }
-              `}</style>
-
-              {quickLinks.map((item) => {
-                const clickable = Boolean(item.href);
-
-                const CardInner = (
-                  <div
-                    className="snap-center flex-none w-72 sm:w-80 rounded-xl overflow-hidden border border-gray-200 bg-white shadow-sm hover:shadow-md transition active:scale-[0.98]"
-                    onClick={() => setHideHint(true)}
-                  >
-                    <div className="relative h-40 sm:h-44">
-                      <Image
-                        src={item.image}
-                        alt={item.title}
-                        fill
-                        className="object-cover"
-                        sizes="288px"
-                        loading="lazy"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
-
-                      <div className="absolute bottom-3 sm:bottom-4 left-3 sm:left-4 right-3 sm:right-4">
-                        <h3 className="font-bold text-base sm:text-lg text-white truncate">
-                          {item.title}
-                        </h3>
-                        <p className="text-white/80 text-xs sm:text-sm truncate">
-                          {item.subtitle}
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                );
-
-                return clickable && item.href ? (
-                  <Link key={item.id} href={item.href} className="flex-none">
-                    {CardInner}
-                  </Link>
-                ) : (
-                  <div key={item.id} className="flex-none">
-                    {CardInner}
-                  </div>
-                );
-              })}
-            </div>
-
-            {/* Swipe hint */}
-            {!hideHint && (
-              <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 0.4 }}
-                className="pointer-events-none absolute -bottom-1 left-1/2 -translate-x-1/2"
-              >
-                <div className="flex items-center gap-2 rounded-full border border-gray-200 bg-white px-3 sm:px-4 py-1 sm:py-2">
-                  <span className="text-xs text-gray-700">Swipe</span>
-                  <motion.div
-                    animate={{ x: [0, 8, 0] }}
-                    transition={{ repeat: Infinity, duration: 1.2 }}
-                    className="flex items-center"
-                  >
-                    <ChevronRight
-                      className="w-4 h-4 sm:w-5 sm:h-5"
-                      style={{ color: BRAND }}
-                    />
-                    <ChevronRight
-                      className="w-4 h-4 sm:w-5 sm:h-5 -ml-2"
-                      style={{ color: BRAND }}
-                    />
-                  </motion.div>
-                </div>
-              </motion.div>
-            )}
-          </div>
-
-          {/* Desktop: grid */}
-          <div className="hidden md:grid grid-cols-3 lg:grid-cols-5 gap-3 lg:gap-4">
-            {quickLinks.map((item, i) => {
-              const clickable = Boolean(item.href);
-
-              const CardInner = (
-                <div className="block rounded-xl lg:rounded-2xl overflow-hidden border border-gray-200 bg-white shadow-sm hover:shadow-md hover:-translate-y-1 transition duration-300">
-                  <div className="relative h-36 lg:h-40">
-                    <Image
-                      src={item.image}
-                      alt={item.title}
-                      fill
-                      className="object-cover"
-                      sizes="(max-width: 1024px) 33vw, 20vw"
-                      loading="lazy"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/25 to-transparent" />
-                    <div className="absolute bottom-3 lg:bottom-4 left-3 lg:left-4 right-3 lg:right-4">
-                      <h3 className="text-white font-bold text-sm lg:text-base truncate">
-                        {item.title}
-                      </h3>
-                      <p className="text-white/80 text-xs lg:text-sm truncate">
-                        {item.subtitle}
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              );
-
-              return (
-                <motion.div
-                  key={item.id}
-                  initial={{ opacity: 0, y: 10 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, amount: 0.25 }}
-                  transition={{ delay: i * 0.05 }}
-                >
-                  {clickable && item.href ? (
-                    <Link href={item.href}>{CardInner}</Link>
-                  ) : (
-                    CardInner
-                  )}
-                </motion.div>
-              );
-            })}
+              className="absolute right-[18%] top-[28%] h-[200px] w-[200px] rounded-full blur-[90px]"
+              style={{ background: `${GOLD}18` }}
+            />
+            <div
+              className="absolute bottom-[20%] right-[8%] h-[120px] w-[120px] rounded-full blur-[70px]"
+              style={{ background: `${GOLD}12` }}
+            />
           </div>
         </div>
+
+        {/* Bottom stats bar */}
+        <motion.div
+          className="border-t border-white/10 py-6 lg:py-8"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.8 }}
+        >
+          <div className="flex flex-wrap items-center justify-between gap-6">
+            <div className="flex gap-10 sm:gap-14">
+              {stats.map((stat) => (
+                <div key={stat.label}>
+                  <p className="text-2xl font-bold tracking-tight sm:text-3xl" style={{ color: GOLD }}>
+                    {stat.value}
+                  </p>
+                  <p className="mt-1 text-[11px] font-medium uppercase tracking-[0.15em] text-white/40">
+                    {stat.label}
+                  </p>
+                </div>
+              ))}
+            </div>
+
+            <motion.div
+              animate={{ y: [0, 6, 0] }}
+              transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+              className="hidden text-white/25 sm:block"
+            >
+              <ChevronDown size={22} />
+            </motion.div>
+          </div>
+        </motion.div>
       </div>
+
+      {/* Bottom gradient fade into next section */}
+      <div className="pointer-events-none absolute bottom-0 left-0 right-0 z-20 h-20 bg-gradient-to-b from-transparent to-white dark:to-[#0A0C10]" />
     </section>
   );
 }

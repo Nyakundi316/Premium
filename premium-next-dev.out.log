@@ -1,0 +1,14 @@
+
+> premium@0.1.0 dev
+> next dev --webpack --port 3000
+
+   ▲ Next.js 16.0.7 (webpack)
+   - Local:         http://localhost:3000
+   - Network:       http://192.168.100.38:3000
+
+ ✓ Starting...
+ ✓ Ready in 7.8s
+ ○ Compiling / ...
+ HEAD / 200 in 4.2s (compile: 3.3s, render: 877ms)
+ GET / 200 in 23.3s (compile: 21.3s, render: 2.0s)
+ GET / 200 in 210ms (compile: 28ms, render: 182ms)

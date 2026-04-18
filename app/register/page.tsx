@@ -7,7 +7,7 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import { Eye, EyeOff, ArrowRight, ShieldCheck } from "lucide-react";
 
-const BRAND = "#FFBF00";
+const BRAND = "#FFC20E";
 
 // ✅ Fallback so it still works even if the env var is missing
 const API_BASE_URL =
@@ -98,7 +98,7 @@ export default function SignupPage() {
   };
 
   return (
-    <div className="min-h-[calc(100vh-5rem)] bg-[#F9FAFB] text-[#0F172A]">
+    <div className="min-h-[calc(100vh-5rem)] bg-[#F9FAFB] text-[#0F172A] dark:text-white">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-10">
         <div className="grid lg:grid-cols-2 gap-8 items-stretch">
           {/* Left: visual */}

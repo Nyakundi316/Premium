@@ -70,7 +70,7 @@ export default function BeforeAfterSlider({
           max={100}
           value={value}
           onChange={(e) => setValue(Number(e.target.value))}
-          className="flex-1 accent-[#D4A017]"
+          className="flex-1 accent-[#FFC20E]"
         />
         <span className="text-xs text-slate-500">After</span>
       </div>

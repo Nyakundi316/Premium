@@ -5,8 +5,8 @@ import { usePathname } from "next/navigation";
 import { MessageCircle } from "lucide-react";
 
 const BRAND = {
-  mustard: "#D4A017",
-  navy: "#0A1A2F",
+  mustard: "#FFC20E",
+  navy: "#0D1B30",
 };
 
 const WHATSAPP_NUMBER = "254711789438";

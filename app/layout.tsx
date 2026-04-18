@@ -1,76 +1,90 @@
-// app/layout.tsx
 import type { Metadata, Viewport } from "next";
+import type { ReactNode } from "react";
 import "./globals.css";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import FloatingWhatsAppButton from "./components/FloatingWhatsAppButton";
-import { Figtree } from "next/font/google";
+import JsonLd from "./components/JsonLd";
 
-// Load Figtree font
-const figtree = Figtree({
-  subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700", "800"],
-  variable: "--font-figtree",
-  display: "swap",
-});
-
-// ✅ SEO + App metadata (NO themeColor here anymore)
 export const metadata: Metadata = {
-  title: "Premium Concrete PM – Premium Paving Blocks & Solutions",
+  metadataBase: new URL("https://www.premiummovers.co.ke"),
+  title: "Premium Concrete PM | Cabro Blocks & Paving Solutions Kenya",
   description:
-    "Transform your outdoor spaces with premium concrete paving blocks for driveways, patios, parking areas, and industrial sites. Built for strength, durability, and modern design.",
+    "Premium cabro blocks and paving solutions in Nairobi, Kenya. Supply and installation of 60mm & 80mm interlocking cabro pavers for driveways, parking lots, estates and commercial projects.",
   applicationName: "Premium Concrete PM",
   keywords: [
-    "Premium paving blocks",
-    "Concrete paving Kenya",
-    "Cabro blocks",
-    "Driveway paving",
-    "Industrial paving solutions",
+    "cabro blocks Kenya",
+    "cabro paving Nairobi",
+    "interlocking pavers Kenya",
+    "cabro blocks price Kenya",
+    "80mm cabro blocks",
+    "60mm cabro blocks",
+    "driveway paving Kenya",
+    "paving blocks Nairobi",
+    "cabro installation Kenya",
+    "concrete paving Kenya",
     "Premium Concrete PM",
+    "industrial paving solutions",
   ],
-
-  // ✅ Icons (make sure these files exist in /app)
+  openGraph: {
+    title: "Premium Concrete PM | Cabro Blocks & Paving Solutions Kenya",
+    description:
+      "Premium cabro blocks and paving solutions in Nairobi. Supply and installation of interlocking cabro pavers for driveways, parking, estates and commercial projects.",
+    url: "https://www.premiummovers.co.ke",
+    siteName: "Premium Concrete PM",
+    locale: "en_KE",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Premium Concrete PM | Cabro Blocks & Paving Solutions Kenya",
+    description:
+      "Premium cabro blocks and paving solutions in Nairobi, Kenya.",
+  },
+  robots: { index: true, follow: true },
   icons: {
-    icon: "/favicon.ico",            // main browser tab icon
-    shortcut: "/favicon.ico",        // pinned / shortcut icon
-    apple: "/apple-touch-icon.png",  // iOS home-screen icon (optional but you have it)
+    icon: "/favicon.ico",
+    shortcut: "/favicon.ico",
+    apple: "/apple-touch-icon.png",
   },
 };
 
-// ✅ New: viewport config (this is where themeColor belongs now)
 export const viewport: Viewport = {
-  themeColor: "#FFBF00",
+  themeColor: "#FFC20E",
+};
+
+const localBusinessData = {
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  name: "Premium Concrete PM",
+  description:
+    "Premium cabro blocks and paving solutions in Nairobi, Kenya. Supply and professional installation of interlocking cabro pavers.",
+  url: "https://www.premiummovers.co.ke",
+  telephone: "+254711789438",
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: "Githunguri Road",
+    addressLocality: "Kiambu",
+    addressRegion: "Nairobi Region",
+    addressCountry: "KE",
+  },
+  areaServed: ["Nairobi", "Kiambu", "Ruiru", "Thika", "Juja", "Machakos"],
+  priceRange: "$$",
+  openingHours: "Mo-Sa 07:00-18:00",
 };
 
 export default function RootLayout({
   children,
-}: {
-  children: React.ReactNode;
-}) {
+}: Readonly<{
+  children: ReactNode;
+}>) {
   return (
-    <html lang="en" className={figtree.variable}>
-      <body
-        className="
-          font-figtree
-          min-h-screen
-          bg-[#F9FAFB]
-          text-[#0F172A]
-          antialiased
-          overflow-x-hidden
-        "
-      >
-        {/* Navbar */}
+    <html lang="en">
+      <body className="min-h-screen overflow-x-hidden antialiased">
+        <JsonLd data={localBusinessData} />
         <Navbar />
-
-        {/* Page content */}
-        <main className="pt-20 md:pt-24">
-          {children}
-        </main>
-
-        {/* Footer */}
+        <main className="pt-20 md:pt-24">{children}</main>
         <Footer />
-
-        {/* Floating WhatsApp Button */}
         <FloatingWhatsAppButton />
       </body>
     </html>

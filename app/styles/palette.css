@@ -1,38 +1,43 @@
 :root {
-  /* 🔥 BRAND */
-  --brand: 237 84 33;        /* #ED5421 */
+  /* Brand */
+  --brand: 255 194 14;       /* #FFC20E */
   --brand-2: 255 191 0;      /* optional accent */
-
-  /* 🌑 SURFACES */
-  --bg: 10 12 16;            /* page background */
-  --surface: 255 255 255;    /* used with opacity for cards */
-
-  /* ✍️ TEXT */
-  --text: 255 255 255;
-  --text-muted: 210 210 210;
-
-  /* 🧱 BORDERS */
-  --border: 255 255 255;
-
-  /* ✅ STATUS */
   --success: 34 197 94;
   --danger: 239 68 68;
+}
 
-  /* ✅ Map your existing system to palette (IMPORTANT) */
+:root,
+:root.light {
+  /* Surfaces */
+  --bg: 255 255 255;
+  --surface: 255 255 255;
+
+  /* Text */
+  --text: 15 23 42;
+  --text-muted: 71 85 105;
+
+  /* Borders */
+  --border: 203 213 225;
+
+  /* Mapped semantic tokens */
   --background: rgb(var(--bg));
   --foreground: rgb(var(--text));
 }
 
-/* Optional: auto light mode if you want it */
-@media (prefers-color-scheme: light) {
-  :root {
-    --bg: 255 255 255;
-    --surface: 0 0 0;
-    --text: 17 17 17;
-    --text-muted: 80 80 80;
-    --border: 0 0 0;
+:root.dark {
+  --bg: 10 12 16;
+  --surface: 15 23 42;
+  --text: 226 232 240;
+  --text-muted: 148 163 184;
+  --border: 30 41 59;
+}
 
-    --background: rgb(var(--bg));
-    --foreground: rgb(var(--text));
+@media (prefers-color-scheme: dark) {
+  :root:not(.light):not(.dark) {
+    --bg: 10 12 16;
+    --surface: 15 23 42;
+    --text: 226 232 240;
+    --text-muted: 148 163 184;
+    --border: 30 41 59;
   }
 }

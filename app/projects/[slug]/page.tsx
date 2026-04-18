@@ -12,12 +12,12 @@ const PRODUCTS = [
     name: "Reinforced Concrete Culverts",
     description:
       "Heavy-duty reinforced concrete culverts suitable for drainage, road crossings and estate access roads.",
-    sizes: "300mm, 450mm, 600mm, 900mm, 1200mm",
+    sizes: "300mm, 450mm, 600mm",
     bestFor: "Drainage systems, road crossings, estates & farms",
     images: [
-      "/images/products/culverts/1.jpg",
-      "/images/products/culverts/2.jpg",
-      "/images/products/culverts/3.jpg",
+      "/images/products/culverts/culverts.jpg",
+      "/images/products/culverts/250mm culvert.jpg",
+      "/images/products/culverts/Culverts under the road.jpg",
     ],
   },
   {
@@ -28,8 +28,8 @@ const PRODUCTS = [
     sizes: "60mm, 80mm, Decorative",
     bestFor: "Driveways, parking lots, walkways",
     images: [
-      "/images/products/cabro/1.jpg",
-      "/images/products/cabro/2.jpg",
+      "/images/products/cabro/grey.jpeg",
+      "/images/products/cabro/Hero2.jpeg",
     ],
   },
   {
@@ -40,8 +40,8 @@ const PRODUCTS = [
     sizes: "Standard kerbs & custom drainage sizes",
     bestFor: "Road edges, driveways, drainage lines",
     images: [
-      "/images/products/kerbs-drainage/1.jpg",
-      "/images/products/kerbs-drainage/2.jpg",
+      "/images/products/kerbs-drainage/kerbs 1 (1).jpeg",
+      "/images/products/kerbs-drainage/kerbs 1 (2).jpeg",
     ],
   },
 ];
@@ -53,12 +53,13 @@ function getProduct(slug: string) {
 /* -----------------------------------------
    Page Component
 ------------------------------------------ */
-export default function ProductPage({
+export default async function ProductPage({
   params,
 }: {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 }) {
-  const product = getProduct(params.slug);
+  const { slug } = await params;
+  const product = getProduct(slug);
 
   if (!product) return notFound();
 
@@ -135,8 +136,8 @@ export default function ProductPage({
             <div className="mt-6 flex flex-wrap gap-3">
               <Link
                 href="/quote"
-                className="inline-flex items-center justify-center rounded-full bg-[#D4A017]
-                           px-5 py-3 text-sm font-semibold text-[#0A1A2F] hover:brightness-95 transition"
+                className="inline-flex items-center justify-center rounded-full bg-[#FFC20E]
+                           px-5 py-3 text-sm font-semibold text-[#0D1B30] hover:brightness-95 transition"
               >
                 Request a Quote
               </Link>

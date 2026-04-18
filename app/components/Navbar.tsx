@@ -4,18 +4,19 @@ import React, { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
+import { motion, AnimatePresence } from "framer-motion";
 import {
   Home,
   Hammer,
-  Layers,
+  Boxes,
   GalleryHorizontal,
   Info,
   PhoneCall,
+  Mail,
   SunMedium,
   MoonStar,
   Menu,
   X,
-  UserPlus,
 } from "lucide-react";
 
 export default function Navbar() {
@@ -28,19 +29,27 @@ export default function Navbar() {
   const lastY = useRef(0);
   const ticking = useRef(false);
 
+  const applyTheme = (nextTheme: "light" | "dark") => {
+    document.documentElement.classList.remove("light", "dark");
+    document.documentElement.classList.add(nextTheme);
+    document.documentElement.style.colorScheme = nextTheme;
+  };
+
   const navLinks = [
     { label: "Home", href: "/", icon: Home },
     { label: "Services", href: "/services", icon: Hammer },
+    { label: "Products", href: "/products", icon: Boxes },
     { label: "Projects", href: "/projects", icon: GalleryHorizontal },
     { label: "About", href: "/about", icon: Info },
+    { label: "Contact", href: "/contact", icon: Mail },
   ];
 
-  // ✅ Close menu on route change
+  // Close menu on route change
   useEffect(() => {
     setIsMenuOpen(false);
   }, [pathname]);
 
-  // ✅ Prevent body scroll when menu open
+  // Prevent body scroll when menu open
   useEffect(() => {
     if (typeof window === "undefined") return;
     document.body.style.overflow = isMenuOpen ? "hidden" : "";
@@ -49,7 +58,7 @@ export default function Navbar() {
     };
   }, [isMenuOpen]);
 
-  // ✅ Scroll behavior: keep navbar visible on mobile for easy navigation
+  // Scroll behavior: hide on desktop scroll down, always visible on mobile
   useEffect(() => {
     lastY.current = typeof window !== "undefined" ? window.scrollY : 0;
 
@@ -63,7 +72,6 @@ export default function Navbar() {
 
         setIsScrolled(y > 12);
 
-        // Hide only on desktop, keep visible on mobile
         const isDesktop = window.innerWidth >= 768;
 
         if (!isMenuOpen && isDesktop) {
@@ -82,7 +90,7 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", onScroll);
   }, [isMenuOpen]);
 
-  // Theme init
+  // Theme init from localStorage / system preference
   useEffect(() => {
     if (typeof window === "undefined") return;
 
@@ -97,17 +105,16 @@ export default function Navbar() {
           : "light";
 
     setTheme(initialTheme);
-    document.documentElement.classList.toggle("dark", initialTheme === "dark");
+    applyTheme(initialTheme);
   }, []);
 
   const toggleTheme = () => {
     const next = theme === "dark" ? "light" : "dark";
     setTheme(next);
-    document.documentElement.classList.toggle("dark", next === "dark");
+    applyTheme(next);
     localStorage.setItem("theme", next);
   };
 
-  // ✅ Floating glass (no radial circle)
   const navGlassTop = `
     bg-black/20
     border border-white/10
@@ -117,10 +124,10 @@ export default function Navbar() {
   `;
 
   const navGlassScrolled = `
-    bg-[#0A1A2F]/55
-    border border-white/15
-    backdrop-blur-2xl
-    shadow-[0_18px_70px_rgba(0,0,0,0.60)]
+    bg-[#0D1B30]/92
+    border border-white/10
+    backdrop-blur-md
+    shadow-[0_4px_30px_rgba(0,0,0,0.25)]
     text-white
   `;
 
@@ -140,17 +147,18 @@ export default function Navbar() {
             w-full transition-all duration-300
             ${isMenuOpen ? "rounded-3xl" : "rounded-full"}
             ${navClasses}
-            ${isMenuOpen ? "bg-[#0A1A2F]/95 backdrop-blur-none" : ""} 
+            ${isMenuOpen ? "bg-[#0D1B30]/95 backdrop-blur-none" : ""}
           `}
         >
-          {/* Top Row */}
+          {/* ── TOP ROW ── */}
           <div className="flex items-center justify-between px-4 sm:px-6 py-2.5">
+
             {/* Logo */}
-            <Link href="/" className="flex items-center gap-2">
+            <Link href="/" className="flex items-center gap-2 shrink-0">
               <div className="relative h-9 w-16 sm:h-10 sm:w-20">
                 <Image
                   src="/images/pm logo.png"
-                  alt="Premium Concrete Logo"
+                  alt="Premium Cabro Logo"
                   fill
                   className="object-contain"
                   priority
@@ -158,8 +166,8 @@ export default function Navbar() {
               </div>
             </Link>
 
-            {/* Desktop Links */}
-            <div className="hidden md:flex items-center gap-2 text-sm font-medium">
+            {/* Desktop Nav Links */}
+            <div className="hidden md:flex items-center gap-1 text-sm font-medium">
               {navLinks.map(({ label, href, icon: Icon }) => {
                 const isActive =
                   href === "/" ? pathname === "/" : pathname.startsWith(href);
@@ -173,15 +181,15 @@ export default function Navbar() {
                       transition-colors
                       ${
                         isActive
-                          ? "text-[#D4A017] bg-[#D4A017]/12"
-                          : "text-white/90 hover:text-[#D4A017] hover:bg-white/10"
+                          ? "text-[#FFC20E] bg-[#FFC20E]/12"
+                          : "text-white/90 hover:text-[#FFC20E] hover:bg-white/10"
                       }
                     `}
                   >
                     <Icon className="h-4 w-4" />
                     <span>{label}</span>
                     {isActive && (
-                      <span className="absolute -bottom-1 left-1/2 h-[2px] w-8 -translate-x-1/2 rounded-full bg-[#D4A017]" />
+                      <span className="absolute -bottom-1 left-1/2 h-0.5 w-8 -translate-x-1/2 rounded-full bg-[#FFC20E]" />
                     )}
                   </Link>
                 );
@@ -190,40 +198,41 @@ export default function Navbar() {
 
             {/* Right Actions */}
             <div className="flex items-center gap-2 sm:gap-3">
-              <a
-                href="tel:+254116724251"
-                className="hidden lg:inline-flex items-center gap-1 text-xs font-medium
-                           text-white/90 hover:text-[#D4A017] transition-colors"
+
+              {/* Theme toggle */}
+              <button
+                onClick={toggleTheme}
+                aria-label="Toggle theme"
+                className="hidden sm:inline-flex h-8 w-8 items-center justify-center rounded-full
+                           border border-white/18 bg-white/10 hover:bg-white/15 transition text-white/80"
               >
-                <PhoneCall className="h-4 w-4" />
-                <span>Call us</span>
-              </a>
+                {theme === "dark"
+                  ? <SunMedium className="h-4 w-4" />
+                  : <MoonStar className="h-4 w-4" />
+                }
+              </button>
 
-    
-            
-
-              {/* Sign Up */}
-              <Link
-                href="/register"
-                className="hidden sm:inline-flex items-center gap-2 rounded-full
-                           border border-white/18 bg-white/10 px-4 py-2 text-xs font-semibold text-white
-                           hover:bg-white/15 hover:border-white/25 transition"
-              >
-                <UserPlus className="h-4 w-4 text-[#D4A017]" />
-                <span>Sign Up</span>
-              </Link>
-
-              {/* CTA */}
+              {/* Get a Quote — primary CTA */}
               <Link
                 href="/quote"
                 className="hidden sm:inline-flex items-center rounded-full
-                           bg-[#D4A017] px-4 py-2 text-xs font-semibold text-[#0A1A2F]
-                           hover:brightness-95 transition shadow-md"
+                           bg-[#FFC20E] px-5 py-2 text-xs font-bold text-[#0D1B30]
+                           hover:brightness-95 active:scale-95 transition shadow-md"
               >
                 Get a Quote
               </Link>
 
-              {/* Mobile menu toggle */}
+              {/* Mobile: quote CTA (compact) */}
+              <Link
+                href="/quote"
+                className="sm:hidden inline-flex items-center rounded-full
+                           bg-[#FFC20E] px-3 py-1.5 text-xs font-bold text-[#0D1B30]
+                           hover:brightness-95 transition shadow-md"
+              >
+                Quote
+              </Link>
+
+              {/* Mobile hamburger */}
               <button
                 className="
                   md:hidden inline-flex h-9 w-9 items-center justify-center rounded-full
@@ -237,60 +246,102 @@ export default function Navbar() {
             </div>
           </div>
 
-          {/* Mobile Menu */}
-          {isMenuOpen && (
-            <div className="md:hidden px-4 sm:px-6 pb-4 border-t border-white/10">
-              <div className="flex flex-col gap-1.5 pt-3">
-                {navLinks.map(({ label, href, icon: Icon }) => {
-                  const isActive =
-                    href === "/" ? pathname === "/" : pathname.startsWith(href);
+          {/* ── MOBILE MENU ── */}
+          <AnimatePresence initial={false}>
+            {isMenuOpen && (
+              <motion.div
+                key="mobile-menu"
+                initial={{ opacity: 0, height: 0 }}
+                animate={{ opacity: 1, height: "auto" }}
+                exit={{ opacity: 0, height: 0 }}
+                transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
+                className="md:hidden overflow-hidden"
+              >
+                <div className="px-4 sm:px-6 pb-5 border-t border-white/10">
+                  <motion.div
+                    className="flex flex-col gap-1.5 pt-3"
+                    initial="hidden"
+                    animate="show"
+                    variants={{
+                      hidden: {},
+                      show: { transition: { staggerChildren: 0.05, delayChildren: 0.08 } },
+                    }}
+                  >
+                    {navLinks.map(({ label, href, icon: Icon }) => {
+                      const isActive =
+                        href === "/" ? pathname === "/" : pathname.startsWith(href);
 
-                  return (
-                    <Link
-                      key={href}
-                      href={href}
-                      className={`
-                        flex items-center gap-2 rounded-xl px-3 py-2
-                        transition-colors
-                        ${
-                          isActive
-                            ? "bg-[#D4A017]/12 text-[#D4A017]"
-                            : "text-white/90 hover:bg-white/10"
-                        }
-                      `}
+                      return (
+                        <motion.div
+                          key={href}
+                          variants={{
+                            hidden: { opacity: 0, x: -8 },
+                            show: { opacity: 1, x: 0, transition: { duration: 0.22 } },
+                          }}
+                        >
+                          <Link
+                            href={href}
+                            className={`
+                              flex items-center gap-2 rounded-xl px-3 py-2.5
+                              transition-colors text-sm font-medium
+                              ${
+                                isActive
+                                  ? "bg-[#FFC20E]/12 text-[#FFC20E]"
+                                  : "text-white/90 hover:bg-white/10"
+                              }
+                            `}
+                          >
+                            <Icon className="h-4 w-4" />
+                            <span>{label}</span>
+                          </Link>
+                        </motion.div>
+                      );
+                    })}
+
+                    {/* Divider */}
+                    <div className="my-2 border-t border-white/10" />
+
+                    {/* Phone */}
+                    <motion.div
+                      variants={{
+                        hidden: { opacity: 0, x: -8 },
+                        show: { opacity: 1, x: 0, transition: { duration: 0.22 } },
+                      }}
                     >
-                      <Icon className="h-4 w-4" />
-                      <span>{label}</span>
-                    </Link>
-                  );
-                })}
+                      <a
+                        href="tel:+254711789438"
+                        className="flex items-center gap-2 rounded-xl px-3 py-2.5
+                                   text-sm font-medium text-white/80 hover:bg-white/10 transition"
+                      >
+                        <PhoneCall className="h-4 w-4 text-[#FFC20E]" />
+                        <span>Call: 0711 789 438</span>
+                      </a>
+                    </motion.div>
 
-                <Link
-                  href="/register"
-                  className="
-                    mt-2 inline-flex items-center justify-center gap-2 rounded-full
-                    border border-white/18 bg-white/10 px-4 py-2 text-xs font-semibold text-white
-                    hover:bg-white/15 transition
-                  "
-                >
-                  <UserPlus className="h-4 w-4 text-[#D4A017]" />
-                  <span>Sign Up</span>
-                </Link>
-
-                <Link
-                  href="/quote"
-                  className="
-                    mt-2 inline-flex items-center justify-center gap-2 rounded-full
-                    bg-[#D4A017] px-4 py-2 text-xs font-semibold text-[#0A1A2F]
-                    shadow-md hover:brightness-95 transition
-                  "
-                >
-                  <PhoneCall className="h-4 w-4" />
-                  <span>Request a Quote</span>
-                </Link>
-              </div>
-            </div>
-          )}
+                    {/* Primary CTA */}
+                    <motion.div
+                      variants={{
+                        hidden: { opacity: 0, y: 6 },
+                        show: { opacity: 1, y: 0, transition: { duration: 0.25 } },
+                      }}
+                    >
+                      <Link
+                        href="/quote"
+                        className="
+                          mt-1 inline-flex items-center justify-center gap-2 rounded-full
+                          bg-[#FFC20E] px-4 py-2.5 text-sm font-bold text-[#0D1B30]
+                          shadow-md hover:brightness-95 active:scale-95 transition w-full
+                        "
+                      >
+                        <PhoneCall className="h-4 w-4" />
+                        <span>Get a Free Quote</span>
+                      </Link>
+                    </motion.div>
+                  </motion.div>
+                </div>
+              </motion.div>
+            )}
+          </AnimatePresence>
         </nav>
       </div>
     </header>

@@ -32,8 +32,8 @@ type Pattern = {
   image: string;
 };
 
-const BRAND_GOLD = "#FFBF00";
-const BRAND_GOLD_DARK = "#E6AC00";
+const BRAND_GOLD = "#FFC20E";
+const BRAND_GOLD_DARK = "#B8860B";
 
 // ✅ Fixed type: React.ReactNode (not React.ReactMode)
 const patternTypes: {

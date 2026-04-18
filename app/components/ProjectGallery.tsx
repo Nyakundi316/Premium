@@ -32,7 +32,7 @@ export default function ProductGallery({ images }: { images: string[] }) {
               key={img}
               onClick={() => setActive(img)}
               className={`relative h-20 w-24 rounded-lg overflow-hidden border bg-white
-                ${active === img ? "ring-2 ring-[#D4A017] border-transparent" : "border-slate-200"}
+                ${active === img ? "ring-2 ring-[#FFC20E] border-transparent" : "border-slate-200"}
               `}
               aria-label="Select image"
               type="button"

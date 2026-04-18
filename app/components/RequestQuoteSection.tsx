@@ -1,120 +1,69 @@
 "use client";
 
 import { useState, FormEvent } from "react";
-import Link from "next/link";
+import { Phone, MessageCircle } from "lucide-react";
+
+const GOLD = "#FFC20E";
 
 export default function RequestQuoteSection() {
-  const [status, setStatus] = useState<"idle" | "submitting" | "success">(
-    "idle"
-  );
-
-  const [showMore, setShowMore] = useState(false);
+  const [status, setStatus] = useState<"idle" | "submitting" | "success">("idle");
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setStatus("submitting");
-
-    setTimeout(() => {
-      setStatus("success");
-    }, 800);
+    setTimeout(() => setStatus("success"), 800);
   };
 
+  const inputClass =
+    "w-full rounded-xl border border-slate-200 bg-slate-50/50 px-4 py-2.5 text-sm transition focus:border-[#FFC20E] focus:outline-none focus:ring-2 focus:ring-[#FFC20E]/20";
+
   return (
-    <section
-      id="quote"
-      className="py-16 md:py-20 bg-[#e9ecf3] text-[#041544]"
-    >
-      <div className="max-w-6xl mx-auto px-4 md:px-8">
-        
-        {/* HEADER */}
-        <div className="text-center max-w-3xl mx-auto mb-10 md:mb-12">
-          <span className="inline-flex items-center gap-2 rounded-full bg-[#FFF7E0] border border-[#FACC6B]/70 px-4 py-1 mb-4">
-            <div className="w-2 h-2 bg-[#D4A017] rounded-full animate-pulse" />
-            <span className="text-[10px] md:text-xs uppercase tracking-[0.25em] text-[#A47500]">
-              Request a Free Quote
-            </span>
+    <section className="bg-white dark:bg-[#0A0C10] py-16 lg:py-24">
+      <div className="mx-auto max-w-7xl px-5 sm:px-8 lg:px-12">
+
+        <div className="mb-10 max-w-xl">
+          <span className="mb-4 inline-block text-[11px] font-semibold uppercase tracking-[0.2em]" style={{ color: GOLD }}>
+            Get a Quote
           </span>
-
-          <h2 className="text-3xl md:text-4xl font-bold">
-            Get a{" "}
-            <span className="text-[#D4A017]">Cabro & Concrete Quote</span>
+          <h2 className="text-3xl font-bold text-[#0F172A] dark:text-white sm:text-4xl">
+            Request a free cabro & concrete quote
           </h2>
-
-          <p className="mt-3 text-sm md:text-base text-slate-600">
-            Provide your project details — we will send a custom quotation.
+          <p className="mt-3 text-base text-slate-500">
+            Provide your project details — we'll send a custom quotation.
           </p>
         </div>
 
-        {/* LAYOUT */}
-        <div className="grid gap-8 lg:gap-10 lg:grid-cols-[1.1fr_0.9fr] items-start">
+        <div className="grid items-start gap-8 lg:grid-cols-[1.15fr_0.85fr] lg:gap-12">
 
-          {/* LEFT FORM */}
-          <div className="bg-white rounded-3xl border border-slate-200 shadow-sm p-6 md:p-8">
-            <form className="space-y-5" onSubmit={handleSubmit}>
-
-              {/* NAME + PHONE */}
-              <div className="grid md:grid-cols-2 gap-4">
+          {/* Form */}
+          <div className="rounded-2xl border border-slate-100 bg-white p-6 shadow-sm sm:p-8">
+            <form className="space-y-4" onSubmit={handleSubmit}>
+              <div className="grid gap-4 sm:grid-cols-2">
                 <div>
-                  <label className="block text-xs font-semibold text-slate-600 uppercase mb-1.5">
-                    Full Name *
-                  </label>
-                  <input
-                    required
-                    type="text"
-                    placeholder="e.g. John Mwangi"
-                    className="w-full rounded-xl border border-slate-300 bg-slate-50 px-3.5 py-2.5 focus:ring-2 focus:ring-[#D4A017]/60"
-                  />
+                  <label className="mb-1.5 block text-xs font-semibold uppercase tracking-wide text-slate-500">Full Name *</label>
+                  <input required type="text" placeholder="e.g. John Mwangi" className={inputClass} />
                 </div>
-
                 <div>
-                  <label className="block text-xs font-semibold text-slate-600 uppercase mb-1.5">
-                    Phone Number *
-                  </label>
-                  <input
-                    required
-                    type="tel"
-                    placeholder="e.g. 0712 345 678"
-                    className="w-full rounded-xl border border-slate-300 bg-slate-50 px-3.5 py-2.5 focus:ring-2 focus:ring-[#D4A017]/60"
-                  />
+                  <label className="mb-1.5 block text-xs font-semibold uppercase tracking-wide text-slate-500">Phone Number *</label>
+                  <input required type="tel" placeholder="e.g. 0712 345 678" className={inputClass} />
                 </div>
               </div>
 
-              {/* EMAIL + LOCATION */}
-              <div className="grid md:grid-cols-2 gap-4">
+              <div className="grid gap-4 sm:grid-cols-2">
                 <div>
-                  <label className="block text-xs font-semibold text-slate-600 uppercase mb-1.5">
-                    Email (optional)
-                  </label>
-                  <input
-                    type="email"
-                    placeholder="your@email.com"
-                    className="w-full rounded-xl border border-slate-300 bg-slate-50 px-3.5 py-2.5"
-                  />
+                  <label className="mb-1.5 block text-xs font-semibold uppercase tracking-wide text-slate-500">Email (optional)</label>
+                  <input type="email" placeholder="your@email.com" className={inputClass} />
                 </div>
-
                 <div>
-                  <label className="block text-xs font-semibold text-slate-600 uppercase mb-1.5">
-                    Site Location *
-                  </label>
-                  <input
-                    required
-                    type="text"
-                    placeholder="e.g. Ruiru, Kiambu"
-                    className="w-full rounded-xl border border-slate-300 bg-slate-50 px-3.5 py-2.5"
-                  />
+                  <label className="mb-1.5 block text-xs font-semibold uppercase tracking-wide text-slate-500">Site Location *</label>
+                  <input required type="text" placeholder="e.g. Ruiru, Kiambu" className={inputClass} />
                 </div>
               </div>
 
-              {/* SERVICE + AREA */}
-              <div className="grid md:grid-cols-2 gap-4">
+              <div className="grid gap-4 sm:grid-cols-2">
                 <div>
-                  <label className="block text-xs font-semibold text-slate-600 uppercase mb-1.5">
-                    What do you need? *
-                  </label>
-                  <select
-                    required
-                    className="w-full rounded-xl border border-slate-300 bg-slate-50 px-3.5 py-2.5"
-                  >
+                  <label className="mb-1.5 block text-xs font-semibold uppercase tracking-wide text-slate-500">What do you need? *</label>
+                  <select required className={inputClass}>
                     <option value="">Select option</option>
                     <option value="cabro">Cabro Paving (60mm / 80mm)</option>
                     <option value="cobblestone">Cobblestone Driveway</option>
@@ -124,102 +73,66 @@ export default function RequestQuoteSection() {
                     <option value="supply">Supply Only</option>
                   </select>
                 </div>
-
                 <div>
-                  <label className="block text-xs font-semibold text-slate-600 uppercase mb-1.5">
-                    Area Size (m²)
-                  </label>
-                  <input
-                    type="text"
-                    placeholder="e.g. 150 m²"
-                    className="w-full rounded-xl border border-slate-300 bg-slate-50 px-3.5 py-2.5"
-                  />
+                  <label className="mb-1.5 block text-xs font-semibold uppercase tracking-wide text-slate-500">Area Size (m²)</label>
+                  <input type="text" placeholder="e.g. 150 m²" className={inputClass} />
                 </div>
               </div>
 
-              {/* MESSAGE */}
               <div>
-                <label className="block text-xs font-semibold text-slate-600 uppercase mb-1.5">
-                  Additional details
-                </label>
-                <textarea
-                  rows={4}
-                  placeholder="Describe your driveway, parking or yard..."
-                  className="w-full rounded-xl border border-slate-300 bg-slate-50 px-3.5 py-2.5 resize-none"
-                />
+                <label className="mb-1.5 block text-xs font-semibold uppercase tracking-wide text-slate-500">Additional details</label>
+                <textarea rows={3} placeholder="Describe your project..." className={`${inputClass} resize-none`} />
               </div>
 
-              {/* SUBMIT */}
               <button
                 type="submit"
                 disabled={status === "submitting"}
-                className="w-full md:w-auto rounded-full bg-[#D4A017] px-8 py-3 font-semibold text-[#0A1A2F] hover:bg-[#b68f13] transition"
+                className="rounded-full px-8 py-3 text-sm font-semibold text-[#0D1B30] transition hover:brightness-110 disabled:opacity-60"
+                style={{ background: GOLD }}
               >
                 {status === "submitting" ? "Sending..." : "Submit Quote Request"}
               </button>
 
               {status === "success" && (
-                <p className="text-xs text-emerald-700 mt-2">
-                  ✅ Thank you! We will contact you shortly.
-                </p>
+                <p className="text-sm text-emerald-600">Thank you! We'll contact you shortly.</p>
               )}
             </form>
           </div>
 
-          {/* RIGHT – INFO WITH READ MORE */}
-          <div className="rounded-3xl bg-[#0A1A2F] text-slate-50 p-6 md:p-8 shadow-lg">
-            <h3 className="text-lg md:text-xl font-semibold mb-3">
-              Before You Request a Quote
-            </h3>
+          {/* Info panel */}
+          <div className="rounded-2xl bg-[#0D1B30] p-6 sm:p-8">
+            <h3 className="text-lg font-semibold text-white">Before you request a quote</h3>
 
-            <p className="text-sm md:text-base text-slate-200 leading-relaxed">
-              Our team provides accurate quotations for cabro paving, culverts,
-              kerbs and fencing posts across Nairobi, Kiambu and nearby regions.
-              <br /><br />
-              <span className={`${showMore ? "inline" : "hidden"}`}>
-                Including clear details like location, access roads, total area
-                size, and preferred block type helps us provide faster and more
-                accurate pricing.
-                <br /><br />
-                We also offer free consultations to guide you on the best
-                thickness, pattern and installation option depending on your
-                project requirements.
-              </span>
+            <p className="mt-3 text-sm leading-7 text-white/55">
+              Our team provides accurate quotations for cabro paving, culverts, kerbs and fencing posts across Nairobi, Kiambu and nearby regions.
+            </p>
+            <p className="mt-3 text-sm leading-7 text-white/55">
+              Including clear details like location, access roads, total area size, and preferred block type helps us provide faster and more accurate pricing.
             </p>
 
-            {/* READ MORE BUTTON */}
-            <button
-              onClick={() => setShowMore(!showMore)}
-              className="mt-4 text-xs font-semibold bg-white text-[#0A1A2F] px-4 py-1.5 rounded-full hover:bg-[#FACC6B] transition"
-            >
-              {showMore ? "Read Less" : "Read More"}
-            </button>
-
-            {/* MAIN CONTACT */}
-            <div className="mt-6 border-t border-white/10 pt-4">
-              <p className="text-xs md:text-sm text-slate-200">
-                For urgent assistance:
-              </p>
-
-              <div className="flex flex-wrap gap-2 mt-2">
+            <div className="mt-6 border-t border-white/10 pt-5">
+              <p className="mb-3 text-xs font-medium uppercase tracking-wider text-white/35">For urgent assistance</p>
+              <div className="flex flex-wrap gap-2">
                 <a
                   href="tel:+254711789438"
-                  className="rounded-full bg-white text-[#0A1A2F] px-4 py-1.5 text-xs font-semibold hover:bg-[#FACC6B]"
+                  className="inline-flex items-center gap-2 rounded-full px-4 py-2 text-xs font-semibold text-[#0D1B30] transition hover:brightness-110"
+                  style={{ background: GOLD }}
                 >
-                  Call: 0711 789 438
+                  <Phone size={14} />
+                  0711 789 438
                 </a>
-
                 <a
                   href="https://wa.me/254711789438"
                   target="_blank"
-                  className="rounded-full border border-white/60 px-4 py-1.5 text-xs hover:bg-white/10"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 rounded-full border border-white/15 px-4 py-2 text-xs font-medium text-white transition hover:bg-white/10"
                 >
+                  <MessageCircle size={14} />
                   WhatsApp Us
                 </a>
               </div>
             </div>
           </div>
-
         </div>
       </div>
     </section>

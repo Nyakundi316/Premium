@@ -1,151 +1,132 @@
 "use client";
 
 import {
+  ClipboardList,
   CheckCircle,
   PhoneCall,
-  ClipboardList,
-  Hammer,
   Truck,
+  Hammer,
   ArrowRight,
 } from "lucide-react";
 import Link from "next/link";
+import { motion } from "framer-motion";
+
+const GOLD = "#FFC20E";
+
+const steps = [
+  {
+    id: 1,
+    title: "Site Visit & Assessment",
+    desc: "Our team visits your site to measure the area, understand soil conditions, and discuss design preferences.",
+    icon: ClipboardList,
+  },
+  {
+    id: 2,
+    title: "Product Selection",
+    desc: "Choose from our wide range of cabro, cobblestone, hexagon, trihex and industrial paving blocks.",
+    icon: CheckCircle,
+  },
+  {
+    id: 3,
+    title: "Quotation & Approval",
+    desc: "We prepare a detailed quote covering materials, labour, delivery, and installation timeline.",
+    icon: PhoneCall,
+  },
+  {
+    id: 4,
+    title: "Manufacturing & Delivery",
+    desc: "Your paving blocks are machine-pressed, cured, and delivered directly to the site.",
+    icon: Truck,
+  },
+  {
+    id: 5,
+    title: "Professional Installation",
+    desc: "Our trained installers prepare the base, compact the surface, lay the cabro, and apply edge restraints.",
+    icon: Hammer,
+  },
+];
 
 export default function HowItWorksSection() {
-  const steps = [
-    {
-      id: 1,
-      title: "Site Visit & Assessment",
-      desc: "Our team visits your site to measure the area, understand soil conditions, and discuss design preferences.",
-      icon: ClipboardList,
-    },
-    {
-      id: 2,
-      title: "Product Selection",
-      desc: "Choose from our wide range of cabro, cobblestone, hexagon, trihex and industrial paving blocks.",
-      icon: CheckCircle,
-    },
-    {
-      id: 3,
-      title: "Quotation & Approval",
-      desc: "We prepare a detailed quote covering materials, labour, delivery, and installation timeline.",
-      icon: PhoneCall,
-    },
-    {
-      id: 4,
-      title: "Manufacturing & Delivery",
-      desc: "Your paving blocks are machine-pressed, cured, and delivered directly to the site.",
-      icon: Truck,
-    },
-    {
-      id: 5,
-      title: "Professional Installation",
-      desc: "Our trained installers prepare the base, compact the surface, lay the cabro, and apply edge restraints.",
-      icon: Hammer,
-    },
-  ];
-
   return (
-    <section className="py-14 sm:py-16 lg:py-20 bg-[#F5F7FA] text-[#041544]">
-      {/* ✅ Match your other sections for alignment */}
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        {/* HEADER */}
-        <div className="text-center mb-10 sm:mb-12 lg:mb-14">
-          <span className="inline-flex items-center gap-2 rounded-full bg-[#FFF7E0] border border-[#FACC6B]/70 px-4 py-1 mb-4">
-            <div className="w-2 h-2 bg-[#D4A017] rounded-full animate-pulse" />
-            <span className="text-[11px] sm:text-xs uppercase tracking-[0.25em] text-[#A46306]">
-              Our Process
-            </span>
+    <section className="relative bg-[#0D1B30] py-16 lg:py-24">
+      <div className="mx-auto max-w-7xl px-5 sm:px-8 lg:px-12">
+
+        <motion.div
+          className="mb-12 max-w-2xl"
+          initial={{ opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5 }}
+        >
+          <span className="mb-4 inline-block text-[11px] font-semibold uppercase tracking-[0.2em]" style={{ color: GOLD }}>
+            Our Process
           </span>
-
-          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold leading-tight px-2">
-            How <span className="text-[#D4A017]">It Works</span>
+          <h2 className="text-3xl font-bold leading-tight text-white sm:text-4xl">
+            How it works
           </h2>
-
-          <p className="mt-3 text-sm sm:text-base text-gray-600 max-w-2xl mx-auto px-2">
-            A simple, clear 5-step process from the first call to the final
-            installation.
+          <p className="mt-4 text-base leading-7 text-white/55">
+            Here's exactly what happens after you contact us — no surprises, no hidden costs.
           </p>
-        </div>
+        </motion.div>
 
-        {/* ✅ Mobile-first: horizontal swipe cards on small screens */}
-        <div className="sm:hidden -mx-4 px-4">
+        {/* Mobile: horizontal scroll */}
+        <div className="sm:hidden -mx-5 px-5">
           <div
-            className="flex gap-4 overflow-x-auto pb-2 snap-x snap-mandatory"
+            className="flex gap-4 overflow-x-auto pb-4 snap-x snap-mandatory"
             style={{ WebkitOverflowScrolling: "touch", scrollbarWidth: "none" }}
           >
-            <style jsx>{`
-              div::-webkit-scrollbar {
-                display: none;
-              }
-            `}</style>
-
             {steps.map(({ id, title, desc, icon: Icon }) => (
               <div
                 key={id}
-                className="snap-start min-w-[82%] bg-white border border-gray-200 rounded-2xl p-5 shadow-sm"
+                className="min-w-[80%] snap-start rounded-2xl border border-white/10 bg-white/5 p-5 backdrop-blur-sm"
               >
-                <div className="flex items-center justify-between mb-3">
-                  <div className="h-12 w-12 rounded-xl flex items-center justify-center bg-[#D4A017]/15">
-                    <Icon className="h-6 w-6 text-[#D4A017]" />
+                <div className="mb-4 flex items-center justify-between">
+                  <div className="flex h-11 w-11 items-center justify-center rounded-xl" style={{ background: `${GOLD}20` }}>
+                    <Icon size={20} style={{ color: GOLD }} />
                   </div>
-
-                  <span className="text-xs font-semibold text-gray-500">
-                    Step {id}/5
-                  </span>
+                  <span className="text-xs font-medium text-white/35">{id}/5</span>
                 </div>
-
-                <h3 className="text-base font-semibold mb-2 break-words">
-                  {id}. {title}
-                </h3>
-                <p className="text-sm text-gray-600 leading-relaxed break-words">
-                  {desc}
-                </p>
+                <h3 className="text-base font-semibold text-white">{title}</h3>
+                <p className="mt-2 text-sm leading-6 text-white/50">{desc}</p>
               </div>
             ))}
           </div>
-
-          <p className="mt-3 text-xs text-gray-500 text-center">
-            Swipe to view the steps →
-          </p>
         </div>
 
-        {/* ✅ Tablet/Desktop grid */}
-        <div className="hidden sm:grid sm:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-6 lg:gap-7">
-          {steps.map(({ id, title, desc, icon: Icon }) => (
-            <div
+        {/* Desktop: grid */}
+        <div className="hidden gap-4 sm:grid sm:grid-cols-2 lg:grid-cols-3 lg:gap-5">
+          {steps.map(({ id, title, desc, icon: Icon }, i) => (
+            <motion.div
               key={id}
-              className="group bg-white border border-gray-200 rounded-2xl p-6 shadow-sm hover:shadow-xl hover:border-[#D4A017]/50 transition-all"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: i * 0.06, duration: 0.45 }}
+              className="group rounded-2xl border border-white/8 bg-white/[0.04] p-6 backdrop-blur-sm transition-all hover:border-white/15 hover:bg-white/[0.07]"
             >
-              <div className="flex items-start justify-between gap-3">
-                <div className="h-14 w-14 rounded-xl flex items-center justify-center bg-[#D4A017]/15 mb-4 group-hover:scale-105 transition-transform">
-                  <Icon className="h-7 w-7 text-[#D4A017]" />
+              <div className="mb-4 flex items-center justify-between">
+                <div className="flex h-12 w-12 items-center justify-center rounded-xl transition-transform group-hover:scale-105" style={{ background: `${GOLD}18` }}>
+                  <Icon size={22} style={{ color: GOLD }} />
                 </div>
-
-                <span className="text-xs font-semibold text-gray-500 mt-2">
-                  Step {id}
-                </span>
+                <span className="text-xs font-medium text-white/30">Step {id}</span>
               </div>
-
-              <h3 className="text-lg md:text-xl font-semibold mb-2 break-words">
-                {id}. {title}
-              </h3>
-              <p className="text-sm text-gray-600 leading-relaxed break-words">
-                {desc}
-              </p>
-            </div>
+              <h3 className="text-lg font-semibold text-white">{title}</h3>
+              <p className="mt-2 text-sm leading-6 text-white/45">{desc}</p>
+            </motion.div>
           ))}
         </div>
 
-        {/* ✅ Optional small helper line (no CTA button) */}
         <div className="mt-10 text-center">
           <Link
             href="/products/cabro"
-            className="inline-flex items-center gap-2 text-sm font-semibold text-[#A46306] hover:text-[#D4A017] transition-colors"
+            className="inline-flex items-center gap-2 text-sm font-semibold transition-colors hover:opacity-80"
+            style={{ color: GOLD }}
           >
-            View cabro options <ArrowRight className="h-4 w-4" />
+            View cabro options <ArrowRight size={15} />
           </Link>
         </div>
       </div>
+      <div className="pointer-events-none absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-b from-transparent to-white dark:to-[#0A0C10]" />
     </section>
   );
 }

@@ -86,8 +86,8 @@ const projects: Project[] = [
   },
 ];
 
-const BRAND_GOLD = "#FFBF00";
-const BRAND_GOLD_DARK = "#E6AC00";
+const BRAND_GOLD = "#FFC20E";
+const BRAND_GOLD_DARK = "#B8860B";
 
 function clampIndex(i: number, len: number) {
   if (len <= 0) return 0;
@@ -160,7 +160,7 @@ export default function CompactProjectsSection() {
         <div className="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center mb-12 lg:mb-16">
           {/* Left Column - Text Content */}
           <div className="order-2 lg:order-1">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#FFBF00]/10 mb-4">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#FFC20E]/10 mb-4">
               <Filter className="w-4 h-4" style={{ color: BRAND_GOLD_DARK }} />
               <span className="text-xs font-medium text-[#996C00]">
                 Proven Quality & Excellence
@@ -170,7 +170,7 @@ export default function CompactProjectsSection() {
             <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
               Transforming Spaces with{" "}
               <span
-                className="bg-gradient-to-r from-[#FFBF00] to-[#E6AC00] bg-clip-text text-transparent"
+                className="bg-gradient-to-r from-[#FFC20E] to-[#B8860B] bg-clip-text text-transparent"
               >
                 Precision & Craftsmanship
               </span>
@@ -330,7 +330,7 @@ export default function CompactProjectsSection() {
                     {project.location}
                   </p>
                 </div>
-                <div className="h-0.5 bg-[#FFBF00] scale-x-0 hover:scale-x-100 transition-transform origin-left duration-300" />
+                <div className="h-0.5 bg-[#FFC20E] scale-x-0 hover:scale-x-100 transition-transform origin-left duration-300" />
               </div>
             </motion.button>
           ))}
@@ -481,7 +481,7 @@ export default function CompactProjectsSection() {
                               type="button"
                               onClick={() => setSlideIndex(i)}
                               className={`relative h-16 w-20 flex-shrink-0 overflow-hidden rounded-lg border ${
-                                i === slideIndex ? "border-[#FFBF00]" : "border-gray-200"
+                                i === slideIndex ? "border-[#FFC20E]" : "border-gray-200"
                               }`}
                               aria-label={`Select image ${i + 1}`}
                             >

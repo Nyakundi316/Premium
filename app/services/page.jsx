@@ -18,7 +18,7 @@ import {
   HelpCircle,
 } from "lucide-react";
 
-const BRAND = "#DA690D";
+const BRAND = "#FFC20E";
 const PHONE = "+254711789438";
 
 // ✅ Reliable online Kenya map PNG (Wikimedia) – shows consistently
@@ -108,22 +108,22 @@ const projects = [
   {
     title: "Residential driveway cabro installation",
     location: "Kiambu",
-    image: "/images/projects/driveway-1.jpg",
+    image: "/images/Driveways.png",
   },
   {
     title: "Commercial compound cabro paving",
     location: "Nairobi",
-    image: "/images/projects/compound-1.jpg",
+    image: "/images/Parking Lot.jpeg",
   },
   {
     title: "Estate kerbs & drainage finishing",
     location: "Ruiru",
-    image: "/images/projects/kerbs-1.jpg",
+    image: "/images/kerbs-drainage.jpg",
   },
   {
     title: "Culvert supply for drainage works",
     location: "Thika",
-    image: "/images/projects/culvert-1.jpg",
+    image: "/images/products/culverts/culverts.jpg",
   },
 ];
 

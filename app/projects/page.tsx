@@ -14,8 +14,8 @@ import {
 } from "lucide-react";
 
 /* ---------------- BRAND ---------------- */
-const BRAND_GOLD = "#FFBF00";
-const BRAND_GOLD_DARK = "#E6AC00";
+const BRAND_GOLD = "#FFC20E";
+const BRAND_GOLD_DARK = "#B8860B";
 const BG_FROM = "#EEF2F6";
 const BG_TO = "#FFFFFF";
 
@@ -51,23 +51,97 @@ type Project = {
  * add them here using the same structure.
  */
 const PROJECTS: Project[] = [
-  // Example for later (uncomment + edit when you have real projects):
-  // {
-  //   id: "proj-001",
-  //   title: "Premium Cabro Driveway Installation",
-  //   category: "cabro",
-  //   location: "Ruiru, Kiambu",
-  //   date: "Jan 2026",
-  //   scope: "60mm cabro driveway with clean edging and drainage fall.",
-  //   highlights: ["60mm cabro", "Neat finishing", "Proper edge restraint"],
-  //   cover: "/images/projects/driveway-ruiru-cover.jpg",
-  //   gallery: [
-  //     "/images/projects/driveway-ruiru-1.jpg",
-  //     "/images/projects/driveway-ruiru-2.jpg",
-  //     "/images/projects/driveway-ruiru-3.jpg",
-  //   ],
-  //   tags: ["Residential", "Cabro", "Driveway"],
-  // },
+  {
+    id: "proj-001",
+    title: "Residential Driveway Cabro Installation",
+    category: "cabro",
+    location: "Ruiru, Kiambu",
+    date: "Mar 2026",
+    scope: "60mm cabro driveway with clean edging and drainage fall for a residential compound.",
+    highlights: ["60mm cabro", "Neat finishing", "Proper edge restraint"],
+    cover: "/images/Driveways.png",
+    gallery: [
+      "/images/home.jpg",
+      "/images/forcard.png",
+      "/images/luxury pathway.png",
+    ],
+    tags: ["Residential", "Cabro", "Driveway"],
+  },
+  {
+    id: "proj-002",
+    title: "Commercial Parking Lot Paving",
+    category: "cabro",
+    location: "Nairobi CBD",
+    date: "Feb 2026",
+    scope: "80mm heavy-duty cabro for a commercial parking area with truck access zones.",
+    highlights: ["80mm cabro", "Heavy traffic rated", "Defined parking bays"],
+    cover: "/images/Parking Lot.jpeg",
+    gallery: [
+      "/images/industrial yard.png",
+      "/images/mall.png",
+    ],
+    tags: ["Commercial", "Cabro", "Parking"],
+  },
+  {
+    id: "proj-003",
+    title: "Industrial Yard Paving",
+    category: "cabro",
+    location: "Thika Road",
+    date: "Jan 2026",
+    scope: "Heavy-duty 80mm unipaver installation for an industrial loading yard.",
+    highlights: ["80mm unipaver", "Truck-rated base", "Large area coverage"],
+    cover: "/images/industrial yard.png",
+    gallery: [
+      "/images/Parking Lot.jpeg",
+      "/images/Construction.jpeg",
+    ],
+    tags: ["Industrial", "Cabro", "Heavy Duty"],
+  },
+  {
+    id: "proj-004",
+    title: "Culvert Drainage Installation",
+    category: "culverts",
+    location: "Kiambu County",
+    date: "Dec 2025",
+    scope: "450mm culverts installed for road crossing drainage in a residential estate.",
+    highlights: ["450mm culverts", "Road crossing", "Proper backfill"],
+    cover: "/images/products/culverts/Culverts under the road.jpg",
+    gallery: [
+      "/images/products/culverts/culverts.jpg",
+      "/images/products/culverts/250mm culvert.jpg",
+    ],
+    tags: ["Drainage", "Culverts", "Infrastructure"],
+  },
+  {
+    id: "proj-005",
+    title: "Perimeter Fencing for Farm Plot",
+    category: "fencing",
+    location: "Githunguri",
+    date: "Nov 2025",
+    scope: "Concrete fencing posts with chain-link for a 2-acre farm boundary.",
+    highlights: ["8ft posts", "Chain-link mesh", "Corner strainers"],
+    cover: "/images/fence.png",
+    gallery: [
+      "/images/products/fencing-posts/Standard Fencing Post – 8ft.png",
+      "/images/products/fencing-posts/Heavy Duty Fencing Post – 8ft.png",
+    ],
+    tags: ["Fencing", "Farm", "Boundary"],
+  },
+  {
+    id: "proj-006",
+    title: "Estate Kerbstone & Drainage Finishing",
+    category: "kerbs",
+    location: "Ruiru",
+    date: "Feb 2026",
+    scope: "Kerbstone edging and drainage channels for a gated residential estate.",
+    highlights: ["Clean kerb edges", "Drainage channels", "Estate finish"],
+    cover: "/images/kerbs-drainage.jpg",
+    gallery: [
+      "/images/products/kerbs-drainage/kerbs 1 (1).jpeg",
+      "/images/products/kerbs-drainage/kerbs 1 (2).jpeg",
+    ],
+    tags: ["Kerbs", "Drainage", "Estate"],
+  },
 ];
 
 export default function ProjectsPage() {

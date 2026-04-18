@@ -23,8 +23,8 @@ type CabroProduct = {
 
 /* ------------ BRAND ------------ */
 
-const BRAND_GOLD = "#FFBF00";
-const BRAND_GOLD_DARK = "#E6AC00";
+const BRAND_GOLD = "#FFC20E";
+const BRAND_GOLD_DARK = "#B8860B";
 const BG_FROM = "#EEF2F6";
 const BG_TO = "#FFFFFF";
 
@@ -59,7 +59,7 @@ const cabroProducts: CabroProduct[] = [
     pattern: "Cube",
     thickness: "60mm",
     colorMix: "Red / Charcoal / Grey",
-    image: "/images/cube.JPEG",
+    image: "/images/cube.jpeg",
     bestFor: "Plazas, garden paths and outdoor seating areas.",
     strength: "Standard residential duty.",
     surface: "Simple square faces – flexible design patterns.",

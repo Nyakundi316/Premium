@@ -77,15 +77,15 @@ export default function PatternsGallery() {
       <div className="mx-auto max-w-6xl px-3 md:px-6">
         {/* HEADER */}
         <div className="mx-auto mb-10 max-w-xl text-center">
-          <span className="mb-3 inline-flex items-center gap-2 rounded-full bg-[#F9F4E5] border border-[#D4A017]/30 px-3.5 py-1">
-            <span className="h-2 w-2 rounded-full bg-[#D4A017] animate-pulse" />
-            <span className="text-[10px] md:text-xs uppercase text-[#D4A017] tracking-[0.22em]">
+          <span className="mb-3 inline-flex items-center gap-2 rounded-full bg-[#F9F4E5] border border-[#FFC20E]/30 px-3.5 py-1">
+            <span className="h-2 w-2 rounded-full bg-[#FFC20E] animate-pulse" />
+            <span className="text-[10px] md:text-xs uppercase text-[#FFC20E] tracking-[0.22em]">
               Paving Patterns
             </span>
           </span>
 
           <h2 className="text-2xl md:text-3xl font-bold text-slate-900">
-            Choose Your <span className="text-[#D4A017]">Paving Design</span>
+            Choose Your <span className="text-[#FFC20E]">Paving Design</span>
           </h2>
 
           <p className="text-xs md:text-sm text-slate-600 mt-2">
@@ -93,7 +93,7 @@ export default function PatternsGallery() {
             View more on the{" "}
             <Link
               href="/patterns"
-              className="text-[#D4A017] hover:text-[#F0B429] underline"
+              className="text-[#FFC20E] hover:text-[#F0B429] underline"
             >
               Patterns Page
             </Link>
@@ -109,7 +109,7 @@ export default function PatternsGallery() {
               onClick={() => setActiveCategory(cat.id)}
               className={`rounded-full px-4 py-1.5 text-xs md:text-sm font-medium transition-all ${
                 activeCategory === cat.id
-                  ? "bg-[#D4A017] text-white shadow-md"
+                  ? "bg-[#FFC20E] text-white shadow-md"
                   : "bg-gray-100 text-gray-700 border border-gray-300 hover:bg-gray-200"
               }`}
             >
@@ -123,11 +123,11 @@ export default function PatternsGallery() {
           {filteredPatterns.map((pattern) => (
             <div
               key={pattern.id}
-              className="group relative rounded-xl bg-white border border-gray-200 hover:border-[#D4A017] shadow-sm hover:shadow-lg transition-all"
+              className="group relative rounded-xl bg-white border border-gray-200 hover:border-[#FFC20E] shadow-sm hover:shadow-lg transition-all"
             >
               {/* POPULAR BADGE */}
               {pattern.popular && (
-                <span className="absolute top-2 left-2 z-10 rounded-full bg-[#D4A017] text-[9px] font-semibold text-white px-2 py-0.5">
+                <span className="absolute top-2 left-2 z-10 rounded-full bg-[#FFC20E] text-[9px] font-semibold text-white px-2 py-0.5">
                   Popular
                 </span>
               )}
@@ -144,7 +144,7 @@ export default function PatternsGallery() {
 
               {/* CONTENT */}
               <div className="p-3">
-                <h3 className="font-semibold text-[11px] md:text-sm text-slate-900 group-hover:text-[#D4A017]">
+                <h3 className="font-semibold text-[11px] md:text-sm text-slate-900 group-hover:text-[#FFC20E]">
                   {pattern.name}
                 </h3>
                 <p className="text-[10px] md:text-xs text-slate-600 mt-1 line-clamp-2">

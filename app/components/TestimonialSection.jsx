@@ -1,180 +1,132 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import Image from "next/image";
 import { Quote } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
-export default function TestimonialSection() {
-  const testimonials = [
-    {
-      id: 1,
-      name: "Mr. Kamau",
-      role: "Homeowner – Kiambu",
-      message:
-        "PCBL transformed my driveway with high-quality cabro blocks. The installation team was professional, timely and very reliable.",
-      image: "/images/testimonials/client1.jpg",
-    },
-    {
-      id: 2,
-      name: "Sarah W.",
-      role: "Estate Developer – Ruiru",
-      message:
-        "Their 80mm blocks are extremely strong and durable. We’ve used them on several projects and the quality is always consistent.",
-      image: "/images/testimonials/client2.jpg",
-    },
-    {
-      id: 3,
-      name: "Eng. Mutiso",
-      role: "Civil Engineer – Nairobi",
-      message:
-        "PPBL provides properly cured, vibro-compacted cabro blocks that meet engineering standards. Highly recommended for commercial jobs.",
-      image: "/images/testimonials/client3.jpg",
-    },
-  ];
+const GOLD = "#FFC20E";
 
+const testimonials = [
+  {
+    id: 1,
+    name: "J. Mwangi",
+    role: "Homeowner – Ruiru",
+    message:
+      "They came for the site visit on Tuesday, we agreed on the quote by Thursday, and the team was done in four days. The driveway has been through two long rains and hasn't moved.",
+  },
+  {
+    id: 2,
+    name: "Sarah W.",
+    role: "Estate Developer – Kiambu",
+    message:
+      "Their 80mm blocks are extremely strong and durable. We've used them on several projects and the quality is always consistent.",
+  },
+  {
+    id: 3,
+    name: "Eng. Mutiso",
+    role: "Civil Engineer – Nairobi",
+    message:
+      "Most suppliers cut corners on curing time. These blocks are properly done — vibro-compacted and cured right. I've specified them on two commercial jobs without complaints.",
+  },
+];
+
+export default function TestimonialSection() {
   const [active, setActive] = useState(0);
 
-  // Auto-slide every 5 seconds
   useEffect(() => {
     const interval = setInterval(
       () => setActive((prev) => (prev + 1) % testimonials.length),
       5000
     );
     return () => clearInterval(interval);
-  }, [testimonials.length]);
+  }, []);
 
   const current = testimonials[active];
 
   return (
-    <section className="relative py-14 md:py-20 bg-[#eff1f7] text-[#041544] overflow-hidden">
-      {/* Soft background accents */}
-      <div className="pointer-events-none absolute inset-0">
-        <div className="absolute -left-24 top-6 h-32 w-32 rounded-full bg-[#D4A017]/10 blur-3xl" />
-        <div className="absolute -right-24 bottom-0 h-32 w-32 rounded-full bg-[#0A1A2F]/10 blur-3xl" />
-      </div>
+    <section className="relative bg-[#0D1B30] py-16 lg:py-24">
+      <div className="mx-auto max-w-7xl px-5 sm:px-8 lg:px-12">
 
-      <div className="relative container mx-auto px-4 sm:px-6 md:px-8">
-        {/* HEADER */}
-        <div className="text-center max-w-3xl mx-auto mb-8 md:mb-12">
-          <span className="inline-flex items-center gap-2 rounded-full bg-[#FFF7E0] border border-[#FACC6B]/70 px-3 py-1 mb-3 md:mb-4">
-            <div className="h-2 w-2 rounded-full bg-[#D4A017] animate-pulse" />
-            <span className="text-[10px] md:text-xs uppercase tracking-[0.25em] text-[#A47500]">
-              Testimonials
-            </span>
+        <div className="mb-10 max-w-xl">
+          <span className="mb-4 inline-block text-[11px] font-semibold uppercase tracking-[0.2em]" style={{ color: GOLD }}>
+            Testimonials
           </span>
-
-          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold leading-tight">
-            What Our <span className="text-[#D4A017]">Clients Say</span>
+          <h2 className="text-3xl font-bold text-white sm:text-4xl">
+            What our clients say
           </h2>
-
-          <p className="mt-2 md:mt-3 text-xs sm:text-sm md:text-base text-gray-600">
-            Trusted by homeowners, contractors, engineers and estate developers
-            across Kenya.
+          <p className="mt-3 text-base text-white/45">
+            Real people, real projects. Here's what clients say after the job is done.
           </p>
         </div>
 
-        {/* CARD + ANIMATION */}
-        <div className="max-w-5xl mx-auto">
+        <div className="mx-auto max-w-4xl">
           <AnimatePresence mode="wait">
             <motion.div
               key={current.id}
-              initial={{ opacity: 0, y: 20, scale: 0.98 }}
-              animate={{ opacity: 1, y: 0, scale: 1 }}
-              exit={{ opacity: 0, y: -12, scale: 0.98 }}
-              transition={{ duration: 0.4, ease: "easeOut" }}
-              className="
-                relative
-                bg-white/95 border border-gray-200
-                rounded-2xl sm:rounded-3xl
-                shadow-lg
-                px-4 py-6 sm:px-6 sm:py-7 md:px-10 md:py-10
-              "
-              aria-live="polite"
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -10 }}
+              transition={{ duration: 0.35 }}
+              className="rounded-2xl border border-white/8 bg-white/[0.04] p-6 backdrop-blur-sm sm:p-8 md:p-10"
             >
-              <div className="grid grid-cols-1 md:grid-cols-3 md:gap-8 items-center">
-                {/* Left: Quote & message (spans 2 cols on md) */}
-                <div className="md:col-span-2 flex flex-col gap-4 md:gap-6">
-                  <div className="flex items-center gap-3">
-                    <div className="inline-flex items-center justify-center h-10 w-10 sm:h-11 sm:w-11 rounded-full bg-[#D4A017]/15">
-                      <Quote className="h-5 w-5 sm:h-6 sm:w-6 text-[#D4A017]" />
-                    </div>
-                    <p className="text-[11px] sm:text-xs md:text-sm font-medium text-gray-500">
-                      Real feedback from clients who’ve used our products on
-                      residential and commercial projects.
-                    </p>
+              <div className="grid gap-6 md:grid-cols-[1fr_auto] md:items-center md:gap-10">
+                <div>
+                  <div className="mb-5 flex h-10 w-10 items-center justify-center rounded-xl" style={{ background: `${GOLD}20` }}>
+                    <Quote size={18} style={{ color: GOLD }} />
                   </div>
 
-                  <p className="text-sm sm:text-base md:text-lg text-gray-800 leading-relaxed italic">
-                    “{current.message}”
+                  <p className="text-base leading-7 text-white/80 italic sm:text-lg sm:leading-8">
+                    &ldquo;{current.message}&rdquo;
                   </p>
 
-                  <div className="flex flex-col sm:flex-row sm:flex-wrap gap-3 text-[11px] sm:text-xs md:text-sm text-gray-500">
-                    <div className="flex items-center gap-2">
-                      <span className="h-1.5 w-1.5 rounded-full bg-[#D4A017]" />
-                      Verified client feedback
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <span className="h-1.5 w-1.5 rounded-full bg-[#0A1A2F]" />
+                  <div className="mt-5 flex flex-wrap gap-4 text-xs text-white/35">
+                    <span className="flex items-center gap-1.5">
+                      <span className="h-1.5 w-1.5 rounded-full" style={{ background: GOLD }} />
+                      Verified client
+                    </span>
+                    <span className="flex items-center gap-1.5">
+                      <span className="h-1.5 w-1.5 rounded-full bg-white/40" />
                       Projects across Nairobi, Kiambu & Ruiru
-                    </div>
+                    </span>
                   </div>
                 </div>
 
-                {/* Right: Client info */}
-                <div className="mt-6 md:mt-0 flex flex-col items-center md:items-start text-center md:text-left gap-2">
-                  <div className="relative h-16 w-16 sm:h-20 sm:w-20 rounded-full overflow-hidden border-2 border-[#D4A017]/60 shadow-sm mb-1 sm:mb-2">
-                    <Image
-                      src={current.image}
-                      alt={current.name}
-                      fill
-                      className="object-cover"
-                    />
-                  </div>
-
-                  <p className="text-sm sm:text-base md:text-lg font-semibold text-[#041544]">
-                    {current.name}
-                  </p>
-                  <p className="text-[11px] sm:text-xs md:text-sm text-gray-600">
-                    {current.role}
-                  </p>
-
-                  {/* Star rating */}
-                  <div className="flex gap-0.5 sm:gap-1 items-center mt-1">
-                    {Array.from({ length: 5 }).map((_, i) => (
-                      <span
-                        key={i}
-                        className="text-[#D4A017] text-sm sm:text-base leading-none"
-                      >
-                        ★
-                      </span>
-                    ))}
-                    <span className="ml-2 text-[10px] sm:text-[11px] md:text-xs text-gray-500">
-                      5.0 / 5.0 average rating
+                <div className="flex items-center gap-4 md:flex-col md:items-center md:text-center">
+                  <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full border-2 bg-[#0D1B30]" style={{ borderColor: `${GOLD}60` }}>
+                    <span className="text-xl font-bold" style={{ color: GOLD }}>
+                      {current.name.charAt(0)}
                     </span>
+                  </div>
+                  <div>
+                    <p className="text-sm font-semibold text-white">{current.name}</p>
+                    <p className="text-xs text-white/45">{current.role}</p>
+                    <div className="mt-1.5 flex gap-0.5">
+                      {Array.from({ length: 5 }).map((_, i) => (
+                        <span key={i} className="text-sm" style={{ color: GOLD }}>★</span>
+                      ))}
+                    </div>
                   </div>
                 </div>
               </div>
             </motion.div>
           </AnimatePresence>
 
-          {/* DOTS */}
-          <div className="flex justify-center gap-2 mt-5">
-            {testimonials.map((t, index) => (
+          <div className="mt-6 flex justify-center gap-2">
+            {testimonials.map((t, i) => (
               <button
                 key={t.id}
-                onClick={() => setActive(index)}
-                className={`h-2.5 w-2.5 rounded-full transition-all ${
-                  active === index
-                    ? "bg-[#D4A017] scale-125 shadow-sm"
-                    : "bg-gray-400/40 hover:bg-gray-500/80"
-                }`}
-                aria-label={`Show testimonial ${index + 1}`}
+                onClick={() => setActive(i)}
+                className="h-2 rounded-full transition-all"
+                style={{
+                  width: active === i ? 32 : 10,
+                  background: active === i ? GOLD : "rgba(255,255,255,0.2)",
+                }}
               />
             ))}
           </div>
         </div>
       </div>
+      <div className="pointer-events-none absolute bottom-0 left-0 right-0 h-16 bg-gradient-to-b from-transparent to-white dark:to-[#0A0C10]" />
     </section>
   );
 }

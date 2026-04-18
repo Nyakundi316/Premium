@@ -17,14 +17,14 @@ export const metadata = {
 
 export default function ContactPage() {
   return (
-    <main className="min-h-screen pt-28 bg-[#F5F5F0] text-slate-900">
+    <main className="min-h-screen pt-28 bg-white text-slate-900">
       <section className="max-w-6xl mx-auto px-4 py-12 md:py-16">
         {/* HEADER */}
         <div className="mb-10">
-          <span className="inline-flex items-center gap-2 rounded-full bg-[#FFF7E0] border border-[#FACC6B]/60 px-4 py-1.5">
-            <span className="h-2 w-2 rounded-full bg-[#D4A017] animate-pulse" />
-            <span className="text-[11px] md:text-xs font-semibold uppercase tracking-[0.22em] text-[#A46306]">
-              Talk to Premium Concrete PM
+          <span className="inline-flex items-center gap-2 rounded-full bg-[#FFC20E]/10 border border-[#FFC20E]/20 px-4 py-1.5">
+            <span className="h-2 w-2 rounded-full bg-[#FFC20E] animate-pulse" />
+            <span className="text-[11px] md:text-xs font-semibold uppercase tracking-[0.22em] text-[#B8860B]">
+              Talk to Premium Cabro
             </span>
           </span>
 
@@ -32,7 +32,7 @@ export default function ContactPage() {
             <div>
               <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold">
                 Let&apos;s discuss your{" "}
-                <span className="text-[#D4A017]">paving project.</span>
+                <span className="text-[#FFC20E]">paving project.</span>
               </h1>
               <p className="mt-3 max-w-2xl text-sm md:text-base text-slate-600 leading-relaxed">
                 Whether you need blocks only, full installation or a site visit,
@@ -41,7 +41,7 @@ export default function ContactPage() {
               </p>
             </div>
 
-            <div className="rounded-2xl border border-slate-200 bg-white px-4 py-3 text-xs md:text-sm shadow-sm">
+            <div className="rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 text-xs md:text-sm shadow-sm">
               <p className="font-semibold text-slate-900">
                 Factory & Yard – Githunguri / Kiambu
               </p>
@@ -58,7 +58,7 @@ export default function ContactPage() {
           <div className="space-y-5">
             <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
               <h2 className="text-base md:text-lg font-semibold mb-3 flex items-center gap-2">
-                <MessageCircle className="h-5 w-5 text-[#D4A017]" />
+                <MessageCircle className="h-5 w-5 text-[#FFC20E]" />
                 Reach our team
               </h2>
               <p className="text-sm text-slate-600 mb-4">
@@ -69,8 +69,8 @@ export default function ContactPage() {
               <div className="space-y-4 text-sm">
                 {/* Phone */}
                 <div className="flex items-start gap-3">
-                  <div className="mt-0.5 flex h-9 w-9 items-center justify-center rounded-full bg-[#FFF3C4]">
-                    <Phone className="h-4 w-4 text-[#A46306]" />
+                  <div className="mt-0.5 flex h-9 w-9 items-center justify-center rounded-full bg-[#FFC20E]/15">
+                    <Phone className="h-4 w-4 text-[#B8860B]" />
                   </div>
                   <div>
                     <p className="text-[11px] uppercase tracking-[0.16em] text-slate-500">
@@ -78,7 +78,7 @@ export default function ContactPage() {
                     </p>
                     <a
                       href="tel:+254721150988"
-                      className="block text-sm font-semibold text-slate-900 hover:text-[#D4A017]"
+                      className="block text-sm font-semibold text-slate-900 hover:text-[#FFC20E]"
                     >
                       +254 721 150 988
                     </a>
@@ -86,7 +86,7 @@ export default function ContactPage() {
                       href="https://wa.me/254721150988"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1 text-xs text-[#A46306] hover:text-[#D4A017] mt-1"
+                      className="inline-flex items-center gap-1 text-xs text-[#B8860B] hover:text-[#FFC20E] mt-1"
                     >
                       Message on WhatsApp
                       <ArrowRight className="h-3 w-3" />
@@ -96,8 +96,8 @@ export default function ContactPage() {
 
                 {/* Email */}
                 <div className="flex items-start gap-3">
-                  <div className="mt-0.5 flex h-9 w-9 items-center justify-center rounded-full bg-[#FFF3C4]">
-                    <Mail className="h-4 w-4 text-[#A46306]" />
+                  <div className="mt-0.5 flex h-9 w-9 items-center justify-center rounded-full bg-[#FFC20E]/15">
+                    <Mail className="h-4 w-4 text-[#B8860B]" />
                   </div>
                   <div>
                     <p className="text-[11px] uppercase tracking-[0.16em] text-slate-500">
@@ -105,7 +105,7 @@ export default function ContactPage() {
                     </p>
                     <a
                       href="mailto:info@premiumconcretepm.co.ke"
-                      className="text-sm font-semibold text-slate-900 hover:text-[#D4A017]"
+                      className="text-sm font-semibold text-slate-900 hover:text-[#FFC20E]"
                     >
                       info@premiumconcretepm.co.ke
                     </a>
@@ -114,8 +114,8 @@ export default function ContactPage() {
 
                 {/* Location */}
                 <div className="flex items-start gap-3">
-                  <div className="mt-0.5 flex h-9 w-9 items-center justify-center rounded-full bg-[#FFF3C4]">
-                    <MapPin className="h-4 w-4 text-[#A46306]" />
+                  <div className="mt-0.5 flex h-9 w-9 items-center justify-center rounded-full bg-[#FFC20E]/15">
+                    <MapPin className="h-4 w-4 text-[#B8860B]" />
                   </div>
                   <div>
                     <p className="text-[11px] uppercase tracking-[0.16em] text-slate-500">
@@ -133,8 +133,8 @@ export default function ContactPage() {
 
                 {/* Hours */}
                 <div className="flex items-start gap-3">
-                  <div className="mt-0.5 flex h-9 w-9 items-center justify-center rounded-full bg-[#FFF3C4]">
-                    <Clock className="h-4 w-4 text-[#A46306]" />
+                  <div className="mt-0.5 flex h-9 w-9 items-center justify-center rounded-full bg-[#FFC20E]/15">
+                    <Clock className="h-4 w-4 text-[#B8860B]" />
                   </div>
                   <div>
                     <p className="text-[11px] uppercase tracking-[0.16em] text-slate-500">
@@ -152,7 +152,7 @@ export default function ContactPage() {
             </div>
 
             {/* SERVICE AREAS TAGS */}
-            <div className="rounded-2xl border border-slate-200 bg-[#FAFAF7] p-5">
+            <div className="rounded-2xl border border-slate-200 bg-slate-50 p-5">
               <p className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-500 mb-2">
                 Main Service Areas
               </p>
@@ -199,7 +199,7 @@ export default function ContactPage() {
                   <input
                     type="text"
                     required
-                    className="w-full rounded-lg border border-slate-300 bg-[#F9FAFB] px-4 py-2.5 text-sm text-slate-900 outline-none focus:border-[#D4A017] focus:bg-white"
+                    className="w-full rounded-lg border border-slate-300 bg-[#F9FAFB] px-4 py-2.5 text-sm text-slate-900 outline-none focus:border-[#FFC20E] focus:bg-white"
                     placeholder="e.g. John Kamau"
                   />
                 </div>
@@ -210,7 +210,7 @@ export default function ContactPage() {
                   <input
                     type="tel"
                     required
-                    className="w-full rounded-lg border border-slate-300 bg-[#F9FAFB] px-4 py-2.5 text-sm text-slate-900 outline-none focus:border-[#D4A017] focus:bg-white"
+                    className="w-full rounded-lg border border-slate-300 bg-[#F9FAFB] px-4 py-2.5 text-sm text-slate-900 outline-none focus:border-[#FFC20E] focus:bg-white"
                     placeholder="07XX XXX XXX"
                   />
                 </div>
@@ -224,7 +224,7 @@ export default function ContactPage() {
                   </label>
                   <input
                     type="email"
-                    className="w-full rounded-lg border border-slate-300 bg-[#F9FAFB] px-4 py-2.5 text-sm text-slate-900 outline-none focus:border-[#D4A017] focus:bg-white"
+                    className="w-full rounded-lg border border-slate-300 bg-[#F9FAFB] px-4 py-2.5 text-sm text-slate-900 outline-none focus:border-[#FFC20E] focus:bg-white"
                     placeholder="you@example.com"
                   />
                 </div>
@@ -232,7 +232,7 @@ export default function ContactPage() {
                   <label className="block text-xs font-medium text-slate-700 mb-1.5">
                     Project Type
                   </label>
-                  <select className="w-full rounded-lg border border-slate-300 bg-[#F9FAFB] px-4 py-2.5 text-sm text-slate-900 outline-none focus:border-[#D4A017] focus:bg-white">
+                  <select className="w-full rounded-lg border border-slate-300 bg-[#F9FAFB] px-4 py-2.5 text-sm text-slate-900 outline-none focus:border-[#FFC20E] focus:bg-white">
                     <option value="">Select option</option>
                     <option>Home driveway / compound</option>
                     <option>Commercial parking</option>
@@ -253,7 +253,7 @@ export default function ContactPage() {
                 <textarea
                   required
                   rows={4}
-                  className="w-full rounded-lg border border-slate-300 bg-[#F9FAFB] px-4 py-2.5 text-sm text-slate-900 outline-none focus:border-[#D4A017] focus:bg-white resize-none"
+                  className="w-full rounded-lg border border-slate-300 bg-[#F9FAFB] px-4 py-2.5 text-sm text-slate-900 outline-none focus:border-[#FFC20E] focus:bg-white resize-none"
                   placeholder="E.g. approximate area in m², location, type of vehicles, preferred pattern/colour..."
                 />
               </div>
@@ -262,7 +262,7 @@ export default function ContactPage() {
               <div className="pt-2 space-y-2">
                 <button
                   type="submit"
-                  className="w-full md:w-auto inline-flex items-center justify-center rounded-full bg-gradient-to-r from-[#D4A017] to-[#F0B429] px-8 py-3 text-sm font-semibold text-[#0A1A2F] shadow-sm hover:shadow-lg hover:shadow-[#FACC6B]/40 transition-all"
+                  className="w-full md:w-auto inline-flex items-center justify-center rounded-full bg-[#FFC20E] px-8 py-3 text-sm font-semibold text-[#0D1B30] shadow-sm hover:brightness-95 transition-all"
                 >
                   Send Enquiry
                 </button>
@@ -282,7 +282,7 @@ export default function ContactPage() {
           </span>
           <Link
             href="/quote"
-            className="inline-flex items-center gap-1 text-[#A46306] hover:text-[#D4A017] font-semibold"
+            className="inline-flex items-center gap-1 text-[#B8860B] hover:text-[#FFC20E] font-semibold"
           >
             Use our full quotation form
             <ArrowRight className="h-3 w-3" />

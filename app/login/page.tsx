@@ -7,8 +7,8 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { Mail, Lock, Eye, EyeOff, ArrowRight } from "lucide-react";
 
-const BRAND_GOLD = "#FFBF00";
-const BRAND_GOLD_DARK = "#E6AC00";
+const BRAND_GOLD = "#FFC20E";
+const BRAND_GOLD_DARK = "#B8860B";
 
 // ✅ Same pattern as signup: env var with fallback
 const API_BASE_URL =
@@ -311,3 +311,4 @@ export default function LoginPage() {
     </main>
   );
 }
+ 

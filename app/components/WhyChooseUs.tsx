@@ -10,9 +10,8 @@ import {
   Palette,
   Shield,
   Clock,
-  Grid,
+  Grid3X3,
   Filter,
-  Sparkles,
 } from "lucide-react";
 
 type Category =
@@ -35,36 +34,19 @@ type Product = {
   reason: string;
 };
 
-/** ✅ Accent (you can keep your gold branding) */
-const BRAND_GOLD = "#FFBF00";
-const BRAND_GOLD_DARK = "#E6AC00";
-
-/**
- * ✅ White-on-white readability system
- * (This is what changes the "shade of white" across the section)
- */
-const WHITE_BASE = "#F8FAFC"; // page background (soft white)
-const WHITE_TINT = "#F1F5F9"; // gentle separation (light grey-white)
-const WHITE_CARD = "#FFFFFF"; // pure white cards
-const BORDER_SOFT = "#E5E7EB"; // borders/dividers
+const GOLD = "#FFC20E";
 
 function prettyCategory(c: Category) {
-  switch (c) {
-    case "trihex":
-      return "Trihex";
-    case "unipaver":
-      return "Unipaver";
-    case "hexagon":
-      return "Hexagon";
-    case "dumble-wave":
-      return "Dumble & Wave";
-    case "brick-cube":
-      return "Brick & Cube";
-    case "special":
-      return "Special";
-    default:
-      return "All";
-  }
+  const map: Record<Category, string> = {
+    trihex: "Trihex",
+    unipaver: "Unipaver",
+    hexagon: "Hexagon",
+    "dumble-wave": "Dumble & Wave",
+    "brick-cube": "Brick & Cube",
+    special: "Special",
+    all: "All",
+  };
+  return map[c];
 }
 
 export default function WhyChooseSection() {
@@ -122,7 +104,7 @@ export default function WhyChooseSection() {
         id: "hexagon",
         name: "Hexagon",
         colorLabel: "Grey / Yellow",
-        image: "/images/Grey hexagon.jpg",
+        image: "/images/products/cabro/grey.jpeg",
         category: "hexagon",
         description:
           "Six-sided blocks that form a honeycomb pattern, spreading load evenly and giving a unique geometric look.",
@@ -218,76 +200,40 @@ export default function WhyChooseSection() {
     []
   );
 
-  const [hoveredProduct, setHoveredProduct] = useState<Product | null>(
-    products[0] ?? null
-  );
   const [activeCategory, setActiveCategory] = useState<Category>("all");
   const [previewProduct, setPreviewProduct] = useState<Product | null>(null);
 
-  // ✅ keep your theme but swap accents to brand gold (unchanged)
   const features = [
     {
-      icon: <Award className="w-6 h-6" />,
-      title: "Factory-Made Quality",
-      description:
-        "Consistent strength and uniform sizing for clean, professional finishing.",
-      color: "from-[#FFBF00] to-[#E6AC00]",
+      icon: Award,
+      title: "Machine-made, not hand-cast",
+      desc: "Every block is the same size. Uniform blocks mean faster laying, tighter joints, and a surface that stays level.",
     },
     {
-      icon: <Palette className="w-6 h-6" />,
-      title: "Design Variety",
-      description:
-        "Multiple patterns and color options for homes, estates, and commercial sites.",
-      color: "from-[#0A1A2F] to-[#0B2A4A]",
+      icon: Palette,
+      title: "12+ patterns to choose from",
+      desc: "Dumble, trihex, hexagon, wave and more — each suited to different traffic loads and looks.",
     },
     {
-      icon: <Shield className="w-6 h-6" />,
-      title: "Strong Interlock",
-      description:
-        "Durable surfaces that stay stable under regular use and vehicle traffic.",
-      color: "from-[#FFBF00] to-[#C99600]",
+      icon: Shield,
+      title: "Replace one block, not everything",
+      desc: "Asphalt means resurfacing everything. With cabro, one damaged block comes out and a new one goes in.",
     },
     {
-      icon: <Clock className="w-6 h-6" />,
-      title: "Low Maintenance",
-      description:
-        "Long service life with simple upkeep and easy replacement of single blocks.",
-      color: "from-[#0A1A2F] to-[#132E52]",
+      icon: Clock,
+      title: "We don't skip the base",
+      desc: "Proper compaction and right sub-base depth keeps the surface from sinking. Most installers cut this corner.",
     },
   ];
 
   const filters: { id: Category; label: string; count: number }[] = [
-    { id: "all", label: "All Types", count: products.length },
-    {
-      id: "trihex",
-      label: "Trihex",
-      count: products.filter((p) => p.category === "trihex").length,
-    },
-    {
-      id: "unipaver",
-      label: "Unipaver",
-      count: products.filter((p) => p.category === "unipaver").length,
-    },
-    {
-      id: "hexagon",
-      label: "Hexagon",
-      count: products.filter((p) => p.category === "hexagon").length,
-    },
-    {
-      id: "dumble-wave",
-      label: "Dumble & Wave",
-      count: products.filter((p) => p.category === "dumble-wave").length,
-    },
-    {
-      id: "brick-cube",
-      label: "Brick & Cube",
-      count: products.filter((p) => p.category === "brick-cube").length,
-    },
-    {
-      id: "special",
-      label: "Special",
-      count: products.filter((p) => p.category === "special").length,
-    },
+    { id: "all", label: "All", count: products.length },
+    { id: "trihex", label: "Trihex", count: products.filter((p) => p.category === "trihex").length },
+    { id: "unipaver", label: "Unipaver", count: products.filter((p) => p.category === "unipaver").length },
+    { id: "hexagon", label: "Hexagon", count: products.filter((p) => p.category === "hexagon").length },
+    { id: "dumble-wave", label: "Dumble & Wave", count: products.filter((p) => p.category === "dumble-wave").length },
+    { id: "brick-cube", label: "Brick & Cube", count: products.filter((p) => p.category === "brick-cube").length },
+    { id: "special", label: "Special", count: products.filter((p) => p.category === "special").length },
   ];
 
   const filteredProducts =
@@ -296,432 +242,185 @@ export default function WhyChooseSection() {
       : products.filter((p) => p.category === activeCategory);
 
   return (
-    <section
-      className="relative py-20 lg:py-28 overflow-hidden"
-      style={{
-        backgroundImage: `linear-gradient(180deg, ${WHITE_BASE}, ${WHITE_TINT})`,
-      }}
-    >
-      {/* soft grid overlay (works better on off-white) */}
-      <div className="absolute inset-0 opacity-70">
-        <div
-          className="absolute inset-0"
-          style={{
-            backgroundImage:
-              "radial-gradient(circle at 1px 1px, rgba(148,163,184,0.28) 1px, transparent 1px)",
-            backgroundSize: "24px 24px",
-            maskImage:
-              "radial-gradient(ellipse at center, rgba(0,0,0,1), transparent 70%)",
-            WebkitMaskImage:
-              "radial-gradient(ellipse at center, rgba(0,0,0,1), transparent 70%)",
-          }}
-        />
-      </div>
+    <section className="bg-white dark:bg-[#0A0C10] py-16 lg:py-24">
+      <div className="mx-auto max-w-7xl px-5 sm:px-8 lg:px-12">
 
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative">
-        {/* Header */}
-        <div className="text-center max-w-3xl mx-auto mb-16">
-          <div
-            className="inline-flex items-center gap-3 px-4 py-2 rounded-full border mb-6 backdrop-blur"
-            style={{
-              backgroundColor: "rgba(255,255,255,0.85)",
-              borderColor: "rgba(255,191,0,0.25)",
-            }}
-          >
-            <Sparkles className="w-4 h-4" style={{ color: BRAND_GOLD }} />
-            <span
-              className="text-sm font-semibold tracking-wide"
-              style={{ color: BRAND_GOLD_DARK }}
-            >
-              Built for Kenyan Site Conditions
+        {/* Header + Features row */}
+        <div className="mb-14 grid gap-10 lg:grid-cols-[1fr_1fr] lg:items-start lg:gap-16">
+          <div>
+            <span className="mb-4 inline-block text-[11px] font-semibold uppercase tracking-[0.2em]" style={{ color: GOLD }}>
+              Why Premium Cabro
             </span>
+            <h2 className="text-3xl font-bold leading-tight text-[#0F172A] dark:text-white sm:text-4xl lg:text-[2.75rem]">
+              Why the finish actually lasts
+            </h2>
+            <p className="mt-4 max-w-lg text-base leading-7 text-slate-600">
+              A badly laid driveway starts cracking within two rainy seasons. Wrong base depth, no edge restraints — it's expensive to fix.
+            </p>
           </div>
 
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-6">
-            Why Choose{" "}
-            <span
-              className="text-transparent bg-clip-text"
-              style={{
-                backgroundImage: `linear-gradient(90deg, ${BRAND_GOLD}, ${BRAND_GOLD_DARK})`,
-              }}
-            >
-              Premium Cabro Patterns
-            </span>
-            ?
-          </h2>
-
-          <p className="text-lg text-gray-700">
-            Explore durable, clean-finishing cabro designs suitable for
-            residential driveways, estate roads, commercial compounds, and
-            walkways.
-          </p>
-        </div>
-
-        <div className="grid lg:grid-cols-3 gap-8 mb-12">
-          {/* Features */}
-          <div className="lg:col-span-1">
-            <div
-              className="rounded-2xl shadow-sm p-6 lg:p-8"
-              style={{
-                backgroundColor: WHITE_CARD,
-                border: `1px solid ${BORDER_SOFT}`,
-              }}
-            >
-              <h3 className="text-2xl font-bold text-gray-900 mb-8 flex items-center gap-2">
-                <Award className="w-6 h-6" style={{ color: BRAND_GOLD_DARK }} />
-                Why it performs better
-              </h3>
-
-              <div className="space-y-5">
-                {features.map((feature, index) => (
-                  <motion.div
-                    key={index}
-                    initial={{ opacity: 0, x: -16 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    transition={{ delay: index * 0.08 }}
-                    viewport={{ once: true }}
-                    className="group relative p-4 rounded-xl bg-gradient-to-br from-gray-50 to-white hover:shadow-lg transition-all"
-                    style={{
-                      border: "1px solid rgba(255,191,0,0.22)",
-                      backgroundImage:
-                        "linear-gradient(135deg, rgba(248,250,252,1), rgba(255,255,255,1))",
-                    }}
-                  >
-                    <div className="flex items-start gap-4">
-                      <div
-                        className={`p-3 rounded-lg bg-gradient-to-br ${feature.color} text-white`}
-                      >
-                        {feature.icon}
-                      </div>
-                      <div>
-                        <h4 className="text-base font-semibold text-gray-900 mb-1">
-                          {feature.title}
-                        </h4>
-                        <p className="text-gray-700 text-sm">
-                          {feature.description}
-                        </p>
-                      </div>
-                    </div>
-                  </motion.div>
-                ))}
-              </div>
-
-              <div
-                className="mt-8 pt-6"
-                style={{ borderTop: `1px solid ${BORDER_SOFT}` }}
-              >
-                <p className="text-sm text-gray-700">
-                  Tip: Choose the pattern based on traffic (cars vs walkways),
-                  drainage needs, and the look you want.
-                </p>
-              </div>
-            </div>
-          </div>
-
-          {/* Products */}
-          <div className="lg:col-span-2">
-            <div
-              className="rounded-2xl shadow-sm p-6 lg:p-8 h-full"
-              style={{
-                backgroundColor: WHITE_CARD,
-                border: `1px solid ${BORDER_SOFT}`,
-              }}
-            >
-              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
-                <div className="flex items-center gap-3">
-                  <div
-                    className="p-2 rounded-lg text-white"
-                    style={{
-                      backgroundImage: `linear-gradient(135deg, ${BRAND_GOLD}, ${BRAND_GOLD_DARK})`,
-                    }}
-                  >
-                    <Grid className="w-5 h-5" />
-                  </div>
-                  <div>
-                    <h3 className="text-2xl font-bold text-gray-900">
-                      Pattern Collection
-                    </h3>
-                    <p className="text-gray-700 text-sm">
-                      {products.length}+ patterns and finishes
-                    </p>
-                  </div>
-                </div>
-
-                <div className="flex items-center gap-2 text-sm text-gray-700">
-                  <Filter className="w-4 h-4" />
-                  <span>Filter by type</span>
-                </div>
-              </div>
-
-              {/* Filter Tabs */}
-              <div className="flex flex-wrap gap-2 mb-7">
-                {filters.map((filter) => {
-                  const isActive = activeCategory === filter.id;
-                  return (
-                    <button
-                      key={filter.id}
-                      onClick={() => setActiveCategory(filter.id)}
-                      className={`group relative px-4 py-2 rounded-xl text-sm font-medium transition-all duration-300 ${
-                        isActive
-                          ? "text-white shadow-lg"
-                          : "text-gray-800 hover:bg-gray-100"
-                      }`}
-                      style={
-                        isActive
-                          ? {
-                              backgroundImage: `linear-gradient(90deg, ${BRAND_GOLD}, ${BRAND_GOLD_DARK})`,
-                              boxShadow: "0 10px 25px rgba(255,191,0,0.18)",
-                            }
-                          : {
-                              backgroundColor: WHITE_TINT,
-                              border: `1px solid ${BORDER_SOFT}`,
-                            }
-                      }
-                      aria-pressed={isActive}
-                    >
-                      <span className="flex items-center gap-2">
-                        {filter.label}
-                        <span
-                          className={`text-xs px-1.5 py-0.5 rounded-full ${
-                            isActive
-                              ? "bg-white/20"
-                              : "bg-gray-200 text-gray-800"
-                          }`}
-                        >
-                          {filter.count}
-                        </span>
-                      </span>
-                    </button>
-                  );
-                })}
-              </div>
-
-              {/* Cards: text only on hover */}
-              <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-4 mb-8">
-                <AnimatePresence mode="wait">
-                  {filteredProducts.map((product, index) => (
-                    <motion.button
-                      key={product.id}
-                      layout
-                      initial={{ opacity: 0, scale: 0.97 }}
-                      animate={{ opacity: 1, scale: 1 }}
-                      exit={{ opacity: 0, scale: 0.97 }}
-                      transition={{ duration: 0.18, delay: index * 0.02 }}
-                      onMouseEnter={() => setHoveredProduct(product)}
-                      onClick={() => setPreviewProduct(product)}
-                      className="group relative rounded-xl overflow-hidden transition-all duration-300 hover:shadow-lg"
-                      style={{
-                        backgroundColor: WHITE_TINT,
-                        border: "1px solid rgba(255,191,0,0.22)",
-                      }}
-                      aria-label={`View details for ${product.name}`}
-                    >
-                      <div className="relative h-28 sm:h-32 md:h-36">
-                        <Image
-                          src={product.image}
-                          alt={product.name}
-                          fill
-                          className="object-cover transition-transform duration-500 group-hover:scale-110"
-                          sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
-                        />
-
-                        <div className="absolute inset-0 bg-black/0 group-hover:bg-black/35 transition-colors duration-300" />
-
-                        <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 p-3 flex flex-col justify-end">
-                          <div className="rounded-lg border border-white/20 bg-black/55 backdrop-blur px-3 py-2">
-                            <h4 className="text-xs sm:text-sm font-semibold text-white leading-tight">
-                              {product.name}
-                            </h4>
-                            <p
-                              className="text-[11px] mt-1"
-                              style={{ color: BRAND_GOLD }}
-                            >
-                              {product.colorLabel}
-                            </p>
-
-                            <div className="mt-2 flex items-center justify-between">
-                              <span className="text-[11px] text-white/85">
-                                {prettyCategory(product.category)}
-                              </span>
-                              <span className="text-[11px] font-semibold text-white inline-flex items-center gap-1">
-                                View details <ChevronRight className="w-3 h-3" />
-                              </span>
-                            </div>
-                          </div>
-                        </div>
-
-                        <div className="absolute top-2 right-2 opacity-0 group-hover:opacity-100 transition-opacity">
-                          <span className="px-2 py-1 bg-black/60 backdrop-blur-sm text-white text-[10px] rounded-full">
-                            {prettyCategory(product.category)}
-                          </span>
-                        </div>
-                      </div>
-                    </motion.button>
-                  ))}
-                </AnimatePresence>
-              </div>
-
-              {/* Active Product Info */}
-              {hoveredProduct && (
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+            {features.map((f, i) => {
+              const Icon = f.icon;
+              return (
                 <motion.div
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  className="p-4 rounded-xl"
-                  style={{
-                    backgroundColor: WHITE_BASE,
-                    border: "1px solid rgba(255,191,0,0.28)",
-                    backgroundImage: `linear-gradient(90deg, rgba(255,191,0,0.08), rgba(248,250,252,1))`,
-                  }}
+                  key={f.title}
+                  initial={{ opacity: 0, y: 16 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: i * 0.06, duration: 0.4 }}
+                  className="rounded-2xl border border-slate-100 dark:border-slate-700 bg-slate-50/60 dark:bg-slate-800/40 p-5"
                 >
-                  <div className="flex items-center gap-4">
-                    <div className="relative h-14 w-14 rounded-lg overflow-hidden flex-shrink-0">
-                      <Image
-                        src={hoveredProduct.image}
-                        alt={hoveredProduct.name}
-                        fill
-                        className="object-cover"
-                        sizes="56px"
-                      />
-                    </div>
-                    <div className="flex-1">
-                      <p
-                        className="text-xs font-semibold uppercase tracking-wide mb-1"
-                        style={{ color: BRAND_GOLD_DARK }}
-                      >
-                        Pattern Highlight
-                      </p>
-                      <h4 className="text-lg font-bold text-gray-900">
-                        {hoveredProduct.name}
-                      </h4>
-                      <p className="text-sm text-gray-800 mt-2">
-                        {hoveredProduct.description.substring(0, 120)}...
-                      </p>
-                    </div>
-                    <span
-                      className="text-white text-xs font-semibold rounded-full px-3 py-1"
-                      style={{
-                        backgroundImage: `linear-gradient(90deg, ${BRAND_GOLD}, ${BRAND_GOLD_DARK})`,
-                      }}
-                    >
-                      {hoveredProduct.colorLabel}
-                    </span>
+                  <div
+                    className="mb-3 flex h-10 w-10 items-center justify-center rounded-xl text-white"
+                    style={{ background: i % 2 === 0 ? GOLD : "#0D1B30" }}
+                  >
+                    <Icon size={18} />
                   </div>
+                  <h3 className="text-[15px] font-semibold text-[#0F172A] dark:text-white">{f.title}</h3>
+                  <p className="mt-1.5 text-sm leading-6 text-slate-500">{f.desc}</p>
                 </motion.div>
-              )}
+              );
+            })}
+          </div>
+        </div>
+
+        {/* Product catalog */}
+        <div className="rounded-3xl border border-slate-100 dark:border-slate-700 bg-[#FAFBFC] dark:bg-slate-800/30 p-5 sm:p-8">
+          <div className="mb-6 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+            <div className="flex items-center gap-3">
+              <div className="flex h-10 w-10 items-center justify-center rounded-xl text-white" style={{ background: GOLD }}>
+                <Grid3X3 size={18} />
+              </div>
+              <div>
+                <h3 className="text-xl font-bold text-[#0F172A] dark:text-white">Pattern Collection</h3>
+                <p className="text-sm text-slate-500">{products.length} patterns and finishes</p>
+              </div>
             </div>
+            <div className="flex items-center gap-1.5 text-xs text-slate-400">
+              <Filter size={14} />
+              Filter by type
+            </div>
+          </div>
+
+          {/* Filters */}
+          <div className="mb-6 flex flex-wrap gap-2">
+            {filters.map((f) => (
+              <button
+                key={f.id}
+                onClick={() => setActiveCategory(f.id)}
+                className={`rounded-lg px-3.5 py-2 text-sm font-medium transition-all ${
+                  activeCategory === f.id
+                    ? "text-white shadow-md"
+                    : "border border-slate-200 bg-white text-slate-700 hover:border-slate-300"
+                }`}
+                style={activeCategory === f.id ? { background: GOLD } : undefined}
+              >
+                {f.label}
+                <span className={`ml-1.5 text-xs ${activeCategory === f.id ? "text-white/70" : "text-slate-400"}`}>
+                  {f.count}
+                </span>
+              </button>
+            ))}
+          </div>
+
+          {/* Grid */}
+          <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4">
+            <AnimatePresence mode="wait">
+              {filteredProducts.map((product, i) => (
+                <motion.button
+                  key={product.id}
+                  layout
+                  initial={{ opacity: 0, scale: 0.96 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.96 }}
+                  transition={{ duration: 0.2, delay: i * 0.02 }}
+                  onClick={() => setPreviewProduct(product)}
+                  className="group relative overflow-hidden rounded-2xl border border-slate-100 bg-white text-left transition-shadow hover:shadow-lg"
+                >
+                  <div className="relative h-32 sm:h-36 md:h-40">
+                    <Image
+                      src={product.image}
+                      alt={product.name}
+                      fill
+                      className="object-cover transition-transform duration-500 group-hover:scale-105"
+                      sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-0 transition-opacity group-hover:opacity-100" />
+                    <div className="absolute bottom-0 left-0 right-0 translate-y-2 p-3 opacity-0 transition-all group-hover:translate-y-0 group-hover:opacity-100">
+                      <p className="text-xs font-semibold text-white">{product.name}</p>
+                      <p className="mt-0.5 flex items-center gap-1 text-[11px] text-white/80">
+                        View details <ChevronRight size={12} />
+                      </p>
+                    </div>
+                  </div>
+                </motion.button>
+              ))}
+            </AnimatePresence>
           </div>
         </div>
       </div>
 
-      {/* Modal */}
+      {/* Preview Modal */}
       <AnimatePresence>
         {previewProduct && (
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-50 bg-black/90 backdrop-blur-sm flex items-center justify-center p-4"
+            className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 p-4 backdrop-blur-sm"
             onClick={() => setPreviewProduct(null)}
           >
             <motion.div
-              initial={{ scale: 0.92, opacity: 0 }}
+              initial={{ scale: 0.94, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.92, opacity: 0 }}
-              className="relative w-full max-w-4xl rounded-2xl overflow-hidden shadow-2xl"
-              style={{ backgroundColor: WHITE_CARD }}
+              exit={{ scale: 0.94, opacity: 0 }}
+              className="relative w-full max-w-3xl overflow-hidden rounded-2xl bg-white shadow-2xl"
               onClick={(e) => e.stopPropagation()}
             >
               <button
                 onClick={() => setPreviewProduct(null)}
-                className="absolute top-4 right-4 z-10 p-2 bg-black/40 backdrop-blur-sm rounded-full hover:bg-black/55 transition-colors"
-                aria-label="Close preview"
+                className="absolute right-4 top-4 z-10 rounded-full bg-black/40 p-2 text-white backdrop-blur-sm transition hover:bg-black/60"
               >
-                <X className="w-5 h-5 text-white" />
+                <X size={18} />
               </button>
 
               <div className="grid md:grid-cols-2">
-                <div className="relative h-64 md:h-auto bg-gradient-to-br from-gray-900 to-gray-800">
-                  <Image
-                    src={previewProduct.image}
-                    alt={previewProduct.name}
-                    fill
-                    className="object-cover"
-                    sizes="(max-width: 768px) 100vw, 50vw"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+                <div className="relative h-56 md:h-auto">
+                  <Image src={previewProduct.image} alt={previewProduct.name} fill className="object-cover" sizes="50vw" />
                   <div className="absolute bottom-4 left-4">
-                    <span
-                      className="text-white text-sm font-semibold rounded-full px-3 py-1"
-                      style={{
-                        backgroundImage: `linear-gradient(90deg, ${BRAND_GOLD}, ${BRAND_GOLD_DARK})`,
-                      }}
-                    >
+                    <span className="rounded-full px-3 py-1 text-xs font-semibold text-white" style={{ background: GOLD }}>
                       {prettyCategory(previewProduct.category)}
                     </span>
                   </div>
                 </div>
 
                 <div className="p-6 md:p-8">
-                  <div className="mb-6">
-                    <span
-                      className="text-xs font-semibold uppercase tracking-wide mb-2 block"
-                      style={{ color: BRAND_GOLD_DARK }}
-                    >
-                      Cabro Pattern Detail
-                    </span>
-                    <h3 className="text-2xl font-bold text-gray-900 mb-2">
-                      {previewProduct.name}
-                    </h3>
-                    <p className="text-sm text-gray-700">
-                      Color:{" "}
-                      <span className="font-semibold">
-                        {previewProduct.colorLabel}
-                      </span>
-                    </p>
-                  </div>
+                  <span className="text-[11px] font-semibold uppercase tracking-wider" style={{ color: GOLD }}>
+                    Cabro Pattern
+                  </span>
+                  <h3 className="mt-1 text-2xl font-bold text-[#0F172A] dark:text-white">{previewProduct.name}</h3>
+                  <p className="mt-1 text-sm text-slate-500">Color: {previewProduct.colorLabel}</p>
 
-                  <div className="space-y-6">
+                  <p className="mt-4 text-sm leading-6 text-slate-600">{previewProduct.description}</p>
+
+                  <div className="mt-5 space-y-3">
                     <div>
-                      <h4 className="text-sm font-semibold text-gray-900 mb-2">
-                        Description
-                      </h4>
-                      <p className="text-gray-800 leading-relaxed">
-                        {previewProduct.description}
-                      </p>
+                      <p className="text-xs font-semibold uppercase tracking-wide text-slate-400">Best For</p>
+                      <p className="mt-0.5 text-sm text-slate-700">{previewProduct.bestFor}</p>
                     </div>
-
                     <div>
-                      <h4 className="text-sm font-semibold text-gray-900 mb-2">
-                        Best For
-                      </h4>
-                      <p className="text-gray-800">{previewProduct.bestFor}</p>
-                    </div>
-
-                    <div>
-                      <h4 className="text-sm font-semibold text-gray-900 mb-2">
-                        Why Choose This Pattern?
-                      </h4>
-                      <p className="text-gray-800 leading-relaxed">
-                        {previewProduct.reason}
-                      </p>
+                      <p className="text-xs font-semibold uppercase tracking-wide text-slate-400">Why This Pattern?</p>
+                      <p className="mt-0.5 text-sm leading-6 text-slate-700">{previewProduct.reason}</p>
                     </div>
                   </div>
 
-                  <div
-                    className="mt-8 pt-6"
-                    style={{ borderTop: `1px solid ${BORDER_SOFT}` }}
+                  <button
+                    onClick={() => setPreviewProduct(null)}
+                    className="mt-6 w-full rounded-xl border border-slate-200 py-2.5 text-sm font-medium text-slate-700 transition hover:bg-slate-50"
                   >
-                    <button
-                      onClick={() => setPreviewProduct(null)}
-                      className="w-full px-6 py-3 rounded-lg font-semibold hover:bg-gray-50 transition"
-                      style={{ border: `1px solid ${BORDER_SOFT}` }}
-                    >
-                      Close
-                    </button>
-                    <p className="mt-3 text-xs text-gray-600 text-center">
-                      Use the floating WhatsApp button for quick assistance.
-                    </p>
-                  </div>
+                    Close
+                  </button>
                 </div>
               </div>
             </motion.div>
