@@ -964,7 +964,7 @@ function CTA() {
 // ── PAGE ──────────────────────────────────────────────────────────
 export default function CulvertPage() {
   return (
-    <main className="overflow-x-hidden antialiased" style={{ background: SURFACE }}>
+    <main className="overflow-x-hidden antialiased bg-white dark:bg-[#0A0C10] dark:text-slate-200">
       <Hero />
       <SpecsBar />
       <ProductOverview />

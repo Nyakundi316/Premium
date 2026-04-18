@@ -47,7 +47,7 @@ const FENCING_PRODUCTS = [
 
 export default function FencingPostsPage() {
   return (
-    <main className="bg-white text-slate-900">
+    <main className="bg-white dark:bg-[#0A0C10] text-slate-900 dark:text-slate-200">
       {/* HERO */}
       <section className="relative overflow-hidden">
         <div className="absolute inset-0">

@@ -19,54 +19,66 @@ const slides = [
   { image: "/images/Driveways.png", label: "Driveways" },
 ];
 
+/**
+ * Floating block layout
+ * Right panel is treated as a 3×3 zone grid so no two blocks collide.
+ * Order: hero first (biggest), then accents scattered around it.
+ */
 const floatingBlocks = [
   {
     src: "/images/products/Hero/grey-removebg-preview.png",
-    alt: "Grey Block",
-    size: "w-[180px] h-[180px] md:w-[220px] md:h-[220px] lg:w-[270px] lg:h-[270px]",
-    position: "top-[8%] right-[5%]",
-    rotate: -4,
+    alt: "Grey Hexagon Block",
+    size:
+      "w-[190px] h-[190px] md:w-[230px] md:h-[230px] lg:w-[290px] lg:h-[290px]",
+    position: "top-[3%] right-[1%]",
+    rotate: -6,
     floatDelay: 0,
-  },
-  {
-    src: "/images/products/Hero/pvc_block_3d-removebg-preview.png",
-    alt: "PVC 3D Block",
-    size: "w-[110px] h-[110px] md:w-[140px] md:h-[140px] lg:w-[170px] lg:h-[170px]",
-    position: "top-[38%] right-[32%]",
-    rotate: 5,
-    floatDelay: 0.8,
-  },
-  {
-    src: "/images/products/Hero/yellow-trihex-removebg-preview.png",
-    alt: "Yellow Trihex",
-    size: "w-[100px] h-[100px] md:w-[130px] md:h-[130px] lg:w-[160px] lg:h-[160px]",
-    position: "bottom-[28%] right-[6%]",
-    rotate: -7,
-    floatDelay: 1.6,
+    hero: true, // gets an extra glow halo
   },
   {
     src: "/images/products/Hero/fan-removebg-preview.png",
     alt: "Fan Block",
-    size: "w-[90px] h-[90px] md:w-[110px] md:h-[110px] lg:w-[135px] lg:h-[135px]",
-    position: "top-[18%] right-[38%]",
-    rotate: 8,
-    floatDelay: 2.2,
+    size:
+      "w-[85px] h-[85px] md:w-[110px] md:h-[110px] lg:w-[135px] lg:h-[135px]",
+    position: "top-[9%] right-[55%]",
+    rotate: 10,
+    floatDelay: 0.6,
   },
   {
-    src: "/images/products/Hero/Trihex-Charcoal-removebg-preview.png",
-    alt: "Trihex Charcoal",
-    size: "w-[95px] h-[95px] md:w-[120px] md:h-[120px] lg:w-[145px] lg:h-[145px]",
-    position: "bottom-[12%] right-[30%]",
-    rotate: 3,
+    src: "/images/products/Hero/pvc_block_3d-removebg-preview.png",
+    alt: "PVC 3D Block",
+    size:
+      "w-[115px] h-[115px] md:w-[145px] md:h-[145px] lg:w-[175px] lg:h-[175px]",
+    position: "top-[44%] right-[48%]",
+    rotate: 7,
     floatDelay: 1.2,
   },
   {
     src: "/images/products/Hero/dumble1-removebg-preview.png",
-    alt: "Dumble Block",
-    size: "w-[80px] h-[80px] md:w-[100px] md:h-[100px] lg:w-[120px] lg:h-[120px]",
-    position: "top-[55%] right-[12%]",
-    rotate: -3,
-    floatDelay: 0.4,
+    alt: "Dumbell Block",
+    size:
+      "w-[75px] h-[75px] md:w-[95px] md:h-[95px] lg:w-[120px] lg:h-[120px]",
+    position: "top-[52%] right-[4%]",
+    rotate: -9,
+    floatDelay: 1.8,
+  },
+  {
+    src: "/images/products/Hero/Trihex-Charcoal-removebg-preview.png",
+    alt: "Trihex Charcoal",
+    size:
+      "w-[95px] h-[95px] md:w-[120px] md:h-[120px] lg:w-[145px] lg:h-[145px]",
+    position: "bottom-[5%] right-[52%]",
+    rotate: -5,
+    floatDelay: 2.2,
+  },
+  {
+    src: "/images/products/Hero/yellow-trihex-removebg-preview.png",
+    alt: "Yellow Trihex",
+    size:
+      "w-[100px] h-[100px] md:w-[130px] md:h-[130px] lg:w-[160px] lg:h-[160px]",
+    position: "bottom-[4%] right-[20%]",
+    rotate: 6,
+    floatDelay: 0.9,
   },
 ];
 
@@ -112,15 +124,14 @@ export default function HeroSection() {
           </motion.div>
         </AnimatePresence>
 
-        <div className="absolute inset-0 bg-gradient-to-r from-[#070B14]/88 via-[#070B14]/60 to-[#070B14]/30" />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#070B14]/70 via-transparent to-[#070B14]/25" />
+        {/* Stronger darkening so blocks read crisply on any slide */}
+        <div className="absolute inset-0 bg-gradient-to-r from-[#070B14]/90 via-[#070B14]/62 to-[#070B14]/28" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#070B14]/75 via-transparent to-[#070B14]/30" />
       </div>
 
       {/* Content */}
       <div className="relative z-10 mx-auto grid max-w-7xl min-h-[100svh] grid-rows-[1fr_auto] px-5 sm:px-8 lg:px-12">
-
         <div className="grid items-center gap-8 pt-32 pb-12 lg:grid-cols-[1.1fr_0.9fr] lg:pt-36">
-
           {/* Left: Text */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -128,7 +139,10 @@ export default function HeroSection() {
             transition={{ duration: 0.7, ease: "easeOut" }}
           >
             <div className="mb-5 inline-flex items-center gap-2.5 rounded-full border border-white/12 bg-white/6 px-4 py-2 backdrop-blur-sm">
-              <span className="h-2 w-2 rounded-full" style={{ background: GOLD }} />
+              <span
+                className="h-2 w-2 rounded-full"
+                style={{ background: GOLD, boxShadow: `0 0 12px ${GOLD}` }}
+              />
               <span className="text-[11px] font-semibold uppercase tracking-[0.22em] text-white/80">
                 Premium Cabro · Nairobi
               </span>
@@ -144,7 +158,7 @@ export default function HeroSection() {
               <span style={{ color: GOLD }}>Quality.</span>
             </h1>
 
-            <p className="mb-8 max-w-lg text-[15px] leading-7 text-white/60 sm:text-base sm:leading-8">
+            <p className="mb-8 max-w-lg text-[15px] leading-7 text-white/65 sm:text-base sm:leading-8">
               We supply and install durable cabro blocks for driveways,
               compounds, parking areas, and commercial spaces across Kenya.
               Clean finish, proper fitting, reliable delivery.
@@ -153,7 +167,7 @@ export default function HeroSection() {
             <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
               <Link
                 href="/quote"
-                className="group inline-flex items-center gap-2.5 rounded-full px-7 py-3.5 text-sm font-semibold text-[#0D1B30] transition-all hover:brightness-110"
+                className="group inline-flex items-center gap-2.5 rounded-full px-7 py-3.5 text-sm font-semibold text-[#0D1B30] shadow-[0_10px_30px_-10px_rgba(255,194,14,0.6)] transition-all hover:brightness-110 hover:shadow-[0_14px_36px_-10px_rgba(255,194,14,0.8)]"
                 style={{ background: GOLD }}
               >
                 <MessageSquare size={16} />
@@ -166,7 +180,7 @@ export default function HeroSection() {
 
               <a
                 href="tel:+254711789438"
-                className="inline-flex items-center gap-2.5 rounded-full border border-white/15 bg-white/6 px-6 py-3.5 text-sm font-semibold text-white backdrop-blur-sm transition-all hover:bg-white/12"
+                className="inline-flex items-center gap-2.5 rounded-full border border-white/15 bg-white/6 px-6 py-3.5 text-sm font-semibold text-white backdrop-blur-sm transition-all hover:bg-white/12 hover:border-white/25"
               >
                 <Phone size={16} style={{ color: GOLD }} />
                 0711 789 438
@@ -174,11 +188,14 @@ export default function HeroSection() {
             </div>
 
             {/* Mobile product strip */}
-            <div className="mt-8 flex gap-3 overflow-x-auto pb-2 md:hidden" style={{ scrollbarWidth: "none" }}>
+            <div
+              className="mt-8 flex gap-3 overflow-x-auto pb-2 md:hidden"
+              style={{ scrollbarWidth: "none" }}
+            >
               {mobileBlocks.map((block) => (
                 <div
                   key={block.alt}
-                  className="relative h-16 w-16 shrink-0 rounded-xl bg-white/8 backdrop-blur-sm"
+                  className="relative h-16 w-16 shrink-0 rounded-xl border border-white/10 bg-white/8 backdrop-blur-sm"
                 >
                   <Image
                     src={block.src}
@@ -203,13 +220,17 @@ export default function HeroSection() {
                     className="block h-[3px] rounded-full transition-all duration-500"
                     style={{
                       width: i === activeSlide ? 40 : 16,
-                      background: i === activeSlide ? GOLD : "rgba(255,255,255,0.25)",
+                      background:
+                        i === activeSlide ? GOLD : "rgba(255,255,255,0.25)",
                     }}
                   />
                   <span
                     className="text-[11px] font-medium uppercase tracking-wider transition-colors"
                     style={{
-                      color: i === activeSlide ? "rgba(255,255,255,0.9)" : "rgba(255,255,255,0.35)",
+                      color:
+                        i === activeSlide
+                          ? "rgba(255,255,255,0.9)"
+                          : "rgba(255,255,255,0.35)",
                     }}
                   >
                     {slide.label}
@@ -220,30 +241,58 @@ export default function HeroSection() {
           </motion.div>
 
           {/* Right: Floating product blocks — visible md+ */}
-          <div className="relative hidden h-full md:block">
+          <div className="pointer-events-none relative hidden h-full md:block">
+            {/* Ambient golden glows — behind everything */}
+            <div
+              className="absolute right-[6%] top-[10%] h-[260px] w-[260px] rounded-full blur-[100px]"
+              style={{ background: `${GOLD}22` }}
+            />
+            <div
+              className="absolute bottom-[14%] right-[30%] h-[160px] w-[160px] rounded-full blur-[80px]"
+              style={{ background: `${GOLD}14` }}
+            />
+
             {floatingBlocks.map((block, i) => (
               <motion.div
                 key={block.alt}
                 className={`absolute ${block.position} ${block.size}`}
-                initial={{ opacity: 0, y: 50, rotate: 0 }}
+                initial={{ opacity: 0, y: 40, rotate: block.rotate }}
                 animate={{
                   opacity: 1,
-                  y: [0, -6, 0],
-                  rotate: block.rotate,
+                  y: [0, -8, 0],
+                  rotate: [
+                    block.rotate - 1.5,
+                    block.rotate + 1.5,
+                    block.rotate - 1.5,
+                  ],
                 }}
                 transition={{
                   opacity: { duration: 0.7, delay: 0.3 + i * 0.12 },
                   y: {
-                    duration: 3.5 + i * 0.3,
+                    duration: 3.8 + i * 0.25,
                     repeat: Infinity,
-                    repeatType: "reverse",
+                    repeatType: "mirror",
                     ease: "easeInOut",
                     delay: block.floatDelay,
                   },
-                  rotate: { duration: 0.7, delay: 0.3 + i * 0.12 },
+                  rotate: {
+                    duration: 5.5 + i * 0.4,
+                    repeat: Infinity,
+                    repeatType: "mirror",
+                    ease: "easeInOut",
+                    delay: block.floatDelay,
+                  },
                 }}
               >
-                <div className="relative h-full w-full drop-shadow-[0_16px_35px_rgba(0,0,0,0.35)]">
+                {/* Per-block hero glow — only on the main grey block */}
+                {block.hero && (
+                  <div
+                    className="absolute inset-0 -z-10 scale-110 rounded-full blur-[50px]"
+                    style={{ background: `${GOLD}20` }}
+                  />
+                )}
+
+                <div className="relative h-full w-full drop-shadow-[0_20px_30px_rgba(0,0,0,0.45)]">
                   <Image
                     src={block.src}
                     alt={block.alt}
@@ -252,17 +301,14 @@ export default function HeroSection() {
                     sizes="20vw"
                   />
                 </div>
+
+                {/* Soft elliptical ground shadow */}
+                <div
+                  className="absolute left-1/2 bottom-[-8%] h-3 w-[70%] -translate-x-1/2 rounded-full blur-md"
+                  style={{ background: "rgba(0,0,0,0.35)" }}
+                />
               </motion.div>
             ))}
-
-            <div
-              className="absolute right-[18%] top-[28%] h-[200px] w-[200px] rounded-full blur-[90px]"
-              style={{ background: `${GOLD}18` }}
-            />
-            <div
-              className="absolute bottom-[20%] right-[8%] h-[120px] w-[120px] rounded-full blur-[70px]"
-              style={{ background: `${GOLD}12` }}
-            />
           </div>
         </div>
 
@@ -275,12 +321,22 @@ export default function HeroSection() {
         >
           <div className="flex flex-wrap items-center justify-between gap-6">
             <div className="flex gap-10 sm:gap-14">
-              {stats.map((stat) => (
-                <div key={stat.label}>
-                  <p className="text-2xl font-bold tracking-tight sm:text-3xl" style={{ color: GOLD }}>
+              {stats.map((stat, i) => (
+                <div
+                  key={stat.label}
+                  className={
+                    i > 0
+                      ? "relative pl-10 sm:pl-14 before:absolute before:left-0 before:top-1/2 before:h-8 before:w-px before:-translate-y-1/2 before:bg-white/12"
+                      : ""
+                  }
+                >
+                  <p
+                    className="text-2xl font-bold tracking-tight sm:text-3xl"
+                    style={{ color: GOLD }}
+                  >
                     {stat.value}
                   </p>
-                  <p className="mt-1 text-[11px] font-medium uppercase tracking-[0.15em] text-white/40">
+                  <p className="mt-1 text-[11px] font-medium uppercase tracking-[0.15em] text-white/45">
                     {stat.label}
                   </p>
                 </div>
@@ -302,4 +358,4 @@ export default function HeroSection() {
       <div className="pointer-events-none absolute bottom-0 left-0 right-0 z-20 h-20 bg-gradient-to-b from-transparent to-white dark:to-[#0A0C10]" />
     </section>
   );
-}
+} 

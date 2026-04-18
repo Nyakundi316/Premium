@@ -64,7 +64,7 @@ export default async function ProductPage({
   if (!product) return notFound();
 
   return (
-    <main className="min-h-screen bg-white">
+    <main className="min-h-screen bg-white dark:bg-[#0A0C10] dark:text-slate-200">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 pt-28 pb-14">
         {/* Back link */}
         <Link
@@ -78,7 +78,7 @@ export default async function ProductPage({
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           {/* Image gallery */}
           <div>
-            <div className="relative aspect-[4/3] rounded-2xl overflow-hidden border border-slate-200">
+            <div className="relative aspect-[4/3] rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-700">
               <Image
                 src={product.images[0]}
                 alt={product.name}
@@ -93,7 +93,7 @@ export default async function ProductPage({
                 {product.images.map((img) => (
                   <div
                     key={img}
-                    className="relative h-20 w-24 rounded-lg overflow-hidden border border-slate-200"
+                    className="relative h-20 w-24 rounded-lg overflow-hidden border border-slate-200 dark:border-slate-700"
                   >
                     <Image src={img} alt="" fill className="object-cover" />
                   </div>
@@ -104,7 +104,7 @@ export default async function ProductPage({
 
           {/* Content */}
           <div>
-            <h1 className="text-3xl sm:text-4xl font-extrabold text-slate-900">
+            <h1 className="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white">
               {product.name}
             </h1>
 

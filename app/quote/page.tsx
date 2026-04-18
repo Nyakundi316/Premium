@@ -83,7 +83,7 @@ export default function QuoteForm() {
   };
 
   return (
-    <div className="min-h-screen bg-slate-50 text-slate-900 pt-24 md:pt-32">
+    <div className="min-h-screen bg-slate-50 dark:bg-[#0A0C10] text-slate-900 dark:text-slate-200 pt-24 md:pt-32">
       <main className="mx-auto max-w-6xl px-4 pb-10 md:pb-14">
         {/* HEADER */}
         <header className="mx-auto mb-10 max-w-3xl text-center">

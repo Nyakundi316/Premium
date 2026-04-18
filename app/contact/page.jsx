@@ -17,7 +17,7 @@ export const metadata = {
 
 export default function ContactPage() {
   return (
-    <main className="min-h-screen pt-28 bg-white text-slate-900">
+    <main className="min-h-screen pt-28 bg-white dark:bg-[#0A0C10] text-slate-900 dark:text-slate-200">
       <section className="max-w-6xl mx-auto px-4 py-12 md:py-16">
         {/* HEADER */}
         <div className="mb-10">
@@ -41,7 +41,7 @@ export default function ContactPage() {
               </p>
             </div>
 
-            <div className="rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 text-xs md:text-sm shadow-sm">
+            <div className="rounded-2xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800/50 px-4 py-3 text-xs md:text-sm shadow-sm">
               <p className="font-semibold text-slate-900">
                 Factory & Yard – Githunguri / Kiambu
               </p>
@@ -56,7 +56,7 @@ export default function ContactPage() {
         <div className="grid gap-8 md:grid-cols-[1.05fr,1.1fr]">
           {/* LEFT: CONTACT DETAILS */}
           <div className="space-y-5">
-            <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
+            <div className="rounded-2xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 p-6 shadow-sm">
               <h2 className="text-base md:text-lg font-semibold mb-3 flex items-center gap-2">
                 <MessageCircle className="h-5 w-5 text-[#FFC20E]" />
                 Reach our team
@@ -152,7 +152,7 @@ export default function ContactPage() {
             </div>
 
             {/* SERVICE AREAS TAGS */}
-            <div className="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+            <div className="rounded-2xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800/50 p-5">
               <p className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-500 mb-2">
                 Main Service Areas
               </p>
@@ -170,7 +170,7 @@ export default function ContactPage() {
                 ].map((place) => (
                   <span
                     key={place}
-                    className="px-3 py-1 rounded-full bg-white border border-slate-200 text-slate-700"
+                    className="px-3 py-1 rounded-full bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-600 text-slate-700"
                   >
                     {place}
                   </span>
@@ -180,7 +180,7 @@ export default function ContactPage() {
           </div>
 
           {/* RIGHT: CONTACT FORM */}
-          <div className="rounded-2xl border border-slate-200 bg-white p-6 md:p-7 shadow-sm">
+          <div className="rounded-2xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 p-6 md:p-7 shadow-sm">
             <h2 className="text-base md:text-lg font-semibold mb-2">
               Send us a quick enquiry
             </h2>

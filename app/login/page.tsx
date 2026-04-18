@@ -102,8 +102,8 @@ export default function LoginPage() {
   }
 
   return (
-    <main className="min-h-screen bg-slate-50 flex items-center justify-center px-4 py-10">
-      <div className="w-full max-w-6xl bg-white shadow-[0_18px_60px_rgba(15,23,42,0.12)] rounded-2xl overflow-hidden grid grid-cols-1 lg:grid-cols-2 border border-slate-200">
+    <main className="min-h-screen bg-slate-50 dark:bg-[#0A0C10] flex items-center justify-center px-4 py-10">
+      <div className="w-full max-w-6xl bg-white dark:bg-slate-900 shadow-[0_18px_60px_rgba(15,23,42,0.12)] rounded-2xl overflow-hidden grid grid-cols-1 lg:grid-cols-2 border border-slate-200 dark:border-slate-700">
         {/* LEFT: Hero (same feeling as signup) */}
         <section className="relative hidden lg:block">
           <Image

@@ -98,7 +98,7 @@ export default function SignupPage() {
   };
 
   return (
-    <div className="min-h-[calc(100vh-5rem)] bg-[#F9FAFB] text-[#0F172A] dark:text-white">
+    <div className="min-h-[calc(100vh-5rem)] bg-[#F9FAFB] dark:bg-[#0A0C10] text-[#0F172A] dark:text-white">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-10">
         <div className="grid lg:grid-cols-2 gap-8 items-stretch">
           {/* Left: visual */}

@@ -22,7 +22,7 @@ export const metadata = {
 
 export default function AboutPage() {
   return (
-    <main className="min-h-screen bg-white text-slate-900">
+    <main className="min-h-screen bg-white dark:bg-[#0A0C10] text-slate-900 dark:text-slate-200">
       {/* HERO */}
       <section className="relative overflow-hidden">
         <div className="absolute inset-0">
@@ -90,7 +90,7 @@ export default function AboutPage() {
           ].map((item) => (
             <div
               key={item.title}
-              className="rounded-2xl border border-slate-200 overflow-hidden bg-white shadow-sm"
+              className="rounded-2xl border border-slate-200 dark:border-slate-700 overflow-hidden bg-white dark:bg-slate-900 shadow-sm"
             >
               <div className="relative h-40">
                 <Image
@@ -116,7 +116,7 @@ export default function AboutPage() {
 
         {/* WHAT WE DO + IMAGE */}
         <div className="grid gap-8 md:grid-cols-2 mb-14">
-          <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
+          <div className="rounded-2xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 p-6 shadow-sm">
             <h2 className="flex items-center gap-2 text-lg font-semibold mb-3">
               <ShieldCheck className="h-5 w-5" style={{ color: GOLD }} />
               High-performance paving products
@@ -155,7 +155,7 @@ export default function AboutPage() {
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
               <div className="absolute bottom-4 left-4 right-4">
-                <div className="rounded-xl bg-white/90 backdrop-blur px-4 py-3">
+                <div className="rounded-xl bg-white/90 dark:bg-slate-900/90 backdrop-blur px-4 py-3">
                   <h3 className="flex items-center gap-2 text-sm font-semibold">
                     <Users className="h-4 w-4" style={{ color: GOLD }} />
                     Who we work with
@@ -171,7 +171,7 @@ export default function AboutPage() {
 
         {/* DELIVERY & MANUFACTURING */}
         <div className="grid gap-6 md:grid-cols-[1.2fr,1fr] mb-14">
-          <div className="rounded-2xl border border-slate-200 bg-slate-50 p-6">
+          <div className="rounded-2xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800/50 p-6">
             <h2 className="text-lg font-semibold mb-3">Where we deliver</h2>
             <p className="text-sm text-slate-600 mb-3">
               Our direct supply network covers the following regions:
@@ -190,7 +190,7 @@ export default function AboutPage() {
               ].map((place) => (
                 <span
                   key={place}
-                  className="px-3 py-1.5 rounded-full bg-white border border-slate-200"
+                  className="px-3 py-1.5 rounded-full bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-600"
                 >
                   {place}
                 </span>
@@ -198,7 +198,7 @@ export default function AboutPage() {
             </div>
           </div>
 
-          <div className="rounded-2xl border border-slate-200 bg-slate-50 p-6">
+          <div className="rounded-2xl border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800/50 p-6">
             <h2 className="text-lg font-semibold mb-3">How we manufacture</h2>
             <ul className="space-y-2 text-sm text-slate-700">
               {[
@@ -245,7 +245,7 @@ export default function AboutPage() {
           ].map((box) => (
             <div
               key={box.title}
-              className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm"
+              className="rounded-2xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 p-5 shadow-sm"
             >
               <h3
                 className="flex items-center gap-2 text-sm font-semibold mb-2 uppercase tracking-wide"
@@ -287,7 +287,7 @@ export default function AboutPage() {
           </Link>
           <Link
             href="/projects"
-            className="rounded-full border border-slate-300 px-6 py-3 text-sm font-semibold hover:border-[#FFC20E] hover:text-[#FFC20E] transition"
+            className="rounded-full border border-slate-300 dark:border-slate-600 px-6 py-3 text-sm font-semibold hover:border-[#FFC20E] hover:text-[#FFC20E] transition"
           >
             Browse completed projects
           </Link>

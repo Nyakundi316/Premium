@@ -168,10 +168,7 @@ export default function ProjectsPage() {
 
   return (
     <section
-      className="min-h-screen py-12 sm:py-16 lg:py-20"
-      style={{
-        backgroundImage: `linear-gradient(to bottom, ${BG_FROM}, ${BG_TO})`,
-      }}
+      className="min-h-screen py-12 sm:py-16 lg:py-20 bg-gradient-to-b from-[#EEF2F6] to-white dark:from-[#0A0C10] dark:to-[#0F1219]"
     >
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
         {/* HERO */}
