@@ -65,6 +65,62 @@ const applications = [
       "Good for churches, schools, parks & events parking",
     ],
   },
+  {
+    id: "pool-resort",
+    title: "Pool Surrounds & Resorts",
+    cabroType: "60mm Decorative",
+    useFor: "Swimming pools, resort decks and outdoor lounge areas.",
+    note: "Choose smooth-face, non-slip pavers in light tones to keep the surface cool and safe.",
+    image: "/images/square pave.jpg",
+    imageAlt: "Diamond-pattern paving around a luxury swimming pool.",
+    bullets: [
+      "Recommended: Diamond / Square plaza pavers",
+      "Non-slip surface for wet areas",
+      "Light colours stay cooler in direct sunlight",
+    ],
+  },
+  {
+    id: "walkways",
+    title: "Walkways, Parks & Pathways",
+    cabroType: "60mm Decorative",
+    useFor: "Public walkways, park paths, school compounds and gardens.",
+    note: "Use colourful or patterned pavers with kerbstone borders for clean defined edges.",
+    image: "/images/round trihex 1.jpeg",
+    imageAlt: "Colourful round dumble paved walkway through a green park.",
+    bullets: [
+      "Recommended: Round Dumble / Brick Bond pavers",
+      "Great for landscaped paths with hedging",
+      "Low maintenance and durable for foot traffic",
+    ],
+  },
+  {
+    id: "commercial-retail",
+    title: "Shopping Centres & Retail Spaces",
+    cabroType: "80mm Heavy Duty",
+    useFor: "Mall entrances, retail walkways and commercial outdoor areas.",
+    note: "Go for grey or charcoal tones — they hide dirt and give a professional commercial look.",
+    image: "/images/shop paves.jpeg",
+    imageAlt: "Large commercial area paved with grey hexagonal cabro blocks.",
+    bullets: [
+      "Recommended: 80mm Hexagon / Trihex pavers",
+      "Handles trolleys, delivery vehicles and foot traffic",
+      "Pair with drainage channels for stormwater management",
+    ],
+  },
+  {
+    id: "decorative-compound",
+    title: "Decorative Estate Compounds",
+    cabroType: "60mm Multi-Colour",
+    useFor: "Show compounds, estate entrances and feature areas.",
+    note: "Mix 2–3 colours with flower motifs or borders to create a standout entrance.",
+    image: "/images/WhatsApp Image 2025-12-01 at 8.46.41 AM.jpeg",
+    imageAlt: "Colourful round dumble compound with flower motif pattern.",
+    bullets: [
+      "Recommended: Round Dumble / Crown with colour mix",
+      "Create flower or border patterns using contrasting colours",
+      "Ideal for making a first impression at estate gates",
+    ],
+  },
 ];
 
 export default function ApplicationsPage() {

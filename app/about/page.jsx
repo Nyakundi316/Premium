@@ -73,7 +73,7 @@ export default function AboutPage() {
               icon: <Factory className="h-5 w-5" style={{ color: GOLD }} />,
               title: "Modern production line",
               desc: "Machine-made vibro-compacted blocks with strict quality control.",
-              image: "/images/products/cabro/grey.jpeg",
+              image: "/images/products/cabro/WhatsApp Image 2026-01-08 at 11.51.56 AM.jpeg",
             },
             {
               icon: <Building2 className="h-5 w-5" style={{ color: GOLD }} />,

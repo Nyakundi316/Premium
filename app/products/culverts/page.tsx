@@ -33,6 +33,19 @@ const HERO_IMAGE = "/images/products/culverts/250mm culvert.jpg";
 const STACKED_IMAGE = "/images/products/culverts/culverts.jpg";
 const INSTALLATION_IMAGE = "/images/products/culverts/Culverts under the road.jpg";
 
+const GALLERY_IMAGES = [
+  { src: "/images/products/culverts/300mm culverts.jpg", label: "300mm Culverts" },
+  { src: "/images/products/culverts/600mm culvert.jpg", label: "600mm Culvert" },
+  { src: "/images/products/culverts/250mm culvers 3.jpg", label: "250mm Culverts" },
+  { src: "/images/products/culverts/250mm culverts.jpg", label: "250mm Stacked" },
+  { src: "/images/products/culverts/culvert1.jpeg", label: "Culvert Production" },
+  { src: "/images/products/culverts/culvert2.jpeg", label: "Curing Yard" },
+  { src: "/images/products/culverts/culvert3.jpeg", label: "Ready for Delivery" },
+  { src: "/images/products/culverts/culvert4.jpeg", label: "Quality Inspection" },
+  { src: "/images/products/culverts/culvert5.jpeg", label: "Reinforced Units" },
+  { src: "/images/products/culverts/DSCN4511[1].jpg", label: "Site Installation" },
+];
+
 // ── Animation variants ────────────────────────────────────────────
 const fadeUp = {
   hidden: { opacity: 0, y: 22 },
@@ -742,6 +755,62 @@ function AvailableSizes() {
   );
 }
 
+// ── PHOTO GALLERY ────────────────────────────────────────────────
+function PhotoGallery() {
+  return (
+    <section className="py-16 sm:py-20 lg:py-24" style={{ background: LIGHT_BG }}>
+      <div className="container mx-auto px-5 sm:px-8 lg:px-12">
+        <motion.div
+          variants={stagger}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, amount: 0.1 }}
+        >
+          <motion.div variants={fadeUp}>
+            <SectionTag>From Our Yard</SectionTag>
+          </motion.div>
+
+          <motion.h2
+            variants={fadeUp}
+            className="culvert-display font-extrabold leading-[0.94] mb-10"
+            style={{
+              fontSize: "clamp(2rem, 4.5vw, 3.4rem)",
+              letterSpacing: "-0.02em",
+              color: DARK,
+            }}
+          >
+            See our culverts <span style={{ color: AMBER_DARK }}>up close</span>
+          </motion.h2>
+
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 sm:gap-4">
+            {GALLERY_IMAGES.map((img, i) => (
+              <motion.div
+                key={img.src}
+                variants={fadeUp}
+                className="group relative overflow-hidden rounded-2xl border border-black/5 shadow-sm"
+              >
+                <div className="relative aspect-square">
+                  <Image
+                    src={img.src}
+                    alt={img.label}
+                    fill
+                    className="object-cover transition-transform duration-500 group-hover:scale-105"
+                    sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 20vw"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+                  <p className="absolute bottom-2 left-2 right-2 text-[11px] font-semibold text-white opacity-0 group-hover:opacity-100 transition-opacity truncate">
+                    {img.label}
+                  </p>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </motion.div>
+      </div>
+    </section>
+  );
+}
+
 // ── USE CASES / INSTALLATION ──────────────────────────────────────
 function InstallationAndUse() {
   const uses = [
@@ -969,6 +1038,7 @@ export default function CulvertPage() {
       <SpecsBar />
       <ProductOverview />
       <AvailableSizes />
+      <PhotoGallery />
       <InstallationAndUse />
       <CTA />
     </main>

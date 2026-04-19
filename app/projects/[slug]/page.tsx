@@ -18,6 +18,8 @@ const PRODUCTS = [
       "/images/products/culverts/culverts.jpg",
       "/images/products/culverts/250mm culvert.jpg",
       "/images/products/culverts/Culverts under the road.jpg",
+      "/images/products/culverts/300mm culverts.jpg",
+      "/images/products/culverts/600mm culvert.jpg",
     ],
   },
   {
@@ -30,6 +32,8 @@ const PRODUCTS = [
     images: [
       "/images/products/cabro/grey.jpeg",
       "/images/products/cabro/Hero2.jpeg",
+      "/images/products/cabro/trihex groove.jpeg",
+      "/images/products/cabro/image.png",
     ],
   },
   {
@@ -42,6 +46,9 @@ const PRODUCTS = [
     images: [
       "/images/products/kerbs-drainage/kerbs 1 (1).jpeg",
       "/images/products/kerbs-drainage/kerbs 1 (2).jpeg",
+      "/images/products/kerbs-drainage/kerbs 1 (3).jpeg",
+      "/images/products/kerbs-drainage/kerbs 1 (4).jpeg",
+      "/images/products/kerbs-drainage/kerbs 1 (5).jpeg",
     ],
   },
 ];

@@ -50,6 +50,34 @@ const projects = [
     image: "/images/30 Best Yard Landscaping Ideas for a Stunning….jpeg",
     large: false,
   },
+  {
+    title: "Decorative Compound",
+    category: "Round Dumble Cabro",
+    location: "Kiambu",
+    image: "/images/WhatsApp Image 2025-12-01 at 8.46.41 AM.jpeg",
+    large: true,
+  },
+  {
+    title: "Estate Driveway",
+    category: "Zigzag Heavy Duty",
+    location: "Nairobi",
+    image: "/images/zizag2.jpg",
+    large: false,
+  },
+  {
+    title: "Curved Driveway",
+    category: "Cobblestone Paving",
+    location: "Runda",
+    image: "/images/Perfect Work of Paver Block.jpeg",
+    large: false,
+  },
+  {
+    title: "Garden Walkway",
+    category: "Round Dumble Path",
+    location: "Ruaka",
+    image: "/images/round trihex 1.jpeg",
+    large: false,
+  },
 ];
 
 const largeProjects = projects.filter((p) => p.large);

@@ -203,7 +203,7 @@ export default function Navbar() {
               <button
                 onClick={toggleTheme}
                 aria-label="Toggle theme"
-                className="hidden sm:inline-flex h-8 w-8 items-center justify-center rounded-full
+                className="inline-flex h-8 w-8 items-center justify-center rounded-full
                            border border-white/18 bg-white/10 hover:bg-white/15 transition text-white/80"
               >
                 {theme === "dark"
@@ -300,6 +300,26 @@ export default function Navbar() {
 
                     {/* Divider */}
                     <div className="my-2 border-t border-white/10" />
+
+                    {/* Theme toggle in mobile menu */}
+                    <motion.div
+                      variants={{
+                        hidden: { opacity: 0, x: -8 },
+                        show: { opacity: 1, x: 0, transition: { duration: 0.22 } },
+                      }}
+                    >
+                      <button
+                        onClick={toggleTheme}
+                        className="flex w-full items-center gap-2 rounded-xl px-3 py-2.5
+                                   text-sm font-medium text-white/90 hover:bg-white/10 transition"
+                      >
+                        {theme === "dark"
+                          ? <SunMedium className="h-4 w-4 text-[#FFC20E]" />
+                          : <MoonStar className="h-4 w-4 text-[#FFC20E]" />
+                        }
+                        <span>{theme === "dark" ? "Light Mode" : "Dark Mode"}</span>
+                      </button>
+                    </motion.div>
 
                     {/* Phone */}
                     <motion.div

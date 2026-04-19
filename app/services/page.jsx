@@ -125,6 +125,26 @@ const projects = [
     location: "Thika",
     image: "/images/products/culverts/culverts.jpg",
   },
+  {
+    title: "Decorative compound round dumble paving",
+    location: "Kiambu",
+    image: "/images/WhatsApp Image 2025-12-01 at 8.46.41 AM.jpeg",
+  },
+  {
+    title: "Estate entrance zigzag driveway",
+    location: "Nairobi",
+    image: "/images/zizag2.jpg",
+  },
+  {
+    title: "Retaining wall & landscaping",
+    location: "Karen",
+    image: "/images/kerbs erosion control.png",
+  },
+  {
+    title: "Perimeter fencing with concrete posts",
+    location: "Limuru",
+    image: "/images/concrete fence.png",
+  },
 ];
 
 const faqs = [

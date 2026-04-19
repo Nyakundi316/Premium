@@ -147,8 +147,8 @@ export default function FencingPostsPage() {
           <div className="rounded-3xl border border-black/10 overflow-hidden bg-white shadow-sm">
             <div className="relative h-[320px] w-full">
               <Image
-                src="/images/fence.png"
-                alt="Concrete fencing posts installed on site"
+                src="/images/concrete fence.png"
+                alt="Concrete fencing posts installed with chain-link on a farm boundary"
                 fill
                 className="object-cover"
                 sizes="50vw"
