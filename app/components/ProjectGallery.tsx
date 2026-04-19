@@ -5,7 +5,7 @@ import { useMemo, useState } from "react";
 
 export default function ProductGallery({ images }: { images: string[] }) {
   const safeImages = useMemo(
-    () => (Array.isArray(images) && images.length ? images : ["/images/placeholder.jpg"]),
+    () => (Array.isArray(images) && images.length ? images : ["/images/Construction.jpeg"]),
     [images]
   );
   const [active, setActive] = useState(safeImages[0]);

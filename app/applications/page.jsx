@@ -15,7 +15,7 @@ const applications = [
     cabroType: "60mm Cabro",
     useFor: "Personal cars, home compounds, walkways and patios.",
     note: "Best choice for residential driveways and compounds with light to medium traffic.",
-    image: "/images/applications/residential-driveway.jpg",
+    image: "/images/Driveways.png",
     imageAlt: "Residential cabro driveway in front of a house.",
     bullets: [
       "Recommended: 60mm Uni-Paver / Trihex",
@@ -29,7 +29,7 @@ const applications = [
     cabroType: "80mm Heavy Duty Cabro",
     useFor: "Shared parking, estate roads and turning areas.",
     note: "Handles high traffic from many vehicles and daily turning movements.",
-    image: "/images/applications/estate-parking.jpg",
+    image: "/images/Parking Lot.jpeg",
     imageAlt: "Apartment parking cabro blocks with marked bays.",
     bullets: [
       "Recommended: 80mm Uni-Paver / Heavy-Duty Zigzag",
@@ -43,7 +43,7 @@ const applications = [
     cabroType: "80mm Heavy Duty Cabro",
     useFor: "Fuel tankers, trucks, forklifts and loading bays.",
     note: "For areas with lorries and heavy loads where failure is very costly.",
-    image: "/images/applications/petrol-station-yard.jpg",
+    image: "/images/industrial yard.png",
     imageAlt: "Petrol station or industrial yard paved with heavy cabro blocks.",
     bullets: [
       "Recommended: 80mm Heavy-Duty Zigzag / Rectangular",
@@ -57,7 +57,7 @@ const applications = [
     cabroType: "Grass Pavers",
     useFor: "Overflow parking, garden access and green driveways.",
     note: "Perfect when you want vehicle access but still keep a green, natural look.",
-    image: "/images/applications/grass-pavers.jpg",
+    image: "/images/Garden cabros.png",
     imageAlt: "Grass pavers with green grass growing between blocks.",
     bullets: [
       "Recommended: Grass / eco pavers",

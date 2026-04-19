@@ -19,9 +19,9 @@ export const PRODUCTS: Product[] = [
     sizes: "300mm, 450mm, 600mm, 900mm, 1200mm",
     bestFor: "Road drainage, stormwater, estate & farm access",
     images: [
-      "/images/products/culverts/1.jpg",
-      "/images/products/culverts/2.jpg",
-      "/images/products/culverts/3.jpg",
+      "/images/products/culverts/culverts.jpg",
+      "/images/products/culverts/250mm culvert.jpg",
+      "/images/products/culverts/Culverts under the road.jpg",
     ],
     features: ["Steel-reinforced", "Durable", "Various sizes", "Easy installation"],
   },
@@ -34,8 +34,8 @@ export const PRODUCTS: Product[] = [
     sizes: "60mm, 80mm, decorative",
     bestFor: "Driveways, walkways, parking, industrial yards",
     images: [
-      "/images/products/cabro/1.jpg",
-      "/images/products/cabro/2.jpg",
+      "/images/products/cabro/grey.jpeg",
+      "/images/products/cabro/Hero2.jpeg",
     ],
     features: ["Weather-resistant", "Low maintenance", "Many patterns", "Heavy-duty options"],
   },
@@ -47,7 +47,7 @@ export const PRODUCTS: Product[] = [
       "Strong, termite-proof fencing posts for plots, farms & estates.",
     sizes: "6ft, 7ft, 8ft, 9ft, 10ft",
     bestFor: "Plots, farms, perimeter fencing",
-    images: ["/images/products/fencing-posts/1.jpg"],
+    images: ["/images/products/fencing-posts/fence.png"],
     features: ["Termite-proof", "Low maintenance", "Weather-resistant"],
   },
   {
@@ -58,8 +58,8 @@ export const PRODUCTS: Product[] = [
       "Precast kerbs and channels for clean edging and water management.",
     bestFor: "Driveway edges, walkways, estate roads, drainage lines",
     images: [
-      "/images/products/kerbs-drainage/1.jpg",
-      "/images/products/kerbs-drainage/2.jpg",
+      "/images/products/kerbs-drainage/kerbs 1 (1).jpeg",
+      "/images/products/kerbs-drainage/kerbs 1 (2).jpeg",
     ],
     features: ["Precast", "Clean edging", "Helps prevent erosion"],
   },

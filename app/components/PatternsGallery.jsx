@@ -65,6 +65,54 @@ export default function PatternsGallery() {
       popular: true,
       image: "/images/3D-uni-Cabro-blocks-in-Kenya.jpg",
     },
+    {
+      id: 5,
+      name: "Trihex Charcoal",
+      category: "hexagonal",
+      description: "Heavy-duty trihex for loading bays and truck zones.",
+      thickness: "80mm",
+      load: "Very Heavy",
+      colors: ["Charcoal", "Grey"],
+      application: "Industrial",
+      popular: true,
+      image: "/images/Trihex-Charcoal.jpg",
+    },
+    {
+      id: 6,
+      name: "Arrow Paver",
+      category: "interlocking",
+      description: "Directional interlock for parking lots and access roads.",
+      thickness: "80mm",
+      load: "Heavy",
+      colors: ["Grey", "Charcoal"],
+      application: "Commercial",
+      popular: false,
+      image: "/images/Arrow-pavers.png",
+    },
+    {
+      id: 7,
+      name: "Wave Pattern",
+      category: "cobblestone",
+      description: "Flowing wave design for gardens and resorts.",
+      thickness: "60mm",
+      load: "Medium",
+      colors: ["Red", "Grey", "Natural"],
+      application: "Courtyards",
+      popular: false,
+      image: "/images/WAVE_RED.jpg",
+    },
+    {
+      id: 8,
+      name: "Fan Block",
+      category: "cobblestone",
+      description: "Fan-shaped paver for circles and curved entrances.",
+      thickness: "60mm",
+      load: "Medium",
+      colors: ["Red", "Natural"],
+      application: "Driveways",
+      popular: true,
+      image: "/images/fan.jpeg",
+    },
   ];
 
   const filteredPatterns =
@@ -73,7 +121,7 @@ export default function PatternsGallery() {
       : patterns.filter((pattern) => pattern.category === activeCategory);
 
   return (
-    <section id="patterns" className="bg-[#FAFAF7] py-10 md:py-16">
+    <section id="patterns" className="bg-[#FAFAF7] dark:bg-[#0F1219] py-10 md:py-16">
       <div className="mx-auto max-w-6xl px-3 md:px-6">
         {/* HEADER */}
         <div className="mx-auto mb-10 max-w-xl text-center">

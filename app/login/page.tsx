@@ -107,7 +107,7 @@ export default function LoginPage() {
         {/* LEFT: Hero (same feeling as signup) */}
         <section className="relative hidden lg:block">
           <Image
-            src="/images/auth/pm-hero.jpg" // 🔁 use same image as sign up or replace path
+            src="/images/Construction.jpeg"
             alt="Premium Movers paving and construction"
             fill
             priority

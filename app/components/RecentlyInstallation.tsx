@@ -36,6 +36,20 @@ const projects = [
     image: "/images/mall.png",
     large: false,
   },
+  {
+    title: "Swimming Pool Area",
+    category: "Landscape Paving",
+    location: "Kiambu",
+    image: "/images/swimming.jpeg",
+    large: true,
+  },
+  {
+    title: "Estate Compound",
+    category: "Interlocking Cabro",
+    location: "Thika Road",
+    image: "/images/30 Best Yard Landscaping Ideas for a Stunning….jpeg",
+    large: false,
+  },
 ];
 
 const largeProjects = projects.filter((p) => p.large);
