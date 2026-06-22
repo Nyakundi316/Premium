@@ -1,12 +1,14 @@
 import type { Metadata, Viewport } from "next";
 import type { ReactNode } from "react";
+import Script from "next/script";
 import "./globals.css";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import FloatingWhatsAppButton from "./components/FloatingWhatsAppButton";
 import JsonLd from "./components/JsonLd";
 
-const siteUrl = "https://premiumcabro.com";
+const siteUrl = "https://www.premiumcabro.com";
+const gaId = "G-REPZTGDZ4Z";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
@@ -106,7 +108,22 @@ export default function RootLayout({
         <Footer />
 
         <FloatingWhatsAppButton />
+
+        {/* Google Analytics */}
+        <Script
+          src={`https://www.googletagmanager.com/gtag/js?id=${gaId}`}
+          strategy="afterInteractive"
+        />
+
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag("js", new Date());
+            gtag("config", "${gaId}");
+          `}
+        </Script>
       </body>
     </html>
   );
-}
+} 
