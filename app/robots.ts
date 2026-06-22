@@ -1,12 +1,13 @@
-import type { MetadataRoute } from 'next'
+import type { MetadataRoute } from "next";
+
+const baseUrl = "https://premiumcabro.com";
 
 export default function robots(): MetadataRoute.Robots {
   return {
     rules: {
-      userAgent: '*',
-      allow: '/',
-      disallow: '/private/',
+      userAgent: "*",
+      allow: "/",
     },
-    sitemap: 'https://www.premiummovers.co.ke/sitemap.xml',
-  }
+    sitemap: `${baseUrl}/sitemap.xml`,
+  };
 }
