@@ -32,9 +32,12 @@ export const SITE = {
   // Matches the working hours shown on the contact page (Mon–Sat 8am–5pm).
   openingHours: "Mo-Sa 08:00-17:00",
 
-  // Profiles linked from the site footer.
-  // TODO(owner): add only verified official Premium Cabro profile URLs.
-  socialProfiles: [],
+  // Verified official profiles linked from the site footer.
+  socialProfiles: [
+    "https://www.instagram.com/premiumcabros",
+    "https://facebook.com/premiumcabros.ke",
+    "https://www.tiktok.com/@premiumcabro",
+  ],
 
   defaultTitle: "Cabro Blocks Kenya | Supply & Installation | Premium Cabro",
   defaultDescription:

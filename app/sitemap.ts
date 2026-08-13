@@ -24,6 +24,8 @@ const entries: Entry[] = [
   { path: "/products/culverts", changeFrequency: "monthly", priority: 0.7 },
   { path: "/products/fencing-posts", changeFrequency: "monthly", priority: 0.7 },
   { path: "/products/kerbs-drainage", changeFrequency: "monthly", priority: 0.7 },
+  { path: "/products/concrete-blocks", changeFrequency: "monthly", priority: 0.7 },
+  { path: "/products/retaining-walls", changeFrequency: "monthly", priority: 0.7 },
   { path: "/services", changeFrequency: "monthly", priority: 0.8 },
   { path: "/projects", changeFrequency: "monthly", priority: 0.9 },
   { path: "/patterns", changeFrequency: "monthly", priority: 0.8 },

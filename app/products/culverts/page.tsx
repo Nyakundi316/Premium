@@ -765,7 +765,7 @@ function AvailableSizes() {
 // ── PHOTO GALLERY ────────────────────────────────────────────────
 function PhotoGallery() {
   return (
-    <section className="py-16 sm:py-20 lg:py-24" style={{ background: LIGHT_BG }}>
+    <section id="product-gallery" className="py-16 sm:py-20 lg:py-24" style={{ background: LIGHT_BG }}>
       <div className="container mx-auto px-5 sm:px-8 lg:px-12">
         <motion.div
           variants={stagger}

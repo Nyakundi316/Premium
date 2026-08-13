@@ -290,7 +290,7 @@ export default function KerbsDrainagePage() {
       </section>
 
       {/* PRODUCTION YARD GALLERY */}
-      <section className="pb-16">
+      <section id="product-gallery" className="pb-16">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-2xl sm:text-3xl font-bold">From casting to site</h2>
           <p className="mt-2 text-slate-600 text-sm sm:text-base max-w-2xl">

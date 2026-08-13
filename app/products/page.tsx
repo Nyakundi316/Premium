@@ -99,7 +99,7 @@ const PRODUCT_CARDS: ProductCard[] = [
     title: "Retaining Walls",
     subtitle: "Structural Support",
     tag: "Construction",
-    href: "/quote?product=retaining-wall-products",
+    href: "/products/retaining-walls",
     image: "/images/Retaining Walls.png",
     points: ["Structural strength", "Erosion control", "Quick assembly"],
     icon: <Construction size={16} />,
@@ -110,7 +110,7 @@ const PRODUCT_CARDS: ProductCard[] = [
     title: "Machine-Cut Blocks",
     subtitle: "Hollow & Solid Walling Blocks",
     tag: "Construction",
-    href: "/quote?product=concrete-blocks",
+    href: "/products/concrete-blocks",
     image: "/images/products/concrete-blocks/hollow-blocks-stacked.jpeg",
     points: ["Vibro-compacted", "Hollow & solid options", "Uniform dimensions", "Ready stock"],
     icon: <Boxes size={16} />,
@@ -408,6 +408,7 @@ export default function ProductsPage() {
                         return (
                           <motion.div
                             key={product.id}
+                            id={product.id}
                             initial={{ opacity: 0, y: 10 }}
                             animate={{ opacity: 1, y: 0 }}
                             whileHover={{ y: -3 }}
