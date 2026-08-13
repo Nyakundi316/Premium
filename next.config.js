@@ -44,6 +44,22 @@ const securityHeaders = [
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   outputFileTracingRoot: __dirname,
+  trailingSlash: false,
+  async redirects() {
+    return [
+      {
+        source: "/:path*",
+        has: [{ type: "host", value: "premiumcabro.com" }],
+        destination: "https://www.premiumcabro.com/:path*",
+        permanent: true,
+      },
+      {
+        source: "/service-areas/:slug",
+        destination: "/locations/:slug",
+        permanent: true,
+      },
+    ];
+  },
   async headers() {
     return [
       {

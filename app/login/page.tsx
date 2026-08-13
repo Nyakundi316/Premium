@@ -94,8 +94,8 @@ export default function LoginPage() {
       setTimeout(() => {
         router.push("/"); // change to "/dashboard" if you have one
       }, 800);
-    } catch (err: any) {
-      setServerError(err.message || "Something went wrong. Please try again.");
+    } catch (err: unknown) {
+      setServerError(err instanceof Error ? err.message : "Something went wrong. Please try again.");
     } finally {
       setIsSubmitting(false);
     }

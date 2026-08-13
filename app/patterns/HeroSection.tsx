@@ -1,5 +1,4 @@
 "use client";
-
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import { ChevronLeft, ChevronRight, Check, Ruler, Shield, Palette } from "lucide-react";
@@ -25,7 +24,7 @@ const patterns = [
     features: ["Water-permeable joints", "Visual depth", "Slip-resistant"],
     bestFor: "Pool Decks & Gardens",
     difficulty: "Medium",
-    thickness: "80mm"
+    thickness: "Ask about thickness"
   },
   {
     id: 3,
@@ -36,7 +35,7 @@ const patterns = [
     features: ["Old-world aesthetic", "Heavy-duty construction", "Weather-resistant"],
     bestFor: "Pathways & Courtyards",
     difficulty: "Advanced",
-    thickness: "100mm"
+    thickness: "Ask about thickness"
   },
   {
     id: 4,
@@ -47,7 +46,7 @@ const patterns = [
     features: ["Modern 3D effect", "High visual impact", "Premium finish"],
     bestFor: "Commercial Spaces",
     difficulty: "Expert",
-    thickness: "120mm"
+    thickness: "Ask about thickness"
   },
 ];
 
@@ -61,7 +60,6 @@ const difficultyLevels: { [key: string]: number } = {
 
 export default function PatternsGallery() {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [hoveredPattern, setHoveredPattern] = useState<number | null>(null);
 
   useEffect(() => {
     const interval = setInterval(
@@ -97,11 +95,11 @@ export default function PatternsGallery() {
             key={i}
             className="absolute border border-gray-900"
             style={{
-              top: `${Math.random() * 100}%`,
-              left: `${Math.random() * 100}%`,
-              width: `${60 + Math.random() * 120}px`,
+              top: `${(i * 37) % 100}%`,
+              left: `${(i * 61) % 100}%`,
+              width: `${60 + ((i * 43) % 120)}px`,
               height: "2px",
-              transform: `rotate(${Math.random() * 360}deg)`,
+              transform: `rotate(${(i * 71) % 360}deg)`,
             }}
           />
         ))}
@@ -113,7 +111,7 @@ export default function PatternsGallery() {
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-amber-50 border border-amber-100 mb-6">
             <div className="w-2 h-2 rounded-full bg-amber-500" />
             <span className="text-sm font-semibold text-amber-800 uppercase tracking-wider">
-              Premium cabro's Collection
+              Premium Cabro&apos;s Collection
             </span>
           </div>
           
@@ -123,9 +121,9 @@ export default function PatternsGallery() {
           </h1>
           
           <p className="text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed">
-            Explore our curated collection of premium paving patterns, each engineered for 
-            durability, beauty, and functionality. From traditional elegance to modern 
-            innovation, find the perfect design for your space.
+            Compare interlocking and decorative paving patterns for driveways,
+            parking areas, compounds and walkways, then ask which thickness and
+            layout suit your site.
           </p>
         </div>
 
@@ -196,8 +194,6 @@ export default function PatternsGallery() {
                       <button
                         key={pattern.id}
                         onClick={() => selectPattern(idx)}
-                        onMouseEnter={() => setHoveredPattern(idx)}
-                        onMouseLeave={() => setHoveredPattern(null)}
                         className={`px-4 py-2 rounded-lg border transition-all ${
                           currentIndex === idx
                             ? "bg-amber-500 text-white border-amber-500"
@@ -308,8 +304,8 @@ export default function PatternsGallery() {
             <div className="mt-8 grid grid-cols-1 md:grid-cols-3 gap-4">
               {[
                 {
-                  title: "25+ Year Lifespan",
-                  desc: "Weather-resistant construction",
+                  title: "Thickness by application",
+                  desc: "Ask whether 60mm or 80mm suits your traffic",
                   color: "from-amber-500/10 to-amber-600/10"
                 },
                 {
@@ -354,3 +350,4 @@ export default function PatternsGallery() {
     </section>
   );
 }
+ 

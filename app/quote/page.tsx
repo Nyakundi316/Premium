@@ -2,6 +2,8 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import { trackEvent } from "../components/AnalyticsEvents";
+import { SITE } from "../lib/site";
 
 export default function QuoteForm() {
   const [formData, setFormData] = useState({
@@ -10,6 +12,7 @@ export default function QuoteForm() {
     phone: "",
     projectType: "",
     projectSize: "",
+    trafficType: "",
     patternType: "",
     location: "",
     timeline: "",
@@ -17,6 +20,7 @@ export default function QuoteForm() {
   });
 
   const [submitted, setSubmitted] = useState(false);
+  const [started, setStarted] = useState(false);
 
   const projectTypes = [
     "Residential Driveway",
@@ -63,8 +67,22 @@ export default function QuoteForm() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("Quote request submitted:", formData);
+    const message = [
+      "Hello Premium Cabro, I would like a quotation.",
+      `Name: ${formData.fullName}`,
+      `Phone: ${formData.phone}`,
+      `Location: ${formData.location}`,
+      `Project: ${formData.projectType}`,
+      `Area: ${formData.projectSize || "Not provided"}`,
+      `Expected traffic: ${formData.trafficType}`,
+      `Pattern: ${formData.patternType || "Please advise"}`,
+      `Timeline: ${formData.timeline || "Not provided"}`,
+      `Notes: ${formData.additionalNotes || "None"}`,
+    ].join("\n");
+    trackEvent("generate_lead", { form_name: "detailed_quote", project_type: formData.projectType });
+    trackEvent("quote_form_submit", { form_name: "detailed_quote" });
     setSubmitted(true);
+    window.open(`https://wa.me/${SITE.whatsapp}?text=${encodeURIComponent(message)}`, "_blank", "noopener,noreferrer");
 
     setTimeout(() => {
       setFormData({
@@ -73,6 +91,7 @@ export default function QuoteForm() {
         phone: "",
         projectType: "",
         projectSize: "",
+        trafficType: "",
         patternType: "",
         location: "",
         timeline: "",
@@ -100,7 +119,7 @@ export default function QuoteForm() {
             Share a few details about your project and we’ll get back to you
             within{" "}
             <span className="font-semibold text-slate-900">
-              24 hours
+              working hours
             </span>{" "}
             with a clear, itemised quotation — materials, labour and transport.
           </p>
@@ -152,7 +171,7 @@ export default function QuoteForm() {
                   <p className="mb-3 text-sm text-slate-600">
                     Our team will call you within{" "}
                     <span className="font-semibold text-slate-900">
-                      24 hours
+                      working hours
                     </span>{" "}
                     (during working hours) to confirm details and share a
                     quotation.
@@ -163,7 +182,7 @@ export default function QuoteForm() {
                   </p>
                 </div>
               ) : (
-                <form onSubmit={handleSubmit} className="space-y-7">
+                <form onSubmit={handleSubmit} onFocus={() => { if (!started) { setStarted(true); trackEvent("quote_form_start", { form_name: "detailed_quote" }); } }} className="space-y-7">
                   {/* Step 1 – Your details */}
                   <div>
                     <h2 className="mb-3 text-xs font-semibold uppercase tracking-[0.16em] text-slate-500">
@@ -301,6 +320,26 @@ export default function QuoteForm() {
 
                       <div>
                         <label className="mb-1.5 block text-xs font-medium text-slate-700">
+                          Expected Traffic <span className="text-red-500">*</span>
+                        </label>
+                        <select
+                          name="trafficType"
+                          value={formData.trafficType}
+                          onChange={handleChange}
+                          required
+                          className="w-full rounded-lg border border-slate-300 bg-slate-50 px-4 py-3 text-sm text-slate-900 outline-none transition focus:border-[#FFC20E] focus:bg-white"
+                        >
+                          <option value="">Select traffic</option>
+                          <option>Pedestrians only</option>
+                          <option>Home cars</option>
+                          <option>Frequent cars and light delivery vehicles</option>
+                          <option>Lorries, buses or industrial traffic</option>
+                          <option>Not sure â€“ advise me</option>
+                        </select>
+                      </div>
+
+                      <div>
+                        <label className="mb-1.5 block text-xs font-medium text-slate-700">
                           When do you want to start?{" "}
                           <span className="text-red-500">*</span>
                         </label>
@@ -346,8 +385,9 @@ export default function QuoteForm() {
                       type="submit"
                       className="w-full rounded-lg bg-gradient-to-r from-[#FFC20E] to-[#F0B429] py-3.5 text-sm font-semibold text-[#0D1B30] shadow-sm transition-all hover:shadow-lg hover:shadow-[#FACC6B]/40"
                     >
-                      Submit Quote Request
+                      Prepare WhatsApp Quotation Request
                     </button>
+                    <input name="company_website" tabIndex={-1} autoComplete="off" aria-hidden="true" className="hidden" />
                     <p className="mt-2 text-center text-[11px] text-slate-500">
                       We only use your details to contact you about this
                       quotation. No spam, no sharing with third parties.
@@ -417,7 +457,7 @@ export default function QuoteForm() {
                   <div>
                     <p className="text-xs text-slate-500">Email</p>
                     <p className="text-xs font-semibold text-slate-900 md:text-sm">
-                      info@premiumpaving.co.ke
+                      {SITE.email}
                     </p>
                   </div>
                 </div>
@@ -459,7 +499,7 @@ export default function QuoteForm() {
                     1
                   </span>
                   <div>
-                    We call you within 24 hours to confirm details and ask any
+                    We contact you during working hours to confirm details and ask any
                     quick questions.
                   </div>
                 </li>
@@ -468,8 +508,8 @@ export default function QuoteForm() {
                     2
                   </span>
                   <div>
-                    If needed, we schedule a free site visit (within Nairobi &
-                    nearby areas).
+                    If a site assessment is needed, we confirm availability,
+                    location and any applicable terms with you.
                   </div>
                 </li>
                 <li className="flex gap-3">
@@ -478,14 +518,13 @@ export default function QuoteForm() {
                   </span>
                   <div>
                     You receive a written quote with clear pricing — materials,
-                    labour & transport, with no hidden costs.
+                    labour, transport and preparation relevant to your site.
                   </div>
                 </li>
               </ol>
             </div>
 
-            {/* Trust stats */}
-            <div className="grid grid-cols-2 gap-3 rounded-2xl border border-slate-200 bg-white p-5 text-center text-xs md:text-sm">
+            <div className="hidden" aria-hidden="true">
               <div className="rounded-xl bg-slate-50 p-3">
                 <div className="text-xl font-bold text-[#FFC20E]">24 hrs</div>
                 <div className="text-slate-700">Average response time</div>
@@ -505,7 +544,7 @@ export default function QuoteForm() {
             href="/projects"
             className="font-medium text-[#A46306] hover:underline"
           >
-            Browse completed projects
+            Browse project applications
           </Link>
         </div>
       </main>

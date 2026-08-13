@@ -16,8 +16,6 @@ import {
 /* ---------------- BRAND ---------------- */
 const BRAND_GOLD = "#FFC20E";
 const BRAND_GOLD_DARK = "#B8860B";
-const BG_FROM = "#EEF2F6";
-const BG_TO = "#FFFFFF";
 
 /* ---------------- TYPES ---------------- */
 type Category =
@@ -251,6 +249,10 @@ const PROJECTS: Project[] = [
   },
 ];
 
+// Dates, locations and results for these draft records have not been verified.
+// Do not publish them as case studies until the business confirms each field.
+const VERIFIED_PROJECTS = PROJECTS.filter(() => false);
+
 export default function ProjectsPage() {
   const [activeCategory, setActiveCategory] = useState<Category>("all");
   const [active, setActive] = useState<Project | null>(null);
@@ -267,8 +269,8 @@ export default function ProjectsPage() {
   ];
 
   const filtered = useMemo(() => {
-    if (activeCategory === "all") return PROJECTS;
-    return PROJECTS.filter((p) => p.category === activeCategory);
+    if (activeCategory === "all") return VERIFIED_PROJECTS;
+    return VERIFIED_PROJECTS.filter((p) => p.category === activeCategory);
   }, [activeCategory]);
 
   const hasProjects = filtered.length > 0;
@@ -420,13 +422,12 @@ export default function ProjectsPage() {
             {/* Empty state message */}
             <div className="rounded-2xl border border-dashed border-gray-300 bg-white/70 p-6 sm:p-8 text-center">
               <p className="text-sm sm:text-base text-gray-700 font-medium">
-                We’re setting up our first showcase projects.
+                Verified case studies are being prepared.
               </p>
               <p className="mt-2 text-xs sm:text-sm text-gray-600 max-w-xl mx-auto">
-                In the meantime, here are the types of projects we support with
+                Explore the types of projects we support with
                 cabro, culverts, fencing posts, kerbs and other concrete
-                products. If you’d like your project to be featured here, talk
-                to us about a site visit and quotation.
+                products. Contact us for a site-specific quotation.
               </p>
               <div className="mt-4 flex flex-wrap justify-center gap-2 text-xs sm:text-sm">
                 <span className="px-3 py-1 rounded-full bg-gray-900 text-white">
@@ -620,9 +621,10 @@ export default function ProjectsPage() {
                       >
                         <Image
                           src={src}
-                          alt="Project image"
+                          alt={`${active.title} – gallery photo`}
                           fill
                           className="object-cover"
+                          sizes="120px"
                         />
                       </button>
                     ))}

@@ -1,9 +1,14 @@
 import type { Metadata } from "next";
 
+const title = "Cabro Project Gallery & Paving Applications";
+const description =
+  "Explore cabro paving applications and product imagery for driveways, parking areas, estate roads and commercial spaces. Verified case studies will be added when complete project details are available.";
+
 export const metadata: Metadata = {
-  title: "Cabro Paving Projects | Completed Installations | Premium Concrete PM",
-  description:
-    "View our completed cabro paving projects across Nairobi, Kiambu and Ruiru. Driveways, parking areas, estate roads and commercial spaces installed with premium interlocking pavers.",
+  title: { absolute: `${title} | Premium Cabro` },
+  description,
+  alternates: { canonical: "/projects" },
+  openGraph: { title, description, url: "/projects" },
 };
 
 export default function Layout({ children }: { children: React.ReactNode }) {

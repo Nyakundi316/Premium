@@ -1,11 +1,19 @@
 // app/applications/page.jsx
 import Image from "next/image";
 import Link from "next/link";
+import { SITE } from "../lib/site";
 
 export const metadata = {
-  title: "Applications | Premium Paving Blocks",
+  title: "Cabro Applications – Where to Use Each Block",
   description:
     "See where to use 60mm cabro, 80mm heavy duty cabro, 3D decorative paving and grass pavers for homes, estates, petrol stations and eco parking.",
+  alternates: { canonical: "/applications" },
+  openGraph: {
+    title: "Cabro Applications – Where to Use Each Block | Premium Cabro",
+    description:
+      "Where to use 60mm cabro, 80mm heavy duty cabro, 3D decorative paving and grass pavers.",
+    url: "/applications",
+  },
 };
 
 const applications = [
@@ -227,10 +235,10 @@ export default function ApplicationsPage() {
               Get a Cabro Recommendation
             </Link>
             <a
-              href="tel:+2547XXXXXXXXX"
+              href={`tel:${SITE.phone}`}
               className="inline-flex items-center justify-center rounded-full border border-slate-300/80 px-6 py-3 text-xs md:text-sm font-semibold hover:border-[#FFC20E] hover:text-[#FFC20E] transition-all"
             >
-              Call / WhatsApp: 07XX XXX XXX
+              Call: {SITE.phoneDisplay}
             </a>
           </div>
         </div>

@@ -34,33 +34,33 @@ function getNairobiBusinessStatus(now = new Date()) {
 
   // Open window 08:00–18:00
   const openMins = 8 * 60;
-  const closeMins = 18 * 60;
+  const closeMins = 17 * 60;
   const isOpen = minutesNow >= openMins && minutesNow < closeMins;
 
-  return { isOpen, label: isOpen ? "Online now" : "Closed now" };
+  return { isOpen, label: isOpen ? "Within business hours" : "Outside business hours" };
 }
 
 function buildMessageForPath(pathname) {
   const base =
-    "Hello Premium Concrete, I’d like a quotation for paving blocks / installation.";
+    "Hello Premium Cabro, I’d like a quotation for paving blocks or installation.";
 
   if (!pathname) return base;
 
   if (pathname.startsWith("/products")) {
     return (
-      "Hello Premium Concrete, I’m viewing your Products page. Please share prices and availability (60mm/80mm), colours, and delivery options."
+      "Hello Premium Cabro, I’m viewing your Products page. Please share current availability for 60mm/80mm, colours, and delivery options."
     );
   }
 
   if (pathname.startsWith("/projects")) {
     return (
-      "Hello Premium Concrete, I’m viewing your Projects page. I’d like a quotation and a site visit assessment for my project location."
+      "Hello Premium Cabro, I’m viewing your project applications. I’d like a quotation for my project location."
     );
   }
 
   if (pathname.startsWith("/contact")) {
     return (
-      "Hello Premium Concrete, I’m on the Contact/Quote page. Please help me with a quotation. My location is ____ and size is ____ m²."
+      "Hello Premium Cabro, I’m on the Contact/Quote page. Please help me with a quotation. My location is ____ and size is ____ m²."
     );
   }
 

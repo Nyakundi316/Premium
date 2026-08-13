@@ -562,7 +562,7 @@ export default function PricingTable() {
                 Get Detailed Quote
               </Link>
               <Link
-                href="tel:+254721150988"
+                href="tel:+254711789438"
                 className="px-8 py-4 border border-gray-700 rounded-lg font-semibold hover:border-[#FFC20E]/50 hover:bg-[#FFC20E]/5 transition-all flex items-center gap-3"
               >
                 <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">

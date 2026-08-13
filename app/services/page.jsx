@@ -444,10 +444,10 @@ export default function ServicesPage() {
               PORTFOLIO
             </p>
             <h2 className="mt-2 text-3xl sm:text-4xl font-bold text-slate-900 dark:text-white">
-              Recent work & project highlights
+              Product and application gallery
             </h2>
             <p className="mt-3 text-slate-600">
-              Add your real photos here for maximum trust. This section makes your business look established and professional.
+              Browse paving, kerb, culvert and concrete-product examples. Locations shown in imagery are not presented as verified case studies.
             </p>
           </div>
 
@@ -461,7 +461,7 @@ export default function ServicesPage() {
                     <div className="text-white font-semibold text-sm leading-snug">{p.title}</div>
                     <div className="text-white/75 text-xs flex items-center gap-1 mt-1">
                       <MapPin size={14} style={{ color: BRAND }} />
-                      {p.location}
+                      Application example
                     </div>
                   </div>
                 </div>

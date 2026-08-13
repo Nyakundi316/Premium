@@ -2,6 +2,7 @@
 
 import { useMemo, useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { motion } from "framer-motion";
 import {
   ArrowRight,
@@ -30,7 +31,7 @@ type ProductCard = {
   title: string;
   subtitle: string;
   tag: string;
-  href: string; // kept for future use if you ever want deep links
+  href: string;
   image: string;
   points: string[];
   icon: React.ReactNode;
@@ -87,7 +88,7 @@ const PRODUCT_CARDS: ProductCard[] = [
     title: "Garden Pavers",
     subtitle: "Landscaping Solutions",
     tag: "Outdoor",
-    href: "/products/garden-pavers",
+    href: "/products/cabro#cabro-gallery",
     image: "/images/landscape_pool_kerbstone.jpg",
     points: ["Decorative finish", "Various shapes", "Easy to lay"],
     icon: <Layers size={16} />,
@@ -98,18 +99,29 @@ const PRODUCT_CARDS: ProductCard[] = [
     title: "Retaining Walls",
     subtitle: "Structural Support",
     tag: "Construction",
-    href: "/products/retaining-walls",
+    href: "/quote?product=retaining-wall-products",
     image: "/images/Retaining Walls.png",
     points: ["Structural strength", "Erosion control", "Quick assembly"],
     icon: <Construction size={16} />,
     features: ["Heavy duty", "Interlocking", "Durable"],
   },
   {
+    id: "blocks",
+    title: "Machine-Cut Blocks",
+    subtitle: "Hollow & Solid Walling Blocks",
+    tag: "Construction",
+    href: "/quote?product=concrete-blocks",
+    image: "/images/products/concrete-blocks/hollow-blocks-stacked.jpeg",
+    points: ["Vibro-compacted", "Hollow & solid options", "Uniform dimensions", "Ready stock"],
+    icon: <Boxes size={16} />,
+    features: ["High strength", "Consistent finish", "Bulk supply"],
+  },
+  {
     id: "pipes",
     title: "Concrete Pipes",
     subtitle: "Water & Sewage Systems",
     tag: "Drainage",
-    href: "/products/concrete-pipes",
+    href: "/products/culverts",
     image: "/images/Concrete Pipes.png",
     points: ["Various diameters", "Heavy duty", "Easy installation"],
     icon: <Package size={16} />,
@@ -142,7 +154,7 @@ export default function ProductsPage() {
   const filteredAndSorted = useMemo(() => {
     const q = query.trim().toLowerCase();
 
-    let filtered = PRODUCT_CARDS.filter((p) => {
+    const filtered = PRODUCT_CARDS.filter((p) => {
       const matchesText =
         !q ||
         p.title.toLowerCase().includes(q) ||
@@ -424,6 +436,18 @@ export default function ProductsPage() {
 
                                 {/* Hint text when closed */}
                                
+                              </div>
+
+                              <div className="px-3 pt-3 sm:px-4">
+                                <h3 className="font-bold text-gray-900">{product.title}</h3>
+                                <p className="text-xs text-gray-600">{product.subtitle}</p>
+                                <Link
+                                  href={product.href}
+                                  onClick={(event) => event.stopPropagation()}
+                                  className="mt-2 inline-flex items-center gap-1 text-xs font-semibold text-[#8A6500] hover:underline"
+                                >
+                                  Explore {product.title} <ArrowRight size={12} />
+                                </Link>
                               </div>
 
                               {/* DETAILS – only rendered when card is open */}

@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { notFound } from "next/navigation";
+import { notFound, permanentRedirect } from "next/navigation";
 import { PhoneCall, ArrowLeft } from "lucide-react";
 
 /* -----------------------------------------
@@ -20,6 +20,9 @@ const PRODUCTS = [
       "/images/products/culverts/Culverts under the road.jpg",
       "/images/products/culverts/300mm culverts.jpg",
       "/images/products/culverts/600mm culvert.jpg",
+      "/images/products/culverts/culvert-pipes-stacked-yard.jpeg",
+      "/images/products/culverts/culvert-production-yard-wide.jpeg",
+      "/images/products/culverts/culvert-pipes-moulds.jpeg",
     ],
   },
   {
@@ -34,6 +37,10 @@ const PRODUCTS = [
       "/images/products/cabro/Hero2.jpeg",
       "/images/products/cabro/trihex groove.jpeg",
       "/images/products/cabro/image.png",
+      "/images/products/cabro/black-white-brick-herringbone-driveway.jpeg",
+      "/images/products/cabro/mirror-pavers-residential-driveway.jpeg",
+      "/images/products/cabro/colored-3d-hexagon-estate-driveway.jpeg",
+      "/images/products/cabro/red-trihex-walkway-flower-medallions.jpeg",
     ],
   },
   {
@@ -49,6 +56,9 @@ const PRODUCTS = [
       "/images/products/kerbs-drainage/kerbs 1 (3).jpeg",
       "/images/products/kerbs-drainage/kerbs 1 (4).jpeg",
       "/images/products/kerbs-drainage/kerbs 1 (5).jpeg",
+      "/images/products/kerbs-drainage/kerbstones-freshly-cast.jpeg",
+      "/images/products/kerbs-drainage/kerbstones-bulk-stacked.jpeg",
+      "/images/products/kerbs-drainage/invert-block-drainage-channels.jpeg",
     ],
   },
 ];
@@ -56,6 +66,9 @@ const PRODUCTS = [
 function getProduct(slug: string) {
   return PRODUCTS.find((p) => p.slug === slug);
 }
+
+// This route duplicates the /products/<slug> pages, so point search engines
+// at the canonical product URL instead of indexing both.
 
 /* -----------------------------------------
    Page Component
@@ -66,6 +79,9 @@ export default async function ProductPage({
   params: Promise<{ slug: string }>;
 }) {
   const { slug } = await params;
+  if (["cabro", "culverts", "kerbs-drainage"].includes(slug)) {
+    permanentRedirect(`/products/${slug}`);
+  }
   const product = getProduct(slug);
 
   if (!product) return notFound();
@@ -91,18 +107,25 @@ export default async function ProductPage({
                 alt={product.name}
                 fill
                 className="object-cover"
+                sizes="(max-width: 1024px) 100vw, 50vw"
                 priority
               />
             </div>
 
             {product.images.length > 1 && (
-              <div className="mt-3 flex gap-2">
+              <div className="mt-3 flex flex-wrap gap-2">
                 {product.images.map((img) => (
                   <div
                     key={img}
                     className="relative h-20 w-24 rounded-lg overflow-hidden border border-slate-200 dark:border-slate-700"
                   >
-                    <Image src={img} alt="" fill className="object-cover" />
+                    <Image
+                      src={img}
+                      alt={`${product.name} – additional photo`}
+                      fill
+                      className="object-cover"
+                      sizes="96px"
+                    />
                   </div>
                 ))}
               </div>

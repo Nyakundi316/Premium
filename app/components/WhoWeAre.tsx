@@ -21,9 +21,9 @@ const TABS: {
     id: "overview",
     label: "Overview",
     icon: Factory,
-    title: "Precision manufacturing with controlled consistency.",
-    body: "Our cabro and concrete products are produced under controlled factory conditions with proper curing cycles, helping deliver cleaner edges, more reliable strength, and a more refined final finish on site.",
-    chips: ["Factory-made", "Controlled curing", "Consistent finish"],
+    title: "Concrete products for practical site requirements.",
+    body: "We offer cabro and related concrete products for residential, commercial and heavier-traffic applications, with guidance on profiles, thickness and site suitability.",
+    chips: ["Multiple profiles", "60mm & 80mm", "Application guidance"],
   },
   {
     id: "mission",
@@ -100,9 +100,9 @@ export default function WhoWeAreSectionModern() {
                 <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/60 to-transparent p-5">
                   <div className="mb-2 inline-flex items-center gap-1.5 rounded-full bg-white/90 px-3 py-1 text-xs font-semibold text-slate-900">
                     <CheckCircle2 size={13} style={{ color: GOLD }} />
-                    Quality checked
+                    Product range
                   </div>
-                  <p className="text-base font-semibold text-white">Precision in every block</p>
+                  <p className="text-base font-semibold text-white">Cabro for different site uses</p>
                   <p className="mt-0.5 text-xs text-white/70">Factory-cured · Machine-formed · Uniform finish</p>
                 </div>
               </div>

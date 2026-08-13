@@ -2,8 +2,20 @@
 
 import { useState, useMemo } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
-import { X, ArrowRight, Ruler, Grid3X3 } from "lucide-react";
+import {
+  X,
+  ArrowRight,
+  Ruler,
+  Grid3X3,
+  Truck,
+  Hammer,
+  MessageCircle,
+  ChevronDown,
+} from "lucide-react";
+import { CABRO_FAQS } from "../../lib/cabro-faqs";
+import { whatsappLink } from "../../lib/site";
 
 /* ------------ TYPES ------------ */
 
@@ -25,8 +37,6 @@ type CabroProduct = {
 
 const BRAND_GOLD = "#FFC20E";
 const BRAND_GOLD_DARK = "#B8860B";
-const BG_FROM = "#EEF2F6";
-const BG_TO = "#FFFFFF";
 
 /* ------------ DATA: YOUR ACTUAL BLOCKS ------------ */
 
@@ -443,21 +453,22 @@ export default function CabroProductsPage() {
             </div>
 
             <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 leading-tight mb-3">
-              Cabro Solutions{" "}
+              Cabro Blocks in Kenya{" "}
               <span
                 className="text-transparent bg-clip-text"
                 style={{
                   backgroundImage: `linear-gradient(90deg, ${BRAND_GOLD}, ${BRAND_GOLD_DARK})`,
                 }}
               >
-                for Every Project
+                — for Every Project
               </span>
             </h1>
 
             <p className="text-sm sm:text-base lg:text-lg text-gray-700 leading-relaxed mb-5 max-w-xl">
-              Explore our full range of cabro blocks — from 60mm residential
-              pavers to 80mm heavy-duty patterns for industrial yards and estate
-              access roads.
+              We manufacture interlocking cabro paving blocks at our Kiambu
+              yard and supply or install them across Nairobi and nearby
+              counties — from 60mm residential pavers to 80mm heavy-duty
+              patterns for industrial yards and estate access roads.
             </p>
 
             <div className="flex flex-wrap gap-3 text-xs sm:text-sm text-gray-700">
@@ -522,7 +533,7 @@ export default function CabroProductsPage() {
               <div className="relative aspect-[4/3]">
                 <Image
                   src={product.image}
-                  alt={product.name}
+                  alt={`${product.name} cabro paving block, ${product.thickness}, ${product.colorMix}`}
                   fill
                   className="object-cover transition-transform duration-500 group-hover:scale-105"
                   sizes="(max-width: 1024px) 100vw, 33vw"
@@ -545,6 +556,218 @@ export default function CabroProductsPage() {
               </div>
             </motion.button>
           ))}
+        </div>
+
+        {/* 60mm VS 80mm */}
+        <div className="mt-16 lg:mt-20 grid grid-cols-1 lg:grid-cols-[1fr_1.1fr] gap-8 items-start">
+          <div>
+            <h2 className="text-2xl sm:text-3xl font-bold text-gray-900">
+              60mm vs 80mm cabro — a quick comparison
+            </h2>
+            <p className="mt-3 text-sm sm:text-base text-gray-700 leading-relaxed">
+              Thickness is the first decision on any cabro project. As a rule
+              of thumb: 60mm for people and cars, 80mm wherever lorries, buses
+              or constant traffic will pass. For the full breakdown, read our{" "}
+              <Link
+                href="/guides/60mm-vs-80mm-cabro"
+                className="font-semibold text-[#B8860B] hover:underline"
+              >
+                60mm vs 80mm cabro guide
+              </Link>
+              .
+            </p>
+            <p className="mt-3 text-sm sm:text-base text-gray-700 leading-relaxed">
+              All our blocks are machine vibro-compacted at our production yard
+              on Githunguri Road, Kiambu, for consistent density and a uniform
+              finish.
+            </p>
+          </div>
+
+          <div className="overflow-x-auto rounded-2xl border border-gray-200 bg-white">
+            <table className="w-full text-sm">
+              <thead>
+                <tr className="bg-gray-50 text-left text-gray-600">
+                  <th className="px-4 py-3 font-semibold"> </th>
+                  <th className="px-4 py-3 font-semibold">60mm cabro</th>
+                  <th className="px-4 py-3 font-semibold">80mm cabro</th>
+                </tr>
+              </thead>
+              <tbody className="text-gray-800">
+                <tr className="border-t border-gray-100">
+                  <td className="px-4 py-3 font-medium text-gray-600">Best for</td>
+                  <td className="px-4 py-3">Driveways, compounds, walkways, patios</td>
+                  <td className="px-4 py-3">Parking lots, estate roads, petrol stations, yards</td>
+                </tr>
+                <tr className="border-t border-gray-100">
+                  <td className="px-4 py-3 font-medium text-gray-600">Traffic</td>
+                  <td className="px-4 py-3">Pedestrians &amp; light vehicles</td>
+                  <td className="px-4 py-3">Trucks &amp; frequent heavy traffic</td>
+                </tr>
+                <tr className="border-t border-gray-100">
+                  <td className="px-4 py-3 font-medium text-gray-600">Patterns</td>
+                  <td className="px-4 py-3">Widest choice of shapes &amp; colours</td>
+                  <td className="px-4 py-3">Trihex, unipaver, zigzag &amp; other heavy-duty profiles</td>
+                </tr>
+                <tr className="border-t border-gray-100">
+                  <td className="px-4 py-3 font-medium text-gray-600">Base needed</td>
+                  <td className="px-4 py-3">Compacted base for light loads</td>
+                  <td className="px-4 py-3">Well-compacted, thicker base with edge restraints</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        {/* SUPPLY, DELIVERY & INSTALLATION */}
+        <div className="mt-14 grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="rounded-2xl border border-gray-200 bg-white p-6">
+            <div className="flex items-center gap-3">
+              <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-[#FFC20E]/15">
+                <Truck className="h-5 w-5 text-[#B8860B]" />
+              </span>
+              <h2 className="text-lg sm:text-xl font-bold text-gray-900">
+                Supply &amp; delivery
+              </h2>
+            </div>
+            <p className="mt-3 text-sm sm:text-base text-gray-700 leading-relaxed">
+              Order blocks only and we deliver from our Kiambu yard to sites
+              across Nairobi, Kiambu, Ruiru, Thika, Juja, Githunguri and nearby
+              areas. Delivery is scheduled by location and quantity — share
+              your site location when requesting a quote.
+            </p>
+          </div>
+
+          <div className="rounded-2xl border border-gray-200 bg-white p-6">
+            <div className="flex items-center gap-3">
+              <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-[#FFC20E]/15">
+                <Hammer className="h-5 w-5 text-[#B8860B]" />
+              </span>
+              <h2 className="text-lg sm:text-xl font-bold text-gray-900">
+                Professional installation
+              </h2>
+            </div>
+            <p className="mt-3 text-sm sm:text-base text-gray-700 leading-relaxed">
+              Our teams handle the full job: site assessment, excavation, base
+              compaction, laying, cutting, kerbs and sand filling. See how we
+              work on the{" "}
+              <Link
+                href="/cabro-installation-nairobi"
+                className="font-semibold text-[#B8860B] hover:underline"
+              >
+                cabro installation page
+              </Link>{" "}
+              or browse{" "}
+              <Link
+                href="/projects"
+                className="font-semibold text-[#B8860B] hover:underline"
+              >
+                cabro project gallery
+              </Link>
+              .
+            </p>
+          </div>
+        </div>
+
+        {/* PRICING FACTORS */}
+        <div className="mt-14 rounded-2xl border border-gray-200 bg-white p-6 sm:p-8">
+          <h2 className="text-2xl sm:text-3xl font-bold text-gray-900">
+            What determines cabro prices in Kenya?
+          </h2>
+          <p className="mt-3 text-sm sm:text-base text-gray-700 leading-relaxed max-w-3xl">
+            We don&apos;t publish fixed prices on the website because material
+            and transport costs change. Instead,{" "}
+            <Link
+              href="/quote"
+              className="font-semibold text-[#B8860B] hover:underline"
+            >
+              request a current quotation
+            </Link>{" "}
+            and we&apos;ll price your exact project. The main factors that move
+            the price are:
+          </p>
+          <ul className="mt-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 text-sm text-gray-800">
+            {[
+              "Block thickness — 60mm vs 80mm",
+              "Colour — grey vs coloured or mixed",
+              "Pattern and any decorative layout",
+              "Order quantity and project size",
+              "Site preparation and excavation needed",
+              "Delivery distance from our Kiambu yard",
+              "Kerbs, edge restraints and drainage",
+              "Supply-only vs full installation",
+            ].map((factor) => (
+              <li
+                key={factor}
+                className="rounded-xl bg-gray-50 border border-gray-100 px-3 py-2.5"
+              >
+                {factor}
+              </li>
+            ))}
+          </ul>
+          <p className="mt-4 text-sm text-gray-600">
+            Full details on the{" "}
+            <Link
+              href="/cabro-blocks-prices-kenya"
+              className="font-semibold text-[#B8860B] hover:underline"
+            >
+              cabro blocks prices in Kenya
+            </Link>{" "}
+            page.
+          </p>
+        </div>
+
+        {/* FAQ */}
+        <div className="mt-14">
+          <h2 className="text-2xl sm:text-3xl font-bold text-gray-900">
+            Cabro blocks — frequently asked questions
+          </h2>
+          <div className="mt-5 space-y-3 max-w-3xl">
+            {CABRO_FAQS.map((faq) => (
+              <details
+                key={faq.question}
+                className="group rounded-2xl border border-gray-200 bg-white px-5 py-4"
+              >
+                <summary className="flex cursor-pointer list-none items-center justify-between gap-4 text-sm sm:text-base font-semibold text-gray-900">
+                  {faq.question}
+                  <ChevronDown className="h-4 w-4 shrink-0 text-gray-500 transition-transform group-open:rotate-180" />
+                </summary>
+                <p className="mt-3 text-sm sm:text-base text-gray-700 leading-relaxed">
+                  {faq.answer}
+                </p>
+              </details>
+            ))}
+          </div>
+        </div>
+
+        {/* CTA */}
+        <div className="mt-14 flex flex-wrap items-center gap-4 rounded-2xl bg-[#0D1B30] p-6 sm:p-8">
+          <div className="mr-auto">
+            <h2 className="text-xl sm:text-2xl font-bold text-white">
+              Ready to pave? Get a current quotation.
+            </h2>
+            <p className="mt-1 text-sm text-white/70">
+              Share your location and area size — we&apos;ll advise on
+              thickness, pattern and pricing.
+            </p>
+          </div>
+          <Link
+            href="/quote"
+            className="inline-flex items-center gap-2 rounded-full bg-[#FFC20E] px-6 py-3 text-sm font-semibold text-[#0D1B30] transition hover:brightness-110"
+          >
+            Request a cabro quote
+            <ArrowRight className="h-4 w-4" />
+          </Link>
+          <a
+            href={whatsappLink(
+              "Hello Premium Cabro, I'm viewing your cabro blocks page. Please share availability and a quotation for my project."
+            )}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 rounded-full border border-white/25 px-6 py-3 text-sm font-semibold text-white transition hover:bg-white/10"
+          >
+            <MessageCircle className="h-4 w-4 text-[#FFC20E]" />
+            WhatsApp us
+          </a>
         </div>
       </div>
 
@@ -580,7 +803,7 @@ export default function CabroProductsPage() {
                 <div className="relative h-64 sm:h-80 lg:h-full">
                   <Image
                     src={active.image}
-                    alt={active.name}
+                    alt={`${active.name} cabro paving block, ${active.thickness}, ${active.colorMix}`}
                     fill
                     className="object-cover"
                     sizes="(max-width: 1024px) 100vw, 50vw"

@@ -4,6 +4,7 @@
 import type React from "react";
 import { useState, useEffect } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import {
   Search,
   Grid3x3,
@@ -314,6 +315,7 @@ export default function PatternsPage() {
       );
     }
 
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- synchronize filtered gallery with controls
     setPatterns(list);
   }, [typeFilter, search]);
 
@@ -334,7 +336,7 @@ export default function PatternsPage() {
             </div>
 
             <div className="space-y-2">
-              <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold leading-tight">
+              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold leading-tight">
                 Patterns we{" "}
                 <span
                   className="text-transparent bg-clip-text"
@@ -342,9 +344,9 @@ export default function PatternsPage() {
                     backgroundImage: `linear-gradient(90deg, ${BRAND_GOLD}, ${BRAND_GOLD_DARK})`,
                   }}
                 >
-                  manufacture in-house
+                  available from Premium Cabro
                 </span>
-              </h1>
+              </h2>
               <p className="text-sm sm:text-base text-slate-300 max-w-xl">
                 A quick visual guide to the main patterns we supply for
                 driveways, yards, compounds and landscapes.
@@ -483,11 +485,10 @@ export default function PatternsPage() {
                     ))}
                   </ul>
 
-                  {/* Action line (no navigation, just UX hint) */}
-                  <button className="w-full mt-2 inline-flex items-center justify-center gap-1.5 text-xs sm:text-sm font-semibold text-slate-900 border border-slate-200 rounded-full py-2 hover:bg-slate-50 transition-colors">
+                  <Link href={`/quote?pattern=${encodeURIComponent(pattern.name)}`} className="w-full mt-2 inline-flex items-center justify-center gap-1.5 text-xs sm:text-sm font-semibold text-slate-900 border border-slate-200 rounded-full py-2 hover:bg-slate-50 transition-colors">
                     Use this pattern for my project
                     <ArrowRight size={14} />
-                  </button>
+                  </Link>
                 </div>
               </article>
             ))}

@@ -252,6 +252,56 @@ export default function FencingPostsPage() {
           </div>
         </div>
       </section>
+
+      {/* PRODUCTION YARD GALLERY */}
+      <section className="pb-16">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="text-2xl sm:text-3xl font-bold">Straight from our yard</h2>
+          <p className="mt-2 text-slate-600 text-sm sm:text-base max-w-2xl">
+            Recent photos of fencing posts cast, cured and stocked at our
+            production yard — what you see is what gets delivered to site.
+          </p>
+
+          <div className="mt-8 grid gap-5 sm:grid-cols-2">
+            {[
+              {
+                src: "/images/products/fencing-posts/fencing-posts-fence-line.jpeg",
+                caption: "Posts installed on a barbed-wire fence line, with fresh stock curing behind",
+              },
+              {
+                src: "/images/products/fencing-posts/fencing-posts-stacked-yard.jpeg",
+                caption: "Angle-top fencing posts stacked and ready for dispatch",
+              },
+              {
+                src: "/images/products/fencing-posts/fencing-posts-bulk-stock.jpeg",
+                caption: "Bulk stock for large perimeter and farm fencing orders",
+              },
+              {
+                src: "/images/products/fencing-posts/fencing-posts-curing.jpeg",
+                caption: "Reinforced posts curing at the yard before delivery",
+              },
+            ].map((photo) => (
+              <figure
+                key={photo.src}
+                className="rounded-3xl border border-slate-100 overflow-hidden bg-white shadow-sm"
+              >
+                <div className="relative h-64 w-full">
+                  <Image
+                    src={photo.src}
+                    alt={photo.caption}
+                    fill
+                    className="object-cover"
+                    sizes="(max-width: 640px) 100vw, 50vw"
+                  />
+                </div>
+                <figcaption className="px-4 py-3 text-xs sm:text-sm text-slate-600">
+                  {photo.caption}
+                </figcaption>
+              </figure>
+            ))}
+          </div>
+        </div>
+      </section>
     </main>
   );
 }

@@ -1,11 +1,23 @@
+import type { Metadata } from "next";
 import HeroSection from "./components/HeroSection";
 import WhyChooseSection from "./components/WhyChooseUs";
 import HowItWorksSection from "./components/HowItWorks";
 import CoreProductsSection from "./components/ProjectsSection";
-import RecentInstallations from "./components/RecentlyInstallation";
+import CabroGuideSection from "./components/CabroGuideSection";
 import WhoWeAreSectionModern from "./components/WhoWeAre";
-import TestimonialSection from "./components/TestimonialSection";
 import RequestQuoteSection from "./components/RequestQuoteSection";
+import { SITE } from "./lib/site";
+
+export const metadata: Metadata = {
+  title: { absolute: SITE.defaultTitle },
+  description: SITE.defaultDescription,
+  alternates: { canonical: "/" },
+  openGraph: {
+    title: SITE.defaultTitle,
+    description: SITE.defaultDescription,
+    url: "/",
+  },
+};
 
 export default function Page() {
   return (
@@ -13,10 +25,9 @@ export default function Page() {
       <HeroSection />
       <WhyChooseSection />
       <CoreProductsSection />
+      <CabroGuideSection />
       <HowItWorksSection />
-      <RecentInstallations />
       <WhoWeAreSectionModern />
-      <TestimonialSection />
       <RequestQuoteSection />
     </>
   );

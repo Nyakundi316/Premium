@@ -1,4 +1,5 @@
 "use client";
+/* eslint-disable react/no-unescaped-entities */
 
 import {
   ClipboardList,
@@ -130,3 +131,4 @@ export default function HowItWorksSection() {
     </section>
   );
 }
+ 

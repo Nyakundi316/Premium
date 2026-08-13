@@ -46,6 +46,7 @@ export default function Navbar() {
 
   // Close menu on route change
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- route changes close the controlled mobile menu
     setIsMenuOpen(false);
   }, [pathname]);
 
@@ -104,6 +105,7 @@ export default function Navbar() {
           ? "dark"
           : "light";
 
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- hydrate preference from browser storage
     setTheme(initialTheme);
     applyTheme(initialTheme);
   }, []);
@@ -161,7 +163,7 @@ export default function Navbar() {
                   alt="Premium Cabro Logo"
                   fill
                   className="object-contain"
-                  priority
+                  sizes="80px"
                 />
               </div>
             </Link>

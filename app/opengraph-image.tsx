@@ -95,7 +95,7 @@ export default function OgImage() {
           <span>·</span>
           <span>0711 789 438</span>
           <span>·</span>
-          <span>premiummovers.co.ke</span>
+          <span>www.premiumcabro.com</span>
         </div>
       </div>
     ),

@@ -15,9 +15,16 @@ import {
 const GOLD = "#FFC20E";
 
 export const metadata = {
-  title: "About Us | Premium Cabro – Cabro Blocks & Paving Kenya",
+  title: "About Us – Cabro Blocks & Paving Kenya",
   description:
     "Premium Cabro – manufacturer of high-quality cabro paving blocks, kerbstones, grass pavers, and drainage products in Nairobi & Kiambu.",
+  alternates: { canonical: "/about" },
+  openGraph: {
+    title: "About Premium Cabro – Cabro Blocks & Paving Kenya",
+    description:
+      "Manufacturer of high-quality cabro paving blocks, kerbstones and drainage products in Nairobi & Kiambu.",
+    url: "/about",
+  },
 };
 
 export default function AboutPage() {
@@ -72,7 +79,7 @@ export default function AboutPage() {
             {
               icon: <Factory className="h-5 w-5" style={{ color: GOLD }} />,
               title: "Modern production line",
-              desc: "Machine-made vibro-compacted blocks with strict quality control.",
+              desc: "Machine-made concrete blocks in multiple paving profiles.",
               image: "/images/products/cabro/WhatsApp Image 2026-01-08 at 11.51.56 AM.jpeg",
             },
             {
@@ -84,7 +91,7 @@ export default function AboutPage() {
             {
               icon: <Truck className="h-5 w-5" style={{ color: GOLD }} />,
               title: "Factory-direct delivery",
-              desc: "Reliable transport from our yard to your site, always on time.",
+              desc: "Delivery timing is arranged according to quantity, location and access.",
               image: "/images/Parking Lot.jpeg",
             },
           ].map((item) => (
@@ -289,7 +296,7 @@ export default function AboutPage() {
             href="/projects"
             className="rounded-full border border-slate-300 dark:border-slate-600 px-6 py-3 text-sm font-semibold hover:border-[#FFC20E] hover:text-[#FFC20E] transition"
           >
-            Browse completed projects
+            Browse project applications
           </Link>
           <Link
             href="/quote"

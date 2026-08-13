@@ -1,4 +1,5 @@
 "use client";
+/* eslint-disable react/no-unescaped-entities */
 
 import { useMemo, useState, useCallback } from "react";
 import Image from "next/image";
@@ -665,3 +666,4 @@ export default function CompactProjectsSection() {
     </section>
   );
 }
+ 

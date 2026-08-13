@@ -71,9 +71,15 @@ export default function Footer() {
             <ul className="space-y-2.5 text-sm">
               {[
                 { label: "Home", href: "/" },
-                { label: "Cabro Products", href: "/products" },
-                { label: "Our Projects", href: "/projects" },
+                { label: "Cabro Blocks", href: "/products/cabro" },
+                { label: "Cabro Prices Guide", href: "/cabro-blocks-prices-kenya" },
+                { label: "Installation", href: "/cabro-installation-nairobi" },
+                { label: "60mm vs 80mm Guide", href: "/guides/60mm-vs-80mm-cabro" },
+                { label: "All Products", href: "/products" },
                 { label: "Services", href: "/services" },
+                { label: "Nairobi Service Area", href: "/locations/nairobi" },
+                { label: "Kiambu Service Area", href: "/locations/kiambu" },
+                { label: "Our Projects", href: "/projects" },
                 { label: "About Us", href: "/about" },
                 { label: "Get a Quote", href: "/quote" },
               ].map((link) => (

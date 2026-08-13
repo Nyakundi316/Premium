@@ -30,6 +30,7 @@ export default function BeforeAfterSlider({
           src={beforeSrc}
           alt={altBefore}
           fill
+          sizes="(max-width: 768px) 100vw, 768px"
           className="object-cover"
         />
 
@@ -42,6 +43,7 @@ export default function BeforeAfterSlider({
             src={afterSrc}
             alt={altAfter}
             fill
+            sizes="(max-width: 768px) 100vw, 768px"
             className="object-cover"
           />
         </div>

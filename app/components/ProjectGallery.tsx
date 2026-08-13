@@ -37,7 +37,7 @@ export default function ProductGallery({ images }: { images: string[] }) {
               aria-label="Select image"
               type="button"
             >
-              <Image src={img} alt="" fill className="object-cover" />
+              <Image src={img} alt="Product gallery thumbnail" fill sizes="96px" className="object-cover" />
             </button>
           ))}
         </div>

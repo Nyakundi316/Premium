@@ -1,6 +1,5 @@
 import type { MetadataRoute } from "next";
-
-const baseUrl = "https://premiumcabro.com";
+import { SITE } from "./lib/site";
 
 export default function robots(): MetadataRoute.Robots {
   return {
@@ -8,6 +7,7 @@ export default function robots(): MetadataRoute.Robots {
       userAgent: "*",
       allow: "/",
     },
-    sitemap: `${baseUrl}/sitemap.xml`,
+    host: SITE.url,
+    sitemap: `${SITE.url}/sitemap.xml`,
   };
 }

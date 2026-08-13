@@ -1,19 +1,23 @@
 import type { Metadata } from "next";
 import JsonLd from "../../components/JsonLd";
+import { SITE, absoluteUrl } from "../../lib/site";
+import { breadcrumbList, faqPage } from "../../lib/schema";
+import { CABRO_FAQS } from "../../lib/cabro-faqs";
+
+const pageTitle = "Cabro Blocks in Kenya | 60mm & 80mm Interlocking Pavers";
+const pageDescription =
+  "Buy cabro blocks in Kenya direct from the manufacturer. 60mm and 80mm interlocking paving blocks in many patterns and colours, with delivery and professional installation across Nairobi and Kiambu.";
 
 export const metadata: Metadata = {
-  title: "Cabro Blocks Kenya | 60mm & 80mm Interlocking Pavers | Premium Concrete PM",
-  description:
-    "Buy premium cabro blocks in Nairobi. Machine-pressed 60mm and 80mm interlocking cabro paving blocks for driveways, parking lots, estates and commercial areas. Supply and installation across Kenya.",
-  keywords: [
-    "cabro blocks Kenya",
-    "cabro blocks price",
-    "60mm cabro blocks",
-    "80mm cabro blocks",
-    "interlocking pavers Nairobi",
-    "cabro paving blocks",
-    "buy cabro blocks Kenya",
-  ],
+  title: { absolute: `${pageTitle} | ${SITE.name}` },
+  description: pageDescription,
+  alternates: { canonical: "/products/cabro" },
+  openGraph: {
+    title: pageTitle,
+    description: pageDescription,
+    url: "/products/cabro",
+    images: [{ url: "/images/products/cabro/Hero2.jpeg" }],
+  },
 };
 
 const productData = {
@@ -22,19 +26,28 @@ const productData = {
   name: "Cabro Paving Blocks",
   description:
     "Machine-pressed interlocking cabro paving blocks available in 60mm and 80mm thickness. Suitable for driveways, parking areas, estates and commercial projects.",
-  brand: { "@type": "Brand", name: "Premium Concrete PM" },
+  image: [
+    absoluteUrl("/images/products/cabro/Hero2.jpeg"),
+    absoluteUrl("/images/products/cabro/grey.jpeg"),
+    absoluteUrl("/images/products/cabro/trihex groove.jpeg"),
+  ],
+  brand: { "@type": "Brand", name: SITE.name },
+  manufacturer: { "@id": `${SITE.url}/#business` },
   category: "Construction Materials",
-  offers: {
-    "@type": "Offer",
-    availability: "https://schema.org/InStock",
-    areaServed: { "@type": "Country", name: "Kenya" },
-  },
 };
+
+const breadcrumbs = breadcrumbList([
+  { name: "Home", path: "/" },
+  { name: "Products", path: "/products" },
+  { name: "Cabro Blocks", path: "/products/cabro" },
+]);
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (
     <>
       <JsonLd data={productData} />
+      <JsonLd data={breadcrumbs} />
+      <JsonLd data={faqPage([...CABRO_FAQS])} />
       {children}
     </>
   );

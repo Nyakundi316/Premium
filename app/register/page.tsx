@@ -90,8 +90,8 @@ export default function SignupPage() {
         confirmPassword: "",
         agree: true,
       });
-    } catch (err: any) {
-      setServerError(err.message || "Something went wrong. Please try again.");
+    } catch (err: unknown) {
+      setServerError(err instanceof Error ? err.message : "Something went wrong. Please try again.");
     } finally {
       setLoading(false);
     }

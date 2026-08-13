@@ -44,6 +44,13 @@ const GALLERY_IMAGES = [
   { src: "/images/products/culverts/culvert4.jpeg", label: "Quality Inspection" },
   { src: "/images/products/culverts/culvert5.jpeg", label: "Reinforced Units" },
   { src: "/images/products/culverts/DSCN4511[1].jpg", label: "Site Installation" },
+  { src: "/images/products/culverts/culvert-pipes-stacked-yard.jpeg", label: "Stacked Culvert Pipes" },
+  { src: "/images/products/culverts/culvert-pipes-invert-blocks.jpeg", label: "Culverts & Invert Blocks" },
+  { src: "/images/products/culverts/culvert-production-yard-wide.jpeg", label: "Production Yard" },
+  { src: "/images/products/culverts/culvert-pipes-stockyard.jpeg", label: "Ready Stock" },
+  { src: "/images/products/culverts/culvert-yard-workers.jpeg", label: "Yard Operations" },
+  { src: "/images/products/culverts/culvert-pipes-moulds.jpeg", label: "Casting Moulds" },
+  { src: "/images/products/culverts/culvert-pipes-steel-moulds.jpeg", label: "Fresh from the Mould" },
 ];
 
 // ── Animation variants ────────────────────────────────────────────
@@ -783,7 +790,7 @@ function PhotoGallery() {
           </motion.h2>
 
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 sm:gap-4">
-            {GALLERY_IMAGES.map((img, i) => (
+            {GALLERY_IMAGES.map((img) => (
               <motion.div
                 key={img.src}
                 variants={fadeUp}

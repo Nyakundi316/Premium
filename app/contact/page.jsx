@@ -8,11 +8,19 @@ import {
   MessageCircle,
   ArrowRight,
 } from "lucide-react";
+import { SITE, whatsappLink } from "../lib/site";
 
 export const metadata = {
-  title: "Contact & Enquiries | Premium Concrete PM",
+  title: "Contact & Enquiries",
   description:
-    "Get in touch with Premium Concrete PM for paving block orders, quotations, site visits and product enquiries.",
+    "Get in touch with Premium Cabro for paving block orders, quotations, site visits and product enquiries in Nairobi and Kiambu.",
+  alternates: { canonical: "/contact" },
+  openGraph: {
+    title: "Contact & Enquiries | Premium Cabro",
+    description:
+      "Get in touch for paving block orders, quotations, site visits and product enquiries in Nairobi and Kiambu.",
+    url: "/contact",
+  },
 };
 
 export default function ContactPage() {
@@ -77,13 +85,13 @@ export default function ContactPage() {
                       Call / WhatsApp
                     </p>
                     <a
-                      href="tel:+254721150988"
+                      href={`tel:${SITE.phone}`}
                       className="block text-sm font-semibold text-slate-900 hover:text-[#FFC20E]"
                     >
-                      +254 721 150 988
+                      {SITE.phoneDisplay}
                     </a>
                     <a
-                      href="https://wa.me/254721150988"
+                      href={whatsappLink("Hello Premium Cabro, I would like help with a paving or concrete-products enquiry.")}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="inline-flex items-center gap-1 text-xs text-[#B8860B] hover:text-[#FFC20E] mt-1"
@@ -104,10 +112,10 @@ export default function ContactPage() {
                       Email
                     </p>
                     <a
-                      href="mailto:info@premiumconcretepm.co.ke"
+                      href={`mailto:${SITE.email}`}
                       className="text-sm font-semibold text-slate-900 hover:text-[#FFC20E]"
                     >
-                      info@premiumconcretepm.co.ke
+                      {SITE.email}
                     </a>
                   </div>
                 </div>
@@ -189,7 +197,8 @@ export default function ContactPage() {
               you with guidance or a quotation.
             </p>
 
-            <form className="space-y-4">
+            <form action="/quote" method="get" className="space-y-4">
+              <p className="rounded-lg bg-amber-50 p-3 text-xs text-amber-950">For privacy, this quick form does not place personal details in the URL. Continue to the secure quotation workflow below.</p>
               {/* Name + Phone */}
               <div className="grid gap-4 md:grid-cols-2">
                 <div>
@@ -198,6 +207,7 @@ export default function ContactPage() {
                   </label>
                   <input
                     type="text"
+                    autoComplete="name"
                     required
                     className="w-full rounded-lg border border-slate-300 bg-[#F9FAFB] px-4 py-2.5 text-sm text-slate-900 outline-none focus:border-[#FFC20E] focus:bg-white"
                     placeholder="e.g. John Kamau"
@@ -209,6 +219,7 @@ export default function ContactPage() {
                   </label>
                   <input
                     type="tel"
+                    autoComplete="tel"
                     required
                     className="w-full rounded-lg border border-slate-300 bg-[#F9FAFB] px-4 py-2.5 text-sm text-slate-900 outline-none focus:border-[#FFC20E] focus:bg-white"
                     placeholder="07XX XXX XXX"
@@ -224,6 +235,7 @@ export default function ContactPage() {
                   </label>
                   <input
                     type="email"
+                    autoComplete="email"
                     className="w-full rounded-lg border border-slate-300 bg-[#F9FAFB] px-4 py-2.5 text-sm text-slate-900 outline-none focus:border-[#FFC20E] focus:bg-white"
                     placeholder="you@example.com"
                   />
@@ -264,7 +276,7 @@ export default function ContactPage() {
                   type="submit"
                   className="w-full md:w-auto inline-flex items-center justify-center rounded-full bg-[#FFC20E] px-8 py-3 text-sm font-semibold text-[#0D1B30] shadow-sm hover:brightness-95 transition-all"
                 >
-                  Send Enquiry
+                  Continue to Detailed Quote
                 </button>
                 <p className="text-[11px] text-slate-500">
                   We&apos;ll contact you via phone or WhatsApp. Your details are

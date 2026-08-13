@@ -1,4 +1,5 @@
 "use client";
+/* eslint-disable react/no-unescaped-entities */
 
 import { useMemo, useState } from "react";
 import Image from "next/image";
@@ -430,3 +431,4 @@ export default function WhyChooseSection() {
     </section>
   );
 }
+ 

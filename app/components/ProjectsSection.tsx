@@ -221,7 +221,7 @@ export default function CoreProductsSection() {
               className="relative aspect-[4/3] w-full max-w-4xl"
               onClick={(e) => e.stopPropagation()}
             >
-              <Image src={lightbox.src} alt={lightbox.alt} fill className="object-contain" priority />
+              <Image src={lightbox.src} alt={lightbox.alt} fill sizes="100vw" className="object-contain" />
               <button onClick={() => setLightbox(null)} className="absolute right-4 top-4 rounded-full bg-white/10 p-2 transition hover:bg-white/20">
                 <X size={20} className="text-white" />
               </button>

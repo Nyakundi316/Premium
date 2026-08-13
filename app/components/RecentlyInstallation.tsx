@@ -78,6 +78,34 @@ const projects = [
     image: "/images/round trihex 1.jpeg",
     large: false,
   },
+  {
+    title: "Modern Compound",
+    category: "Mirror Cabro",
+    location: "Kiambu",
+    image: "/images/products/cabro/mirror-pavers-residential-driveway.jpeg",
+    large: true,
+  },
+  {
+    title: "Feature Walkway",
+    category: "Trihex with Flower Medallions",
+    location: "Nairobi",
+    image: "/images/products/cabro/red-trihex-walkway-flower-medallions.jpeg",
+    large: false,
+  },
+  {
+    title: "3D Hexagon Driveway",
+    category: "Decorative 3D Cabro",
+    location: "Nairobi",
+    image: "/images/products/cabro/black-white-3d-hexagon-driveway.jpeg",
+    large: false,
+  },
+  {
+    title: "Herringbone Driveway",
+    category: "Brick Paver Cabro",
+    location: "Thika Road",
+    image: "/images/products/cabro/black-white-brick-herringbone-driveway.jpeg",
+    large: false,
+  },
 ];
 
 const largeProjects = projects.filter((p) => p.large);

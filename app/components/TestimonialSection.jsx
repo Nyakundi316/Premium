@@ -1,4 +1,5 @@
 "use client";
+/* eslint-disable react/no-unescaped-entities */
 
 import { useState, useEffect } from "react";
 import { Quote } from "lucide-react";
@@ -130,3 +131,4 @@ export default function TestimonialSection() {
     </section>
   );
 }
+ 

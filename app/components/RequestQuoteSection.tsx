@@ -1,7 +1,10 @@
 "use client";
+/* eslint-disable react/no-unescaped-entities */
 
 import { useState, FormEvent } from "react";
 import { Phone, MessageCircle } from "lucide-react";
+import { trackEvent } from "./AnalyticsEvents";
+import { SITE } from "../lib/site";
 
 const GOLD = "#FFC20E";
 
@@ -11,7 +14,20 @@ export default function RequestQuoteSection() {
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setStatus("submitting");
-    setTimeout(() => setStatus("success"), 800);
+    const data = new FormData(e.currentTarget);
+    const message = [
+      "Hello Premium Cabro, I would like a quotation.",
+      `Name: ${data.get("name")}`,
+      `Phone: ${data.get("phone")}`,
+      `Location: ${data.get("location")}`,
+      `Product/service: ${data.get("service")}`,
+      `Area: ${data.get("area") || "Not provided"}`,
+      `Details: ${data.get("details") || "None"}`,
+    ].join("\n");
+    trackEvent("generate_lead", { form_name: "homepage_quote" });
+    trackEvent("quote_submission", { form_name: "homepage_quote" });
+    window.open(`https://wa.me/${SITE.whatsapp}?text=${encodeURIComponent(message)}`, "_blank", "noopener,noreferrer");
+    setStatus("success");
   };
 
   const inputClass =
@@ -41,29 +57,29 @@ export default function RequestQuoteSection() {
               <div className="grid gap-4 sm:grid-cols-2">
                 <div>
                   <label className="mb-1.5 block text-xs font-semibold uppercase tracking-wide text-slate-500">Full Name *</label>
-                  <input required type="text" placeholder="e.g. John Mwangi" className={inputClass} />
+                  <input required name="name" autoComplete="name" type="text" placeholder="e.g. John Mwangi" className={inputClass} />
                 </div>
                 <div>
                   <label className="mb-1.5 block text-xs font-semibold uppercase tracking-wide text-slate-500">Phone Number *</label>
-                  <input required type="tel" placeholder="e.g. 0712 345 678" className={inputClass} />
+                  <input required name="phone" autoComplete="tel" inputMode="tel" type="tel" placeholder="e.g. 0712 345 678" className={inputClass} />
                 </div>
               </div>
 
               <div className="grid gap-4 sm:grid-cols-2">
                 <div>
                   <label className="mb-1.5 block text-xs font-semibold uppercase tracking-wide text-slate-500">Email (optional)</label>
-                  <input type="email" placeholder="your@email.com" className={inputClass} />
+                  <input name="email" autoComplete="email" type="email" placeholder="your@email.com" className={inputClass} />
                 </div>
                 <div>
                   <label className="mb-1.5 block text-xs font-semibold uppercase tracking-wide text-slate-500">Site Location *</label>
-                  <input required type="text" placeholder="e.g. Ruiru, Kiambu" className={inputClass} />
+                  <input required name="location" autoComplete="address-level2" type="text" placeholder="e.g. Ruiru, Kiambu" className={inputClass} />
                 </div>
               </div>
 
               <div className="grid gap-4 sm:grid-cols-2">
                 <div>
                   <label className="mb-1.5 block text-xs font-semibold uppercase tracking-wide text-slate-500">What do you need? *</label>
-                  <select required className={inputClass}>
+                  <select required name="service" className={inputClass}>
                     <option value="">Select option</option>
                     <option value="cabro">Cabro Paving (60mm / 80mm)</option>
                     <option value="cobblestone">Cobblestone Driveway</option>
@@ -75,13 +91,13 @@ export default function RequestQuoteSection() {
                 </div>
                 <div>
                   <label className="mb-1.5 block text-xs font-semibold uppercase tracking-wide text-slate-500">Area Size (m²)</label>
-                  <input type="text" placeholder="e.g. 150 m²" className={inputClass} />
+                  <input name="area" type="text" placeholder="e.g. 150 m²" className={inputClass} />
                 </div>
               </div>
 
               <div>
                 <label className="mb-1.5 block text-xs font-semibold uppercase tracking-wide text-slate-500">Additional details</label>
-                <textarea rows={3} placeholder="Describe your project..." className={`${inputClass} resize-none`} />
+                <textarea name="details" rows={3} placeholder="Describe your project..." className={`${inputClass} resize-none`} />
               </div>
 
               <button
@@ -94,7 +110,7 @@ export default function RequestQuoteSection() {
               </button>
 
               {status === "success" && (
-                <p className="text-sm text-emerald-600">Thank you! We'll contact you shortly.</p>
+                <p role="status" className="text-sm text-emerald-600">Your enquiry is ready in WhatsApp. Tap send there to complete it.</p>
               )}
             </form>
           </div>
