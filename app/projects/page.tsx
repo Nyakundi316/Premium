@@ -282,17 +282,17 @@ export default function ProjectsPage() {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
         {/* HERO */}
         <div className="mb-10 sm:mb-14">
-          <div className="inline-flex items-center gap-2 rounded-full border bg-white/80 px-4 py-1.5 mb-4">
+          <div className="inline-flex items-center gap-2 rounded-full border bg-white/80 px-4 py-1.5 mb-4 dark:bg-slate-900/80 dark:border-slate-700">
             <span
               className="h-2 w-2 rounded-full animate-pulse"
               style={{ backgroundColor: BRAND_GOLD }}
             />
-            <span className="text-xs font-semibold tracking-[0.18em] uppercase text-gray-700">
+            <span className="text-xs font-semibold tracking-[0.18em] uppercase text-gray-700 dark:text-slate-200">
               Portfolio
             </span>
           </div>
 
-          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 leading-tight">
+          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 dark:text-white leading-tight">
             Our{" "}
             <span
               className="text-transparent bg-clip-text"
@@ -304,7 +304,7 @@ export default function ProjectsPage() {
             </span>
           </h1>
 
-          <p className="mt-3 text-sm sm:text-base lg:text-lg text-gray-700 max-w-2xl">
+          <p className="mt-3 text-sm sm:text-base lg:text-lg text-gray-700 dark:text-slate-300 max-w-2xl">
             A showcase of cabro installations, culverts, fencing posts, drainage
             works and other concrete solutions delivered with clean finishing.
           </p>
@@ -313,13 +313,13 @@ export default function ProjectsPage() {
           <div className="mt-5 flex flex-wrap gap-3">
             <Link
               href="/contact"
-              className="inline-flex items-center gap-2 rounded-full px-4 py-2 text-sm font-semibold text-gray-900 bg-white border border-gray-200 hover:bg-gray-50 transition"
+              className="inline-flex items-center gap-2 rounded-full px-4 py-2 text-sm font-semibold text-gray-900 bg-white border border-gray-200 hover:bg-gray-50 transition dark:bg-slate-900 dark:text-slate-100 dark:border-slate-700 dark:hover:bg-slate-800"
             >
               Request Quotation <ArrowRight className="w-4 h-4" />
             </Link>
             <Link
               href="/products"
-              className="inline-flex items-center gap-2 rounded-full px-4 py-2 text-sm font-semibold text-gray-700 bg-white/70 border border-gray-200 hover:bg-white transition"
+              className="inline-flex items-center gap-2 rounded-full px-4 py-2 text-sm font-semibold text-gray-700 bg-white/70 border border-gray-200 hover:bg-white transition dark:bg-yellow-500 dark:text-slate-950 dark:border-yellow-400 dark:hover:bg-yellow-400"
             >
               View Products <ArrowRight className="w-4 h-4" />
             </Link>
@@ -328,12 +328,12 @@ export default function ProjectsPage() {
 
         {/* FILTERS */}
         <div className="flex flex-wrap items-center justify-between gap-4 mb-6 sm:mb-8">
-          <div className="flex items-center gap-2 text-sm text-gray-600">
+          <div className="flex items-center gap-2 text-sm text-gray-600 dark:text-slate-300">
             <Filter className="w-4 h-4" />
             Filter by category
           </div>
 
-          <div className="inline-flex flex-wrap gap-2 bg-white/80 p-1.5 rounded-full border border-gray-200">
+          <div className="inline-flex flex-wrap gap-2 bg-white/80 p-1.5 rounded-full border border-gray-200 dark:bg-[#111827] dark:border-slate-700">
             {categories.map((c) => {
               const isActive = activeCategory === c.id;
               return (
@@ -343,8 +343,8 @@ export default function ProjectsPage() {
                   onClick={() => setActiveCategory(c.id)}
                   className={`px-3 sm:px-4 py-1.5 rounded-full text-xs sm:text-sm font-medium transition ${
                     isActive
-                      ? "bg-gray-900 text-white shadow-sm"
-                      : "bg-transparent text-gray-700 hover:bg-gray-100"
+                      ? "bg-gray-900 text-white shadow-sm dark:bg-yellow-500 dark:text-slate-950"
+                      : "bg-transparent text-gray-700 hover:bg-gray-100 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-white"
                   }`}
                 >
                   {c.label}
@@ -370,7 +370,7 @@ export default function ProjectsPage() {
                   setActive(p);
                   setActiveImage(p.cover);
                 }}
-                className="group w-full text-left rounded-2xl overflow-hidden bg-white border border-gray-200 shadow-sm hover:shadow-md transition"
+                className="group w-full text-left rounded-2xl overflow-hidden bg-white border border-gray-200 shadow-sm hover:shadow-md transition dark:bg-[#111827] dark:border-slate-700"
               >
                 <div className="relative aspect-[4/3]">
                   <Image
@@ -398,14 +398,14 @@ export default function ProjectsPage() {
                 </div>
 
                 <div className="p-4">
-                  <p className="text-sm text-gray-700 line-clamp-2">
+                  <p className="text-sm text-gray-700 dark:text-slate-300 line-clamp-2">
                     {p.scope}
                   </p>
                   <div className="mt-3 flex flex-wrap gap-2">
                     {p.tags.slice(0, 3).map((t) => (
                       <span
                         key={`${p.id}-${t}`}
-                        className="inline-flex items-center gap-1 rounded-full bg-gray-100 text-gray-700 px-2 py-1 text-[11px]"
+                        className="inline-flex items-center gap-1 rounded-full bg-gray-100 text-gray-700 px-2 py-1 text-[11px] dark:bg-slate-800 dark:text-slate-100 dark:border dark:border-slate-700"
                       >
                         <Tag className="w-3 h-3" />
                         {t}
@@ -420,23 +420,23 @@ export default function ProjectsPage() {
           /* EMPTY STATE + PROJECT TYPES (current mode since you have no projects yet) */
           <div className="mt-2 space-y-8">
             {/* Empty state message */}
-            <div className="rounded-2xl border border-dashed border-gray-300 bg-white/70 p-6 sm:p-8 text-center">
-              <p className="text-sm sm:text-base text-gray-700 font-medium">
+            <div className="rounded-2xl border border-dashed border-gray-300 bg-white/70 p-6 sm:p-8 text-center dark:bg-[#111827] dark:border-slate-700">
+              <p className="text-sm sm:text-base text-gray-700 font-medium dark:text-white">
                 Verified case studies are being prepared.
               </p>
-              <p className="mt-2 text-xs sm:text-sm text-gray-600 max-w-xl mx-auto">
+              <p className="mt-2 text-xs sm:text-sm text-gray-600 max-w-xl mx-auto dark:text-slate-300">
                 Explore the types of projects we support with
                 cabro, culverts, fencing posts, kerbs and other concrete
                 products. Contact us for a site-specific quotation.
               </p>
               <div className="mt-4 flex flex-wrap justify-center gap-2 text-xs sm:text-sm">
-                <span className="px-3 py-1 rounded-full bg-gray-900 text-white">
+                <span className="px-3 py-1 rounded-full bg-gray-900 text-white dark:bg-yellow-500 dark:text-slate-950 dark:border dark:border-yellow-400">
                   Residential & Commercial
                 </span>
-                <span className="px-3 py-1 rounded-full bg-gray-100 text-gray-800">
+                <span className="px-3 py-1 rounded-full bg-gray-100 text-gray-800 dark:bg-slate-800 dark:text-slate-100 dark:border dark:border-slate-700">
                   Industrial Yards
                 </span>
-                <span className="px-3 py-1 rounded-full bg-gray-100 text-gray-800">
+                <span className="px-3 py-1 rounded-full bg-gray-100 text-gray-800 dark:bg-slate-800 dark:text-slate-100 dark:border dark:border-slate-700">
                   Farms & Plots
                 </span>
               </div>
@@ -498,15 +498,15 @@ export default function ProjectsPage() {
               ].map((item) => (
                 <div
                   key={item.title}
-                  className="rounded-2xl bg-white border border-gray-200 p-4 sm:p-5 shadow-sm"
+                  className="rounded-2xl bg-white border border-gray-200 p-4 sm:p-5 shadow-sm dark:bg-[#111827] dark:border-slate-700"
                 >
-                  <h3 className="text-sm sm:text-base font-semibold text-gray-900">
+                  <h3 className="text-sm sm:text-base font-semibold text-gray-900 dark:text-white">
                     {item.title}
                   </h3>
-                  <p className="mt-1.5 text-xs sm:text-sm text-gray-700">
+                  <p className="mt-1.5 text-xs sm:text-sm text-gray-700 dark:text-slate-300">
                     {item.desc}
                   </p>
-                  <ul className="mt-2.5 space-y-1.5 text-xs text-gray-700">
+                  <ul className="mt-2.5 space-y-1.5 text-xs text-gray-700 dark:text-slate-300">
                     {item.points.map((p) => (
                       <li key={p} className="flex gap-2">
                         <span
@@ -542,7 +542,7 @@ export default function ProjectsPage() {
               animate={{ scale: 1, opacity: 1, y: 0 }}
               exit={{ scale: 0.96, opacity: 0, y: 10 }}
               transition={{ duration: 0.25 }}
-              className="relative w-full max-w-6xl bg-white rounded-3xl overflow-hidden shadow-2xl"
+              className="relative w-full max-w-6xl bg-white rounded-3xl overflow-hidden shadow-2xl dark:bg-[#111827] dark:border dark:border-slate-700"
               onClick={(e) => e.stopPropagation()}
             >
               {/* Close */}

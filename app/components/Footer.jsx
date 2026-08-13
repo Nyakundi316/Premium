@@ -47,8 +47,9 @@ export default function Footer() {
               </span>
               <div className="flex gap-2">
                 {[
-                  { label: "IG", href: "https://www.instagram.com/premium.movers" },
-                  { label: "FB", href: "https://facebook.com/premiumcabro" },
+                  { label: "IG", href: "https://www.instagram.com/premiumcabros" },
+                  { label: "FB", href: "https://facebook.com/premiumcabros.ke" },
+                  { label: "TT", href: "https://www.tiktok.com/@premiumcabro" },
                   { label: "LN", href: "https://linkedin.com/company/premiumcabro" },
                 ].map((s) => (
                   <Link
