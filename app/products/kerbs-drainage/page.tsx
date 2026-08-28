@@ -68,6 +68,18 @@ const YARD_GALLERY = [
     src: "/images/products/kerbs-drainage/kerbs 1 (4).jpeg",
     caption: "Kerb edging installed along an estate road",
   },
+  ...Array.from({ length: 9 }, (_, index) => ({
+    src: `/images/products/kerbs-drainage/concrete-cover-slabs-stock-${String(index + 1).padStart(2, "0")}.jpeg`,
+    caption: `Precast concrete cover slabs in production stock${index === 0 ? " — durable protection for drainage and service channels" : " for dependable drainage and utility works"}`,
+  })),
+  ...Array.from({ length: 3 }, (_, index) => ({
+    src: `/images/products/kerbs-drainage/precast-kerbstones-stock-${String(index + 1).padStart(2, "0")}.jpeg`,
+    caption: `Straight precast kerbstones ready for neat, durable road and driveway edging${index === 0 ? "" : " in bulk quantities"}`,
+  })),
+  ...Array.from({ length: 5 }, (_, index) => ({
+    src: `/images/products/kerbs-drainage/invert-drainage-channels-stock-${String(index + 1).padStart(2, "0")}.jpeg`,
+    caption: `Precast invert drainage channels stocked for efficient stormwater control${index === 0 ? "" : " and rapid site installation"}`,
+  })),
 ];
 
 export default function KerbsDrainagePage() {

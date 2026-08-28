@@ -280,6 +280,22 @@ export default function FencingPostsPage() {
                 src: "/images/products/fencing-posts/fencing-posts-curing.jpeg",
                 caption: "Reinforced posts curing at the yard before delivery",
               },
+              {
+                src: "/images/products/fencing-posts/reinforced-fence-posts-stock-01.jpeg",
+                caption: "Freshly cast reinforced concrete fence posts arranged for controlled curing",
+              },
+              {
+                src: "/images/products/fencing-posts/reinforced-fence-posts-stock-02.jpeg",
+                caption: "Uniform concrete posts prepared in volume for secure perimeter installations",
+              },
+              {
+                src: "/images/products/fencing-posts/reinforced-fence-posts-stock-03.jpeg",
+                caption: "Consistent post profiles ready to deliver dependable support for farm and estate fencing",
+              },
+              {
+                src: "/images/products/fencing-posts/reinforced-fence-posts-stock-04.jpeg",
+                caption: "Heavy-duty fencing posts stocked at our yard for fast project fulfilment",
+              },
             ].map((photo) => (
               <figure
                 key={photo.src}

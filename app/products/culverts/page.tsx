@@ -51,6 +51,8 @@ const GALLERY_IMAGES = [
   { src: "/images/products/culverts/culvert-yard-workers.jpeg", label: "Yard Operations" },
   { src: "/images/products/culverts/culvert-pipes-moulds.jpeg", label: "Casting Moulds" },
   { src: "/images/products/culverts/culvert-pipes-steel-moulds.jpeg", label: "Fresh from the Mould" },
+  { src: "/images/products/culverts/culvert-rings-production-stock-01.jpeg", label: "Culvert Rings in Production Stock" },
+  { src: "/images/products/culverts/culvert-rings-production-stock-02.jpeg", label: "Cured Culvert Rings Ready for Orders" },
 ];
 
 // ── Animation variants ────────────────────────────────────────────

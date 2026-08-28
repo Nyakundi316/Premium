@@ -38,6 +38,13 @@ type CabroProduct = {
 const BRAND_GOLD = "#FFC20E";
 const BRAND_GOLD_DARK = "#B8860B";
 
+const CABRO_YARD_GALLERY = Array.from({ length: 5 }, (_, index) => ({
+  src: `/images/products/cabro/rectangular-cabro-stock-${String(index + 1).padStart(2, "0")}.jpeg`,
+  caption: index === 3
+    ? "Charcoal rectangular cabro pavers stocked in bulk for contemporary driveways and parking areas"
+    : "Natural grey rectangular cabro pavers produced in volume for clean, versatile paving layouts",
+}));
+
 /* ------------ DATA: YOUR ACTUAL BLOCKS ------------ */
 
 const cabroProducts: CabroProduct[] = [
@@ -284,17 +291,6 @@ const cabroProducts: CabroProduct[] = [
     surface: "Gear-shaped profile that creates mesmerizing swirl patterns.",
   },
   {
-    id: "boardwalk-zigzag-80",
-    name: "Boardwalk Zigzag",
-    pattern: "Zigzag",
-    thickness: "80mm",
-    colorMix: "Grey / Charcoal",
-    image: "/images/Australian.jpeg",
-    bestFor: "Walkways, ramps, coastal paths and public access areas.",
-    strength: "Heavy-duty 80mm suitable for high foot traffic.",
-    surface: "Clean zigzag lines with tight-fitting edges.",
-  },
-  {
     id: "clay-brick-60",
     name: "Clay Brick Bond",
     pattern: "Brick Bond",
@@ -409,7 +405,7 @@ export default function CabroProductsPage() {
   return (
     <section
       id="cabro-gallery"
-      className="min-h-screen py-12 sm:py-16 lg:py-20 bg-gradient-to-b from-[#EEF2F6] to-white dark:from-[#0A0C10] dark:to-[#0F1219]"
+      className="min-h-screen py-12 sm:py-16 lg:py-20 font-sans bg-gradient-to-b from-[#EEF2F6] to-white dark:from-[#0A0C10] dark:to-[#0F1219]"
     >
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
         {/* HERO */}
@@ -558,6 +554,25 @@ export default function CabroProductsPage() {
             </motion.button>
           ))}
         </div>
+
+        <section className="mt-14" aria-labelledby="cabro-yard-gallery-heading">
+          <h2 id="cabro-yard-gallery-heading" className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white">
+            Fresh from our production yard
+          </h2>
+          <p className="mt-2 max-w-2xl text-sm sm:text-base text-gray-600 dark:text-slate-300">
+            Rectangular cabro stock manufactured and cured for residential, commercial and estate paving orders.
+          </p>
+          <div className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+            {CABRO_YARD_GALLERY.map((photo) => (
+              <figure key={photo.src} className="overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-sm dark:border-slate-700 dark:bg-[#111827]">
+                <div className="relative aspect-[4/3]">
+                  <Image src={photo.src} alt={photo.caption} fill className="object-cover" sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw" />
+                </div>
+                <figcaption className="px-4 py-3 text-sm text-gray-600 dark:text-slate-300">{photo.caption}</figcaption>
+              </figure>
+            ))}
+          </div>
+        </section>
 
         {/* 60mm VS 80mm */}
         <div className="mt-16 lg:mt-20 grid grid-cols-1 lg:grid-cols-[1fr_1.1fr] gap-8 items-start">

@@ -9,7 +9,6 @@ import {
   Building2,
   Truck,
   Check,
-  Images,
 } from "lucide-react";
 import { motion } from "framer-motion";
 
@@ -317,7 +316,7 @@ export default function CoreProductsSection() {
 
         {/* Product cards */}
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {products.map((product, i) => (
+          {products.slice(0, 3).map((product, i) => (
             <motion.div
               key={product.id}
               initial={{ opacity: 0, y: 20 }}
@@ -338,10 +337,6 @@ export default function CoreProductsSection() {
                   className="object-cover transition-transform duration-500 group-hover:scale-105"
                   sizes="(max-width: 1024px) 50vw, 33vw"
                 />
-                <div className="absolute right-3 top-3 inline-flex items-center gap-1.5 rounded-full bg-white/90 px-3 py-1.5 text-[11px] font-semibold text-slate-800 shadow transition-transform group-hover:scale-105">
-                  <Images size={14} />
-                  View more images
-                </div>
                 <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/90 via-black/65 to-transparent px-4 pb-4 pt-12 text-left">
                   <p className="text-xs font-medium leading-5 text-white sm:text-sm">
                     {product.imageCaption}
@@ -377,6 +372,17 @@ export default function CoreProductsSection() {
               </div>
             </motion.div>
           ))}
+        </div>
+
+        <div className="mt-10 flex justify-center">
+          <Link
+            href="/products"
+            className="inline-flex items-center gap-2 rounded-full px-6 py-2.5 text-sm font-semibold text-[#0D1B30] transition hover:brightness-110"
+            style={{ background: GOLD }}
+          >
+            View More Products
+            <ArrowRight size={16} />
+          </Link>
         </div>
       </div>
     </section>
