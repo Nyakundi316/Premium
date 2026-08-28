@@ -13,7 +13,6 @@ import {
   ChevronRight,
   Download,
   Expand,
-  Images,
   Info,
   LoaderCircle,
   MapPin,
@@ -35,7 +34,6 @@ import { SITE } from "../../lib/site";
 import {
   CAMERA_PRODUCTS,
   hasVerifiedQuantityData,
-  type CameraProduct,
   type LayingPattern,
 } from "../lib/catalogue";
 import { analysePhotoQuality, type PhotoQualityResult } from "../lib/quality";
