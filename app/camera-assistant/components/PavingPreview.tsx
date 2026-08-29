@@ -85,14 +85,23 @@ const fragmentShader = `
     }
 
     vec2 local = fract(grid);
-    float joint = smoothstep(0.018, 0.055, min(min(local.x, 1.0 - local.x), min(local.y, 1.0 - local.y)));
-    vec2 productUv = fract(rotated * 2.25);
-    vec3 material = texture2D(uProduct, productUv).rgb;
+    vec2 productUv = vec2(local.x, 1.0 - local.y);
+    vec4 productSample = texture2D(uProduct, productUv);
+
+    // Transparent catalogue cutouts preserve the real block silhouette. The
+    // Wave source is a JPEG, so near-white studio pixels are treated as grout.
+    float whiteness = min(productSample.r, min(productSample.g, productSample.b));
+    float studioBackground = smoothstep(0.90, 0.985, whiteness);
+    float blockCoverage = productSample.a * (1.0 - studioBackground);
+    blockCoverage *= smoothstep(0.0, 0.035, min(min(local.x, 1.0 - local.x), min(local.y, 1.0 - local.y)));
+
+    vec3 material = productSample.rgb;
 
     float originalLight = dot(original.rgb, vec3(0.2126, 0.7152, 0.0722));
     float lighting = mix(0.72, 1.18, originalLight);
     material *= lighting;
-    material = mix(material * 0.32, material, joint);
+    vec3 grout = vec3(0.18, 0.17, 0.15) * mix(0.75, 1.15, originalLight);
+    material = mix(grout, material, blockCoverage);
 
     float neighbour = min(
       min(maskAt(vUv + vec2(uMaskPixel.x, 0.0)), maskAt(vUv - vec2(uMaskPixel.x, 0.0))),

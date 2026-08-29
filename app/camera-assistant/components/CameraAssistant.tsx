@@ -166,6 +166,7 @@ export default function CameraAssistant() {
   const [cameraOpen, setCameraOpen] = useState(false);
   const [cameraStarting, setCameraStarting] = useState(false);
   const [cameraError, setCameraError] = useState<string | null>(null);
+  const [cameraFacing, setCameraFacing] = useState<"environment" | "user">("environment");
   const [analysing, setAnalysing] = useState(false);
   const [mask, setMask] = useState<MaskSnapshot>(() => cloneMask(DEFAULT_MASK));
   const [surfaceApproved, setSurfaceApproved] = useState(false);
@@ -299,7 +300,7 @@ export default function CameraAssistant() {
     }
   };
 
-  const openCamera = async () => {
+  const openCamera = async (facing: "environment" | "user" = cameraFacing) => {
     setCameraError(null);
     if (permissionDeniedRef.current) {
       setCameraError("Camera permission was denied. Allow camera access in browser settings, reload the page, or upload a photo.");
@@ -316,8 +317,9 @@ export default function CameraAssistant() {
     stopCamera();
     setCameraStarting(true);
     try {
-      const stream = await navigator.mediaDevices.getUserMedia({ audio: false, video: { facingMode: { ideal: "environment" }, width: { ideal: 1920 }, height: { ideal: 1080 } } });
+      const stream = await navigator.mediaDevices.getUserMedia({ audio: false, video: { facingMode: { ideal: facing }, width: { ideal: 1920 }, height: { ideal: 1080 } } });
       streamRef.current = stream;
+      setCameraFacing(facing);
       setCameraOpen(true);
       setCameraStarting(false);
     } catch (error) {
@@ -334,6 +336,12 @@ export default function CameraAssistant() {
         setCameraError("The camera could not start. Try again or upload a photo instead.");
       }
     }
+  };
+
+  const switchCamera = async () => {
+    const nextFacing = cameraFacing === "environment" ? "user" : "environment";
+    stopCamera();
+    await openCamera(nextFacing);
   };
 
   const capturePhoto = async () => {
@@ -516,7 +524,7 @@ export default function CameraAssistant() {
               <h2 className="mt-3 text-2xl font-bold text-slate-950 sm:text-3xl">Show us the full paving area</h2>
               <p className="mt-3 text-sm leading-6 text-slate-600">Camera access is requested only after you press “Open camera.” Your photo stays on this device during preview unless you separately consent to save or upload it.</p>
               <div className="mt-7 grid gap-3 sm:grid-cols-2">
-                <button type="button" onClick={() => void openCamera()} disabled={cameraStarting || cameraOpen} aria-label="Open rear camera" className="inline-flex min-h-14 items-center justify-center gap-3 rounded-full bg-[#FFC20E] px-6 text-sm font-bold text-[#0D1B30] transition hover:brightness-95 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-[#FFC20E]/40 disabled:opacity-50"><Camera className="h-5 w-5" /> {cameraStarting ? "Starting camera…" : "Open camera"}</button>
+                <button type="button" onClick={() => void openCamera("environment")} disabled={cameraStarting || cameraOpen} aria-label="Open rear camera" className="inline-flex min-h-14 items-center justify-center gap-3 rounded-full bg-[#FFC20E] px-6 text-sm font-bold text-[#0D1B30] transition hover:brightness-95 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-[#FFC20E]/40 disabled:opacity-50"><Camera className="h-5 w-5" /> {cameraStarting ? "Starting camera…" : "Open camera"}</button>
                 <button type="button" onClick={() => uploadInputRef.current?.click()} aria-label="Upload an existing photo" className="inline-flex min-h-14 items-center justify-center gap-3 rounded-full border border-slate-300 bg-white px-6 text-sm font-bold text-slate-800 transition hover:bg-slate-50 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-[#FFC20E]/40"><Upload className="h-5 w-5" /> Upload a photo</button>
                 <input ref={uploadInputRef} type="file" accept="image/jpeg,image/png,image/webp" onChange={(event) => void handleFile(event.target.files?.[0])} className="sr-only" />
               </div>
@@ -525,11 +533,12 @@ export default function CameraAssistant() {
                   <video ref={videoRef} autoPlay muted playsInline aria-label="Live rear camera preview" className="aspect-[3/4] w-full object-cover sm:aspect-video" />
                   <div className="grid grid-cols-2 gap-3 bg-slate-950 p-3 sm:flex sm:justify-center">
                     <button type="button" onClick={() => void capturePhoto()} aria-label="Capture current camera frame" className="min-h-12 rounded-full bg-[#FFC20E] px-5 text-sm font-bold text-[#0D1B30] focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-white/70"><Camera className="mr-2 inline h-5 w-5" />Take photo</button>
+                    <button type="button" onClick={() => void switchCamera()} aria-label={`Switch to ${cameraFacing === "environment" ? "front" : "rear"} camera`} className="min-h-12 rounded-full border border-white/40 px-5 text-sm font-bold text-white focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-white/70"><RefreshCcw className="mr-2 inline h-5 w-5" />Switch</button>
                     <button type="button" onClick={stopCamera} aria-label="Close camera" className="min-h-12 rounded-full border border-white/40 px-5 text-sm font-bold text-white focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-white/70"><X className="mr-2 inline h-5 w-5" />Close</button>
                   </div>
                 </div>
               )}
-              {cameraError && <p role="alert" className="mt-4 rounded-xl border border-amber-200 bg-amber-50 p-3 text-sm leading-6 text-slate-700">{cameraError}</p>}
+              {cameraError && <div role="alert" className="mt-4 rounded-xl border border-amber-200 bg-amber-50 p-3 text-sm leading-6 text-slate-700"><p>{cameraError}</p>{!permissionDeniedRef.current && <button type="button" onClick={() => void openCamera(cameraFacing)} className="mt-2 font-bold text-[#765800] underline decoration-2 underline-offset-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#FFC20E]">Try camera again</button>}</div>}
               <p className="mt-4 flex items-start gap-2 text-xs leading-5 text-slate-500"><ShieldCheck className="mt-0.5 h-4 w-4 shrink-0" />Privacy: camera frames and captured photos stay in this browser unless you explicitly share or submit them.</p>
               {qualityError && <p role="alert" className="mt-4 rounded-xl bg-red-50 p-3 text-sm text-red-700">{qualityError}</p>}
               <div className="mt-6 flex items-start gap-3 rounded-2xl bg-slate-50 p-4">
