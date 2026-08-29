@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { Mail, MapPin, Phone } from "lucide-react";
+import { Camera, Mail, MapPin, Phone } from "lucide-react";
 
 const GOLD = "#FFC20E";
 
@@ -41,6 +41,14 @@ export default function Footer() {
               commercial and industrial projects across Kenya.
             </p>
 
+            <Link
+              href="/camera-assistant"
+              className="mt-5 inline-flex min-h-11 items-center gap-2 rounded-full bg-[#FFC20E] px-5 text-sm font-bold text-[#0D1B30] transition hover:brightness-95 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-[#FFC20E]/35"
+            >
+              <Camera className="h-4 w-4" aria-hidden="true" />
+              Try Camera Assistant
+            </Link>
+
             <div className="mt-5 flex items-center gap-3">
               <span className="text-[10px] uppercase tracking-[0.18em] text-white/35">
                 Follow us
@@ -72,6 +80,7 @@ export default function Footer() {
             <ul className="space-y-2.5 text-sm">
               {[
                 { label: "Home", href: "/" },
+                { label: "Camera Assistant", href: "/camera-assistant" },
                 { label: "Cabro Blocks", href: "/products/cabro" },
                 { label: "Cabro Prices Guide", href: "/cabro-blocks-prices-kenya" },
                 { label: "Installation", href: "/cabro-installation-nairobi" },
