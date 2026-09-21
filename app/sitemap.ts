@@ -1,6 +1,7 @@
 import type { MetadataRoute } from "next";
 import { absoluteUrl } from "./lib/site";
 import { SERVICE_AREAS } from "./lib/locations";
+import { GUIDES } from "./lib/guides";
 
 // Stable content dates: update an entry's date when its page content
 // meaningfully changes. Using build time here would falsely mark every URL
@@ -19,7 +20,9 @@ const entries: Entry[] = [
   { path: "/products/cabro", lastModified: SEO_REFRESH, changeFrequency: "weekly", priority: 0.95 },
   { path: "/cabro-blocks-prices-kenya", lastModified: SEO_REFRESH, changeFrequency: "monthly", priority: 0.9 },
   { path: "/cabro-installation-nairobi", lastModified: SEO_REFRESH, changeFrequency: "monthly", priority: 0.9 },
+  { path: "/guides", lastModified: SEO_REFRESH, changeFrequency: "monthly", priority: 0.85 },
   { path: "/guides/60mm-vs-80mm-cabro", lastModified: SEO_REFRESH, changeFrequency: "monthly", priority: 0.8 },
+  { path: "/guides/cabro-installation-process", lastModified: SEO_REFRESH, changeFrequency: "monthly", priority: 0.8 },
   { path: "/products", changeFrequency: "monthly", priority: 0.9 },
   { path: "/products/culverts", changeFrequency: "monthly", priority: 0.7 },
   { path: "/products/fencing-posts", changeFrequency: "monthly", priority: 0.7 },
@@ -42,7 +45,17 @@ export default function sitemap(): MetadataRoute.Sitemap {
     changeFrequency: "monthly",
     priority: 0.75,
   }));
-  return [...entries, ...locationEntries].map(({ path, ...rest }) => ({
+
+  // Each guide carries its own modified date, so the sitemap reports real
+  // freshness instead of the shared SEO_REFRESH fallback used elsewhere.
+  const guideEntries: Entry[] = GUIDES.map(({ slug, modified }) => ({
+    path: `/guides/${slug}`,
+    lastModified: new Date(modified),
+    changeFrequency: "monthly",
+    priority: 0.7,
+  }));
+
+  return [...entries, ...guideEntries, ...locationEntries].map(({ path, ...rest }) => ({
     url: absoluteUrl(path),
     ...rest,
   }));

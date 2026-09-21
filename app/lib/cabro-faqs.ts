@@ -31,4 +31,24 @@ export const CABRO_FAQS = [
     answer:
       "It depends on the area size, how much ground preparation is needed and the weather. After a site assessment we confirm the work programme together with your quotation.",
   },
+  {
+    question: "What is cabro and what is it used for?",
+    answer:
+      "Cabro is an interlocking concrete paving block, also called a paver. The blocks lock together over a compacted base to form a strong, flexible surface for driveways, compounds, walkways, parking areas, estate roads and industrial yards. Because they interlock rather than set as one slab, individual blocks can be lifted and replaced later.",
+  },
+  {
+    question: "What base preparation do cabro blocks need?",
+    answer:
+      "Cabro sits on a prepared, well-compacted base — not directly on soft ground. The typical sequence is excavation to the right depth, a compacted sub-base sized for the expected traffic, edge restraints such as kerbs, a levelled bedding layer, then the blocks, finished with joint sand and a final compaction. Correct levels, compaction and drainage matter as much as the block itself.",
+  },
+  {
+    question: "How long do cabro paving blocks last?",
+    answer:
+      "A correctly installed cabro surface can last many years. Its working life comes down to matching block thickness to the traffic, a properly compacted base, planned drainage and secure edge restraints. Because cabro is an interlocking system, worn or damaged blocks can be lifted and replaced individually instead of resurfacing the whole area.",
+  },
+  {
+    question: "Can damaged or stained cabro blocks be repaired?",
+    answer:
+      "Yes. A chipped, stained or disturbed block can usually be lifted and swapped for a matching unit, and blocks can also be lifted temporarily to reach a service beneath the paving. Keep a few spare matching blocks after installation. Settlement or low spots need the base diagnosed and rebuilt rather than only replacing the surface blocks.",
+  },
 ] as const;
