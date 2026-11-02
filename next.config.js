@@ -7,18 +7,33 @@ const __dirname = path.dirname(__filename);
 const isDev = process.env.NODE_ENV === "development";
 
 // script-src: 'unsafe-inline' is required by Next.js bootstrap scripts and the
-// inline gtag snippet in app/layout.tsx. 'unsafe-eval' is dev-only (React Refresh).
+// inline gtag / Meta Pixel snippets in app/layout.tsx. 'unsafe-eval' is dev-only (React Refresh).
+// Meta Pixel needs connect.facebook.net (fbevents.js) and www.facebook.com (event beacons).
+// GA4 sends hits to analytics.google.com / www.google.com, and Google Signals adds
+// doubleclick + the local Google domain (google.co.ke) — per Google's GA4 CSP guide.
+const analyticsHosts = [
+  "https://*.googletagmanager.com",
+  "https://*.google-analytics.com",
+  "https://analytics.google.com",
+  "https://*.analytics.google.com",
+  "https://*.g.doubleclick.net",
+  "https://www.google.com",
+  "https://www.google.co.ke",
+  "https://www.facebook.com",
+].join(" ");
+
 const csp = [
   "default-src 'self'",
-  `script-src 'self' 'unsafe-inline'${isDev ? " 'unsafe-eval'" : ""} https://www.googletagmanager.com`,
+  `script-src 'self' 'unsafe-inline'${isDev ? " 'unsafe-eval'" : ""} https://www.googletagmanager.com https://connect.facebook.net`,
   "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
   "font-src 'self' data: https://fonts.gstatic.com",
-  "img-src 'self' data: blob: https://images.pexels.com https://upload.wikimedia.org https://www.googletagmanager.com https://www.google-analytics.com",
-  "connect-src 'self' https://premiumback-end-1.onrender.com https://www.googletagmanager.com https://www.google-analytics.com https://*.google-analytics.com",
-  "frame-src 'self'",
+  `img-src 'self' data: blob: https://images.pexels.com https://upload.wikimedia.org ${analyticsHosts}`,
+  `connect-src 'self' https://premiumback-end-1.onrender.com https://connect.facebook.net ${analyticsHosts}`,
+  // Meta falls back to a hidden-iframe form POST when a beacon can't be sent.
+  "frame-src 'self' https://www.facebook.com",
   "object-src 'none'",
   "base-uri 'self'",
-  "form-action 'self'",
+  "form-action 'self' https://www.facebook.com",
   "frame-ancestors 'self'",
   "worker-src 'self' blob:",
   "manifest-src 'self'",

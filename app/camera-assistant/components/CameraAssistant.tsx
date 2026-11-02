@@ -31,6 +31,7 @@ import {
   X,
 } from "lucide-react";
 import { SITE } from "../../lib/site";
+import { trackEvent } from "../../components/AnalyticsEvents";
 import {
   CAMERA_PRODUCTS,
   hasVerifiedQuantityData,
@@ -441,7 +442,8 @@ export default function CameraAssistant() {
     }
   };
 
-  const openWhatsApp = (message: string) => {
+  const openWhatsApp = (message: string, lead = false) => {
+    trackEvent(lead ? "generate_lead" : "whatsapp_click", { form_name: "camera_assistant", page_path: location.pathname });
     window.open(`https://wa.me/${SITE.whatsapp}?text=${encodeURIComponent(message)}`, "_blank", "noopener,noreferrer");
   };
 
@@ -465,7 +467,7 @@ export default function CameraAssistant() {
       previewUrl: null,
       preferredDate: customer.preferredDate,
       service: customer.service,
-    }));
+    }), true);
   };
 
   const goBack = () => {
