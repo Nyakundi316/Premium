@@ -3,6 +3,7 @@
 
 import { useMemo, useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   X,
@@ -14,6 +15,7 @@ import {
   Grid3X3,
   Filter,
 } from "lucide-react";
+import { patternsData } from "../patterns/PatternSection";
 
 type Category =
   | "all"
@@ -151,7 +153,7 @@ export default function WhyChooseSection() {
       },
       {
         id: "trihex-board",
-        name: "Trihex Board",
+        name: "Trihex Broad",
         colorLabel: "Charcoal",
         image: "/images/trihex-broad.avif",
         category: "trihex",
@@ -159,7 +161,7 @@ export default function WhyChooseSection() {
           "Broad trihex blocks that create a bold, uniform look and excellent load distribution.",
         bestFor: "Large compounds, commercial yards, gated estates",
         reason:
-          "Choose Trihex Board if you want a bold, premium look that stays neat over large areas and can work for both homes and commercial projects.",
+          "Choose Trihex Broad if you want a bold, premium look that stays neat over large areas and can work for both homes and commercial projects.",
       },
       {
         id: "trihex-yellow",
@@ -212,7 +214,7 @@ export default function WhyChooseSection() {
     },
     {
       icon: Palette,
-      title: "12+ patterns to choose from",
+      title: `${patternsData.length} patterns to choose from`,
       desc: "Dumble, trihex, hexagon, wave and more — each suited to different traffic loads and looks.",
     },
     {
@@ -294,8 +296,13 @@ export default function WhyChooseSection() {
                 <Grid3X3 size={18} />
               </div>
               <div>
-                <h3 className="text-xl font-bold text-[#0F172A] dark:text-white">Pattern Collection</h3>
-                <p className="text-sm text-slate-500">{products.length} patterns and finishes</p>
+                <h3 className="text-xl font-bold text-[#0F172A] dark:text-white">Featured patterns</h3>
+                <p className="text-sm text-slate-500">
+                  {products.length} featured ·{" "}
+                  <Link href="/patterns" className="font-medium text-[#B8860B] hover:underline">
+                    see the full catalogue
+                  </Link>
+                </p>
               </div>
             </div>
             <div className="flex items-center gap-1.5 text-xs text-slate-400">
@@ -327,7 +334,7 @@ export default function WhyChooseSection() {
 
           {/* Grid */}
           <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4">
-            <AnimatePresence mode="wait">
+            <AnimatePresence mode="popLayout">
               {filteredProducts.map((product, i) => (
                 <motion.button
                   key={product.id}
@@ -347,7 +354,7 @@ export default function WhyChooseSection() {
                       className="object-cover transition-transform duration-500 group-hover:scale-105"
                       sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-0 transition-opacity group-hover:opacity-100" />
+                    <div className="absolute inset-0 bg-linear-to-t from-black/50 via-transparent to-transparent opacity-0 transition-opacity group-hover:opacity-100" />
                     <div className="absolute bottom-0 left-0 right-0 translate-y-2 p-3 opacity-0 transition-all group-hover:translate-y-0 group-hover:opacity-100">
                       <p className="text-xs font-semibold text-white">{product.name}</p>
                       <p className="mt-0.5 flex items-center gap-1 text-[11px] text-white/80">

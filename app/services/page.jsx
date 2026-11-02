@@ -20,11 +20,6 @@ import {
 
 const BRAND = "#FFC20E";
 const PHONE = "+254711789438";
-
-// ✅ Reliable online Kenya map PNG (Wikimedia) – shows consistently
-const MAP_URL =
-  "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5b/Kenya_location_map.svg/1024px-Kenya_location_map.svg.png";
-
 const services = [
   {
     title: "Supply Only",
@@ -412,11 +407,11 @@ export default function ServicesPage() {
             <div className="rounded-3xl border border-black/10 dark:border-slate-700 bg-white dark:bg-slate-900 overflow-hidden shadow-sm">
               <div className="relative h-[340px] w-full bg-slate-100">
                 <Image
-                  src={MAP_URL}
-                  alt="Service coverage map"
+                  src="/images/kenya-service-coverage.png"
+                  alt="Kenya nationwide delivery coverage from Nairobi and Kiambu"
                   fill
                   className="object-cover"
-                  sizes="50vw"
+                  sizes="(max-width: 1023px) 100vw, 50vw"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/25 via-transparent to-transparent" />
                 <div className="absolute bottom-5 left-5 right-5">
@@ -447,7 +442,7 @@ export default function ServicesPage() {
               Product and application gallery
             </h2>
             <p className="mt-3 text-slate-600">
-              Browse paving, kerb, culvert and concrete-product examples. Locations shown in imagery are not presented as verified case studies.
+              Browse paving, kerb, culvert and concrete-product examples. Images show product types and typical applications rather than specific client projects.
             </p>
           </div>
 

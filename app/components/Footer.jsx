@@ -2,14 +2,13 @@
 
 import Link from "next/link";
 import { Camera, Mail, MapPin, Phone } from "lucide-react";
+import { SITE } from "../lib/site";
 
 const GOLD = "#FFC20E";
 
 export default function Footer() {
   const email = "info@premiumcabro.com";
   const locationLabel = "Githunguri Road, Kiambu - Nairobi Region";
-  const mapsUrl =
-    "https://www.google.com/maps/search/?api=1&query=Githunguri+Road+Kiambu+Nairobi";
 
   return (
     <footer className="bg-[#0D1B30] text-white">
@@ -120,7 +119,7 @@ export default function Footer() {
             </a>
 
             <a
-              href={mapsUrl}
+              href={SITE.mapsUrl}
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-start gap-3 rounded-xl border border-white/8 bg-white/[0.03] p-3.5 transition hover:bg-white/[0.06]"

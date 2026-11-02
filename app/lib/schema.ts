@@ -141,6 +141,12 @@ export const localBusiness = {
     addressRegion: SITE.address.region,
     addressCountry: SITE.address.country,
   },
+  geo: {
+    "@type": "GeoCoordinates",
+    latitude: SITE.geo.latitude,
+    longitude: SITE.geo.longitude,
+  },
+  hasMap: SITE.mapsUrl,
   areaServed: areaServedCities,
   contactPoint,
   openingHours: SITE.openingHours,

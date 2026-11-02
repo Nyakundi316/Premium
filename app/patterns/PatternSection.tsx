@@ -50,8 +50,8 @@ const patternTypes: {
   { id: "traditional", label: "Brick Bond", icon: <Shield size={16} /> },
 ];
 
-// 👉 Use your real images here
-const patternsData: Pattern[] = [
+// Full catalogue. The homepage reads its length, so counts stay in sync.
+export const patternsData: Pattern[] = [
   {
     id: 1,
     name: "Trihex Groove – 60mm",
@@ -337,7 +337,7 @@ export default function PatternsPage() {
 
             <div className="space-y-2">
               <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold leading-tight">
-                Patterns we{" "}
+                Patterns{" "}
                 <span
                   className="text-transparent bg-clip-text"
                   style={{
@@ -386,8 +386,8 @@ export default function PatternsPage() {
                   Premium Concrete PM standard patterns
                 </span>
                 <span className="text-xs text-slate-500">
-                  {patternsData.length} core patterns • choose based on traffic
-                  + look
+                  Full catalogue: {patternsData.length} patterns • choose
+                  based on traffic + look
                 </span>
               </div>
             </div>

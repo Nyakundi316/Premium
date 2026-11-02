@@ -132,18 +132,15 @@ export default function CabroPricesPage() {
             the eight factors that actually move the number, so the quotation
             you receive makes sense.
           </p>
-          <p className="mt-3 text-sm text-gray-600">
-            We price every project individually.{" "}
+          <p className="mt-5 border-l-2 border-[#FFC20E] pl-4 text-sm text-gray-600 leading-relaxed">
+            Material and transport costs change through the year, so we price
+            every project individually on current rates.{" "}
             <Link href="/quote" className="font-semibold text-[#B8860B] hover:underline">
-              Request a current quotation
+              Request a quotation
             </Link>{" "}
-            for figures you can rely on.
+            for per-piece, per-square-metre, delivery and installation figures
+            for your site.
           </p>
-          <aside className="mt-5 rounded-xl border border-amber-300 bg-amber-50 px-4 py-3 text-sm text-amber-950">
-            <strong>Verified prices required:</strong> current per-piece, per-square-metre,
-            delivery and installation rates must be confirmed by Premium Cabro before
-            publication. No unverified figures are shown on this guide.
-          </aside>
         </div>
 
         {/* FACTORS */}

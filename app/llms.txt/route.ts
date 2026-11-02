@@ -35,6 +35,7 @@ ${SITE.name} (also trading as ${SITE.relatedName}) manufactures and installs cab
 - Phone and WhatsApp: ${SITE.phoneDisplay} (${SITE.phone})
 - Email: ${SITE.email}
 - Base: ${SITE.address.street}, ${SITE.address.locality}, ${SITE.address.region}, Kenya
+- Yard on Google Maps: ${SITE.mapsUrl}
 - Opening hours: Monday to Saturday, 8:00am to 5:00pm
 - Website: ${SITE.url}
 

@@ -22,6 +22,11 @@ export const SITE = {
     country: "KE",
   },
 
+  // Owner-supplied share link for the "PremiumCabro" Google Maps listing;
+  // coordinates are that listing's pin.
+  mapsUrl: "https://maps.app.goo.gl/AXyD3gdtu1Dsgeti6",
+  geo: { latitude: -1.125326, longitude: 36.9330336 },
+
   // Areas the business actually states it serves (footer, contact page).
   serviceAreas: ["Nairobi", "Kiambu", "Ruiru", "Thika", "Juja", "Githunguri", "Limuru"],
 

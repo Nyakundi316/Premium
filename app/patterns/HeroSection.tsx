@@ -111,7 +111,7 @@ export default function PatternsGallery() {
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-amber-50 border border-amber-100 mb-6">
             <div className="w-2 h-2 rounded-full bg-amber-500" />
             <span className="text-sm font-semibold text-amber-800 uppercase tracking-wider">
-              Premium Cabro&apos;s Collection
+              Featured patterns
             </span>
           </div>
           
@@ -141,7 +141,7 @@ export default function PatternsGallery() {
                       {currentPattern.name}
                     </h2>
                     <p className="text-sm text-gray-500">
-                      Pattern #{currentPattern.id} of {patterns.length}
+                      Featured {currentPattern.id} of {patterns.length} · full catalogue below
                     </p>
                   </div>
                 </div>

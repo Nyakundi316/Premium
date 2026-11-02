@@ -136,6 +136,15 @@ export default function ContactPage() {
                       Factory yard supplying Nairobi, Kiambu, Ruiru, Thika
                       Road & surroundings.
                     </p>
+                    <a
+                      href={SITE.mapsUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="mt-1.5 inline-flex items-center gap-1 text-xs font-semibold text-[#B8860B] hover:underline"
+                    >
+                      Get directions to the yard
+                      <ArrowRight className="h-3 w-3" />
+                    </a>
                   </div>
                 </div>
 
